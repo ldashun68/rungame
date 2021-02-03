@@ -4,6 +4,7 @@ import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
+import Language from "../GameVO/Language";
 
 /**
  * 胜利界面
@@ -60,6 +61,12 @@ export default class GameWin extends rab.RabView {
        
         
         this.onwin();
+        this.onShowLanguage();
+    }
+
+    private onShowLanguage()
+    {
+        this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
     }
 
     onwin()

@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":26,
+    "selectedBox":24,
+    "selecteID":25,
     "searchKey":"Scene,NotClick,NotClick",
     "props":{"width":750,"var":"NotClick","sceneColor":"#000000","name":"NotClick","height":1334},
     "nodeParent":-1,
-    "maxID":28,
+    "maxID":29,
     "label":"NotClick",
     "isOpen":true,
     "isDirectory":true,
@@ -33,38 +33,37 @@
         {
             "x":15,
             "type":"Image",
+            "searchKey":"Image,bg",
+            "props":{"var":"bg","top":0,"skin":"ui/bg_1.jpg","right":0,"left":0,"bottom":0},
+            "nodeParent":2,
+            "label":"bg",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":28,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
             "searchKey":"Image,click,click",
-            "props":{"width":750,"var":"click","name":"click","height":1334},
+            "props":{"var":"click","top":0,"right":0,"name":"click","left":0,"bottom":0},
             "nodeParent":2,
             "label":"click",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":24,
             "child":[
-                {
-                    "x":30,
-                    "type":"Widget",
-                    "switchAble":true,
-                    "searchKey":"Widget",
-                    "removeAble":true,
-                    "props":{"y":0,"x":0,"top":0,"right":0,"left":0,"bottom":0},
-                    "nodeParent":24,
-                    "label":"Widget",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":25,
-                    "child":[
-                        ]
-                }]
+                ]
         },
         {
             "x":15,
             "type":"Image",
             "searchKey":"Image,loadNode,loadNode",
-            "props":{"y":667,"x":354,"width":200,"visible":false,"var":"loadNode","skin":"ui/grayBox.png","sizeGrid":"15,15,15,15","name":"loadNode","height":75,"anchorY":0.5,"anchorX":0.5},
+            "props":{"width":200,"visible":false,"var":"loadNode","skin":"ui/grayBox.png","sizeGrid":"15,15,15,15","name":"loadNode","height":75,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"loadNode",
             "isOpen":true,

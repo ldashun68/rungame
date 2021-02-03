@@ -4,6 +4,7 @@ import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
+import Language from "../GameVO/Language";
 
 /**
  * 失败界面
@@ -41,6 +42,14 @@ export default class GameFail extends rab.RabView {
         // this.m_currView.timeText.value = ""+this.time;
 
         Laya.timer.loop(1000, this, this.countDown);
+        this.onShowLanguage();
+    }
+
+    private onShowLanguage()
+    {
+        this.m_currView.continueTxt.text = Language.instance.getTxt("fail_1");
+        this.m_currView.restartTxt.text = Language.instance.getTxt("fail_1");
+        this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_1");
     }
 
     /**战斗失败 */

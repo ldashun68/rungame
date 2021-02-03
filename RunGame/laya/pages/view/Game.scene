@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":248,
+    "selecteID":279,
     "searchKey":"Scene,Game,Game",
     "props":{"width":750,"var":"Game","top":0,"sceneColor":"#000000","right":0,"name":"Game","left":0,"height":1334,"centerY":0,"centerX":0,"bottom":0},
     "nodeParent":-1,
-    "maxID":279,
+    "maxID":280,
     "label":"Game",
     "isOpen":true,
     "isDirectory":true,
@@ -60,7 +60,6 @@
             "compId":248,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,lifeNode,lifeNode",
                     "props":{"y":164,"x":120,"var":"lifeNode","skin":"ui/coinBg1.png","name":"lifeNode","anchorY":0.5,"anchorX":0.5},
@@ -100,7 +99,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,coinNode",
                     "props":{"y":253,"x":120,"var":"coinNode","skin":"ui/coinBg1.png","anchorY":0.5,"anchorX":0.5},
@@ -140,7 +138,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,progressNode,progressNode",
                     "props":{"y":50,"x":375,"width":300,"var":"progressNode","name":"progressNode","height":100,"anchorY":0.5,"anchorX":0.5},
@@ -153,7 +150,6 @@
                     "compId":252,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,currentPass",
                             "props":{"y":58,"x":29,"skin":"ui/grayBox.png","name":"currentPass","anchorY":0.5,"anchorX":0.5},
@@ -167,7 +163,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,nextPass",
                             "props":{"y":58,"x":271,"skin":"ui/grayBox.png","name":"nextPass","anchorY":0.5,"anchorX":0.5},
@@ -181,7 +176,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,currentPassText,currentPassText",
                             "props":{"y":58,"x":29,"var":"currentPassText","value":"10","skin":"ui/passNum.png","sheet":"0123456789/","scaleY":1.2,"scaleX":1.2,"name":"currentPassText","anchorY":0.5,"anchorX":0.5},
@@ -195,7 +189,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,nextPassText,nextPassText",
                             "props":{"y":58,"x":271,"var":"nextPassText","value":"11","skin":"ui/passNum.png","sheet":"0123456789/","scaleY":1.2,"scaleX":1.2,"name":"nextPassText","anchorY":0.5,"anchorX":0.5},
@@ -209,7 +202,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,progress_b,progress_b",
                             "props":{"y":44.5,"x":54,"var":"progress_b","skin":"ui/load1.png","name":"progress_b"},
@@ -252,7 +244,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,pauseBtn,pauseBtn",
                             "props":{"y":57,"x":-147,"var":"pauseBtn","skin":"ui/pauseBtn.png","name":"pauseBtn","anchorY":0.5,"anchorX":0.5},
@@ -266,7 +257,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Label",
                             "searchKey":"Label,mapName",
                             "props":{"y":10,"var":"mapName","text":"场景名称","fontSize":30,"color":"#ffffff","centerX":0,"bold":true},
@@ -281,6 +271,20 @@
                         }]
                 }],
             "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"FontClip",
+            "searchKey":"FontClip,timeTxt",
+            "props":{"var":"timeTxt","value":"3","skin":"ui/failNum.png","sheet":"0123456789","centerY":0,"centerX":0,"align":"center"},
+            "nodeParent":2,
+            "label":"timeTxt",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":279,
+            "child":[
+                ]
         }],
     "animations":[
         {

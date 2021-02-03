@@ -40,7 +40,6 @@ export default class FightManager extends rab.GameObject {
     /**速度 */
     private speed:number;
     /**当前角色位置 */
-    private cureentZ:number = 0;
     /**相机初始位置 */
     // private camerapos:Laya.Vector3;
 
@@ -52,7 +51,7 @@ export default class FightManager extends rab.GameObject {
 
     onInit(): void {
         // this._basebuilds.clear();
-        this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
+        // this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
         this.AddListenerMessage(GameNotity.GameMessage_PauseGame, this.onGamePause);
         this.AddListenerMessage(GameNotity.GameMessage_GameContinue, this.onGameContinue);
         this.AddListenerMessage(GameNotity.Game_RemoveScene,this.onReMoveScene)
@@ -93,7 +92,6 @@ export default class FightManager extends rab.GameObject {
         }
         this.builds = [];
         this.speed = 0.2;
-        this.cureentZ =0;
         this._currLenght = 0;
         this.obstacleManager.onClearAll();
     }
@@ -115,6 +113,8 @@ export default class FightManager extends rab.GameObject {
         {
             this.oncreateNextBuild();
         }
+
+        this.SendMessage(GameNotity.GameMessage_GameStart)
     }
 
 
@@ -122,6 +122,7 @@ export default class FightManager extends rab.GameObject {
     public onGameStart (): void {
         console.log("开始跑了");
         this.isStart = true;
+        this.playerManager.onGameStart();
     }
 
     /**退出战斗 */
@@ -157,9 +158,7 @@ export default class FightManager extends rab.GameObject {
         if (this.isStart == true) {
 
             // this.fight();
-            this.playerManager.update(this.speed);
-            // this.oncameraMove();
-            this.cureentZ += this.speed;
+            this.playerManager.update();
             this.updatePassProgressNode()
             this.onCreateBuild();
         }
@@ -169,7 +168,7 @@ export default class FightManager extends rab.GameObject {
      */
     onCreateBuild()
     {
-        if(this._currLenght - this.cureentZ <= 90)
+        if(this._currLenght - this.playerManager.worldDistance <= 90)
         {
             if(this._currLenght <= this.passData.length)
             {
@@ -177,14 +176,14 @@ export default class FightManager extends rab.GameObject {
             }
         }
         //TODO:到终点了做个动画就打开结算界面吧
-        if(this.cureentZ > this.passData.length-9)
+        if(this.playerManager.worldDistance > this.passData.length-9)
         {
             this.onGamewin();
         }
         //TODO:超出的回收了
-        if(this.cureentZ < this.passData.length-15)
+        if(this.playerManager.worldDistance < this.passData.length-15)
         {
-            if(this.cureentZ > this.builds[0].PosZ)
+            if(this.playerManager.worldDistance > this.builds[0].PosZ)
             {
                 this.builds.shift().recover();
             }
@@ -313,7 +312,7 @@ export default class FightManager extends rab.GameObject {
          this.view.mapName.text = this.passData.name;
         this.view.currentPassText.value = ""+this.manager.getCurrentPass();
         this.view.nextPassText.value = ""+(this.manager.getCurrentPass()+1);
-        this.view.progress_t.x = 2+(this.cureentZ/this.passData.length*(this.view.progress_t.width));
+        this.view.progress_t.x = 2+(this.playerManager.worldDistance/this.passData.length*(this.view.progress_t.width));
         this.view.coinText.value = ""+this.manager.fightGetCoin;
     }
 

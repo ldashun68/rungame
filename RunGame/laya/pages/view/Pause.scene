@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":22,
+    "selectedBox":15,
+    "selecteID":16,
     "searchKey":"Scene,Pause,Pause",
     "props":{"width":750,"var":"Pause","sceneColor":"#000000","name":"Pause","height":1334},
     "nodeParent":-1,
@@ -66,27 +66,12 @@
             "nodeParent":2,
             "label":"bg",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":15,
             "child":[
-                {
-                    "x":30,
-                    "type":"Widget",
-                    "switchAble":true,
-                    "searchKey":"Widget",
-                    "removeAble":true,
-                    "props":{"y":0,"x":0,"top":0,"right":0,"left":0,"bottom":0},
-                    "nodeParent":15,
-                    "label":"Widget",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":16,
-                    "child":[
-                        ]
-                }]
+                ]
         },
         {
             "x":15,

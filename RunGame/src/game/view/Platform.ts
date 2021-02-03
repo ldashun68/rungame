@@ -4,6 +4,7 @@ import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
+import Language from "../GameVO/Language";
 
 /**
  * 大厅界面
@@ -64,6 +65,16 @@ export default class Platform extends rab.RabView {
     protected OnRefreshView() {
         rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
         rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+        this.onShowLanguage();
+    }
+
+    private onShowLanguage()
+    {
+        this.m_currView.startTxt.text = Language.instance.getTxt("startGame")
+        this.m_currView.rankTxt.text = Language.instance.getTxt("rank")
+        this.m_currView.picTxt.text = Language.instance.getTxt("pic")
+        this.m_currView.setTxt.text = Language.instance.getTxt("set")
+        this.m_currView.lanTxt.text = Language.instance.getTxt("language")
     }
 
     onstart()
@@ -117,7 +128,8 @@ export default class Platform extends rab.RabView {
 
     /**语言包 */
     private onLan (): void {
-        
+        this.myManager.onSetLanguage();
+        this.onShowLanguage();
     }
 
 }

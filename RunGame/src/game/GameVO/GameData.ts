@@ -23,5 +23,7 @@ export default interface GameData extends RabGameInfo  {
     pass: number;
     /**当前关卡 */
     currentPass: number;
+    /**语言包 */
+    language:string;
 
 }

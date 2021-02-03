@@ -10,6 +10,7 @@ import BasicDictionary from "../Basic/BasicDictionary";
 import ViewConfig from "../rab/viewConfig";
 import Tool from "../Basic/Tool";
 import { buildProp, passProp } from "./GameVO/DataType";
+import Language from "./GameVO/Language";
 
 export default class GameController extends rab.RabController {
 
@@ -60,6 +61,7 @@ export default class GameController extends rab.RabController {
         this.gameInfo.maxTicket = 30;
         this.gameInfo.pass = 0;
         this.gameInfo.currentPass = 0;
+        this.gameInfo.language = "cn";//cn中文、en英文
 
         this.gameInfo.lastTime = {
             year: 0,
@@ -69,6 +71,19 @@ export default class GameController extends rab.RabController {
             minute: 0,
             second: 0,
         };
+    }
+
+    /**语言设置 */
+    public onSetLanguage()
+    {
+        if(this.gameInfo.language == "cn")
+        {
+            this.gameInfo.language = "en"
+        }else{
+            this.gameInfo.language = "cn"
+        }
+        Language.instance.SetLanguage(this.gameInfo.language);
+        this.SaveData();
     }
 
     protected onHide() {
@@ -89,7 +104,7 @@ export default class GameController extends rab.RabController {
         this.skillWeight = 0;
         this.soldierSort = [];
 
-       
+        Language.instance.onInit(this.gameInfo.language)
         this.updateTime();
         this.SaveData();
     }

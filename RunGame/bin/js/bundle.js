@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Loading.scene";
+    GameConfig.startScene = "view/RoleSelect.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -1523,7 +1523,7 @@
                     this.createView(GameUI.uiView);
                 }
             }
-            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 164, "x": 120, "var": "lifeNode", "skin": "ui/coinBg1.png", "name": "lifeNode", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "y": 41.5, "x": 65.5, "skin": "ui/redPoint.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "y": 37, "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "y": 253, "x": 120, "var": "coinNode", "skin": "ui/coinBg1.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 275, "child": [{ "type": "Image", "props": { "y": 41.5, "x": 65.5, "skin": "ui/coin1.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 276 }, { "type": "FontClip", "props": { "y": 37, "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "coinText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 277 }] }, { "type": "Image", "props": { "y": 50, "x": 375, "width": 300, "var": "progressNode", "name": "progressNode", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "y": 58, "x": 29, "skin": "ui/grayBox.png", "name": "currentPass", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 255 }, { "type": "Image", "props": { "y": 58, "x": 271, "skin": "ui/grayBox.png", "name": "nextPass", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "FontClip", "props": { "y": 58, "x": 29, "var": "currentPassText", "value": "10", "skin": "ui/passNum.png", "sheet": "0123456789/", "scaleY": 1.2, "scaleX": 1.2, "name": "currentPassText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 257 }, { "type": "FontClip", "props": { "y": 58, "x": 271, "var": "nextPassText", "value": "11", "skin": "ui/passNum.png", "sheet": "0123456789/", "scaleY": 1.2, "scaleX": 1.2, "name": "nextPassText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 258 }, { "type": "Image", "props": { "y": 44.5, "x": 54, "var": "progress_b", "skin": "ui/load1.png", "name": "progress_b" }, "compId": 259, "child": [{ "type": "Image", "props": { "y": 0, "x": 2, "var": "progress_m", "skin": "ui/load1.png", "scaleX": 0.98, "renderType": "mask", "name": "progress_m" }, "compId": 262 }, { "type": "Image", "props": { "y": 15, "x": 2, "var": "progress_t", "skin": "ui/load2.png", "scaleY": 0.95, "name": "progress_t", "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 57, "x": -147, "var": "pauseBtn", "skin": "ui/pauseBtn.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Label", "props": { "y": 10, "var": "mapName", "text": "场景名称", "fontSize": 30, "color": "#ffffff", "centerX": 0, "bold": true }, "compId": 278 }] }] }], "loadList": ["ui/coinBg1.png", "ui/redPoint.png", "ui/coinNum.png", "ui/coin1.png", "ui/grayBox.png", "ui/passNum.png", "ui/load1.png", "ui/load2.png", "ui/pauseBtn.png"], "loadList3D": [] };
+            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 164, "x": 120, "var": "lifeNode", "skin": "ui/coinBg1.png", "name": "lifeNode", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "y": 41.5, "x": 65.5, "skin": "ui/redPoint.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "y": 37, "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "y": 253, "x": 120, "var": "coinNode", "skin": "ui/coinBg1.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 275, "child": [{ "type": "Image", "props": { "y": 41.5, "x": 65.5, "skin": "ui/coin1.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 276 }, { "type": "FontClip", "props": { "y": 37, "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "coinText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 277 }] }, { "type": "Image", "props": { "y": 50, "x": 375, "width": 300, "var": "progressNode", "name": "progressNode", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "y": 58, "x": 29, "skin": "ui/grayBox.png", "name": "currentPass", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 255 }, { "type": "Image", "props": { "y": 58, "x": 271, "skin": "ui/grayBox.png", "name": "nextPass", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "FontClip", "props": { "y": 58, "x": 29, "var": "currentPassText", "value": "10", "skin": "ui/passNum.png", "sheet": "0123456789/", "scaleY": 1.2, "scaleX": 1.2, "name": "currentPassText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 257 }, { "type": "FontClip", "props": { "y": 58, "x": 271, "var": "nextPassText", "value": "11", "skin": "ui/passNum.png", "sheet": "0123456789/", "scaleY": 1.2, "scaleX": 1.2, "name": "nextPassText", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 258 }, { "type": "Image", "props": { "y": 44.5, "x": 54, "var": "progress_b", "skin": "ui/load1.png", "name": "progress_b" }, "compId": 259, "child": [{ "type": "Image", "props": { "y": 0, "x": 2, "var": "progress_m", "skin": "ui/load1.png", "scaleX": 0.98, "renderType": "mask", "name": "progress_m" }, "compId": 262 }, { "type": "Image", "props": { "y": 15, "x": 2, "var": "progress_t", "skin": "ui/load2.png", "scaleY": 0.95, "name": "progress_t", "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 57, "x": -147, "var": "pauseBtn", "skin": "ui/pauseBtn.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Label", "props": { "y": 10, "var": "mapName", "text": "场景名称", "fontSize": 30, "color": "#ffffff", "centerX": 0, "bold": true }, "compId": 278 }] }] }, { "type": "FontClip", "props": { "var": "timeTxt", "value": "3", "skin": "ui/failNum.png", "sheet": "0123456789", "centerY": 0, "centerX": 0, "align": "center" }, "compId": 279 }], "loadList": ["ui/coinBg1.png", "ui/redPoint.png", "ui/coinNum.png", "ui/coin1.png", "ui/grayBox.png", "ui/passNum.png", "ui/load1.png", "ui/load2.png", "ui/pauseBtn.png", "ui/failNum.png"], "loadList3D": [] };
             view.GameUI = GameUI;
             REG("ui.view.GameUI", GameUI);
             class GameFailUI extends Scene {
@@ -1535,7 +1535,7 @@
                     this.createView(GameFailUI.uiView);
                 }
             }
-            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 2000, "alpha": 0.75 }, "compId": 43, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 45 }] }, { "type": "Image", "props": { "y": 667, "width": 300, "var": "resrart", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 53, "child": [{ "type": "Label", "props": { "text": "重新开始", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 54 }] }, { "type": "Image", "props": { "y": 494, "width": 300, "var": "continue", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 51, "child": [{ "type": "Label", "props": { "text": "继续游戏", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 52 }] }, { "type": "Image", "props": { "y": 816, "width": 300, "var": "home", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 55, "child": [{ "type": "Label", "props": { "text": "回到主菜单", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 56 }] }], "loadList": ["ui/btn_blue_small2.png"], "loadList3D": [] };
+            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 2000, "alpha": 0.75 }, "compId": 43, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 45 }] }, { "type": "Image", "props": { "y": 667, "width": 300, "var": "resrart", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 53, "child": [{ "type": "Label", "props": { "var": "restartTxt", "text": "重新开始", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 54 }] }, { "type": "Image", "props": { "y": 494, "width": 300, "var": "continue", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 51, "child": [{ "type": "Label", "props": { "var": "continueTxt", "text": "继续游戏", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 52 }] }, { "type": "Image", "props": { "y": 816, "width": 300, "var": "home", "skin": "ui/btn_blue_small2.png", "height": 102, "centerX": 0 }, "compId": 55, "child": [{ "type": "Label", "props": { "var": "breakHomeTxt", "text": "回到主菜单", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 56 }] }], "loadList": ["ui/btn_blue_small2.png"], "loadList3D": [] };
             view.GameFailUI = GameFailUI;
             REG("ui.view.GameFailUI", GameFailUI);
             class GameSetUI extends Scene {
@@ -1559,7 +1559,7 @@
                     this.createView(GameWinUI.uiView);
                 }
             }
-            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "var": "bg", "skin": "ui/bg_1.jpg", "name": "bg", "height": 1334 }, "compId": 15, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 16 }] }, { "type": "Image", "props": { "zOrder": 1, "y": 0, "x": 375, "width": 750, "var": "winNode", "name": "winNode", "height": 1000, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "y": 508, "x": 375, "visible": false, "var": "award", "name": "award", "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 56, "x": 266, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 34 }, { "type": "Image", "props": { "y": 55, "x": 358, "skin": "ui/coin1.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 56, "x": 422, "var": "coinText", "value": "2000", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }, { "type": "Label", "props": { "y": 30, "x": 394.80078125, "text": "+", "strokeColor": "#000000", "stroke": 3, "fontSize": 55, "font": "SimHei", "color": "#ffffff", "bold": true }, "compId": 37 }] }, { "type": "Image", "props": { "y": 938, "x": 396, "visible": false, "var": "next", "skin": "ui/btn_yellow_small.png", "name": "next", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Label", "props": { "text": "下一关", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 53 }] }, { "type": "Image", "props": { "y": 938, "x": 129, "visible": false, "var": "homeBtn", "skin": "ui/homeText.png", "name": "homeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }] }], "loadList": ["ui/bg_1.jpg", "ui/coin1.png", "ui/coinNum.png", "ui/btn_yellow_small.png", "ui/homeText.png"], "loadList3D": [] };
+            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "name": "bg", "left": 0, "bottom": 0 }, "compId": 15 }, { "type": "Image", "props": { "zOrder": 1, "var": "winNode", "top": 0, "right": 0, "name": "winNode", "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "visible": false, "var": "award", "name": "award", "centerY": 0, "centerX": 0, "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 55, "skin": "ui/coin1.png", "centerX": -100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 55, "var": "coinText", "value": "2000", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "centerX": 23, "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }, { "type": "Label", "props": { "y": 30, "text": "+", "strokeColor": "#000000", "stroke": 3, "fontSize": 55, "font": "SimHei", "color": "#ffffff", "centerX": -60, "bold": true }, "compId": 37 }] }, { "type": "Image", "props": { "y": 938, "visible": false, "var": "next", "skin": "ui/btn_yellow_small.png", "name": "next", "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Label", "props": { "var": "nextTxt", "text": "下一关", "fontSize": 50, "centerY": 0, "centerX": 0 }, "compId": 53 }] }, { "type": "Image", "props": { "y": 938, "x": 129, "visible": false, "var": "homeBtn", "skin": "ui/grayBox.png", "name": "homeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }] }], "loadList": ["ui/bg_1.jpg", "ui/coin1.png", "ui/coinNum.png", "ui/btn_yellow_small.png", "ui/grayBox.png"], "loadList3D": [] };
             view.GameWinUI = GameWinUI;
             REG("ui.view.GameWinUI", GameWinUI);
             class GetTicketUI extends Scene {
@@ -1583,7 +1583,7 @@
                     this.createView(LoadingUI.uiView);
                 }
             }
-            LoadingUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Loading", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 15 }, { "type": "Image", "props": { "y": -150, "x": 375, "var": "bg", "skin": "load/bg.jpg", "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Script", "props": { "top": -150, "centerX": 0, "runtime": "laya.ui.Widget" }, "compId": 17 }, { "type": "Image", "props": { "y": 645, "x": 350, "var": "logo", "skin": "load/logo.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 12, "child": [{ "type": "Script", "props": { "centerX": -25, "runtime": "laya.ui.Widget" }, "compId": 18 }] }] }, { "type": "Box", "props": { "x": 200, "var": "boxProgress", "right": 200, "left": 200, "height": 41, "bottom": 320 }, "compId": 9, "child": [{ "type": "Image", "props": { "width": 350, "top": 5, "skin": "load/bar1.png", "sizeGrid": "0,20,0,20", "right": 0, "left": 0, "height": 27, "bottom": 9 }, "compId": 10 }, { "type": "Image", "props": { "y": 8, "x": 5, "width": 340, "var": "imgProgress", "skin": "load/bar2.png", "sizeGrid": "0,20,0,20", "height": 20 }, "compId": 11 }] }, { "type": "Label", "props": { "var": "lbProgress", "text": "Progress", "fontSize": 22, "color": "#f9f9f9", "centerX": 0, "bottom": 298 }, "compId": 7 }], "loadList": ["load/bg.jpg", "load/logo.png", "load/bar1.png", "load/bar2.png"], "loadList3D": [] };
+            LoadingUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Loading", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 15 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "load/bg.jpg", "right": 0, "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": 645, "x": 350, "var": "logo", "skin": "load/logo.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 12 }] }, { "type": "Box", "props": { "x": 200, "var": "boxProgress", "right": 200, "left": 200, "height": 41, "bottom": 320 }, "compId": 9, "child": [{ "type": "Image", "props": { "width": 350, "top": 5, "skin": "load/bar1.png", "sizeGrid": "0,20,0,20", "right": 0, "left": 0, "height": 27, "bottom": 9 }, "compId": 10 }, { "type": "Image", "props": { "y": 8, "x": 5, "width": 340, "var": "imgProgress", "skin": "load/bar2.png", "sizeGrid": "0,20,0,20", "height": 20 }, "compId": 11 }] }, { "type": "Label", "props": { "var": "lbProgress", "text": "Progress", "fontSize": 22, "color": "#f9f9f9", "centerX": 0, "bottom": 298 }, "compId": 7 }], "loadList": ["load/bg.jpg", "load/logo.png", "load/bar1.png", "load/bar2.png"], "loadList3D": [] };
             view.LoadingUI = LoadingUI;
             REG("ui.view.LoadingUI", LoadingUI);
             class NotClickUI extends Scene {
@@ -1595,7 +1595,7 @@
                     this.createView(NotClickUI.uiView);
                 }
             }
-            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "width": 750, "var": "click", "name": "click", "height": 1334 }, "compId": 24, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 25 }] }, { "type": "Image", "props": { "y": 667, "x": 354, "width": 200, "visible": false, "var": "loadNode", "skin": "ui/grayBox.png", "sizeGrid": "15,15,15,15", "name": "loadNode", "height": 75, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["ui/grayBox.png"], "loadList3D": [] };
+            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "left": 0, "bottom": 0 }, "compId": 28 }, { "type": "Image", "props": { "var": "click", "top": 0, "right": 0, "name": "click", "left": 0, "bottom": 0 }, "compId": 24 }, { "type": "Image", "props": { "width": 200, "visible": false, "var": "loadNode", "skin": "ui/grayBox.png", "sizeGrid": "15,15,15,15", "name": "loadNode", "height": 75, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["ui/bg_1.jpg", "ui/grayBox.png"], "loadList3D": [] };
             view.NotClickUI = NotClickUI;
             REG("ui.view.NotClickUI", NotClickUI);
             class PauseUI extends Scene {
@@ -1607,7 +1607,7 @@
                     this.createView(PauseUI.uiView);
                 }
             }
-            PauseUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pause", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 2000, "alpha": 0.5 }, "compId": 24, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 23 }] }, { "type": "Image", "props": { "width": 750, "var": "bg", "skin": "ui/bg_2.png", "name": "bg", "height": 1334 }, "compId": 15, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 16 }] }, { "type": "Image", "props": { "y": 676, "x": 375, "var": "continueBtn", "skin": "ui/btn_yellow_small.png", "name": "continueBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Image", "props": { "y": 53.5, "x": 141.5, "skin": "ui/continueText.png", "scaleY": 1.1, "scaleX": 1.1, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 19 }] }, { "type": "Image", "props": { "y": 829, "x": 375, "var": "exitBtn", "text": "退出", "strokeColor": "#2c2c2c", "stroke": 1, "skin": "ui/exitText.png", "name": "exitBtn", "fontSize": 40, "font": "SimHei", "color": "#2c2c2c", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }, { "type": "Image", "props": { "y": 466, "x": 375, "skin": "ui/pauseText.png", "scaleY": 1.1, "scaleX": 1.1, "anchorX": 0.5 }, "compId": 22 }], "loadList": ["ui/bg_2.png", "ui/btn_yellow_small.png", "ui/continueText.png", "ui/exitText.png", "ui/pauseText.png"], "loadList3D": [] };
+            PauseUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pause", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 2000, "alpha": 0.5 }, "compId": 24, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 23 }] }, { "type": "Image", "props": { "width": 750, "var": "bg", "skin": "ui/bg_2.png", "name": "bg", "height": 1334 }, "compId": 15 }, { "type": "Image", "props": { "y": 676, "x": 375, "var": "continueBtn", "skin": "ui/btn_yellow_small.png", "name": "continueBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18, "child": [{ "type": "Image", "props": { "y": 53.5, "x": 141.5, "skin": "ui/continueText.png", "scaleY": 1.1, "scaleX": 1.1, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 19 }] }, { "type": "Image", "props": { "y": 829, "x": 375, "var": "exitBtn", "text": "退出", "strokeColor": "#2c2c2c", "stroke": 1, "skin": "ui/exitText.png", "name": "exitBtn", "fontSize": 40, "font": "SimHei", "color": "#2c2c2c", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }, { "type": "Image", "props": { "y": 466, "x": 375, "skin": "ui/pauseText.png", "scaleY": 1.1, "scaleX": 1.1, "anchorX": 0.5 }, "compId": 22 }], "loadList": ["ui/bg_2.png", "ui/btn_yellow_small.png", "ui/continueText.png", "ui/exitText.png", "ui/pauseText.png"], "loadList3D": [] };
             view.PauseUI = PauseUI;
             REG("ui.view.PauseUI", PauseUI);
             class PendantUI extends Scene {
@@ -1631,7 +1631,7 @@
                     this.createView(PlatformUI.uiView);
                 }
             }
-            PlatformUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Platform", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "ui/bg_1.jpg", "height": 1334 }, "compId": 127, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 128 }] }, { "type": "Image", "props": { "y": 1334, "x": 375, "width": 750, "height": 300, "anchorY": 1, "anchorX": 0.5 }, "compId": 130, "child": [{ "type": "Script", "props": { "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 131 }, { "type": "Image", "props": { "y": 0, "x": 390, "width": 150, "var": "set", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 255, "child": [{ "type": "Label", "props": { "text": "设置", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 256 }] }, { "type": "Image", "props": { "y": 0, "x": 565, "width": 150, "var": "lan", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 253, "child": [{ "type": "Label", "props": { "text": "语言", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 254 }] }, { "type": "Image", "props": { "y": 0, "x": 36, "width": 150, "var": "rank", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 249, "child": [{ "type": "Label", "props": { "text": "排行版", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 250 }] }, { "type": "Image", "props": { "y": 0, "x": 212, "width": 150, "var": "pic", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 251, "child": [{ "type": "Label", "props": { "text": "照片墙", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 252 }] }] }, { "type": "Image", "props": { "y": 742, "x": 375, "var": "startBtn", "skin": "ui/btn_start.png", "name": "startBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244, "child": [{ "type": "Label", "props": { "y": 0, "x": 0, "text": "开始游戏", "fontSize": 60, "color": "#ffffff", "centerY": 0, "centerX": 0, "bold": true }, "compId": 257 }] }], "loadList": ["ui/bg_1.jpg", "ui/btn_blue_small2.png", "ui/btn_start.png"], "loadList3D": [] };
+            PlatformUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Platform", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "left": 0, "bottom": 0 }, "compId": 127 }, { "type": "Image", "props": { "right": 0, "left": 0, "bottom": 300, "anchorY": 1, "anchorX": 0.5 }, "compId": 130, "child": [{ "type": "Image", "props": { "y": 0, "x": 390, "width": 150, "var": "set", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 255, "child": [{ "type": "Label", "props": { "var": "setTxt", "text": "设置", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 256 }] }, { "type": "Image", "props": { "y": 0, "x": 565, "width": 150, "var": "lan", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 253, "child": [{ "type": "Label", "props": { "var": "lanTxt", "text": "语言", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 254 }] }, { "type": "Image", "props": { "y": 0, "x": 36, "width": 150, "var": "rank", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 249, "child": [{ "type": "Label", "props": { "var": "rankTxt", "text": "排行版", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 250 }] }, { "type": "Image", "props": { "y": 0, "x": 212, "width": 150, "var": "pic", "skin": "ui/btn_blue_small2.png", "height": 102 }, "compId": 251, "child": [{ "type": "Label", "props": { "var": "picTxt", "text": "照片墙", "fontSize": 40, "centerY": 0, "centerX": 0 }, "compId": 252 }] }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "ui/btn_start.png", "name": "startBtn", "centerX": 0, "bottom": 500, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244, "child": [{ "type": "Label", "props": { "y": 0, "x": 0, "var": "startTxt", "text": "开始游戏", "fontSize": 60, "color": "#ffffff", "centerY": 0, "centerX": 0, "bold": true }, "compId": 257 }] }], "loadList": ["ui/bg_1.jpg", "ui/btn_blue_small2.png", "ui/btn_start.png"], "loadList3D": [] };
             view.PlatformUI = PlatformUI;
             REG("ui.view.PlatformUI", PlatformUI);
             class RoleSelectUI extends Scene {
@@ -1643,7 +1643,7 @@
                     this.createView(RoleSelectUI.uiView);
                 }
             }
-            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 62, "x": 36, "var": "break", "skin": "ui/btn_blue_small2.png" }, "compId": 22, "child": [{ "type": "Label", "props": { "text": "返回", "fontSize": 45, "centerY": 0, "centerX": 0 }, "compId": 38 }] }, { "type": "Label", "props": { "top": 100, "text": "角色选择", "fontSize": 80, "centerX": 0, "bold": true }, "compId": 23 }, { "type": "Image", "props": { "var": "r2", "skin": "role/box.png", "centerX": -60, "bottom": 100 }, "compId": 26, "child": [{ "type": "Image", "props": { "skin": "role/r2.png", "centerY": 0, "centerX": 0 }, "compId": 27 }] }, { "type": "Image", "props": { "var": "r1", "skin": "role/box.png", "centerX": -180, "bottom": 100 }, "compId": 24, "child": [{ "type": "Image", "props": { "skin": "role/r1.png", "centerY": 0, "centerX": 0 }, "compId": 25 }] }, { "type": "Image", "props": { "var": "r3", "skin": "role/box.png", "centerX": 60, "bottom": 100 }, "compId": 28, "child": [{ "type": "Image", "props": { "skin": "role/r3.png", "centerY": 0, "centerX": 0 }, "compId": 29 }] }, { "type": "Image", "props": { "var": "r4", "skin": "role/box.png", "centerX": 180, "bottom": 100 }, "compId": 32, "child": [{ "type": "Image", "props": { "skin": "role/r4.png", "centerY": 0, "centerX": 0 }, "compId": 33 }] }, { "type": "Image", "props": { "var": "left", "skin": "ui/btn_blue_small2.png", "left": 10, "centerY": 0 }, "compId": 34, "child": [{ "type": "Label", "props": { "text": "左", "fontSize": 45, "centerY": 0, "centerX": 0 }, "compId": 35 }] }, { "type": "Image", "props": { "y": 0, "var": "right", "skin": "ui/btn_blue_small2.png", "right": 10, "centerY": 0 }, "compId": 36, "child": [{ "type": "Label", "props": { "text": "右", "fontSize": 45, "centerY": 0, "centerX": 0 }, "compId": 37 }] }, { "type": "Image", "props": { "y": 986, "x": 375, "var": "startBtn", "skin": "ui/btn_start.png", "name": "startBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39, "child": [{ "type": "Label", "props": { "y": 0, "x": 0, "text": "开始游戏", "fontSize": 60, "color": "#ffffff", "centerY": 0, "centerX": 0, "bold": true }, "compId": 40 }] }], "loadList": ["ui/btn_blue_small2.png", "role/box.png", "role/r2.png", "role/r1.png", "role/r3.png", "role/r4.png", "ui/btn_start.png"], "loadList3D": [] };
+            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 62, "x": 36, "var": "break", "skin": "ui/btn_blue_small2.png" }, "compId": 22, "child": [{ "type": "Label", "props": { "var": "breakTxt", "text": "返回", "fontSize": 45, "centerY": 0, "centerX": 0 }, "compId": 38 }] }, { "type": "Label", "props": { "var": "titleTxt", "top": 100, "text": "角色选择", "fontSize": 80, "centerX": 0, "bold": true }, "compId": 23 }, { "type": "Label", "props": { "var": "roleTxt", "top": 200, "text": "滑动旋转", "fontSize": 45, "centerX": 0 }, "compId": 35 }, { "type": "Image", "props": { "var": "r2", "skin": "role/box.png", "centerX": -60, "bottom": 100 }, "compId": 26, "child": [{ "type": "Image", "props": { "skin": "role/r2.png", "centerY": 0, "centerX": 0 }, "compId": 27 }] }, { "type": "Image", "props": { "var": "r1", "skin": "role/box.png", "centerX": -180, "bottom": 100 }, "compId": 24, "child": [{ "type": "Image", "props": { "skin": "role/r1.png", "centerY": 0, "centerX": 0 }, "compId": 25 }] }, { "type": "Image", "props": { "var": "r3", "skin": "role/box.png", "centerX": 60, "bottom": 100 }, "compId": 28, "child": [{ "type": "Image", "props": { "skin": "role/r3.png", "centerY": 0, "centerX": 0 }, "compId": 29 }] }, { "type": "Image", "props": { "var": "r4", "skin": "role/box.png", "centerX": 180, "bottom": 100 }, "compId": 32, "child": [{ "type": "Image", "props": { "skin": "role/r4.png", "centerY": 0, "centerX": 0 }, "compId": 33 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "ui/btn_start.png", "name": "startBtn", "centerX": 0, "bottom": 220, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39, "child": [{ "type": "Label", "props": { "y": 0, "x": 0, "var": "startTxt", "text": "开始游戏", "fontSize": 60, "color": "#ffffff", "centerY": 0, "centerX": 0, "bold": true }, "compId": 40 }] }], "loadList": ["ui/btn_blue_small2.png", "role/box.png", "role/r2.png", "role/r1.png", "role/r3.png", "role/r4.png", "ui/btn_start.png"], "loadList3D": [] };
             view.RoleSelectUI = RoleSelectUI;
             REG("ui.view.RoleSelectUI", RoleSelectUI);
         })(view = ui.view || (ui.view = {}));
@@ -1695,6 +1695,62 @@
         }
     }
 
+    class Language {
+        constructor() {
+            this.currLanguage = "cn";
+        }
+        static get instance() {
+            if (this._instance == null) {
+                this._instance = new Language();
+            }
+            return this._instance;
+        }
+        onInit(lan) {
+            this.currLanguage = lan;
+            this.cnTxt = {
+                "startGame": "开始游戏",
+                "rank": "排行榜",
+                "pic": "照片墙",
+                "set": "设置",
+                "language": "语言",
+                "break": "返回",
+                "role_1": "角色选择",
+                "role_2": "滑动旋转",
+                "fail_1": "继续游戏",
+                "fail_2": "重新开始",
+                "fail_3": "返回大厅",
+                "win_1": "下一关"
+            };
+            this.enTxt = {
+                "startGame": "startGame",
+                "rank": "rank",
+                "pic": "pic",
+                "set": "set",
+                "language": "language",
+                "break": "break",
+                "role_1": "roleSlect",
+                "role_2": "rotate",
+                "fail_1": "continue",
+                "fail_2": "ReGame",
+                "fail_3": "BreakHome",
+                "win_1": "NextPass"
+            };
+        }
+        SetLanguage(lan) {
+            this.currLanguage = lan;
+        }
+        getTxt(key) {
+            let txt = "";
+            if (this.currLanguage == "cn") {
+                txt = this.cnTxt[key];
+            }
+            else if (this.currLanguage == "en") {
+                txt = this.enTxt[key];
+            }
+            return txt;
+        }
+    }
+
     class GameController extends rab.RabController {
         constructor() {
             super(...arguments);
@@ -1713,6 +1769,7 @@
             this.gameInfo.maxTicket = 30;
             this.gameInfo.pass = 0;
             this.gameInfo.currentPass = 0;
+            this.gameInfo.language = "cn";
             this.gameInfo.lastTime = {
                 year: 0,
                 month: 0,
@@ -1721,6 +1778,16 @@
                 minute: 0,
                 second: 0,
             };
+        }
+        onSetLanguage() {
+            if (this.gameInfo.language == "cn") {
+                this.gameInfo.language = "en";
+            }
+            else {
+                this.gameInfo.language = "cn";
+            }
+            Language.instance.SetLanguage(this.gameInfo.language);
+            this.SaveData();
         }
         onHide() {
         }
@@ -1734,6 +1801,7 @@
             this.fightGetEquip = [];
             this.skillWeight = 0;
             this.soldierSort = [];
+            Language.instance.onInit(this.gameInfo.language);
             this.updateTime();
             this.SaveData();
         }
@@ -2490,6 +2558,14 @@
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
             rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+            this.onShowLanguage();
+        }
+        onShowLanguage() {
+            this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
+            this.m_currView.rankTxt.text = Language.instance.getTxt("rank");
+            this.m_currView.picTxt.text = Language.instance.getTxt("pic");
+            this.m_currView.setTxt.text = Language.instance.getTxt("set");
+            this.m_currView.lanTxt.text = Language.instance.getTxt("language");
         }
         onstart() {
             this.myManager.onLoad3dScene(() => {
@@ -2512,6 +2588,8 @@
         onPic() {
         }
         onLan() {
+            this.myManager.onSetLanguage();
+            this.onShowLanguage();
         }
     }
 
@@ -2645,17 +2723,22 @@
     class PlayerManager extends rab.GameObject {
         constructor() {
             super();
-            this.startrun = false;
+            this.isMoveing = false;
             this.localx = 0;
-            this.duration = 0;
+            this.jumpLength = 2;
+            this.jumpHeight = 1.2;
+            this.slideLength = 4;
+            this.m_JumpStart = 0;
+            this.m_SlideStart = 0;
+            this.minSpeed = 5.0;
+            this.maxSpeed = 10.0;
+            this.worldDistance = 0;
         }
         onInit() {
-            this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
             this.AddListenerMessage(GameNotity.Game_UpdateMouseMove, this.onMouseMove);
         }
         init() {
-            this.startrun = false;
-            this.animbol = false;
+            this.isMoveing = false;
             this._playState = PlayState.none;
             this.scene3D = this.owner;
             this._playerPivot = this.scene3D.getChildByName("PlayerPivot");
@@ -2667,8 +2750,7 @@
         fightReady() {
             this._playState = PlayState.init;
             console.log("加载角色");
-            this.startrun = false;
-            this.animbol = false;
+            this.isMoveing = false;
             this.localx = 0;
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
             this._playerPivot.addChild(this.camera);
@@ -2688,8 +2770,11 @@
             }
         }
         onGameStart() {
-            this.startrun = true;
+            this.isMoveing = true;
             this._playState = PlayState.run;
+            this.m_Speed = this.minSpeed;
+            this.worldDistance = 0;
+            this.playNode.transform.localRotationEulerY = 0;
             if (this.animator) {
                 this.animator.crossFade('run', 0);
             }
@@ -2701,22 +2786,23 @@
         }
         fightExit() {
             this._playState = PlayState.death;
-            this.startrun = false;
+            this.isMoveing = false;
             this._characterSlot.removeChild(this.playNode);
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
             this.scene3D.addChild(this.camera);
             this.camera.transform.position = this.camerapos;
         }
         onhappydance() {
-            this.startrun = false;
+            this.isMoveing = false;
             this._playState = PlayState.stop;
             if (this.animator) {
-                this.animator.crossFade('happydance', 0);
+                this.playNode.transform.localRotationEulerY = 180;
+                this.animator.crossFade('happydance', 0.2);
             }
         }
         Ondeath() {
             this._playState = PlayState.death;
-            this.startrun = false;
+            this.isMoveing = false;
             if (this.animator) {
                 this.animator.crossFade('death', 0);
             }
@@ -2727,11 +2813,11 @@
             if (this.animator) {
                 this.animator.crossFade('run', 0);
             }
-            this.startrun = true;
+            this.isMoveing = true;
         }
         reStart() {
             this._playState = PlayState.run;
-            this.startrun = true;
+            this.isMoveing = true;
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
             this._playerPivot.addChild(this.camera);
             this.camera.transform.position = this.camerapos;
@@ -2739,57 +2825,81 @@
                 this.animator.crossFade('run', 0);
             }
         }
-        update(dt) {
+        update() {
+            let scaledSpeed = this.m_Speed * 0.02;
             let pos = this._playerPivot.transform.position;
-            pos.z += dt;
+            pos.z += scaledSpeed;
+            this.worldDistance += scaledSpeed;
             this._playerPivot.transform.position = pos;
-            if (this.animator && this.animbol) {
-                if (this.duration <= 0) {
-                    this.animbol = false;
+            if (this._playState == PlayState.jump) {
+                let correctJumpLength = this.jumpLength * (1.0 + this.speedRatio);
+                let ratio = (this.worldDistance - this.m_JumpStart) / correctJumpLength;
+                if (ratio >= 1) {
                     this.animator.crossFade('run', 0);
                     this._playState = PlayState.run;
                 }
-                this.duration -= 0.02;
+                else {
+                    this._characterSlot.transform.localPositionY = Math.sin(ratio * Math.PI) * this.jumpHeight;
+                    console.log("localPositionY:", this._characterSlot.transform.localPositionY);
+                }
+            }
+            else if (this._playState == PlayState.slide) {
+                let correctSlideLength = this.slideLength * (1.0 + this.speedRatio);
+                let ratio = (this.worldDistance - this.m_SlideStart) / correctSlideLength;
+                if (ratio >= 1.0) {
+                    this.animator.crossFade('run', 0);
+                    this._playState = PlayState.run;
+                }
+            }
+            if (this.m_Speed < this.maxSpeed) {
+                this.m_Speed += 0.2 * 0.02;
+            }
+            else {
+                this.m_Speed = this.maxSpeed;
             }
         }
+        get speedRatio() { return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed); }
         onMouseMove(data) {
-            if (!this.startrun)
+            if (!this.isMoveing)
                 return;
             console.log("鼠标方向：", data);
             if (data[0] == 0) {
                 if (this.localx < 1.25) {
-                    Laya.Tween.clearTween(this._characterSlot.transform);
                     this.localx += 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
                 }
             }
             else if (data[0] == 1) {
                 if (this.localx > -1.25) {
-                    Laya.Tween.clearTween(this._characterSlot.transform);
                     this.localx -= 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
                 }
             }
             else if (data[0] == 2) {
                 this._playState = PlayState.jump;
+                this.m_JumpStart = this.worldDistance;
                 if (this.animator) {
                     this.animator.crossFade('jump', 0.1);
-                    Laya.Tween.to(this._characterSlot.transform, { localPositionY: 1 }, 200, null, Laya.Handler.create(this, () => {
-                        Laya.Tween.to(this._characterSlot.transform, { localPositionY: 0 }, 200, null, Laya.Handler.create(this, () => {
-                            this._playState = PlayState.run;
-                            this.animator.crossFade('run', 0);
-                        }));
-                    }));
                 }
             }
             else if (data[0] == 3) {
                 this._playState = PlayState.slide;
+                this.m_SlideStart = this.worldDistance;
                 if (this.animator) {
-                    this.duration = 0.6;
-                    this.animbol = true;
                     this.animator.crossFade('slide', 0.1);
                 }
             }
+        }
+        static MoveTowards(current, target, maxDistanceDelta) {
+            let num = target.x - current.x;
+            let num2 = target.y - current.y;
+            let num3 = target.z - current.z;
+            let num4 = num * num + num2 * num2 + num3 * num3;
+            if (num4 == 0 || (maxDistanceDelta >= 0 && num4 <= maxDistanceDelta * maxDistanceDelta)) {
+                return target;
+            }
+            let num5 = Math.sqrt(num4);
+            return new Laya.Vector3(current.x + num / num5 * maxDistanceDelta, current.y + num2 / num5 * maxDistanceDelta, current.z + num3 / num5 * maxDistanceDelta);
         }
     }
 
@@ -2798,10 +2908,8 @@
             super();
             this._basebuilds = new Map();
             this.builds = new Array();
-            this.cureentZ = 0;
         }
         onInit() {
-            this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
             this.AddListenerMessage(GameNotity.GameMessage_PauseGame, this.onGamePause);
             this.AddListenerMessage(GameNotity.GameMessage_GameContinue, this.onGameContinue);
             this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene);
@@ -2827,7 +2935,6 @@
             }
             this.builds = [];
             this.speed = 0.2;
-            this.cureentZ = 0;
             this._currLenght = 0;
             this.obstacleManager.onClearAll();
         }
@@ -2845,10 +2952,12 @@
             for (var i = 0; i < 8; i++) {
                 this.oncreateNextBuild();
             }
+            this.SendMessage(GameNotity.GameMessage_GameStart);
         }
         onGameStart() {
             console.log("开始跑了");
             this.isStart = true;
+            this.playerManager.onGameStart();
         }
         onGamewin() {
             this.isStart = false;
@@ -2871,23 +2980,22 @@
         }
         onUpdate() {
             if (this.isStart == true) {
-                this.playerManager.update(this.speed);
-                this.cureentZ += this.speed;
+                this.playerManager.update();
                 this.updatePassProgressNode();
                 this.onCreateBuild();
             }
         }
         onCreateBuild() {
-            if (this._currLenght - this.cureentZ <= 90) {
+            if (this._currLenght - this.playerManager.worldDistance <= 90) {
                 if (this._currLenght <= this.passData.length) {
                     this.oncreateNextBuild();
                 }
             }
-            if (this.cureentZ > this.passData.length - 9) {
+            if (this.playerManager.worldDistance > this.passData.length - 9) {
                 this.onGamewin();
             }
-            if (this.cureentZ < this.passData.length - 15) {
-                if (this.cureentZ > this.builds[0].PosZ) {
+            if (this.playerManager.worldDistance < this.passData.length - 15) {
+                if (this.playerManager.worldDistance > this.builds[0].PosZ) {
                     this.builds.shift().recover();
                 }
             }
@@ -2978,7 +3086,7 @@
             this.view.mapName.text = this.passData.name;
             this.view.currentPassText.value = "" + this.manager.getCurrentPass();
             this.view.nextPassText.value = "" + (this.manager.getCurrentPass() + 1);
-            this.view.progress_t.x = 2 + (this.cureentZ / this.passData.length * (this.view.progress_t.width));
+            this.view.progress_t.x = 2 + (this.playerManager.worldDistance / this.passData.length * (this.view.progress_t.width));
             this.view.coinText.value = "" + this.manager.fightGetCoin;
         }
     }
@@ -2995,6 +3103,7 @@
             this.create(ui.view.GameUI);
         }
         InitView() {
+            this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGametart);
             Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
             Laya.stage.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
             Laya.stage.on(Laya.Event.KEY_UP, this, this.onKeyUp);
@@ -3010,6 +3119,7 @@
         OnRefreshView() {
             console.log("刷新游戏页面");
             this.gameStart = false;
+            this.m_currView.timeTxt.visible = false;
             this.fightManager.fightReady();
             rab.MusicManager.playMusic("sub4/audio/AttackBGM.mp3");
             this.m_currView.lifeText.value = "3";
@@ -3020,6 +3130,22 @@
             rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
         }
         onGametart(data) {
+            let time = 3;
+            this.m_currView.timeTxt.visible = true;
+            let countdown = () => {
+                this.m_currView.timeTxt.value = "" + time;
+                time--;
+                if (time == -1) {
+                    this.m_currView.timeTxt.visible = false;
+                    this.fightManager.onGameStart();
+                    this.gameStart = true;
+                    Laya.timer.clear(this, countdown);
+                }
+                else {
+                    Laya.timer.once(1000, this, countdown);
+                }
+            };
+            countdown();
         }
         fightContinue() {
         }
@@ -3047,14 +3173,12 @@
                 console.log('onStartDragPicture e', Laya.stage.mouseX);
             }
             else {
-                this.gameStart = true;
-                this.SendMessage(GameNotity.GameMessage_GameStart);
             }
         }
         onMouseUp(e) {
             if (this.gameStart && this.mouseDown) {
                 this.mouseDown = false;
-                if (Math.abs(this._mouseDownX - Laya.stage.mouseX) > 3 || Math.abs(this._mouseDownY - Laya.stage.mouseY) > 3) {
+                if (Math.abs(this._mouseDownX - Laya.stage.mouseX) > 1 || Math.abs(this._mouseDownY - Laya.stage.mouseY) > 1) {
                     let dre = -1;
                     if (Math.abs(this._mouseDownX - Laya.stage.mouseX) > Math.abs(this._mouseDownY - Laya.stage.mouseY)) {
                         if (this._mouseDownX - Laya.stage.mouseX > 0) {
@@ -3207,6 +3331,10 @@
             this.flagEffect.visible = true;
             let manager = rab.RabGameManager.getInterest().getMyManager();
             this.onwin();
+            this.onShowLanguage();
+        }
+        onShowLanguage() {
+            this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
         }
         onwin() {
             this.m_currView.award.visible = true;
@@ -3259,6 +3387,12 @@
         OnRefreshView() {
             this.time = 3;
             Laya.timer.loop(1000, this, this.countDown);
+            this.onShowLanguage();
+        }
+        onShowLanguage() {
+            this.m_currView.continueTxt.text = Language.instance.getTxt("fail_1");
+            this.m_currView.restartTxt.text = Language.instance.getTxt("fail_1");
+            this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_1");
         }
         fightFail(data) {
             let manager = rab.RabGameManager.getInterest().getMyManager();
@@ -3443,6 +3577,33 @@
         InitView() {
             this.m_currView.zOrder = 10000;
             this.m_currView.click.on(Laya.Event.CLICK, this, null);
+            Laya.timer.loop(300, this, () => {
+                if (this.m_currView.loadText.text == "加载中.") {
+                    this.m_currView.loadText.text = "加载中..";
+                }
+                else if (this.m_currView.loadText.text == "加载中..") {
+                    this.m_currView.loadText.text = "加载中...";
+                }
+                else if (this.m_currView.loadText.text == "加载中...") {
+                    this.m_currView.loadText.text = "加载中.";
+                }
+            });
+            this.AddListenerMessage(GameNotity.Init_Loading, this.initLoading);
+            this.OnRefreshView();
+        }
+        OnRefreshView() {
+            this.m_currView.bg.visible = true;
+            this.m_currView.loadNode.visible = true;
+        }
+        onHide() {
+            super.onHide();
+            this.m_currView.bg.visible = false;
+            this.m_currView.loadNode.visible = false;
+        }
+        initLoading() {
+            this.loadCloud();
+        }
+        loadCloud() {
             let Templet1 = new Laya.Templet();
             Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
                 this.cloud = Templet.buildArmature(1);
@@ -3450,18 +3611,11 @@
                 this.cloud.x = Laya.stage.width / 2;
                 this.cloud.y = Laya.stage.height / 2;
                 this.cloud.stop();
+                this.onHideCloud();
             }, [Templet1, "animation"]);
             Templet1.loadAni("effect/cloud/effect_yun.sk");
-            this.AddListenerMessage(GameNotity.Init_Loading, this.initLoading);
         }
-        OnRefreshView() {
-        }
-        onHide() {
-            super.onHide();
-            this.m_currView.loadNode.visible = false;
-        }
-        initLoading() {
-            this.m_currView.loadNode.visible = false;
+        onHideCloud() {
             this.cloud.play("animation", false);
             Laya.timer.frameOnce(this.cloud.total, this, () => {
                 if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == false) {
@@ -3487,16 +3641,17 @@
     }
 
     class RoleSelect extends rab.RabView {
+        constructor() {
+            super(...arguments);
+            this.mouseDown = false;
+            this._mouseDownX = 0;
+        }
         LoadView() {
             this.create(ui.view.RoleSelectUI);
         }
         InitView() {
             this.m_currView.break.on(Laya.Event.CLICK, this, this.onBreak);
             Tool.instance.addButtonAnimation(this.m_currView.break);
-            this.m_currView.left.on(Laya.Event.CLICK, this, this.onleft);
-            Tool.instance.addButtonAnimation(this.m_currView.left);
-            this.m_currView.right.on(Laya.Event.CLICK, this, this.onRight);
-            Tool.instance.addButtonAnimation(this.m_currView.right);
             this.m_currView.r1.on(Laya.Event.CLICK, this, this.onSelectRole_1);
             Tool.instance.addButtonAnimation(this.m_currView.r1);
             this.m_currView.r2.on(Laya.Event.CLICK, this, this.onSelectRole_2);
@@ -3507,6 +3662,9 @@
             Tool.instance.addButtonAnimation(this.m_currView.r4);
             this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
             Tool.instance.addButtonAnimation(this.m_currView.startBtn);
+            Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
+            Laya.stage.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+            Laya.stage.on(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);
             this.OnRefreshView();
             this.myManager.onLoad3dScene(() => {
                 Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
@@ -3519,7 +3677,13 @@
             this.camera.transform.position = new Laya.Vector3(0, 4, -5);
             this._playerPivot = this.myManager.scene3D.getChildByName("PlayerPivot");
             this._characterSlot = this._playerPivot.getChildByName("CharacterSlot");
-            Laya.timer.frameLoop(1, this, this.onUpdate);
+            this.onShowLanguage();
+        }
+        onShowLanguage() {
+            this.m_currView.breakTxt.text = Language.instance.getTxt("break");
+            this.m_currView.titleTxt.text = Language.instance.getTxt("role_1");
+            this.m_currView.roleTxt.text = Language.instance.getTxt("role_2");
+            this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
         }
         onstart() {
             this.myManager.playSelect = this.selectId;
@@ -3551,7 +3715,6 @@
             this.playNode.transform.position = new Laya.Vector3(0, 1.8, 0);
             this.playNode.transform.localScale = new Laya.Vector3(1.5, 1.5, 1.5);
             this.playNode.transform.localRotationEulerY = 180;
-            this._RotationEulerY = 0;
         }
         onBreak() {
             this.playNode.removeSelf();
@@ -3565,22 +3728,6 @@
                 this.playNode.removeSelf();
             }
         }
-        onleft() {
-            this._RotationEulerY = -90;
-        }
-        onRight() {
-            this._RotationEulerY = 90;
-        }
-        onUpdate() {
-            if (this._RotationEulerY > 0) {
-                this._RotationEulerY -= 2;
-                this.playNode.transform.localRotationEulerY += 2;
-            }
-            else if (this._RotationEulerY < 0) {
-                this._RotationEulerY += 2;
-                this.playNode.transform.localRotationEulerY -= 2;
-            }
-        }
         onSelectRole_1() {
             this.onShowRole(1);
         }
@@ -3592,6 +3739,26 @@
         }
         onSelectRole_4() {
             this.onShowRole(4);
+        }
+        onMouseDown(e) {
+            this.mouseDown = true;
+            this._mouseDownX = Laya.stage.mouseX;
+        }
+        onMouseUp() {
+            this.mouseDown = false;
+        }
+        onMouseMove(e) {
+            if (this.mouseDown) {
+                if (Math.abs(this._mouseDownX - Laya.stage.mouseX) > 2) {
+                    if (this._mouseDownX - Laya.stage.mouseX > 0) {
+                        this.playNode.transform.rotate(new Laya.Vector3(0, -0.1, 0));
+                    }
+                    else {
+                        this.playNode.transform.rotate(new Laya.Vector3(0, 0.1, 0));
+                    }
+                    this._mouseDownX = Laya.stage.mouseX;
+                }
+            }
         }
     }
 

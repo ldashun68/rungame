@@ -32,6 +32,7 @@ export default class Game extends rab.RabView {
     }
 
     protected InitView() {
+        this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGametart);
         Laya.stage.on(Laya.Event.MOUSE_DOWN,this,this.onMouseDown);
         Laya.stage.on(Laya.Event.MOUSE_UP,this,this.onMouseUp);
 
@@ -55,13 +56,8 @@ export default class Game extends rab.RabView {
     protected OnRefreshView() {
         console.log("刷新游戏页面");
         this.gameStart = false;
-        // this.m_currView.cityArrow.visible = false;
-        // this.m_currView.timeText.visible = false;
-        // this.m_currView.readyFight.visible = true;
-        // this.m_currView.attackCount.visible = true;
+        this.m_currView.timeTxt.visible = false;
         this.fightManager.fightReady();
-
-        // rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
         rab.MusicManager.playMusic("sub4/audio/AttackBGM.mp3");
         this.m_currView.lifeText.value = "3";
         this.m_currView.coinText.value = "0";
@@ -76,7 +72,22 @@ export default class Game extends rab.RabView {
 
     /**战斗开始 */
     private onGametart (data: any): void {
-
+        let time: number = 3;
+        this.m_currView.timeTxt.visible = true;
+        let countdown = () => {
+            this.m_currView.timeTxt.value = ""+time;
+            time--;
+            if (time == -1) {
+                this.m_currView.timeTxt.visible = false;
+                this.fightManager.onGameStart();
+                this.gameStart = true;
+                Laya.timer.clear(this, countdown);
+            }
+            else {
+                Laya.timer.once(1000, this, countdown);
+            }
+        }
+        countdown();
     }
 
     /**战斗继续 */
@@ -119,8 +130,7 @@ export default class Game extends rab.RabView {
             this._mouseDownY = Laya.stage.mouseY;
             console.log('onStartDragPicture e', Laya.stage.mouseX);
         }else{
-            this.gameStart = true;
-            this.SendMessage(GameNotity.GameMessage_GameStart)
+            // this.SendMessage(GameNotity.GameMessage_GameStart)
         }
     }
 
@@ -130,7 +140,7 @@ export default class Game extends rab.RabView {
         if(this.gameStart && this.mouseDown)
         {
             this.mouseDown = false;
-            if(Math.abs(this._mouseDownX - Laya.stage.mouseX ) > 3 || Math.abs(this._mouseDownY - Laya.stage.mouseY ) > 3)
+            if(Math.abs(this._mouseDownX - Laya.stage.mouseX ) > 1 || Math.abs(this._mouseDownY - Laya.stage.mouseY ) > 1)
             {
                 let dre:number =-1;
                 if(Math.abs(this._mouseDownX - Laya.stage.mouseX ) > Math.abs(this._mouseDownY - Laya.stage.mouseY ))

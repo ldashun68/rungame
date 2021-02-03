@@ -4,6 +4,7 @@ import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
+import Language from "../GameVO/Language";
 
 export default class RoleSelect extends rab.RabView {
     protected m_currView: ui.view.RoleSelectUI;
@@ -13,9 +14,10 @@ export default class RoleSelect extends rab.RabView {
     private camera: Laya.Camera;
     private playNode: Laya.Sprite3D;
     private selectId:number;
-    private _RotationEulerY:number;
     private _playerPivot:Laya.Sprite3D;
-    private _characterSlot:Laya.Sprite3D
+    private _characterSlot:Laya.Sprite3D;
+    private mouseDown:boolean = false;
+    private _mouseDownX:number = 0;
 
     protected LoadView() {
         this.create<ui.view.RoleSelectUI>(ui.view.RoleSelectUI);
@@ -23,10 +25,6 @@ export default class RoleSelect extends rab.RabView {
     protected InitView() {
         this.m_currView.break.on(Laya.Event.CLICK, this, this.onBreak);
         Tool.instance.addButtonAnimation(this.m_currView.break);
-        this.m_currView.left.on(Laya.Event.CLICK, this, this.onleft);
-        Tool.instance.addButtonAnimation(this.m_currView.left);
-        this.m_currView.right.on(Laya.Event.CLICK, this, this.onRight);
-        Tool.instance.addButtonAnimation(this.m_currView.right);
         this.m_currView.r1.on(Laya.Event.CLICK, this, this.onSelectRole_1);
         Tool.instance.addButtonAnimation(this.m_currView.r1);
         this.m_currView.r2.on(Laya.Event.CLICK, this, this.onSelectRole_2);
@@ -38,6 +36,10 @@ export default class RoleSelect extends rab.RabView {
 
         this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
         Tool.instance.addButtonAnimation(this.m_currView.startBtn);
+
+        Laya.stage.on(Laya.Event.MOUSE_DOWN,this,this.onMouseDown);
+        Laya.stage.on(Laya.Event.MOUSE_UP,this,this.onMouseUp);
+        Laya.stage.on(Laya.Event.MOUSE_MOVE,this,this.onMouseMove);
 
         // this.scene3D = Laya.loader.getRes("3d/game/Conventional/game.ls");
         // Laya.stage.addChild(this.scene3D);
@@ -54,7 +56,15 @@ export default class RoleSelect extends rab.RabView {
         this.camera.transform.position = new Laya.Vector3(0,4,-5);
         this._playerPivot = <Laya.Sprite3D>this.myManager.scene3D.getChildByName("PlayerPivot");
         this._characterSlot = <Laya.Sprite3D>this._playerPivot.getChildByName("CharacterSlot");
-        Laya.timer.frameLoop(1,this,this.onUpdate);
+        this.onShowLanguage();
+    }
+
+    private onShowLanguage()
+    {
+        this.m_currView.breakTxt.text = Language.instance.getTxt("break");
+        this.m_currView.titleTxt.text = Language.instance.getTxt("role_1");
+        this.m_currView.roleTxt.text = Language.instance.getTxt("role_2");
+        this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
     }
 
     onstart()
@@ -92,7 +102,6 @@ export default class RoleSelect extends rab.RabView {
         this.playNode.transform.position = new Laya.Vector3(0,1.8,0);
         this.playNode.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);
         this.playNode.transform.localRotationEulerY = 180;
-        this._RotationEulerY = 0;
     }
 
     /**
@@ -113,33 +122,6 @@ export default class RoleSelect extends rab.RabView {
         {
             this.playNode.removeSelf();
         }
-    }
-    /**
-     * 向左旋转
-     */
-    private onleft()
-    {
-        this._RotationEulerY = -90;
-    }
-    /**
-     * 向右旋转
-     */
-    private onRight()
-    {
-        this._RotationEulerY = 90;
-    }
-
-    onUpdate(){
-        if(this._RotationEulerY > 0)
-        {
-            this._RotationEulerY -=2;
-            this.playNode.transform.localRotationEulerY += 2;
-        }else if(this._RotationEulerY < 0)
-        {
-            this._RotationEulerY +=2;
-            this.playNode.transform.localRotationEulerY -=2;
-        }
-        
     }
 
     /**
@@ -169,6 +151,38 @@ export default class RoleSelect extends rab.RabView {
     private onSelectRole_4()
     {
         this.onShowRole(4);
+    }
+
+    /**鼠标按下 */
+    private onMouseDown(e)
+    {
+        
+        this.mouseDown = true;
+        this._mouseDownX = Laya.stage.mouseX;
+    }
+
+    private onMouseUp()
+    {
+        this.mouseDown = false;
+    }
+
+    /**鼠标弹起 */
+    private onMouseMove(e)
+    {
+        if(this.mouseDown)
+        {
+            
+            if(Math.abs(this._mouseDownX - Laya.stage.mouseX ) > 2)
+            {
+                if(this._mouseDownX - Laya.stage.mouseX > 0)
+                {
+                    this.playNode.transform.rotate(new Laya.Vector3(0,-0.1,0));
+                }else{
+                    this.playNode.transform.rotate(new Laya.Vector3(0,0.1,0));
+                }
+                this._mouseDownX = Laya.stage.mouseX;
+            }
+        }
     }
 
 }
