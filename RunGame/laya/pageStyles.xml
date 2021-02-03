@@ -1,0 +1,26 @@
+<page>
+   <item name="test/TestScene.scene" props="" ifExport="分离模式" aName=""/>
+   <item name="view/Loading.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Platform.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Revive.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/set.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Game.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GameOver.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Pendant.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Pause.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GameWin.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/NotClick.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GameFail.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GetTicket.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/ChooseSkill.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GameSet.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Shop.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/DefendCity.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/CityUpgrade.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Equip.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/ArmyUpgrade.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Welcome.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Guide.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Welfare.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/RoleSelect.scene" props="" ifExport="内嵌模式" aName="角色选择"/>
+</page>

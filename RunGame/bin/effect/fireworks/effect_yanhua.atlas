@@ -1,0 +1,13 @@
+
+effect_yanhua.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+yanhua
+  rotate: false
+  xy: 2, 2
+  size: 94, 95
+  orig: 94, 95
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,62 @@
+
+shengli.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+huoxing
+  rotate: false
+  xy: 280, 127
+  size: 29, 17
+  orig: 29, 17
+  offset: 0, 0
+  index: -1
+icon
+  rotate: false
+  xy: 800, 346
+  size: 170, 143
+  orig: 170, 143
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 2, 146
+  size: 340, 343
+  orig: 340, 343
+  offset: 0, 0
+  index: -1
+qizi
+  rotate: false
+  xy: 344, 296
+  size: 454, 193
+  orig: 454, 193
+  offset: 0, 0
+  index: -1
+ring02
+  rotate: true
+  xy: 622, 148
+  size: 146, 147
+  orig: 146, 147
+  offset: 0, 0
+  index: -1
+shengli
+  rotate: false
+  xy: 2, 70
+  size: 276, 74
+  orig: 276, 74
+  offset: 0, 0
+  index: -1
+shengli02
+  rotate: false
+  xy: 344, 220
+  size: 276, 74
+  orig: 276, 74
+  offset: 0, 0
+  index: -1
+xing
+  rotate: false
+  xy: 2, 2
+  size: 65, 66
+  orig: 65, 66
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,26 @@
+<res>
+   <item name="effect/bg/bg_lizi.png" type="Sprite" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/finger" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/bg" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/shop" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/star" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="ui/bg_11.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="ui/bg_12.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/weapon" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="load/bar2.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="load/bar1.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="guide/girl.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="load" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="guide/game.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="guide/title.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="guide/btn.png" type="Button" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="guide/continue.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/welcome" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/getTicket" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/gameWin" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="ui/line2.png" type="Sprite" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/fireworks" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/unclock" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/cloud" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="effect/upgrade" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+</res>
