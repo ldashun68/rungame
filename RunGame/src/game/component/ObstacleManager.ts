@@ -40,7 +40,7 @@ export default class ObstacleManager extends rab.GameObject {
                 this._baseobstacles[arr[i]] = Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.jsonConfig.getObstacleData(arr[i]).res+".lh");
             }
         }
-        if(Math.random() > 0.5)
+        if(Math.random() > 0.2)
         {
             this.createNextOb();
         }
@@ -91,11 +91,9 @@ export default class ObstacleManager extends rab.GameObject {
     onReMoveScene()
     {
         this.onClearAll();
-        // this._baseobstacles[this.passData.builds[i]]
         for(var i =0;i<this._buildProp.obstacle.length;i++)
         {
             Laya.Pool.clearBySign("ObstacleID"+this._buildProp.obstacle[i]);
-            // this._baseobstacles[this._buildProp.obstacle[i]].destroy();
         }
         this._baseobstacles.clear();
     }
