@@ -2648,7 +2648,7 @@
             this.manager = rab.RabGameManager.getInterest().getMyManager();
         }
         onCreateobstacle(data, posz) {
-            this._initPos = posz;
+            this._initPos = posz + data.length;
             let obstacle = [];
             let arr = data.obstacle;
             this._buildProp = data;
@@ -2657,7 +2657,7 @@
                     this._baseobstacles[arr[i]] = Laya.loader.getRes("3d/prefab/Conventional/" + this.manager.jsonConfig.getObstacleData(arr[i]).res + ".lh");
                 }
             }
-            if (Math.random() > 0.5) {
+            {
                 this.createNextOb();
             }
         }

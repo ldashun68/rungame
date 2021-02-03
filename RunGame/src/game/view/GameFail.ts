@@ -48,8 +48,8 @@ export default class GameFail extends rab.RabView {
     private onShowLanguage()
     {
         this.m_currView.continueTxt.text = Language.instance.getTxt("fail_1");
-        this.m_currView.restartTxt.text = Language.instance.getTxt("fail_1");
-        this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_1");
+        this.m_currView.restartTxt.text = Language.instance.getTxt("fail_2");
+        this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_3");
     }
 
     /**战斗失败 */

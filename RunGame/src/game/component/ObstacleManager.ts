@@ -29,7 +29,7 @@ export default class ObstacleManager extends rab.GameObject {
      */
     onCreateobstacle(data:buildProp,posz:number)
     {
-        this._initPos = posz;
+        this._initPos = posz+data.length;
         let obstacle = [];
         let arr = data.obstacle;
         this._buildProp = data;
@@ -40,7 +40,7 @@ export default class ObstacleManager extends rab.GameObject {
                 this._baseobstacles[arr[i]] = Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.jsonConfig.getObstacleData(arr[i]).res+".lh");
             }
         }
-        if(Math.random() > 0.2)
+        //if(Math.random() > 0.2)
         {
             this.createNextOb();
         }
@@ -78,6 +78,68 @@ export default class ObstacleManager extends rab.GameObject {
             
         }
     }
+
+    public SpawnCoinAndPowerup()
+	{
+		const increment = 1.5
+		let currentWorldPos = 0.0
+		let currentLane = Math.random()*3;
+
+		// let powerupChance = Math.clamp01(Math.floor(m_TimeSincePowerup) * 0.5 * 0.001);
+		// let premiumChance = Math.Clamp01(Math.floor(m_TimeSinceLastPremium) * 0.5 * 0.0001);
+
+		// while (currentWorldPos < this._buildProp.length)
+		// {
+		// 	let pos;
+		// 	let rot;
+
+
+		// 	let laneValid = true;
+		// 	let testedLane = currentLane;
+
+		// 	currentLane = testedLane;
+
+		// 	if(laneValid)
+		// 	{
+		// 		pos = pos + ((currentLane - 1) * laneOffset * (rot * Vector3.right));
+
+
+        //         GameObject toUse;
+		// 		if (Math.random() < powerupChance)
+		// 		{
+        //             int picked = Random.Range(0, consumableDatabase.consumbales.Length);
+
+        //             //if the powerup can't be spawned, we don't reset the time since powerup to continue to have a high chance of picking one next track segment
+        //             if (consumableDatabase.consumbales[picked].canBeSpawned)
+        //             {
+        //                 // Spawn a powerup instead.
+        //                 m_TimeSincePowerup = 0.0f;
+        //                 powerupChance = 0.0f;
+
+        //                 toUse = Instantiate(consumableDatabase.consumbales[picked].gameObject, pos, rot) as GameObject;
+        //                 toUse.transform.SetParent(segment.transform, true);
+        //             }
+		// 		}
+		// 		else if (Math.random() < premiumChance)
+		// 		{
+		// 			m_TimeSinceLastPremium = 0.0f;
+		// 			premiumChance = 0.0f;
+
+		// 			toUse = Instantiate(currentTheme.premiumCollectible, pos, rot);
+		// 			toUse.transform.SetParent(segment.transform, true);
+		// 		}
+		// 		else
+		// 		{
+		// 			toUse = Coin.coinPool.Get(pos, rot);
+		// 		}
+
+				
+		// 	}
+
+		// 	currentWorldPos += increment;
+		// }
+
+	}
 
     onClearAll()
     {
