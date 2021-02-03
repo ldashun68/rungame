@@ -59,6 +59,14 @@ export default class GameSet extends rab.RabView {
     }
 
     protected OnRefreshView() {
+        
+        this.onInitData();
+        this.m_currView.window.visible = true;
+        Tool.instance.winowAniamtion(this.m_currView.window);
+    }
+
+    private onInitData()
+    {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         if (manager.gameInfo.audio == 0) {
             this.m_currView.soundClose.visible = true;
@@ -84,9 +92,6 @@ export default class GameSet extends rab.RabView {
             this.m_currView.vibrateCloseText.visible = true;
             this.m_currView.vibrateOpenText.visible = false;
         }
-
-        this.m_currView.window.visible = true;
-        Tool.instance.winowAniamtion(this.m_currView.window);
     }
 
     /**声音打开按钮事件 */
@@ -98,7 +103,7 @@ export default class GameSet extends rab.RabView {
         
         rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
 
-        this.OnRefreshView();
+        this.onInitData();
     }
 
     /**声音关闭按钮事件 */
@@ -108,7 +113,7 @@ export default class GameSet extends rab.RabView {
         manager.PauseBGM();
         manager.SaveData();
 
-        this.OnRefreshView();
+        this.onInitData();
     }
 
     /**震动打开按钮事件 */
@@ -117,7 +122,7 @@ export default class GameSet extends rab.RabView {
         manager.gameInfo.vibrate = 1;
         manager.SaveData();
 
-        this.OnRefreshView();
+        this.onInitData();
     }
 
     /**震动关闭按钮事件 */
@@ -125,7 +130,7 @@ export default class GameSet extends rab.RabView {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.vibrate = 0;
 
-        this.OnRefreshView();
+        this.onInitData();
     }
 
     /**邀请按钮事件 */

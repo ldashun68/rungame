@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/RoleSelect.scene";
+    GameConfig.startScene = "view/GameSet.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -1547,7 +1547,7 @@
                     this.createView(GameSetUI.uiView);
                 }
             }
-            GameSetUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameSet", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cover", "name": "cover", "height": 1334, "alpha": 0.75 }, "compId": 43, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 45 }, { "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 16 }] }, { "type": "Image", "props": { "y": 667, "x": 375, "width": 750, "visible": false, "var": "window", "name": "window", "mouseThrough": true, "height": 1000, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Script", "props": { "right": 0, "left": 0, "centerY": 0, "runtime": "laya.ui.Widget" }, "compId": 25 }, { "type": "Image", "props": { "y": 91, "x": 375, "skin": "ui/bg_5.png", "sizeGrid": "100,20,20,20", "height": 680, "anchorX": 0.5 }, "compId": 50, "child": [{ "type": "Image", "props": { "y": 48, "x": 618, "var": "closeBtn", "skin": "ui/closeBtn.png", "name": "closeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 47, "x": 330, "skin": "ui/setText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 58 }, { "type": "Image", "props": { "y": 212, "x": 330, "width": 600, "skin": "ui/bg_8.png", "sizeGrid": "15,15,15,15", "height": 200, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 59 }, { "type": "Image", "props": { "y": 168, "x": 126, "skin": "ui/soundText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 60 }, { "type": "Image", "props": { "y": 171, "x": 409, "width": 341, "skin": "ui/load5.png", "sizeGrid": "0,15,0,15", "name": "sound", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 61, "child": [{ "type": "Image", "props": { "y": 20, "x": 86, "var": "soundClose", "skin": "ui/load3.png", "name": "soundClose", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 62 }, { "type": "Image", "props": { "y": 20, "x": 255, "var": "soundOpen", "skin": "ui/load4.png", "name": "soundOpen", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 63 }, { "type": "Label", "props": { "y": 21, "x": 86, "width": 166, "var": "soundCloseText", "valign": "middle", "text": "关", "strokeColor": "#080808", "stroke": 3, "name": "soundCloseText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 64 }, { "type": "Label", "props": { "y": 21, "x": 255, "width": 166, "var": "soundOpenText", "valign": "middle", "text": "开", "strokeColor": "#080808", "stroke": 3, "name": "soundOpenText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 65 }] }, { "type": "Image", "props": { "y": 253, "x": 126, "skin": "ui/vibrateText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 71 }, { "type": "Image", "props": { "y": 256, "x": 409, "width": 341, "skin": "ui/load5.png", "sizeGrid": "0,15,0,15", "name": "vibrate", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 72, "child": [{ "type": "Image", "props": { "y": 20, "x": 86, "var": "vibrateClose", "skin": "ui/load3.png", "name": "vibrateClose", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 73 }, { "type": "Image", "props": { "y": 20, "x": 255, "var": "vibrateOpen", "skin": "ui/load4.png", "name": "vibrateOpen", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 74 }, { "type": "Label", "props": { "y": 21, "x": 86, "width": 166, "var": "vibrateCloseText", "valign": "middle", "text": "关", "strokeColor": "#080808", "stroke": 3, "name": "vibrateCloseText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 75 }, { "type": "Label", "props": { "y": 21, "x": 255, "width": 166, "var": "vibrateOpenText", "valign": "middle", "text": "开", "strokeColor": "#080808", "stroke": 3, "name": "vibrateOpenText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 76 }] }, { "type": "List", "props": { "y": 419, "x": 330, "width": 600, "var": "list", "spaceX": 25, "repeatY": 1, "repeatX": 5, "name": "list", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 79, "child": [{ "type": "Box", "props": { "y": 50, "x": 50, "width": 100, "renderType": "render", "name": "render", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 78, "child": [{ "type": "Image", "props": { "y": 50, "x": 50, "width": 100, "skin": "ui/bg_7.png", "sizeGrid": "15,15,17,15", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 81 }] }, { "type": "HScrollBar", "props": { "name": "scrollBar" }, "compId": 80 }] }, { "type": "Image", "props": { "y": 585, "x": 495.5, "var": "shareBtn", "skin": "ui/btn_yellow_small.png", "name": "shareBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 82, "child": [{ "type": "Image", "props": { "y": 55, "x": 144, "skin": "ui/shareText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 83 }] }, { "type": "Image", "props": { "y": 601, "x": 104, "width": 150, "var": "followBtn", "skin": "ui/btn_blue_small2.png", "name": "followBtn", "height": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 84, "child": [{ "type": "Image", "props": { "y": 40, "x": 75, "skin": "ui/followText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 85 }] }, { "type": "Image", "props": { "y": 601, "x": 267, "width": 150, "var": "subscribeBtn", "skin": "ui/btn_blue_small2.png", "name": "subscribeBtn", "height": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 86, "child": [{ "type": "Image", "props": { "y": 40, "x": 75, "skin": "ui/subscribeText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 87 }] }] }] }, { "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "visible": false, "var": "collectIImage", "name": "collectIImage", "height": 2000 }, "compId": 88, "child": [{ "type": "Sprite", "props": { "y": 0, "x": 0, "alpha": 0.75 }, "compId": 89, "child": [{ "type": "Rect", "props": { "y": 0, "x": 0, "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 90 }] }, { "type": "Image", "props": { "y": 638, "x": 375, "skin": "ui/collectIImage.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 91 }, { "type": "Image", "props": { "y": 190, "x": 693, "skin": "ui/closeBtn.png", "name": "closeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 92 }] }], "loadList": ["ui/bg_5.png", "ui/closeBtn.png", "ui/setText.png", "ui/bg_8.png", "ui/soundText.png", "ui/load5.png", "ui/load3.png", "ui/load4.png", "ui/vibrateText.png", "ui/bg_7.png", "ui/btn_yellow_small.png", "ui/shareText.png", "ui/btn_blue_small2.png", "ui/followText.png", "ui/subscribeText.png", "ui/collectIImage.png"], "loadList3D": [] };
+            GameSetUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameSet", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cover", "name": "cover", "height": 1334, "alpha": 0.75 }, "compId": 43, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 45 }, { "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 16 }] }, { "type": "Image", "props": { "y": 667, "x": 375, "width": 750, "visible": false, "var": "window", "name": "window", "mouseThrough": true, "height": 1000, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Script", "props": { "right": 0, "left": 0, "centerY": 0, "runtime": "laya.ui.Widget" }, "compId": 25 }, { "type": "Image", "props": { "y": 91, "x": 375, "skin": "ui/bg_5.png", "sizeGrid": "100,20,20,20", "height": 680, "anchorX": 0.5 }, "compId": 50, "child": [{ "type": "Image", "props": { "y": 48, "x": 618, "var": "closeBtn", "skin": "ui/closeBtn.png", "name": "closeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 47, "x": 330, "skin": "ui/setText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 58 }, { "type": "Image", "props": { "y": 212, "x": 330, "width": 600, "skin": "ui/bg_8.png", "sizeGrid": "15,15,15,15", "height": 200, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 59 }, { "type": "Image", "props": { "y": 168, "x": 126, "skin": "ui/soundText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 60 }, { "type": "Image", "props": { "y": 171, "x": 409, "width": 341, "skin": "ui/load5.png", "sizeGrid": "0,15,0,15", "name": "sound", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 61, "child": [{ "type": "Image", "props": { "y": 20, "x": 86, "var": "soundClose", "skin": "ui/load3.png", "name": "soundClose", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 62 }, { "type": "Image", "props": { "y": 20, "x": 255, "var": "soundOpen", "skin": "ui/load4.png", "name": "soundOpen", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 63 }, { "type": "Label", "props": { "y": 21, "x": 86, "width": 166, "var": "soundCloseText", "valign": "middle", "text": "关", "strokeColor": "#080808", "stroke": 3, "name": "soundCloseText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 64 }, { "type": "Label", "props": { "y": 21, "x": 255, "width": 166, "var": "soundOpenText", "valign": "middle", "text": "开", "strokeColor": "#080808", "stroke": 3, "name": "soundOpenText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 65 }] }, { "type": "Image", "props": { "y": 253, "x": 126, "skin": "ui/vibrateText.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 71 }, { "type": "Image", "props": { "y": 256, "x": 409, "width": 341, "skin": "ui/load5.png", "sizeGrid": "0,15,0,15", "name": "vibrate", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 72, "child": [{ "type": "Image", "props": { "y": 20, "x": 86, "var": "vibrateClose", "skin": "ui/load3.png", "name": "vibrateClose", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 73 }, { "type": "Image", "props": { "y": 20, "x": 255, "var": "vibrateOpen", "skin": "ui/load4.png", "name": "vibrateOpen", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 74 }, { "type": "Label", "props": { "y": 21, "x": 86, "width": 166, "var": "vibrateCloseText", "valign": "middle", "text": "关", "strokeColor": "#080808", "stroke": 3, "name": "vibrateCloseText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 75 }, { "type": "Label", "props": { "y": 21, "x": 255, "width": 166, "var": "vibrateOpenText", "valign": "middle", "text": "开", "strokeColor": "#080808", "stroke": 3, "name": "vibrateOpenText", "height": 38, "fontSize": 30, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5, "align": "center" }, "compId": 76 }] }, { "type": "List", "props": { "y": 419, "x": 330, "width": 600, "var": "list", "spaceX": 25, "repeatY": 1, "repeatX": 5, "name": "list", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 79, "child": [{ "type": "Box", "props": { "y": 50, "x": 50, "width": 100, "renderType": "render", "name": "render", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 78, "child": [{ "type": "Image", "props": { "y": 50, "x": 50, "width": 100, "skin": "ui/bg_7.png", "sizeGrid": "15,15,17,15", "height": 100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 81 }] }, { "type": "HScrollBar", "props": { "name": "scrollBar" }, "compId": 80 }] }, { "type": "Image", "props": { "y": 585, "x": 495.5, "var": "shareBtn", "skin": "ui/btn_yellow_small.png", "name": "shareBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 82 }, { "type": "Image", "props": { "y": 601, "x": 104, "width": 150, "var": "followBtn", "skin": "ui/btn_blue_small2.png", "name": "followBtn", "height": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 84 }, { "type": "Image", "props": { "y": 601, "x": 267, "width": 150, "var": "subscribeBtn", "skin": "ui/btn_blue_small2.png", "name": "subscribeBtn", "height": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 86 }] }] }, { "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "visible": false, "var": "collectIImage", "name": "collectIImage", "height": 2000 }, "compId": 88, "child": [{ "type": "Sprite", "props": { "y": 0, "x": 0, "alpha": 0.75 }, "compId": 89, "child": [{ "type": "Rect", "props": { "y": 0, "x": 0, "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 90 }] }, { "type": "Image", "props": { "y": 638, "x": 375, "skin": "ui/collectIImage.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 91 }, { "type": "Image", "props": { "y": 190, "x": 693, "skin": "ui/closeBtn.png", "name": "closeBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 92 }] }], "loadList": ["ui/bg_5.png", "ui/closeBtn.png", "ui/setText.png", "ui/bg_8.png", "ui/soundText.png", "ui/load5.png", "ui/load3.png", "ui/load4.png", "ui/vibrateText.png", "ui/bg_7.png", "ui/btn_yellow_small.png", "ui/btn_blue_small2.png", "ui/collectIImage.png"], "loadList3D": [] };
             view.GameSetUI = GameSetUI;
             REG("ui.view.GameSetUI", GameSetUI);
             class GameWinUI extends Scene {
@@ -1676,6 +1676,9 @@
         }
         getConfig(name) {
             return this.jsonData[name];
+        }
+        getPassCount() {
+            return (this.jsonData['pass'].length);
         }
         getPassData(index) {
             return (this.jsonData['pass'][index]);
@@ -1901,6 +1904,10 @@
             this.gameInfo.currentPass += 1;
         }
         CurrPassData() {
+            if (this.gameInfo.currentPass >= this.jsonConfig.getPassCount()) {
+                this.gameInfo.currentPass = 0;
+                this.gameInfo.pass = 0;
+            }
             let data = this.jsonConfig.getPassData(this.gameInfo.currentPass);
             return data;
         }
@@ -2690,6 +2697,11 @@
                 }
             }
         }
+        SpawnCoinAndPowerup() {
+            const increment = 1.5;
+            let currentWorldPos = 0.0;
+            let currentLane = Math.random() * 3;
+        }
         onClearAll() {
             for (var i = 0; i < this._obstacles.length; i++) {
                 this._obstacles[i].recover();
@@ -3391,8 +3403,8 @@
         }
         onShowLanguage() {
             this.m_currView.continueTxt.text = Language.instance.getTxt("fail_1");
-            this.m_currView.restartTxt.text = Language.instance.getTxt("fail_1");
-            this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_1");
+            this.m_currView.restartTxt.text = Language.instance.getTxt("fail_2");
+            this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_3");
         }
         fightFail(data) {
             let manager = rab.RabGameManager.getInterest().getMyManager();
@@ -3503,6 +3515,11 @@
             Tool.instance.addButtonAnimation(this.m_currView.collectIImage.getChildByName("closeBtn"));
         }
         OnRefreshView() {
+            this.onInitData();
+            this.m_currView.window.visible = true;
+            Tool.instance.winowAniamtion(this.m_currView.window);
+        }
+        onInitData() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             if (manager.gameInfo.audio == 0) {
                 this.m_currView.soundClose.visible = true;
@@ -3528,8 +3545,6 @@
                 this.m_currView.vibrateCloseText.visible = true;
                 this.m_currView.vibrateOpenText.visible = false;
             }
-            this.m_currView.window.visible = true;
-            Tool.instance.winowAniamtion(this.m_currView.window);
         }
         onSoundOpen() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
@@ -3537,25 +3552,25 @@
             manager.ResumeBGM();
             manager.SaveData();
             rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
-            this.OnRefreshView();
+            this.onInitData();
         }
         onSounClose() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.audio = 0;
             manager.PauseBGM();
             manager.SaveData();
-            this.OnRefreshView();
+            this.onInitData();
         }
         onVibrateOpen() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.vibrate = 1;
             manager.SaveData();
-            this.OnRefreshView();
+            this.onInitData();
         }
         onVibrateClose() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.vibrate = 0;
-            this.OnRefreshView();
+            this.onInitData();
         }
         onShare() {
             rab.SDKChannel.createShare("invite", () => {

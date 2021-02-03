@@ -245,6 +245,11 @@ export default class GameController extends rab.RabController {
     /**当前关卡属性 */
     public CurrPassData():passProp
     {
+        if(this.gameInfo.currentPass >= this.jsonConfig.getPassCount())
+        {
+            this.gameInfo.currentPass =0;
+            this.gameInfo.pass = 0;
+        }
        let data = this.jsonConfig.getPassData(this.gameInfo.currentPass)
        return data;
     }

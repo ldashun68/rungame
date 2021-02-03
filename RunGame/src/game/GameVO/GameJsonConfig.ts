@@ -33,6 +33,12 @@ export default class GameJsonConfig {
         return this.jsonData[name];
     }
 
+    public getPassCount():number
+    {
+        return (this.jsonData['pass'].length);
+        // return data;
+    }
+
     /**获得关卡数据 */
     public getPassData(index:number):passProp
     {
