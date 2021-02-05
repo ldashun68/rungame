@@ -100,19 +100,11 @@ export default class PlayerManager extends rab.GameObject {
         }
     }
 
-    /**结束战斗 */
-    public fightEnd (): void {
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-        this._characterSlot.removeChild(this.playNode);
-        this._playState = PlayState.death
-    }
-
     /**退出战斗 */
     public fightExit (): void {
         this._playState = PlayState.death
         this.isMoveing = false;
         this._characterSlot.removeChild(this.playNode);
-        // this.playNode.destroy();
         this._playerPivot.transform.position = new Laya.Vector3(0,0,0);
         this.scene3D.addChild(this.camera);
         this.camera.transform.position = this.camerapos
@@ -154,17 +146,17 @@ export default class PlayerManager extends rab.GameObject {
         this.isMoveing = true;
     }
 
+    /**
+     * 重新开始
+     */
     public reStart()
     {
-        this._playState = PlayState.run
-        this.isMoveing = true;
         this._playerPivot.transform.position = new Laya.Vector3(0,0,0);
         this._playerPivot.addChild(this.camera);
         this.camera.transform.position = this.camerapos
-        // this._playerPivot.transform.localRotationEulerY = 0;
         if(this.animator)
         {
-            this.animator.crossFade('run',0);
+            this.animator.crossFade('idle',0);
         }
     }
 

@@ -89,6 +89,7 @@ export default class NotClick extends rab.RabView {
             rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
             rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
             rab.UIManager.onCloseView(ViewConfig.gameView.RoleSelect);
+            // rab.UIManager.onCloseView(ViewConfig.gameView.NotClick);
             rab.UIManager.onCreateView(ViewConfig.gameView.GameView);
         });
     }

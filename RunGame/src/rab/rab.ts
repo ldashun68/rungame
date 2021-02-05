@@ -234,7 +234,7 @@ class UtilTool {
 
     public get isMobil():boolean
     {
-        if(typeof ws != "undefined")
+        if(typeof wx != "undefined")
         {
             return true;
         }
@@ -498,7 +498,7 @@ class GameChannel {
     {
         if(rab.Util.isMobil)
         {
-            rab.wxSdk.init();
+            rab.wxSdk.init(this._Manager.gameConfig.serverurl);
         }
     }
 
@@ -509,15 +509,18 @@ class GameChannel {
      */
     initData(gameInfo:any,key:string = "gameinfo")
     {
-        if(typeof ws != "undefined")
+        if(typeof wx != "undefined")
         {
             {
-                var _data = {};
-                Object.keys(gameInfo).forEach(function(key){
-                    _data[key] = ws.getData(key, gameInfo[key]);
-                });
-                rab.Util.log('初始化获得保存数据',_data);
-                return _data;
+                rab.wxSdk.onQueryRequest("api/player",{},(data)=>{
+                    var _data = JSON.parse(data);
+                    // Object.keys(gameInfo).forEach(function(key){
+                    //     _data[key] = wx.getData(key, gameInfo[key]);
+                    // });
+                    rab.Util.log('初始化获得保存数据',_data);
+                },"GET");
+                
+                return gameInfo;
             }
         }else
         {
@@ -541,25 +544,23 @@ class GameChannel {
      */
     SaveData(gameInfo:any,key:string = "gameinfo")
     {
-        if(typeof ws != "undefined")
+        if(typeof wx != "undefined")
         {
-            Object.keys(gameInfo).forEach(function(key){
-                ws.setData(key, gameInfo[key]);
-             });
-             ws.postData();
+            rab.wxSdk.onQueryRequest("api/player",gameInfo,null);
         }else{
             Laya.LocalStorage.setItem(key,JSON.stringify(gameInfo));
         }
         
     }
 
+
     onHide(breakcall:Function)
     {
         if(rab.Util.isMobil)
         {
-            if(typeof ws != "undefined")
+            if(typeof wx != "undefined")
             {
-                ws.onHide(breakcall);
+                // wx.onHide(breakcall);
             }else{
                 console.log("未接入平台");
             }
@@ -570,9 +571,9 @@ class GameChannel {
     {
         if(rab.Util.isMobil)
         {
-            if(typeof ws != "undefined")
+            if(typeof wx != "undefined")
             {
-                ws.onShow(breakcall);
+                // wx.onShow(breakcall);
             }else{
                 console.log("未接入平台");
             }
@@ -621,53 +622,13 @@ class GameChannel {
     createShare(_pos:string,succeed?:Function,fail?:Function,imageUrl?:string,title?:string,query?:any)
     {
         if(this.myManager.gameConfig.config.allow_share){
-            if(typeof ws !='undefined')
+            if(typeof wx !='undefined')
             {
                 if(!rab.wxSdk.getSystemInfo())
                 {
-                    ws.share({
-                        pos: _pos,
-                        title:title||null,
-                        query:query||null,
-                        imageUrl:imageUrl||null,
-                        success: (res, shareRes)=> {
-                            console.log("=分享回调成功======");
-                            succeed&&succeed();
-                        },
-                        fail:()=>{
-                            fail&&fail();
-                        },
-                        //6.7.0
-                        onHttpError:  (res)=> {
-                            ws.alert('网络出错！');
-                        }
-                    })
+                    
                 }else{
-                    ws.share({
-                        pos: _pos,
-                        title:title||null,
-                        imageUrl:imageUrl||null,
-                        onShareBack:(res,duration)=>
-                        {
-                            console.log("=分享重新拉取显示时间:"+duration);
-                            if(duration > this.myManager.gameConfig.config.shareDuration)
-                            {
-                                succeed&&succeed();
-                            }else{
-                                rab.wxSdk.showModal({
-                                    title:"提示",
-                                    content:"该群已分享过，请换个群",
-                                    confirmText:"去分享",
-                                        success:()=>{this.createShare(_pos,succeed,fail,title,imageUrl,query);},
-                                        cancel:()=>{ fail&&fail();}
-                                });
-                                // fail&&fail();
-                            }
-                        },
-                        onHttpError:  (res)=> {
-                            ws.alert('网络出错！');
-                        }
-                    })
+                   
                 }
             }else
             {   
@@ -687,27 +648,11 @@ class GameChannel {
      */
     createVideo(pos:string,succeed?:Function,fail?:Function)
     {
-        if(typeof ws != 'undefined')
+        if(typeof wx != 'undefined')
         {
             if(this.myManager.gameConfig.config.allow_video)
             {
-                ws.createVideo({
-                    pos: pos,
-                    success: (res)=> {
-                        if (res.isEnded) {
-                            // 正常播放结束，可以下发游戏奖励
-                            succeed&&succeed();
-                        } else {
-                            fail&&fail();
-                        }
-                        this.myManager.InitMusic();
-                    },
-                    fail:  (res)=> {
-                        this.myManager.InitMusic();
-                        //ws.alert('今日视频次数已达上限');
-                        fail&&fail();
-                    }
-                })
+                
             }else{
                 rab.wxSdk.showToast("视频功能未启动");
                 fail&&fail();
@@ -729,35 +674,9 @@ class GameChannel {
         console.log("创建banner",_pos);
         if(_pos != "")
         {
-            if (typeof ws != "undefined")
+            if (typeof wx != "undefined")
             {
-                if(ws.conf.allow_banner){
-                    this.BannerAd = ws.createBanner({pos: _pos,
-                        style:{
-                            left:0,
-                            top:0,
-                        },onResize:(res,ad)=> {
-                            console.log("sdk BannerAd广告缩放事件：======", res)
-                            var phone = wx.getSystemInfoSync();
-                            let w = phone.screenWidth/2;
-                            let h = phone.screenHeight;
-                            let per = 0;
-                            if(phone.screenWidth/phone.screenHeight >0.5)
-                            {
-                                per = 1;
-                            }else{
-                                per = 0;
-                            }
-                            ad.style.left = w - ad.style.realWidth / 2 + 0.1;
-                            if(per == 0)
-                            {
-                                ad.style.top = h - ad.style.realHeight - 40.1;
-                            }else{
-                                ad.style.top = h - ad.style.realHeight + 0.1;
-                            }
-                        }
-                    });
-                }
+                
             }else
             {
                 console.log("未接入平台");
@@ -772,9 +691,9 @@ class GameChannel {
     {
         if(rab.Util.isMobil && pos != "")
         {
-            if(typeof ws != 'undefined')
+            if(typeof wx != 'undefined')
             {
-                ws.closeBanner(pos);
+                // wx.closeBanner(pos);
             }else{
                 console.log("未接入平台");
             }
@@ -800,17 +719,8 @@ class GameChannel {
     */
     getAdGame(pos:string,success:Function,count:number = 10) {
         let adlist = null;
-        if(typeof ws != 'undefined') {
-            ws.getGameAd({
-                pos: pos,
-                count: count,
-                success: (res)=> {
-                    success&&success(res.data)
-                },
-                fail: (res)=> {
-                    console.log('getGameAd fail', res);
-                }
-            });
+        if(typeof wx != 'undefined') {
+            
         }
         else{
             console.log("导量未接平台");
@@ -825,24 +735,9 @@ class GameChannel {
     {
         if(rab.Util.isMobil)
         {
-            if(typeof ws != 'undefined')
+            if(typeof wx != 'undefined')
             {
-                ws.tapGameAd({
-                    pos: pos,
-                    ad: item,
-                    redirect: true,
-                    success: (res)=> {
-                        console.log('tapGameAd success, ', res);
-                        success&&success();
-                    },
-                    fail: (res)=> {
-                        console.log('tapGameAd fail, ', res);
-                        fail&&fail();
-                    },
-                    complete: (res)=> {
-                        console.log('tapGameAd complete, ', res);
-                    }
-                })
+                
             }else{
                 console.log("未接入平台");
             }
@@ -852,33 +747,18 @@ class GameChannel {
     /**埋点显示 */
     traceEvent(key:string,data?:any)
     {
-        if(typeof ws != 'undefined')
+        if(typeof wx != 'undefined')
         {
             if(data)
             {
-                ws.traceEvent(key,data);
+                // wx.traceEvent(key,data);
             }else{
-                ws.traceEvent(key);
+                // wx.traceEvent(key);
             }
            
         }
         console.log("埋点：",key);
     }
-
-     /**拉取订阅消息 */
-     public subscribeMessage(pos:string="default",success?:Function,fail?:Function)
-     {
-         console.log("拉起显示订阅");
-         if(typeof ws != 'undefined')
-         {
-             ws.subscribeMessage({pos:pos,success:(res)=>{
-                 success&&success(res);
-             },fail:()=>{
-                 fail&&fail();
-             }
-         })
-         }
-     }
 
      /**
     * 拉起客服请求
@@ -887,7 +767,7 @@ class GameChannel {
     */
    openCustomerServiceConversation(title:string,img:string,success?:Function,fail?:Function)
    {
-        if(typeof ws != 'undefined')
+        if(typeof wx != 'undefined')
         {
             
             rab.wxSdk.openCustomerServiceConversation(title,img,(res)=>{
@@ -900,29 +780,8 @@ class GameChannel {
         }
    }
 
-   /**
-   * 获得邀请人数
-   * @param pos 
-   * @param succeed 返回人数
-   */
-  public getInviteCount(pos:string,succeed?:Function)
-  {
-      if(typeof ws != 'undefined')
-      {
-          ws.getInviteCount({
-              pos: 'invite_user',  //多个位置如: 'invite_user,from_moment'
-              success: (count)=>{
-                  // ws.alert('邀请了' + count + '个好友！');
-                  // ws.setData('jiacheng', count);
-                  // // something update
-                  succeed&&succeed(count);
-              },
-              fail: function () {
-                  ws.alert('加载失败！')
-              }
-          })
-      }
-  }
+   
+
 }
 
 abstract class RabManager extends RabEvent{
@@ -1945,12 +1804,10 @@ abstract class RabController extends RabManager {
         rab.SDKChannel.onInitSDk();
         if(rab.Util.isMobil)
         {
-            ws.onShow((res)=>{
+            // wx.onShow((res)=>{
                 this.InitMusic();
-            })
+            // })
         }
-        
-        rab.SDKChannel.onInitSDk();
         this.onInitServer(this.gameConfig.appid,this.gameConfig.secret,this.gameConfig.gamename,this.gameConfig.version);
     }
 
@@ -1960,42 +1817,8 @@ abstract class RabController extends RabManager {
     private onInitServer(appid:number,secret:string,name:string,version:string)
     {
         rab.Util.log("初始化服务器");
-        if(rab.Util.isMobil && typeof ws != "undefined")
+        if(rab.Util.isMobil && typeof wx != "undefined")
         {
-            ws.init({
-                scheme:'https://',
-                host: 'lcow-api.tiedan2019.com',
-                appid: appid, // 此项目在云平台的appid 
-                secret: secret, // 此项目在云平台的secret, 用于与后端通信签名
-                version:version
-                })
-                rab.SDKChannel.traceEvent("login")
-                ws.onLoginComplete((res)=>{
-                    if (ws.getLoginStatus() == 'success') {
-                        wx.hideLoading();
-                        console.log('login success!');
-                        this.LoginBreak();
-                    } else if (ws.getLoginStatus() == 'fail') {
-                        wx.hideLoading();
-                        let msg = '请允许授权:\n1.点击右上角三个点\n2.点击查看菜单\n"'+name+'"\n3.再点击右上角三个点，点击查看设置\n4.允许使用我的用户信息，再回来点重新登陆'
-                        if (res && res.code == -1) {
-                            msg = '失败原因: ' + res.msg;
-                        }
-                        wx.showModal({
-                            title: '登陆失败',
-                            content: msg,
-                            confirmText: '重新登陆',
-                            cancelText: '关闭',
-                            success: function (res) {
-                                if (res.confirm == true) {
-                                    ws.login();
-                                    wx.showLoading({ title: '登录中' });
-                                }
-                            }
-                        })
-                    }
-                    
-                });
             this.loginServer()
         }
         else{
@@ -2007,7 +1830,8 @@ abstract class RabController extends RabManager {
     private LoginBreak() {
         rab.SDKChannel.traceEvent("loginsuccess")
         this.InitMusic();
-        this.OnReConfig(ws.conf);
+        this.OnEnterGame();
+        // this.OnReConfig(wx.conf);
     }
 
     /**
@@ -2016,13 +1840,11 @@ abstract class RabController extends RabManager {
     private loginServer() {
         rab.Util.log("登录服务器");
         if(rab.Util.isMobil) {
-            if(typeof ws != "undefined") {
-                wx.showLoading({ title: '登录中' });
-                ws.login();
-                
-            }
-            this.InitMusic();
-            this.OnEnterGame();
+            wx.showLoading({ title: '登录中' });
+            rab.wxSdk.onLoginWXServer(()=>{
+                this.LoginBreak();
+            });
+            //this.InitMusic();
         }
         else{
             this.InitMusic();
@@ -2219,6 +2041,8 @@ export interface RabGameConfig {
     gamename:string;
     /**平台秘钥 */
     secret:string;
+    /**服务器地址 */
+    serverurl:string;
 
     config:{
         allow_share:boolean;
@@ -2249,8 +2073,9 @@ class wxSdk{
         console.log("初始化微信SDK");
     }
 
-    init() {
-
+    private _serverUrl:string;
+    init(path:string) {
+        this._serverUrl = path;
     }
 
     /**提示框 */
@@ -2424,6 +2249,96 @@ class wxSdk{
         }
         
         return 0;
+    }
+
+
+    /**微信登录 */
+    public onLoginWXServer(breakcall:Function,path:string="api/authCode")
+    {
+        if(rab.Util.isMobil)
+        {
+            wx.login({
+                success:(res)=> {
+                    if (res.code) {
+                        let code =res.code 
+                        console.log("登录code",res.code)
+                        
+                        this.onQueryRequest(path,{"code":res.code},()=>{
+                            breakcall&&breakcall();
+                            // if(res.data.data.length > 0)
+                            // {
+                            //     breakcall&&breakcall();
+                            // }else
+                            // {
+                            //     this.onQueryRequest("api/wxLogin",{"code":res.code},()=>{
+                            //         if(res.data.data.length > 0)
+                            //         {
+                            //             breakcall&&breakcall();
+                            //         }else
+                            //         {
+                            //             this.wxLogin(code,breakcall);
+                            //         }
+                            //     })
+                            //     // this.wxLogin(code,breakcall);
+                            // }
+                        })
+                    } else {
+                        console.log('登录失败！' + res.errMsg)
+                    }
+                }
+            })
+        }
+    }
+
+    /**重新登录 */
+    private wxLogin(code,breakcall:Function)
+    {
+        wx.request({
+            // https://coolrun.liandaxinxi.com
+            url:"https://coolrun.liandaxinxi.com/api/wxLogin",
+            data:{
+                "code":code,
+                "rawData":"rawData",
+                "signature":"signature",
+                "encryptedData":"xxx",
+                "iv":"xxx"
+            },
+            header:{
+               "Content-Type":"application/json"
+            },
+            success:(res)=>{
+                breakcall&&breakcall();
+                console.log(res.data)
+            },
+            fail:function(err){
+                console.log(err)
+            }
+    
+        })
+    }
+
+    /**HttP */
+    public onQueryRequest(path:string,_data:any,breakcall:Function=null,method:string = "POST"){  
+        if(rab.Util.isMobil)
+        {  
+            wx.request({
+                // https://coolrun.liandaxinxi.com
+                url:this._serverUrl +"/"+path,
+                method: method,
+                data:_data,
+                header:{
+                "Content-Type":"application/json"
+                },
+                success:(res)=>{
+                    breakcall&&breakcall(res.data);
+                    console.log("成功返回服务器数据",res.data)
+                },
+                fail:function(err){
+                    console.log(err)
+                }
+        
+            })
+        }
     }
 }
 

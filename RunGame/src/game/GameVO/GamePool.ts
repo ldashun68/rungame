@@ -27,7 +27,7 @@ export default class BuildItem extends rab.GameObject {
     recover()
     {
         this.gameObject.removeSelf();
-        Laya.Pool.recover(this._buildId+"",this.gameObject);
+        Laya.Pool.recover("build_"+this._buildId,this.gameObject);
     }
 
     onRemove()

@@ -29,8 +29,8 @@ export default class ObstacleManager extends rab.GameObject {
      */
     onCreateobstacle(data:buildProp,posz:number)
     {
+        console.log("创建一个障碍物",posz)
         this._initPos = posz+data.length;
-        let obstacle = [];
         let arr = data.obstacle;
         this._buildProp = data;
         for(var i = 0;i<arr.length;i++)
@@ -59,6 +59,7 @@ export default class ObstacleManager extends rab.GameObject {
             obstacle.transform.localPositionZ = this._initPos;
             obstacleProp = obstacle.getComponent(ObstacleItem);
         }
+        console.log("创建好了障碍物",ObstacleID)
         this._obstacles.push(obstacleProp);
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
         if(this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1)

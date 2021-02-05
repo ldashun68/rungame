@@ -123,7 +123,7 @@ export default class Platform extends rab.RabView {
 
     /**照片墙 */
     private onPic (): void {
-        
+        // rab.wxSdk.queryRequest();
     }
 
     /**语言包 */

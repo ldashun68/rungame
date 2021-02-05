@@ -74,6 +74,7 @@ export default class Game extends rab.RabView {
     private onGametart (data: any): void {
         let time: number = 3;
         this.m_currView.timeTxt.visible = true;
+        this.m_currView.timeTxt.value = ""+time;
         let countdown = () => {
             this.m_currView.timeTxt.value = ""+time;
             time--;
@@ -87,7 +88,8 @@ export default class Game extends rab.RabView {
                 Laya.timer.once(1000, this, countdown);
             }
         }
-        countdown();
+        Laya.timer.once(1000, this, countdown);
+        // countdown();
     }
 
     /**战斗继续 */

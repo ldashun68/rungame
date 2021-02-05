@@ -98,19 +98,19 @@
      <None Include="Assets\StreamingAssets\place AssetBundles folder here.txt" />
      <None Include="Assets\LayaAir3D\LayaShader\CGIncludes\libs\LayaBRDF.cginc" />
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -317,19 +317,19 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="LayaAirPluginToUnity">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Assets/LayaAir3D/LayaTool/LayaAirPluginToUnity.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Assets/LayaAir3D/LayaTool/LayaAirPluginToUnity.dll</HintPath>
  </Reference>
  <Reference Include="zxing.unity">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Assets/LayaAir3D/LayaTool/Util/zxing.unity.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Assets/LayaAir3D/LayaTool/Util/zxing.unity.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/unitypro/runGame/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

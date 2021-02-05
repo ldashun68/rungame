@@ -37,8 +37,6 @@ export default class FightManager extends rab.GameObject {
     private isStart: boolean;
     /**当前显示的建筑物 */
     private builds:Array<BuildItem> = new Array<BuildItem>();
-    /**速度 */
-    private speed:number;
     /**当前角色位置 */
     /**相机初始位置 */
     // private camerapos:Laya.Vector3;
@@ -91,15 +89,18 @@ export default class FightManager extends rab.GameObject {
             this.builds[i].recover();
         }
         this.builds = [];
-        this.speed = 0.2;
         this._currLenght = 0;
         this.obstacleManager.onClearAll();
+        for(var i = 0;i<10;i++)
+        {
+            this.oncreateNextBuild();
+        }
+        
     }
 
     /**准备战斗 */
     public fightReady (): void {
         this.isStart = false;
-        this.onInitScene();
         this.playerManager.fightReady();
         this.manager = rab.RabGameManager.getInterest().getMyManager();
         this.passData = this.manager.CurrPassData();
@@ -109,11 +110,7 @@ export default class FightManager extends rab.GameObject {
         {
             this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
         }
-        for(var i = 0;i<8;i++)
-        {
-            this.oncreateNextBuild();
-        }
-
+        this.onInitScene();
         this.SendMessage(GameNotity.GameMessage_GameStart)
     }
 
@@ -246,16 +243,16 @@ export default class FightManager extends rab.GameObject {
     {
         if(!this.isStart)
         {
+            console.log("重新开始");
             this.onInitScene();
-            for(var i = 0;i<8;i++)
-            {
-                this.oncreateNextBuild();
-            }
-            Laya.timer.once(500, this, () => {
-                this.isStart = true;
-            });
             this.playerManager.reStart();
+            Laya.timer.once(300, this, () => {
+                // this.isStart = true;
+                this.SendMessage(GameNotity.GameMessage_GameStart)
+            });
+            
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
+            
         }
     }
 
@@ -265,11 +262,15 @@ export default class FightManager extends rab.GameObject {
     onReMoveScene()
     {
         console.log("回收场景了");
-        this.onInitScene();
-        // this._basebuilds[this.passData.builds[i]]
+        for(var i = 0;i<this.builds.length;i++)
+        {
+            this.builds[i].recover();
+        }
+        this.builds = [];
+        this.obstacleManager.onClearAll();
         for(var i =0;i<this.passData.builds.length;i++)
         {
-            Laya.Pool.clearBySign(this.passData.builds[i]+"");
+            Laya.Pool.clearBySign("build_"+this.passData.builds[i]);
             this._basebuilds[this.passData.builds[i]].destroy();
         }
         this._basebuilds.clear();
@@ -282,9 +283,8 @@ export default class FightManager extends rab.GameObject {
     /**创建下一个建筑物 */
     private oncreateNextBuild():Laya.Sprite3D
     {
-        
         let buildID = this.passData.builds[Math.floor(Math.random()*this.passData.builds.length)];
-        let build:Laya.Sprite3D = Laya.Pool.getItem(buildID+"");
+        let build:Laya.Sprite3D = Laya.Pool.getItem("build_"+buildID);
         let buildProp:BuildItem;
         if(!build)
         {
@@ -294,12 +294,12 @@ export default class FightManager extends rab.GameObject {
             build.transform.localPositionZ = this._currLenght;
             buildProp = build.getComponent(BuildItem);
         }
-        console.log("buildID:",buildID);
+        console.log("buildID:",this._currLenght);
         this.scene3D.addChild(build);
         this.builds.push(buildProp);
         buildProp.onInitProp(this.manager.getBuild(buildID),this._currLenght);
         this._currLenght +=this.manager.getBuild(buildID).length;
-        if(this._currLenght > 28)
+        if(this._currLenght > 18)
         {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID),build.transform.position.z);
         }
