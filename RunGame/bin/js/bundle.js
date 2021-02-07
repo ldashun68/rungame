@@ -3686,6 +3686,7 @@
                 else {
                     this.playNode.transform.rotate(new Laya.Vector3(0, 0.1, 0));
                 }
+                this._mouseDownX = Laya.stage.mouseX;
             }
         }
         onFrameLoop() {
