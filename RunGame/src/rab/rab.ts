@@ -1376,6 +1376,7 @@ abstract class RabView extends RabObj implements IRabView {
     /**移除界面 */
     OnRemove()
     {
+        this.onHide();
         this.onDestroy();
     }
 

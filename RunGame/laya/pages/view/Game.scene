@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":259,
-    "selecteID":262,
+    "selectedBox":252,
+    "selecteID":259,
     "searchKey":"Scene,Game,Game",
     "props":{"width":750,"var":"Game","top":0,"sceneColor":"#000000","sceneBg":"laya/views/view/Game.jpg","right":0,"name":"Game","left":0,"height":1334,"centerY":0,"centerX":0,"bottom":0},
     "nodeParent":-1,
@@ -144,7 +144,7 @@
                             "x":45,
                             "type":"Image",
                             "searchKey":"Image,progress_b,progress_b",
-                            "props":{"width":540,"var":"progress_b","name":"progress_b","height":26,"centerY":0,"centerX":0},
+                            "props":{"width":540,"var":"progress_b","skin":"new/game/jindutiao3.png","sizeGrid":"6,15,6,15","name":"progress_b","height":26,"centerY":0,"centerX":0},
                             "nodeParent":252,
                             "label":"progress_b",
                             "isOpen":true,
@@ -166,7 +166,8 @@
                                     "hasChild":false,
                                     "compId":262,
                                     "child":[
-                                        ]
+                                        ],
+                                    "$HIDDEN":false
                                 },
                                 {
                                     "x":60,

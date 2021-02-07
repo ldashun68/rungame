@@ -75,6 +75,14 @@ export default class RoleSelect extends rab.RabView {
         // this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
     }
 
+    onHide()
+    {
+        super.onHide();
+        Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
+        Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);
+        Laya.stage.off(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+    }
+
     onstart()
     {
         this.myManager.playSelect = this.selectId;
