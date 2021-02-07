@@ -1318,6 +1318,13 @@ abstract class RabView extends RabObj implements IRabView {
         this.designScaleSmall = Math.min(scaleH,scaleW);
         this.onResize();
         this.createBanner();
+        this.onShowLanguage();
+    }
+
+    /**语言包 */
+    protected onShowLanguage()
+    {
+
     }
 
     /**
@@ -1828,6 +1835,7 @@ abstract class RabController extends RabManager {
 
     /**登录返回 */
     private LoginBreak() {
+        wx.hideLoading();
         rab.SDKChannel.traceEvent("loginsuccess")
         this.InitMusic();
         this.OnEnterGame();

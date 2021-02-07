@@ -147,8 +147,8 @@ export default class GameSet extends rab.RabView {
 
     /**订阅按钮事件 */
     private onSubscribe (): void {
-        rab.SDKChannel.subscribeMessage("welfare", () => {
+        // rab.SDKChannel.subscribeMessage("welfare", () => {
             
-        });
+        // });
     }
 }

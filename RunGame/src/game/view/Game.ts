@@ -55,12 +55,13 @@ export default class Game extends rab.RabView {
 
     protected OnRefreshView() {
         console.log("刷新游戏页面");
+        this.m_currView.guild.visible = true;
         this.gameStart = false;
-        this.m_currView.timeTxt.visible = false;
+        this.m_currView.timeDown.visible = false;
         this.fightManager.fightReady();
         rab.MusicManager.playMusic("sub4/audio/AttackBGM.mp3");
         this.m_currView.lifeText.value = "3";
-        this.m_currView.coinText.value = "0";
+        // this.m_currView.coinText.value = "0";
     }
 
     /**暂停按钮事件 */
@@ -72,23 +73,29 @@ export default class Game extends rab.RabView {
 
     /**战斗开始 */
     private onGametart (data: any): void {
+        this.m_currView.guild.visible = false;
         let time: number = 3;
-        this.m_currView.timeTxt.visible = true;
-        this.m_currView.timeTxt.value = ""+time;
+        this.m_currView.timeDown.visible = true;
+        this.m_currView.timeDown.skin = "ui/3.png";
         let countdown = () => {
-            this.m_currView.timeTxt.value = ""+time;
+            
             time--;
             if (time == -1) {
-                this.m_currView.timeTxt.visible = false;
+                this.m_currView.timeDown.visible = false;
                 this.fightManager.onGameStart();
                 this.gameStart = true;
                 Laya.timer.clear(this, countdown);
             }
-            else {
+            else if (time > 0){
+                this.m_currView.timeDown.skin = "ui/"+time+".png";
+                Laya.timer.once(1000, this, countdown);
+            }else if(time == 0)
+            {
+                this.m_currView.timeDown.skin = "ui/go.png";
                 Laya.timer.once(1000, this, countdown);
             }
         }
-        Laya.timer.once(1000, this, countdown);
+        Laya.timer.once(1800, this, countdown);
         // countdown();
     }
 
@@ -132,7 +139,8 @@ export default class Game extends rab.RabView {
             this._mouseDownY = Laya.stage.mouseY;
             console.log('onStartDragPicture e', Laya.stage.mouseX);
         }else{
-            // this.SendMessage(GameNotity.GameMessage_GameStart)
+            this.m_currView.guild.visible = false;
+            this.SendMessage(GameNotity.GameMessage_GameStart)
         }
     }
 

@@ -61,12 +61,11 @@ export default class GameWin extends rab.RabView {
        
         
         this.onwin();
-        this.onShowLanguage();
     }
 
-    private onShowLanguage()
+    protected onShowLanguage()
     {
-        this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
+        // this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
     }
 
     onwin()

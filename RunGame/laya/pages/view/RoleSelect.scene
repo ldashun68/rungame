@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":35,
+    "selectedBox":62,
+    "selecteID":63,
     "searchKey":"Scene",
-    "props":{"width":750,"sceneColor":"#000000","height":1334},
+    "props":{"width":750,"sceneColor":"#000000","sceneBg":"laya/views/view/RoleSelect.jpg","height":1334},
     "nodeParent":-1,
-    "maxID":42,
+    "maxID":73,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -44,115 +44,89 @@
             "compId":4,
             "child":[
                 ],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
             "type":"Image",
             "searchKey":"Image,break",
-            "props":{"y":62,"x":36,"var":"break","skin":"ui/btn_blue_small2.png"},
+            "props":{"var":"break","top":26,"skin":"new/com/b_fanhui.png","left":23},
             "nodeParent":2,
             "label":"break",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":22,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,breakTxt",
-                    "props":{"var":"breakTxt","text":"返回","fontSize":45,"centerY":0,"centerX":0},
-                    "nodeParent":22,
-                    "label":"breakTxt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":38,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,titleTxt",
-            "props":{"var":"titleTxt","top":100,"text":"角色选择","fontSize":80,"centerX":0,"bold":true},
-            "nodeParent":2,
-            "label":"titleTxt",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":23,
-            "child":[
-                ],
-            "$LOCKED":true
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "searchKey":"Label,roleTxt",
-            "props":{"var":"roleTxt","top":200,"text":"滑动旋转","fontSize":45,"centerX":0},
-            "nodeParent":2,
-            "label":"roleTxt",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":35,
             "child":[
                 ]
         },
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,r2",
-            "props":{"var":"r2","skin":"role/box.png","centerX":-60,"bottom":100},
-            "nodeParent":2,
-            "label":"r2",
-            "isOpen":false,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":26,
-            "child":[
-                {
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"skin":"role/r2.png","centerY":0,"centerX":0},
-                    "nodeParent":26,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":27,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Image",
             "searchKey":"Image,r1",
-            "props":{"var":"r1","skin":"role/box.png","centerX":-180,"bottom":100},
+            "props":{"y":1123,"x":31,"var":"r1","skin":"new/role/touxiangk.png","centerX":-279,"bottom":80},
             "nodeParent":2,
             "label":"r1",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":24,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"skin":"role/r1.png","centerY":0,"centerX":0},
+                    "searchKey":"Image,img_1",
+                    "props":{"var":"img_1","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
                     "nodeParent":24,
-                    "label":"Image",
+                    "label":"img_1",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":25,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
+                    "nodeParent":24,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":43,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "searchKey":"Label,roleName_1",
+                            "props":{"var":"roleName_1","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
+                            "nodeParent":43,
+                            "label":"roleName_1",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":42,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,select_1",
+                    "props":{"var":"select_1","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
+                    "nodeParent":24,
+                    "label":"select_1",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":44,
                     "child":[
                         ]
                 }]
@@ -160,26 +134,157 @@
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,r3",
-            "props":{"var":"r3","skin":"role/box.png","centerX":60,"bottom":100},
+            "searchKey":"Image,r2",
+            "props":{"var":"r2","skin":"new/role/touxiangk.png","centerX":-94,"bottom":80},
             "nodeParent":2,
-            "label":"r3",
-            "isOpen":false,
+            "label":"r2",
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":28,
+            "compId":45,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"skin":"role/r3.png","centerY":0,"centerX":0},
-                    "nodeParent":28,
-                    "label":"Image",
+                    "searchKey":"Image,img_2",
+                    "props":{"var":"img_2","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "nodeParent":45,
+                    "label":"img_2",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":29,
+                    "compId":46,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
+                    "nodeParent":45,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":47,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "searchKey":"Label,roleName_2",
+                            "props":{"var":"roleName_2","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
+                            "nodeParent":47,
+                            "label":"roleName_2",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":48,
+                            "child":[
+                                ]
+                        }],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,select_2",
+                    "props":{"var":"select_2","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
+                    "nodeParent":45,
+                    "label":"select_2",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":49,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                }]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,startBtn,startBtn",
+            "props":{"var":"startBtn","skin":"new/com/bd_ksyx.png","name":"startBtn","centerX":0,"bottom":277,"anchorY":0.5,"anchorX":0.5},
+            "nodeParent":2,
+            "label":"startBtn",
+            "isOpen":true,
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":39,
+            "child":[
+                ],
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,r3",
+            "props":{"var":"r3","skin":"new/role/touxiangk.png","centerX":95,"bottom":80},
+            "nodeParent":2,
+            "label":"r3",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":55,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,img_3",
+                    "props":{"var":"img_3","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "nodeParent":55,
+                    "label":"img_3",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":56,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
+                    "nodeParent":55,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":57,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "searchKey":"Label,roleName_3",
+                            "props":{"var":"roleName_3","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
+                            "nodeParent":57,
+                            "label":"roleName_3",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":58,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,select_3",
+                    "props":{"var":"select_3","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
+                    "nodeParent":55,
+                    "label":"select_3",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":59,
                     "child":[
                         ]
                 }]
@@ -188,25 +293,68 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,r4",
-            "props":{"var":"r4","skin":"role/box.png","centerX":180,"bottom":100},
+            "props":{"var":"r4","skin":"new/role/touxiangk.png","centerX":282,"bottom":80},
             "nodeParent":2,
             "label":"r4",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":32,
+            "compId":60,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"skin":"role/r4.png","centerY":0,"centerX":0},
-                    "nodeParent":32,
-                    "label":"Image",
+                    "searchKey":"Image,img_4",
+                    "props":{"var":"img_4","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "nodeParent":60,
+                    "label":"img_4",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":33,
+                    "compId":61,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
+                    "nodeParent":60,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":62,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Label",
+                            "searchKey":"Label,roleName_4",
+                            "props":{"var":"roleName_4","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
+                            "nodeParent":62,
+                            "label":"roleName_4",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":63,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,select_4",
+                    "props":{"var":"select_4","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
+                    "nodeParent":60,
+                    "label":"select_4",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":64,
                     "child":[
                         ]
                 }]
@@ -214,31 +362,44 @@
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,startBtn,startBtn",
-            "props":{"var":"startBtn","skin":"ui/btn_start.png","name":"startBtn","centerX":0,"bottom":220,"anchorY":0.5,"anchorX":0.5},
+            "searchKey":"Image,title",
+            "props":{"y":160,"x":204,"var":"title","skin":"new/com/t_jsxz.png"},
             "nodeParent":2,
-            "label":"startBtn",
-            "isOpen":true,
-            "isDirectory":true,
+            "label":"title",
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
-            "compId":39,
+            "hasChild":false,
+            "compId":65,
             "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,startTxt",
-                    "props":{"y":0,"x":0,"var":"startTxt","text":"开始游戏","fontSize":60,"color":"#ffffff","centerY":0,"centerX":0,"bold":true},
-                    "nodeParent":39,
-                    "label":"startTxt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":40,
-                    "child":[
-                        ]
-                }],
-            "$HIDDEN":false
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,left",
+            "props":{"var":"left","skin":"new/com/xuanzhuan2.png","left":105,"centerY":-61},
+            "nodeParent":2,
+            "label":"left",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":66,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,right",
+            "props":{"var":"right","skin":"new/com/xuanzhuan.png","right":100,"centerY":-55},
+            "nodeParent":2,
+            "label":"right",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":72,
+            "child":[
+                ]
         }],
     "animations":[
         {

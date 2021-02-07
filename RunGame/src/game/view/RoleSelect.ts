@@ -17,7 +17,7 @@ export default class RoleSelect extends rab.RabView {
     private _playerPivot:Laya.Sprite3D;
     private _characterSlot:Laya.Sprite3D;
     private mouseDown:boolean = false;
-    private _mouseDownX:number = 0;
+    private _mouseDownType:number = 0;
 
     protected LoadView() {
         this.create<ui.view.RoleSelectUI>(ui.view.RoleSelectUI);
@@ -34,15 +34,20 @@ export default class RoleSelect extends rab.RabView {
         this.m_currView.r4.on(Laya.Event.CLICK, this, this.onSelectRole_4);
         Tool.instance.addButtonAnimation(this.m_currView.r4);
 
+        this.m_currView.left.on(Laya.Event.MOUSE_DOWN, this, this.onRotateLeft);
+        Tool.instance.addButtonAnimation(this.m_currView.left);
+        // this.m_currView.right.on(Laya.Event.CLICK, this, this.onRotateRight);
+        // Tool.instance.addButtonAnimation(this.m_currView.right);
+        this.m_currView.right.on(Laya.Event.MOUSE_DOWN, this, this.onRotateRight);
+        Tool.instance.addButtonAnimation(this.m_currView.right);
+
+        this.m_currView.left.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+        this.m_currView.right.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+
         this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
         Tool.instance.addButtonAnimation(this.m_currView.startBtn);
+        Laya.timer.frameLoop(1,this,this.onFrameLoop)
 
-        Laya.stage.on(Laya.Event.MOUSE_DOWN,this,this.onMouseDown);
-        Laya.stage.on(Laya.Event.MOUSE_UP,this,this.onMouseUp);
-        Laya.stage.on(Laya.Event.MOUSE_MOVE,this,this.onMouseMove);
-
-        // this.scene3D = Laya.loader.getRes("3d/game/Conventional/game.ls");
-        // Laya.stage.addChild(this.scene3D);
         this.OnRefreshView();
 
         this.myManager.onLoad3dScene(() => {
@@ -56,15 +61,14 @@ export default class RoleSelect extends rab.RabView {
         this.camera.transform.position = new Laya.Vector3(0,4,-5);
         this._playerPivot = <Laya.Sprite3D>this.myManager.scene3D.getChildByName("PlayerPivot");
         this._characterSlot = <Laya.Sprite3D>this._playerPivot.getChildByName("CharacterSlot");
-        this.onShowLanguage();
     }
 
-    private onShowLanguage()
+    protected onShowLanguage()
     {
-        this.m_currView.breakTxt.text = Language.instance.getTxt("break");
-        this.m_currView.titleTxt.text = Language.instance.getTxt("role_1");
-        this.m_currView.roleTxt.text = Language.instance.getTxt("role_2");
-        this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
+        // this.m_currView.breakTxt.text = Language.instance.getTxt("break");
+        // this.m_currView.titleTxt.text = Language.instance.getTxt("role_1");
+        // this.m_currView.roleTxt.text = Language.instance.getTxt("role_2");
+        // this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
     }
 
     onstart()
@@ -91,6 +95,11 @@ export default class RoleSelect extends rab.RabView {
         {
             return;
         }
+        this.m_currView.select_1.visible = false;
+        this.m_currView.select_2.visible = false;
+        this.m_currView.select_3.visible = false;
+        this.m_currView.select_4.visible = false;
+        this.m_currView["select_"+id].visible = true;
         this.selectId = id;
         if(this.playNode)
         {
@@ -156,33 +165,40 @@ export default class RoleSelect extends rab.RabView {
     /**鼠标按下 */
     private onMouseDown(e)
     {
-        
         this.mouseDown = true;
-        this._mouseDownX = Laya.stage.mouseX;
     }
 
     private onMouseUp()
     {
+        console.log("鼠标弹起");
         this.mouseDown = false;
+        this._mouseDownType = 0;
     }
 
     /**鼠标弹起 */
-    private onMouseMove(e)
+    private onFrameLoop()
     {
         if(this.mouseDown)
         {
-            
-            if(Math.abs(this._mouseDownX - Laya.stage.mouseX ) > 2)
+            if(this._mouseDownType == 1)
             {
-                if(this._mouseDownX - Laya.stage.mouseX > 0)
-                {
-                    this.playNode.transform.rotate(new Laya.Vector3(0,-0.1,0));
-                }else{
-                    this.playNode.transform.rotate(new Laya.Vector3(0,0.1,0));
-                }
-                this._mouseDownX = Laya.stage.mouseX;
+                this.playNode.transform.rotate(new Laya.Vector3(0,-0.1,0));
+            }else if(this._mouseDownType == -1){
+                this.playNode.transform.rotate(new Laya.Vector3(0,0.1,0));
             }
         }
+    }
+
+    private onRotateLeft()
+    {
+        this.mouseDown = true;
+        this._mouseDownType = 1;
+    }
+
+    private onRotateRight()
+    {
+        this.mouseDown = true;
+        this._mouseDownType = -1;
     }
 
 }

@@ -22,12 +22,20 @@ export default class Pause extends rab.RabView {
         this.m_currView.continueBtn.on(Laya.Event.CLICK, this, this.onContinue);
         Tool.instance.addButtonAnimation(this.m_currView.continueBtn);
 
-        this.m_currView.exitBtn.on(Laya.Event.CLICK, this, this.onDiscontinue);
-        Tool.instance.addButtonAnimation(this.m_currView.exitBtn);
+        this.m_currView.restart.on(Laya.Event.CLICK, this, this.onRestar);
+        Tool.instance.addButtonAnimation(this.m_currView.restart);
+
+        this.m_currView.home.on(Laya.Event.CLICK, this, this.onDiscontinue);
+        Tool.instance.addButtonAnimation(this.m_currView.home);
     }
 
     protected OnRefreshView() {
         
+    }
+
+    /**金币复活按钮事件 */
+    private onRestar (): void {
+        this.SendMessage(GameNotity.GameMessage_ReGameStart);
     }
 
     /**继续游戏按钮事件 */

@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":279,
+    "selectedBox":259,
+    "selecteID":262,
     "searchKey":"Scene,Game,Game",
-    "props":{"width":750,"var":"Game","top":0,"sceneColor":"#000000","right":0,"name":"Game","left":0,"height":1334,"centerY":0,"centerX":0,"bottom":0},
+    "props":{"width":750,"var":"Game","top":0,"sceneColor":"#000000","sceneBg":"laya/views/view/Game.jpg","right":0,"name":"Game","left":0,"height":1334,"centerY":0,"centerX":0,"bottom":0},
     "nodeParent":-1,
-    "maxID":280,
+    "maxID":292,
     "label":"Game",
     "isOpen":true,
     "isDirectory":true,
@@ -53,16 +53,17 @@
             "props":{"y":135,"x":375,"width":750,"var":"pendantNode","name":"pendantNode","height":230,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"pendantNode",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":248,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,lifeNode,lifeNode",
-                    "props":{"y":164,"x":120,"var":"lifeNode","skin":"ui/coinBg1.png","name":"lifeNode","anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":193,"x":174,"width":290,"var":"lifeNode","skin":"new/game/jingdutiaodi1.png","sizeGrid":"13,13,13,13","name":"lifeNode","height":60,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":248,
                     "label":"lifeNode",
                     "isOpen":false,
@@ -74,7 +75,20 @@
                         {
                             "type":"Image",
                             "searchKey":"Image",
-                            "props":{"y":41.5,"x":65.5,"skin":"ui/redPoint.png","anchorY":0.5,"anchorX":0.5},
+                            "props":{"x":0,"width":200,"top":4,"skin":"new/game/jingdutiao1.png","left":0},
+                            "nodeParent":249,
+                            "label":"Image",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":281,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"top":-10,"skin":"new/game/aixin.png","left":-10,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":249,
                             "label":"Image",
                             "isDirectory":false,
@@ -87,7 +101,7 @@
                         {
                             "type":"FontClip",
                             "searchKey":"FontClip,lifeText,lifeText",
-                            "props":{"y":37,"x":162,"var":"lifeText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","name":"lifeText","anchorY":0.5,"anchorX":0.5},
+                            "props":{"x":162,"var":"lifeText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","name":"lifeText","centerY":0,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":249,
                             "label":"lifeText",
                             "isDirectory":false,
@@ -96,51 +110,14 @@
                             "compId":251,
                             "child":[
                                 ]
-                        }]
+                        }],
+                    "$HIDDEN":false
                 },
                 {
-                    "type":"Image",
-                    "searchKey":"Image,coinNode",
-                    "props":{"y":253,"x":120,"var":"coinNode","skin":"ui/coinBg1.png","anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":248,
-                    "label":"coinNode",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":275,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":41.5,"x":65.5,"skin":"ui/coin1.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":275,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":276,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"FontClip",
-                            "searchKey":"FontClip,coinText,coinText",
-                            "props":{"y":37,"x":162,"var":"coinText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","name":"coinText","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":275,
-                            "label":"coinText",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":277,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,progressNode,progressNode",
-                    "props":{"y":50,"x":375,"width":300,"var":"progressNode","name":"progressNode","height":100,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"width":540,"var":"progressNode","top":54,"name":"progressNode","height":26,"centerX":60,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":248,
                     "label":"progressNode",
                     "isOpen":true,
@@ -150,22 +127,10 @@
                     "compId":252,
                     "child":[
                         {
-                            "type":"Image",
-                            "searchKey":"Image,currentPass",
-                            "props":{"y":58,"x":29,"skin":"ui/grayBox.png","name":"currentPass","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":252,
-                            "label":"currentPass",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":255,
-                            "child":[
-                                ]
-                        },
-                        {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,nextPass",
-                            "props":{"y":58,"x":271,"skin":"ui/grayBox.png","name":"nextPass","anchorY":0.5,"anchorX":0.5},
+                            "props":{"skin":"new/game/qizhi.png","right":7,"name":"nextPass","centerY":-23,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":252,
                             "label":"nextPass",
                             "isDirectory":false,
@@ -176,47 +141,23 @@
                                 ]
                         },
                         {
-                            "type":"FontClip",
-                            "searchKey":"FontClip,currentPassText,currentPassText",
-                            "props":{"y":58,"x":29,"var":"currentPassText","value":"10","skin":"ui/passNum.png","sheet":"0123456789/","scaleY":1.2,"scaleX":1.2,"name":"currentPassText","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":252,
-                            "label":"currentPassText",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":257,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"FontClip",
-                            "searchKey":"FontClip,nextPassText,nextPassText",
-                            "props":{"y":58,"x":271,"var":"nextPassText","value":"11","skin":"ui/passNum.png","sheet":"0123456789/","scaleY":1.2,"scaleX":1.2,"name":"nextPassText","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":252,
-                            "label":"nextPassText",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":258,
-                            "child":[
-                                ]
-                        },
-                        {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,progress_b,progress_b",
-                            "props":{"y":44.5,"x":54,"var":"progress_b","skin":"ui/load1.png","name":"progress_b"},
+                            "props":{"width":540,"var":"progress_b","name":"progress_b","height":26,"centerY":0,"centerX":0},
                             "nodeParent":252,
                             "label":"progress_b",
-                            "isOpen":false,
+                            "isOpen":true,
                             "isDirectory":true,
                             "isAniNode":true,
                             "hasChild":true,
                             "compId":259,
                             "child":[
                                 {
+                                    "x":60,
                                     "type":"Image",
                                     "searchKey":"Image,progress_m,progress_m",
-                                    "props":{"y":0,"x":2,"var":"progress_m","skin":"ui/load1.png","scaleX":0.98,"renderType":"mask","name":"progress_m"},
+                                    "props":{"width":540,"var":"progress_m","top":0,"skin":"new/game/jindutiao3.png","sizeGrid":"6,15,6,15","scaleX":0.98,"renderType":"mask","name":"progress_m","left":0,"bottom":0},
                                     "nodeParent":259,
                                     "label":"progress_m",
                                     "isOpen":true,
@@ -228,9 +169,10 @@
                                         ]
                                 },
                                 {
+                                    "x":60,
                                     "type":"Image",
                                     "searchKey":"Image,progress_t,progress_t",
-                                    "props":{"y":15,"x":2,"var":"progress_t","skin":"ui/load2.png","scaleY":0.95,"name":"progress_t","anchorY":0.5,"anchorX":1},
+                                    "props":{"x":0,"width":540,"var":"progress_t","skin":"new/game/jingdutiao2.png","sizeGrid":"6,15,6,15","scaleY":0.95,"name":"progress_t","centerY":-1,"anchorY":0.5,"anchorX":1},
                                     "nodeParent":259,
                                     "label":"progress_t",
                                     "isOpen":true,
@@ -244,9 +186,10 @@
                                 }]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,pauseBtn,pauseBtn",
-                            "props":{"y":57,"x":-147,"var":"pauseBtn","skin":"ui/pauseBtn.png","name":"pauseBtn","anchorY":0.5,"anchorX":0.5},
+                            "props":{"y":10,"x":-91,"var":"pauseBtn","skin":"new/com/b_zhanting.png","name":"pauseBtn","anchorY":0.5,"anchorX":0.5},
                             "nodeParent":252,
                             "label":"pauseBtn",
                             "isDirectory":false,
@@ -257,34 +200,145 @@
                                 ]
                         },
                         {
-                            "type":"Label",
-                            "searchKey":"Label,mapName",
-                            "props":{"y":10,"var":"mapName","text":"场景名称","fontSize":30,"color":"#ffffff","centerX":0,"bold":true},
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image,iconNode",
+                            "props":{"x":340,"var":"iconNode","skin":"new/game/zhi.png","centerY":-13},
                             "nodeParent":252,
-                            "label":"mapName",
+                            "label":"iconNode",
+                            "isOpen":false,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "compId":286,
+                            "child":[
+                                {
+                                    "type":"Image",
+                                    "searchKey":"Image,icon",
+                                    "props":{"var":"icon","skin":"new/game/tou_02.png","centerY":-31,"centerX":0},
+                                    "nodeParent":286,
+                                    "label":"icon",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":287,
+                                    "child":[
+                                        ]
+                                }]
+                        }],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image,codeNode,coinNode",
+                    "props":{"y":294,"x":174,"width":290,"var":"coinNode","skin":"new/game/jinbidi.png","sizeGrid":"13,13,13,13","name":"codeNode","height":60,"anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":248,
+                    "label":"codeNode",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":282,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "searchKey":"Image",
+                            "props":{"top":-10,"skin":"new/game/jinbi.png","left":-10,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":282,
+                            "label":"Image",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":278,
+                            "compId":284,
                             "child":[
                                 ]
-                        }]
+                        },
+                        {
+                            "x":45,
+                            "type":"FontClip",
+                            "searchKey":"FontClip,coinText",
+                            "props":{"x":162,"var":"coinText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","centerY":0,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":282,
+                            "label":"coinText",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":285,
+                            "child":[
+                                ]
+                        }],
+                    "$HIDDEN":false
                 }],
             "$HIDDEN":false
         },
         {
             "x":15,
-            "type":"FontClip",
-            "searchKey":"FontClip,timeTxt",
-            "props":{"var":"timeTxt","value":"3","skin":"ui/failNum.png","sheet":"0123456789","centerY":0,"centerX":0,"align":"center"},
+            "type":"Image",
+            "searchKey":"Image,timeDown",
+            "props":{"var":"timeDown","skin":"new/game/3.png","centerY":-160,"centerX":0},
             "nodeParent":2,
-            "label":"timeTxt",
+            "label":"timeDown",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":279,
+            "compId":280,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"Box",
+            "searchKey":"Box,guild",
+            "props":{"width":750,"var":"guild","right":0,"left":0,"height":308,"bottom":94},
+            "nodeParent":2,
+            "label":"guild",
+            "isOpen":false,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":291,
+            "child":[
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/game/jiantou.png","left":74,"centerY":-107},
+                    "nodeParent":291,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":288,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/game/jiantou.png","scaleX":-1,"right":185,"centerY":-107},
+                    "nodeParent":291,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":289,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"skin":"new/game/t_xzhxyhdjs.png","centerX":12,"bottom":-37},
+                    "nodeParent":291,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":290,
+                    "child":[
+                        ]
+                }]
         }],
     "animations":[
         {

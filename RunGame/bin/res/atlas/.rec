@@ -2,6 +2,7 @@ D .
 R 39B957DA texture.png
 D effect
 D load
+D new
 D role
 P 1AC6A6F6 box.png
 P E5D1CB97 box2.png
@@ -61,3 +62,56 @@ P CAAD503E redPoint.png
 D effect/bg
 D effect/cloud
 D effect/gameWin
+D new/bg
+R 46E030B6 挑战失败.jpg
+R D0F5FF1D 挑战成功.jpg
+R E9592F88 暂停.jpg
+R A258C656 未标题-1.jpg
+R AF99BDAB 游戏中.jpg
+R D04E2BAE 首页.jpg
+D new/com
+P 79E42119 b_cxks.png
+P 75E78065 b_fanhui.png
+P 5E6B3574 b_fenxiang.png
+P 5679FC02 b_jxyx.png
+P 3E5AE213 b_zcd.png
+P 3AFD22FF b_zhanting.png
+P 3F667531 b_zhuye.png
+P 7EF6B6A9 bd_cxtz.png
+P 5272169D bd_ksyx.png
+P E43E6AF7 bd_phb.png
+P BCC8C5CC bd_syg.png
+P C1B60894 bd_syk.png
+P 6D264C77 bd_xyg.png
+P AA64134E bd_yy.png
+P D247FC11 bd_zpq.png
+R 468B80E7 beijing.png
+P B140247E t_jsxz.png
+R B2409C3E t_tzcg.png
+R 2D916204 t_tzsb.png
+P BED830ED tanchuang.png
+P 3FA9A004 xuanzhuan.png
+P 837A9F47 xuanzhuan2.png
+D new/game
+P A6AE254A 1.png
+P 99CBB14F 2.png
+P 3A57F031 3.png
+P 048B6920 aixin.png
+P 0F752FCA GO.png
+P 9695945D jiantou.png
+P 6479A04F jinbi.png
+P 6F8CD126 jinbidi.png
+P 0732ED4B jindutiao3.png
+P 941CA00D jingdutiao1.png
+P 872C25CD jingdutiao2.png
+P 4D0F061A jingdutiaodi1.png
+P DB066FC4 qizhi.png
+P 9BA26AB4 shouzhi.png
+P A8CA7B9B t_xzhxyhdjs.png
+P 1E343D88 tou_02.png
+P E7F53AC1 zhi.png
+D new/role
+P F460C54E mingzidi.png
+P ADFE3CB3 touxiang_02.png
+P 9D1C4F4D touxiangk.png
+P 0973DE40 touxiangk2.png

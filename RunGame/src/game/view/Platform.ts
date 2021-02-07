@@ -65,16 +65,16 @@ export default class Platform extends rab.RabView {
     protected OnRefreshView() {
         rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
         rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
-        this.onShowLanguage();
     }
 
-    private onShowLanguage()
+    /**语言包 */
+    protected onShowLanguage()
     {
-        this.m_currView.startTxt.text = Language.instance.getTxt("startGame")
-        this.m_currView.rankTxt.text = Language.instance.getTxt("rank")
-        this.m_currView.picTxt.text = Language.instance.getTxt("pic")
-        this.m_currView.setTxt.text = Language.instance.getTxt("set")
-        this.m_currView.lanTxt.text = Language.instance.getTxt("language")
+        // this.m_currView.startTxt.text = Language.instance.getTxt("startGame")
+        // this.m_currView.rankTxt.text = Language.instance.getTxt("rank")
+        // this.m_currView.picTxt.text = Language.instance.getTxt("pic")
+        // this.m_currView.setTxt.text = Language.instance.getTxt("set")
+        // this.m_currView.lanTxt.text = Language.instance.getTxt("language")
     }
 
     onstart()

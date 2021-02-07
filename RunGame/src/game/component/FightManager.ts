@@ -309,11 +309,12 @@ export default class FightManager extends rab.GameObject {
 
      /**更新关卡进度节点 */
      private updatePassProgressNode (): void {
-         this.view.mapName.text = this.passData.name;
-        this.view.currentPassText.value = ""+this.manager.getCurrentPass();
-        this.view.nextPassText.value = ""+(this.manager.getCurrentPass()+1);
+        //  this.view.mapName.text = this.passData.name;
+        // this.view.currentPassText.value = ""+this.manager.getCurrentPass();
+        // this.view.nextPassText.value = ""+(this.manager.getCurrentPass()+1);
         this.view.progress_t.x = 2+(this.playerManager.worldDistance/this.passData.length*(this.view.progress_t.width));
         this.view.coinText.value = ""+this.manager.fightGetCoin;
+        this.view.iconNode.x = this.view.progress_t.x
     }
 
 }

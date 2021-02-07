@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":251,
-    "selecteID":252,
+    "selectedBox":2,
+    "selecteID":127,
     "searchKey":"Scene,Platform,Platform",
     "props":{"width":750,"var":"Platform","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"Platform","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
@@ -44,7 +44,7 @@
             "compId":127,
             "child":[
                 ],
-            "$HIDDEN":false
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -53,123 +53,67 @@
             "props":{"right":0,"left":0,"bottom":300,"anchorY":1,"anchorX":0.5},
             "nodeParent":2,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":130,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,set",
-                    "props":{"y":0,"x":390,"width":150,"var":"set","skin":"ui/btn_blue_small2.png","height":102},
+                    "props":{"y":86,"x":54,"var":"set","skin":"new/com/bd_syk.png"},
                     "nodeParent":130,
                     "label":"set",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":255,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "searchKey":"Label,setTxt",
-                            "props":{"var":"setTxt","text":"设置","fontSize":40,"centerY":0,"centerX":0},
-                            "nodeParent":255,
-                            "label":"setTxt",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":256,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,lan",
-                    "props":{"y":0,"x":565,"width":150,"var":"lan","skin":"ui/btn_blue_small2.png","height":102},
+                    "props":{"y":86,"x":416,"var":"lan","skin":"new/com/bd_yy.png"},
                     "nodeParent":130,
                     "label":"lan",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":253,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "searchKey":"Label,lanTxt",
-                            "props":{"var":"lanTxt","text":"语言","fontSize":40,"centerY":0,"centerX":0},
-                            "nodeParent":253,
-                            "label":"lanTxt",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":254,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,rank",
-                    "props":{"y":0,"x":36,"width":150,"var":"rank","skin":"ui/btn_blue_small2.png","height":102},
+                    "props":{"y":-53.5,"x":54,"var":"rank","skin":"new/com/bd_phb.png"},
                     "nodeParent":130,
                     "label":"rank",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":249,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "searchKey":"Label,rankTxt",
-                            "props":{"var":"rankTxt","text":"排行版","fontSize":40,"centerY":0,"centerX":0},
-                            "nodeParent":249,
-                            "label":"rankTxt",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":250,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,pic",
-                    "props":{"y":0,"x":212,"width":150,"var":"pic","skin":"ui/btn_blue_small2.png","height":102},
+                    "props":{"y":-53,"x":416,"var":"pic","skin":"new/com/bd_zpq.png"},
                     "nodeParent":130,
                     "label":"pic",
                     "isOpen":true,
-                    "isDirectory":true,
+                    "isDirectory":false,
                     "isAniNode":true,
-                    "hasChild":true,
+                    "hasChild":false,
                     "compId":251,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "searchKey":"Label,picTxt",
-                            "props":{"var":"picTxt","text":"照片墙","fontSize":40,"centerY":0,"centerX":0},
-                            "nodeParent":251,
-                            "label":"picTxt",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":252,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 }],
             "$HIDDEN":false
         },
@@ -177,29 +121,16 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,startBtn,startBtn",
-            "props":{"var":"startBtn","skin":"ui/btn_start.png","name":"startBtn","centerX":0,"bottom":500,"anchorY":0.5,"anchorX":0.5},
+            "props":{"var":"startBtn","skin":"new/com/bd_ksyx.png","name":"startBtn","centerX":14,"bottom":541,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"startBtn",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":244,
             "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "searchKey":"Label,startTxt",
-                    "props":{"y":0,"x":0,"var":"startTxt","text":"开始游戏","fontSize":60,"color":"#ffffff","centerY":0,"centerX":0,"bold":true},
-                    "nodeParent":244,
-                    "label":"startTxt",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":257,
-                    "child":[
-                        ]
-                }],
+                ],
             "$HIDDEN":false
         }],
     "animations":[

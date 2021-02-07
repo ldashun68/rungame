@@ -1,16 +1,16 @@
 <page>
    <item name="test/TestScene.scene" props="" ifExport="分离模式" aName=""/>
    <item name="view/Loading.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="view/Platform.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Platform.scene" props="" ifExport="内嵌模式" aName="大厅"/>
    <item name="view/Revive.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="view/set.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="view/Game.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Game.scene" props="" ifExport="内嵌模式" aName="游戏界面"/>
    <item name="view/GameOver.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="view/Pendant.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="view/Pause.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/Pause.scene" props="" ifExport="内嵌模式" aName="暂停界面"/>
    <item name="view/GameWin.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="view/NotClick.scene" props="" ifExport="内嵌模式" aName=""/>
-   <item name="view/GameFail.scene" props="" ifExport="内嵌模式" aName=""/>
+   <item name="view/GameFail.scene" props="" ifExport="内嵌模式" aName="失败"/>
    <item name="view/GetTicket.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="view/ChooseSkill.scene" props="" ifExport="内嵌模式" aName=""/>
    <item name="view/GameSet.scene" props="" ifExport="内嵌模式" aName=""/>

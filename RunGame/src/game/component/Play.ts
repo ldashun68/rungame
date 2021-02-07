@@ -20,6 +20,7 @@ export default class Play extends rab.GameObject {
         let prop:ObstacleItem = other.owner.getComponent(ObstacleItem);
         if(prop)
         {
+            prop.onCollisionPlay();
             this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
         }
         
