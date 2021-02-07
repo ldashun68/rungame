@@ -18,6 +18,7 @@ export default class RoleSelect extends rab.RabView {
     private _characterSlot:Laya.Sprite3D;
     private mouseDown:boolean = false;
     private _mouseDownType:number = 0;
+    private _mouseDownX:number = 0;
 
     protected LoadView() {
         this.create<ui.view.RoleSelectUI>(ui.view.RoleSelectUI);
@@ -26,13 +27,13 @@ export default class RoleSelect extends rab.RabView {
         this.m_currView.break.on(Laya.Event.CLICK, this, this.onBreak);
         Tool.instance.addButtonAnimation(this.m_currView.break);
         this.m_currView.r1.on(Laya.Event.CLICK, this, this.onSelectRole_1);
-        Tool.instance.addButtonAnimation(this.m_currView.r1);
+        // Tool.instance.addButtonAnimation(this.m_currView.r1);
         this.m_currView.r2.on(Laya.Event.CLICK, this, this.onSelectRole_2);
-        Tool.instance.addButtonAnimation(this.m_currView.r2);
+        // Tool.instance.addButtonAnimation(this.m_currView.r2);
         this.m_currView.r3.on(Laya.Event.CLICK, this, this.onSelectRole_3);
-        Tool.instance.addButtonAnimation(this.m_currView.r3);
+        // Tool.instance.addButtonAnimation(this.m_currView.r3);
         this.m_currView.r4.on(Laya.Event.CLICK, this, this.onSelectRole_4);
-        Tool.instance.addButtonAnimation(this.m_currView.r4);
+        // Tool.instance.addButtonAnimation(this.m_currView.r4);
 
         this.m_currView.left.on(Laya.Event.MOUSE_DOWN, this, this.onRotateLeft);
         Tool.instance.addButtonAnimation(this.m_currView.left);
@@ -43,6 +44,9 @@ export default class RoleSelect extends rab.RabView {
 
         this.m_currView.left.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
         this.m_currView.right.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+        Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
+        Laya.stage.on(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);
+        Laya.stage.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
 
         this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
         Tool.instance.addButtonAnimation(this.m_currView.startBtn);
@@ -166,6 +170,7 @@ export default class RoleSelect extends rab.RabView {
     private onMouseDown(e)
     {
         this.mouseDown = true;
+        this._mouseDownX = Laya.stage.mouseX;
     }
 
     private onMouseUp()
@@ -173,6 +178,20 @@ export default class RoleSelect extends rab.RabView {
         console.log("鼠标弹起");
         this.mouseDown = false;
         this._mouseDownType = 0;
+        this._mouseDownX = 0;
+    }
+
+    private onMouseMove()
+    {
+        if(this.mouseDown)
+        {
+            if(this._mouseDownX - Laya.stage.mouseX > 0)
+            {
+                this.playNode.transform.rotate(new Laya.Vector3(0,-0.1,0));
+            }else {
+                this.playNode.transform.rotate(new Laya.Vector3(0,0.1,0));
+            }
+        }
     }
 
     /**鼠标弹起 */

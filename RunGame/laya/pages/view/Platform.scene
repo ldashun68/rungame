@@ -2,7 +2,7 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":127,
+    "selecteID":244,
     "searchKey":"Scene,Platform,Platform",
     "props":{"width":750,"var":"Platform","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"Platform","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
@@ -50,19 +50,20 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"right":0,"left":0,"bottom":300,"anchorY":1,"anchorX":0.5},
+            "props":{"right":0,"left":0,"height":200,"bottom":100,"anchorY":1,"anchorX":0.5},
             "nodeParent":2,
             "label":"Image",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":130,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,set",
-                    "props":{"y":86,"x":54,"var":"set","skin":"new/com/bd_syk.png"},
+                    "props":{"y":140,"x":189,"var":"set","skin":"new/com/bd_syk.png","centerY":40,"centerX":-186,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":130,
                     "label":"set",
                     "isOpen":true,
@@ -74,9 +75,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,lan",
-                    "props":{"y":86,"x":416,"var":"lan","skin":"new/com/bd_yy.png"},
+                    "props":{"y":140,"x":561,"var":"lan","skin":"new/com/bd_yy.png","centerY":40,"centerX":186,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":130,
                     "label":"lan",
                     "isOpen":true,
@@ -88,9 +90,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,rank",
-                    "props":{"y":-53.5,"x":54,"var":"rank","skin":"new/com/bd_phb.png"},
+                    "props":{"y":0,"x":189,"var":"rank","skin":"new/com/bd_phb.png","centerY":-100,"centerX":-186,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":130,
                     "label":"rank",
                     "isOpen":true,
@@ -102,9 +105,10 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,pic",
-                    "props":{"y":-53,"x":416,"var":"pic","skin":"new/com/bd_zpq.png"},
+                    "props":{"y":0,"x":561,"var":"pic","skin":"new/com/bd_zpq.png","centerY":-100,"centerX":186,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":130,
                     "label":"pic",
                     "isOpen":true,
