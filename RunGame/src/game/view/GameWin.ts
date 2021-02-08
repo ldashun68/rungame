@@ -59,6 +59,11 @@ export default class GameWin extends rab.RabView {
         this.playNode.transform.localPosition = new Laya.Vector3(0,-0.1,-3);
         this.playNode.transform.localRotationEulerX = 0;
         this.playNode.active = true;
+        Laya.timer.frameLoop(1,this,this.onUpdate);
+    }
+    onUpdate()
+    {
+        this.m_currView.eff.rotation += 1;
     }
 
     protected onShowLanguage()

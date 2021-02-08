@@ -61,7 +61,6 @@ P 247FC136 pauseText.png
 P CAAD503E redPoint.png
 D effect/bg
 D effect/cloud
-D effect/gameWin
 D new/bg
 R 46E030B6 挑战失败.jpg
 R D0F5FF1D 挑战成功.jpg
@@ -86,6 +85,7 @@ P 6D264C77 bd_xyg.png
 P AA64134E bd_yy.png
 P D247FC11 bd_zpq.png
 R 468B80E7 beijing.png
+R 82838E0F guangxiao.png
 P B140247E t_jsxz.png
 R B2409C3E t_tzcg.png
 R 2D916204 t_tzsb.png
