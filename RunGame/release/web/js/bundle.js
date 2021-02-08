@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Game.scene";
+    GameConfig.startScene = "view/RoleSelect.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -1408,7 +1408,7 @@
                     this.createView(GameUI.uiView);
                 }
             }
-            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 193, "x": 174, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "x": 0, "width": 200, "top": 4, "skin": "new/game/jingdutiao1.png", "left": 0 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "width": 540, "var": "progressNode", "top": 54, "name": "progressNode", "height": 26, "centerX": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": 7, "name": "nextPass", "centerY": -23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 0, "centerX": 0 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 10, "x": -91, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "x": 340, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": -13 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 294, "x": 174, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/com/b_zhanting.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
+            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 193, "x": 174, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "width": 290, "var": "life_bg", "top": 4, "skin": "new/game/jingdutiao1.png", "left": 4 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "width": 540, "var": "progressNode", "top": 54, "name": "progressNode", "height": 26, "centerX": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": 7, "name": "nextPass", "centerY": -23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 0, "centerX": 0 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 10, "x": -91, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "x": 340, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": -13 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 294, "x": 174, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/com/b_zhanting.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
             view.GameUI = GameUI;
             REG("ui.view.GameUI", GameUI);
             class GameFailUI extends Scene {
@@ -1420,7 +1420,7 @@
                     this.createView(GameFailUI.uiView);
                 }
             }
-            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "var": "bg", "top": 0, "skin": "new/com/beijing.png", "right": 0, "name": "bg", "left": 0, "bottom": 0 }, "compId": 63 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 57 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 1334, "alpha": 0.75 }, "compId": 43, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 45 }] }, { "type": "Image", "props": { "y": 1226, "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "centerX": 0, "bottom": 41, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "y": 1230, "x": 609, "var": "share", "skin": "new/com/b_fenxiang.png", "centerX": 234, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 1230, "x": 138, "var": "home", "skin": "new/com/b_zhuye.png", "centerX": -237, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 30, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "top": 300, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "y": -9, "x": 172, "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -162 }, "compId": 59 }, { "type": "FontClip", "props": { "y": -1, "x": 256, "value": "99999", "skin": "ui/failNum.png", "sheet": "0123456789", "centerY": 0, "centerX": 0 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
+            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 65, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 66 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 67 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 68 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 69 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 70 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 71 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 72 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 57 }, { "type": "Image", "props": { "y": 1226, "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "centerX": 0, "bottom": 41, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "y": 1230, "x": 609, "var": "share", "skin": "new/com/b_fenxiang.png", "centerX": 234, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 1230, "x": 138, "var": "home", "skin": "new/com/b_zhuye.png", "centerX": -237, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 30, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "top": 300, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -118 }, "compId": 59 }, { "type": "FontClip", "props": { "value": "99999", "skin": "ui/failNum.png", "sheet": "0123456789", "centerY": 1, "centerX": 44 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
             view.GameFailUI = GameFailUI;
             REG("ui.view.GameFailUI", GameFailUI);
             class GameSetUI extends Scene {
@@ -1444,7 +1444,7 @@
                     this.createView(GameWinUI.uiView);
                 }
             }
-            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "new/com/beijing.png", "right": 0, "name": "bg", "left": 0, "bottom": 0 }, "compId": 15 }, { "type": "Image", "props": { "zOrder": 1, "var": "winNode", "top": 0, "right": 0, "name": "winNode", "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "visible": false, "var": "award", "name": "award", "centerY": -377, "centerX": -94, "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 55, "skin": "new/game/jinbi.png", "centerX": -100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 55, "var": "coinText", "value": "2000", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "centerX": 23, "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }] }, { "type": "Image", "props": { "visible": false, "var": "next", "skin": "new/com/bd_xyg.png", "name": "next", "centerX": 0, "bottom": 47, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "x": 112, "width": 100, "visible": false, "var": "homeBtn", "skin": "new/com/b_zhuye.png", "pivotY": 107, "pivotX": 22, "name": "homeBtn", "height": 107, "bottom": 54 }, "compId": 54 }, { "type": "Image", "props": { "x": 577, "width": 100, "visible": false, "var": "share", "skin": "new/com/b_fenxiang.png", "pivotY": 107, "pivotX": 22, "height": 107, "bottom": 47 }, "compId": 20 }] }], "loadList": ["new/com/beijing.png", "new/game/jinbi.png", "ui/coinNum.png", "new/com/bd_xyg.png", "new/com/b_zhuye.png", "new/com/b_fenxiang.png"], "loadList3D": [] };
+            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 56, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 57 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 58 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 59 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 60 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 61 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 62 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 63 }] }, { "type": "Image", "props": { "zOrder": 1, "var": "winNode", "top": 0, "right": 0, "name": "winNode", "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "visible": false, "var": "award", "name": "award", "centerY": -377, "centerX": 0, "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 55, "skin": "new/game/jinbi.png", "centerX": -100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 55, "var": "coinText", "value": "2000", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "centerX": 23, "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }] }, { "type": "Image", "props": { "visible": false, "var": "next", "skin": "new/com/bd_xyg.png", "name": "next", "centerX": 0, "bottom": 47, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "x": 112, "width": 100, "visible": false, "var": "homeBtn", "skin": "new/com/b_zhuye.png", "pivotY": 107, "pivotX": 22, "name": "homeBtn", "height": 107, "bottom": 54 }, "compId": 54 }, { "type": "Image", "props": { "x": 577, "width": 100, "visible": false, "var": "share", "skin": "new/com/b_fenxiang.png", "pivotY": 107, "pivotX": 22, "height": 107, "bottom": 47 }, "compId": 20 }, { "type": "Image", "props": { "top": 30, "skin": "new/com/t_tzcg.png", "centerX": 0 }, "compId": 64 }] }], "loadList": ["new/com/beijing.png", "new/game/jinbi.png", "ui/coinNum.png", "new/com/bd_xyg.png", "new/com/b_zhuye.png", "new/com/b_fenxiang.png", "new/com/t_tzcg.png"], "loadList3D": [] };
             view.GameWinUI = GameWinUI;
             REG("ui.view.GameWinUI", GameWinUI);
             class GetTicketUI extends Scene {
@@ -1468,7 +1468,7 @@
                     this.createView(LoadingUI.uiView);
                 }
             }
-            LoadingUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Loading", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 15 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "load/bg.jpg", "right": 0, "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": 645, "x": 350, "var": "logo", "skin": "load/logo.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 12 }] }, { "type": "Box", "props": { "x": 200, "var": "boxProgress", "right": 200, "left": 200, "height": 41, "bottom": 320 }, "compId": 9, "child": [{ "type": "Image", "props": { "width": 350, "top": 5, "skin": "load/bar1.png", "sizeGrid": "0,20,0,20", "right": 0, "left": 0, "height": 27, "bottom": 9 }, "compId": 10 }, { "type": "Image", "props": { "y": 8, "x": 5, "width": 340, "var": "imgProgress", "skin": "load/bar2.png", "sizeGrid": "0,20,0,20", "height": 20 }, "compId": 11 }] }, { "type": "Label", "props": { "var": "lbProgress", "text": "Progress", "fontSize": 22, "color": "#f9f9f9", "centerX": 0, "bottom": 298 }, "compId": 7 }], "loadList": ["load/bg.jpg", "load/logo.png", "load/bar1.png", "load/bar2.png"], "loadList3D": [] };
+            LoadingUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Loading", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 15 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 19, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 20 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 21 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 22 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 23 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 24 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 25 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 26 }] }, { "type": "Box", "props": { "x": 200, "var": "boxProgress", "right": 200, "left": 200, "height": 41, "bottom": 320 }, "compId": 9, "child": [{ "type": "Image", "props": { "width": 350, "top": 5, "skin": "load/bar1.png", "sizeGrid": "0,20,0,20", "right": 0, "left": 0, "height": 27, "bottom": 9 }, "compId": 10 }, { "type": "Image", "props": { "y": 8, "x": 5, "width": 340, "var": "imgProgress", "skin": "load/bar2.png", "sizeGrid": "0,20,0,20", "height": 20 }, "compId": 11 }] }, { "type": "Label", "props": { "var": "lbProgress", "text": "Progress", "fontSize": 22, "color": "#f9f9f9", "centerX": 0, "bottom": 298 }, "compId": 7 }], "loadList": ["new/com/beijing.png", "load/bar1.png", "load/bar2.png"], "loadList3D": [] };
             view.LoadingUI = LoadingUI;
             REG("ui.view.LoadingUI", LoadingUI);
             class NotClickUI extends Scene {
@@ -1492,7 +1492,7 @@
                     this.createView(PauseUI.uiView);
                 }
             }
-            PauseUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pause", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 1334, "alpha": 0.5 }, "compId": 24, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 23 }] }, { "type": "Image", "props": { "width": 750, "var": "bg", "skin": "ui/bg_2.png", "name": "bg", "height": 1334 }, "compId": 15 }, { "type": "Image", "props": { "width": 558, "skin": "new/com/tanchuang.png", "sizeGrid": "56,56,56,56", "pivotY": -42, "pivotX": -58, "height": 662, "centerY": 0, "centerX": 0 }, "compId": 25, "child": [{ "type": "Image", "props": { "y": 169, "x": 279, "var": "continueBtn", "skin": "new/com/b_jxyx.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "y": 514, "x": 279, "var": "home", "text": "退出", "strokeColor": "#2c2c2c", "stroke": 1, "skin": "new/com/b_zcd.png", "fontSize": 40, "font": "SimHei", "color": "#2c2c2c", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }, { "type": "Image", "props": { "y": 274, "x": 279, "var": "restart", "skin": "new/com/b_cxks.png", "anchorX": 0.5 }, "compId": 22 }] }], "loadList": ["ui/bg_2.png", "new/com/tanchuang.png", "new/com/b_jxyx.png", "new/com/b_zcd.png", "new/com/b_cxks.png"], "loadList3D": [] };
+            PauseUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pause", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "height": 1334, "alpha": 0.5 }, "compId": 24, "child": [{ "type": "Rect", "props": { "width": 750, "lineWidth": 1, "height": 2000, "fillColor": "#000000" }, "compId": 23 }] }, { "type": "Image", "props": { "width": 558, "skin": "new/com/tanchuang.png", "sizeGrid": "56,56,56,56", "pivotY": -42, "pivotX": -58, "height": 662, "centerY": 0, "centerX": 0 }, "compId": 25, "child": [{ "type": "Image", "props": { "y": 169, "x": 279, "var": "continueBtn", "skin": "new/com/b_jxyx.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "y": 514, "x": 279, "var": "home", "text": "退出", "strokeColor": "#2c2c2c", "stroke": 1, "skin": "new/com/b_zcd.png", "fontSize": 40, "font": "SimHei", "color": "#2c2c2c", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }, { "type": "Image", "props": { "y": 274, "x": 279, "var": "restart", "skin": "new/com/b_cxks.png", "anchorX": 0.5 }, "compId": 22 }] }], "loadList": ["new/com/tanchuang.png", "new/com/b_jxyx.png", "new/com/b_zcd.png", "new/com/b_cxks.png"], "loadList3D": [] };
             view.PauseUI = PauseUI;
             REG("ui.view.PauseUI", PauseUI);
             class PendantUI extends Scene {
@@ -1528,7 +1528,7 @@
                     this.createView(RoleSelectUI.uiView);
                 }
             }
-            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 79, "x": 73, "var": "break", "top": 26, "skin": "new/com/b_fanhui.png", "left": 23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 22 }, { "type": "Image", "props": { "var": "r1", "skin": "new/role/touxiangk.png", "centerX": -282, "bottom": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "var": "img_1", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 25 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 43, "child": [{ "type": "Label", "props": { "var": "roleName_1", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 42 }] }, { "type": "Image", "props": { "var": "select_1", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 44 }] }, { "type": "Image", "props": { "var": "r2", "skin": "new/role/touxiangk.png", "centerX": -94, "bottom": 80 }, "compId": 45, "child": [{ "type": "Image", "props": { "var": "img_2", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 46 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 47, "child": [{ "type": "Label", "props": { "var": "roleName_2", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 48 }] }, { "type": "Image", "props": { "var": "select_2", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 49 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 0, "bottom": 277, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39 }, { "type": "Image", "props": { "var": "r3", "skin": "new/role/touxiangk.png", "centerX": 94, "bottom": 80 }, "compId": 55, "child": [{ "type": "Image", "props": { "var": "img_3", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 56 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 57, "child": [{ "type": "Label", "props": { "var": "roleName_3", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 58 }] }, { "type": "Image", "props": { "var": "select_3", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 59 }] }, { "type": "Image", "props": { "var": "r4", "skin": "new/role/touxiangk.png", "centerX": 282, "bottom": 80 }, "compId": 60, "child": [{ "type": "Image", "props": { "var": "img_4", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 61 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 62, "child": [{ "type": "Label", "props": { "var": "roleName_4", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 63 }] }, { "type": "Image", "props": { "var": "select_4", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 64 }] }, { "type": "Image", "props": { "y": 160, "x": 204, "var": "title", "skin": "new/com/t_jsxz.png" }, "compId": 65 }, { "type": "Image", "props": { "var": "left", "skin": "new/com/xuanzhuan2.png", "left": 105, "centerY": -61 }, "compId": 66 }, { "type": "Image", "props": { "var": "right", "skin": "new/com/xuanzhuan.png", "right": 100, "centerY": -55 }, "compId": 72 }], "loadList": ["new/com/b_fanhui.png", "new/role/touxiangk.png", "new/role/touxiang_02.png", "new/role/mingzidi.png", "new/role/touxiangk2.png", "new/com/bd_ksyx.png", "new/com/t_jsxz.png", "new/com/xuanzhuan2.png", "new/com/xuanzhuan.png"], "loadList3D": [] };
+            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 0, "x": 0, "visible": false, "skin": "new/com/beijing.png" }, "compId": 75, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 76 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 77 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 78 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 79 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 80 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 81 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 82 }] }, { "type": "Image", "props": { "y": 79, "x": 73, "var": "break", "top": 26, "skin": "new/com/b_fanhui.png", "left": 23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 22 }, { "type": "Image", "props": { "var": "r1", "skin": "new/role/touxiangk.png", "centerX": -282, "bottom": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "var": "img_1", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 25 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 43, "child": [{ "type": "Label", "props": { "var": "roleName_1", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 42 }] }, { "type": "Image", "props": { "var": "select_1", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 44 }] }, { "type": "Image", "props": { "var": "r2", "skin": "new/role/touxiangk.png", "centerX": -94, "bottom": 80 }, "compId": 45, "child": [{ "type": "Image", "props": { "var": "img_2", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 46 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 47, "child": [{ "type": "Label", "props": { "var": "roleName_2", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 48 }] }, { "type": "Image", "props": { "var": "select_2", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 49 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 0, "bottom": 277, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39 }, { "type": "Image", "props": { "var": "r3", "skin": "new/role/touxiangk.png", "centerX": 94, "bottom": 80 }, "compId": 55, "child": [{ "type": "Image", "props": { "var": "img_3", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 56 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 57, "child": [{ "type": "Label", "props": { "var": "roleName_3", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 58 }] }, { "type": "Image", "props": { "var": "select_3", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 59 }] }, { "type": "Image", "props": { "var": "r4", "skin": "new/role/touxiangk.png", "centerX": 282, "bottom": 80 }, "compId": 60, "child": [{ "type": "Image", "props": { "var": "img_4", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 61 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 62, "child": [{ "type": "Label", "props": { "var": "roleName_4", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 63 }] }, { "type": "Image", "props": { "var": "select_4", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 64 }] }, { "type": "Image", "props": { "y": 160, "x": 204, "var": "title", "skin": "new/com/t_jsxz.png" }, "compId": 65 }, { "type": "Image", "props": { "var": "left", "skin": "new/com/xuanzhuan2.png", "left": 105, "centerY": -61 }, "compId": 66 }, { "type": "Image", "props": { "var": "right", "skin": "new/com/xuanzhuan.png", "right": 100, "centerY": -55 }, "compId": 72 }], "loadList": ["new/com/beijing.png", "new/com/b_fanhui.png", "new/role/touxiangk.png", "new/role/touxiang_02.png", "new/role/mingzidi.png", "new/role/touxiangk2.png", "new/com/bd_ksyx.png", "new/com/t_jsxz.png", "new/com/xuanzhuan2.png", "new/com/xuanzhuan.png"], "loadList3D": [] };
             view.RoleSelectUI = RoleSelectUI;
             REG("ui.view.RoleSelectUI", RoleSelectUI);
         })(view = ui.view || (ui.view = {}));
@@ -2525,6 +2525,7 @@
         onInitProp(data) {
             this.prop = data;
             this._obstacleId = data.id;
+            this.transform.localRotationEulerX = 0;
         }
         recover() {
             this.gameObject.removeSelf();
@@ -2585,6 +2586,7 @@
                 obstacle.transform.localPositionZ = this._initPos;
                 obstacleProp = obstacle.getComponent(ObstacleSimple);
             }
+            this.scene3D.addChild(obstacle);
             console.log("创建好了障碍物", ObstacleID);
             this._obstacles.push(obstacleProp);
             obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
@@ -2697,6 +2699,7 @@
             if (this.animator) {
                 this.animator.crossFade('run', 0);
             }
+            this._characterSlot.transform.position = new Laya.Vector3(0, 0, 0);
         }
         fightExit() {
             this._playState = PlayState.death;
@@ -2736,6 +2739,7 @@
             if (this.animator) {
                 this.animator.crossFade('idle', 0);
             }
+            this._characterSlot.transform.position = new Laya.Vector3(0, 0, 0);
         }
         update() {
             let scaledSpeed = this.m_Speed * 0.02;
@@ -2820,6 +2824,7 @@
             super();
             this._basebuilds = new Map();
             this.builds = new Array();
+            this.winLenght = 50;
         }
         onInit() {
             this.AddListenerMessage(GameNotity.GameMessage_PauseGame, this.onGamePause);
@@ -2830,6 +2835,7 @@
             this.AddListenerMessage(GameNotity.GameMessage_ReGameStart, this.onGameReStart);
         }
         init() {
+            this.max_lifeCount = 3;
             this.scene3D = this.owner;
             this.scene3D.enableFog = true;
             this.scene3D.fogColor = new Laya.Vector3(0.25, 0.55, 0.9);
@@ -2842,6 +2848,8 @@
             this.obstacleManager.init();
         }
         onInitScene() {
+            Laya.timer.resume();
+            this.max_lifeCount = 3;
             for (var i = 0; i < this.builds.length; i++) {
                 this.builds[i].recover();
             }
@@ -2853,6 +2861,8 @@
             }
         }
         fightReady() {
+            this.currlife = this.max_lifeCount;
+            this.onLifeUpdate();
             this.isStart = false;
             this.playerManager.fightReady();
             this.manager = rab.RabGameManager.getInterest().getMyManager();
@@ -2866,9 +2876,14 @@
             this.SendMessage(GameNotity.GameMessage_GameStart);
         }
         onGameStart() {
-            console.log("开始跑了");
-            this.isStart = true;
-            this.playerManager.onGameStart();
+            if (!this.isStart) {
+                console.log("开始跑了");
+                this.currlife = this.max_lifeCount;
+                this.onLifeUpdate();
+                this.isStart = true;
+                this.playerManager.onGameStart();
+                this.updatePassProgressNode();
+            }
         }
         onGamewin() {
             this.isStart = false;
@@ -2902,7 +2917,7 @@
                     this.oncreateNextBuild();
                 }
             }
-            if (this.playerManager.worldDistance > this.passData.length - 9) {
+            if (this.playerManager.worldDistance > this.passData.length - this.winLenght) {
                 this.onGamewin();
             }
             if (this.playerManager.worldDistance < this.passData.length - 15) {
@@ -2917,18 +2932,30 @@
                     if (data[0] == 1) {
                     }
                     else {
-                        this.onGameFail();
+                        this.currlife -= 1;
+                        this.onLifeUpdate();
+                        if (this.currlife == 0) {
+                            this.onGameFail();
+                        }
                     }
                 }
                 else if (this.playerManager._playState == PlayState.slide) {
                     if (data[1] == 1) {
                     }
                     else {
-                        this.onGameFail();
+                        this.currlife -= 1;
+                        this.onLifeUpdate();
+                        if (this.currlife == 0) {
+                            this.onGameFail();
+                        }
                     }
                 }
                 else {
-                    this.onGameFail();
+                    this.currlife -= 1;
+                    this.onLifeUpdate();
+                    if (this.currlife == 0) {
+                        this.onGameFail();
+                    }
                 }
             }
         }
@@ -2944,10 +2971,15 @@
                 this.isStart = true;
                 this.playerManager.revive();
                 rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
+                this.currlife = this.max_lifeCount;
+                this.onLifeUpdate();
             }
         }
         onGameReStart() {
             if (!this.isStart) {
+                Laya.timer.resume();
+                this.currlife = this.max_lifeCount;
+                this.onLifeUpdate();
                 console.log("重新开始");
                 this.onInitScene();
                 this.playerManager.reStart();
@@ -2955,6 +2987,9 @@
                     this.SendMessage(GameNotity.GameMessage_GameStart);
                 });
                 rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
+            }
+            else {
+                console.log("已经重新开始");
             }
         }
         onReMoveScene() {
@@ -2990,15 +3025,19 @@
             this.builds.push(buildProp);
             buildProp.onInitProp(this.manager.getBuild(buildID), this._currLenght);
             this._currLenght += this.manager.getBuild(buildID).length;
-            if (this._currLenght > 18) {
+            if (this._currLenght > 18 && this._currLenght < this.passData.length - this.winLenght) {
                 this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
             }
             return build;
         }
         updatePassProgressNode() {
-            this.view.progress_t.x = 2 + (this.playerManager.worldDistance / this.passData.length * (this.view.progress_t.width));
+            this.view.progress_t.x = 2 + (this.playerManager.worldDistance / (this.passData.length - this.winLenght) * (this.view.progress_t.width));
             this.view.coinText.value = "" + this.manager.fightGetCoin;
-            this.view.iconNode.x = this.view.progress_t.x;
+            this.view.iconNode.x = this.view.progress_t.x - 13;
+        }
+        onLifeUpdate() {
+            this.view.lifeText.value = this.currlife + "";
+            this.view.life_bg.width = (this.currlife / this.max_lifeCount) * 290;
         }
     }
 
@@ -3063,10 +3102,6 @@
                 }
             };
             Laya.timer.once(1800, this, countdown);
-        }
-        fightContinue() {
-        }
-        fightDiscontinue() {
         }
         onKeyUp(e) {
             if (e.keyCode == 37) {
@@ -3200,6 +3235,7 @@
         }
         onRestar() {
             this.SendMessage(GameNotity.GameMessage_ReGameStart);
+            this.onHide();
         }
         onContinue() {
             this.SendMessage(GameNotity.GameMessage_GameContinue);
@@ -3207,7 +3243,8 @@
         }
         onDiscontinue() {
             this.onHide();
-            rab.UIManager.onHideView(ViewConfig.gameView.GameView);
+            Laya.timer.resume();
+            this.SendMessage(GameNotity.Game_RemoveScene);
             rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
         }
     }
@@ -3223,30 +3260,9 @@
             Tool.instance.addButtonAnimation(this.m_currView.next);
             this.m_currView.homeBtn.on(Laya.Event.CLICK, this, this.onHome);
             Tool.instance.addButtonAnimation(this.m_currView.homeBtn);
-            let Templet1 = new Laya.Templet();
-            Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
-                let skeleton = Templet.buildArmature(1);
-                this.m_currView.addChild(skeleton);
-                skeleton.x = Laya.stage.width / 2;
-                skeleton.y = Laya.stage.height / 2;
-                skeleton.stop();
-                skeleton.play(name, true);
-            }, [Templet1, "lizi"]);
-            Templet1.loadAni("effect/bg/bg_lizi.sk");
-            let Templet2 = new Laya.Templet();
-            Templet2.on(Laya.Event.COMPLETE, this, (Templet, name) => {
-                this.flagEffect = Templet.buildArmature(1);
-                this.m_currView.addChild(this.flagEffect);
-                this.flagEffect.x = Laya.stage.width / 2;
-                this.flagEffect.y = 500;
-                this.flagEffect.stop();
-                this.OnRefreshView();
-            }, [Templet2, "shengli"]);
-            Templet2.loadAni("effect/gameWin/shengli.sk");
+            this.OnRefreshView();
         }
         OnRefreshView() {
-            this.flagEffect.play("shengli", false);
-            this.flagEffect.visible = true;
             let manager = rab.RabGameManager.getInterest().getMyManager();
             this.onwin();
         }
@@ -3268,8 +3284,6 @@
         }
         onHide() {
             super.onHide();
-            this.flagEffect.stop();
-            this.flagEffect.visible = false;
             this.m_currView.award.visible = false;
             this.m_currView.next.visible = false;
         }
@@ -3593,10 +3607,13 @@
             this.camera.transform.position = new Laya.Vector3(0, 4, -5);
             this._playerPivot = this.myManager.scene3D.getChildByName("PlayerPivot");
             this._characterSlot = this._playerPivot.getChildByName("CharacterSlot");
+            this.sky = this._playerPivot.getChildByName("Sky");
+            this.sky.active = false;
         }
         onShowLanguage() {
         }
         onHide() {
+            this.sky.active = true;
             super.onHide();
             Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
             Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);
