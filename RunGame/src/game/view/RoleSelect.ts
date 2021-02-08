@@ -52,6 +52,10 @@ export default class RoleSelect extends rab.RabView {
     }
     protected OnRefreshView() {
 
+        this.m_currView.roleName_1.text = "JACK";
+        this.m_currView.roleName_2.text = "小明";
+        this.m_currView.roleName_3.text = "大叔";
+        this.m_currView.roleName_4.text = "大爷";
         // this.myManager.scene3D.active = false;
         this.create3DScene();
     }

@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/GameWin.scene";
+    GameConfig.startScene = "view/RoleSelect.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -2579,7 +2579,7 @@
             let obstacle = Laya.Pool.getItem("ObstacleID" + ObstacleID);
             let obstacleProp;
             if (!obstacle) {
-                obstacle = this.instantiate(this._baseobstacles[ObstacleID], null, false, new Laya.Vector3(0, 0, this._initPos));
+                obstacle = this.instantiate(this._baseobstacles[ObstacleID], null, true, new Laya.Vector3(0, 0, this._initPos));
                 obstacleProp = obstacle.addComponent(ObstacleSimple);
             }
             else {
@@ -2590,6 +2590,8 @@
             console.log("创建好了障碍物", ObstacleID);
             this._obstacles.push(obstacleProp);
             obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
+            obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
+            obstacle.active = true;
             if (this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1) {
                 obstacle.transform.localPositionX = 0;
             }
@@ -3050,6 +3052,7 @@
             this.mouseDown = false;
             this._mouseDownX = 0;
             this._mouseDownY = 0;
+            this.isclick = false;
         }
         LoadView() {
             this.create(ui.view.GameUI);
@@ -3121,12 +3124,13 @@
         }
         onMouseDown(e) {
             if (this.gameStart) {
+                this.isclick = false;
                 this.mouseDown = true;
                 this._mouseDownX = Laya.stage.mouseX;
                 this._mouseDownY = Laya.stage.mouseY;
-                console.log('onStartDragPicture e', Laya.stage.mouseX);
             }
-            else {
+            else if (!this.isclick) {
+                this.isclick = true;
                 this.m_currView.guild.visible = false;
                 this.SendMessage(GameNotity.GameMessage_GameStart);
             }
@@ -3650,6 +3654,10 @@
             });
         }
         OnRefreshView() {
+            this.m_currView.roleName_1.text = "JACK";
+            this.m_currView.roleName_2.text = "小明";
+            this.m_currView.roleName_3.text = "大叔";
+            this.m_currView.roleName_4.text = "大爷";
             this.create3DScene();
         }
         create3DScene() {

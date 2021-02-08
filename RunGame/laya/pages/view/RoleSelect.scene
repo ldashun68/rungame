@@ -2,7 +2,7 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":4,
+    "selecteID":75,
     "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","sceneBg":"laya/views/view/RoleSelect.jpg","height":1334},
     "nodeParent":-1,
@@ -181,13 +181,14 @@
             "props":{"var":"r1","skin":"new/role/touxiangk.png","centerX":-282,"bottom":80,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"r1",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":24,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,img_1",
                     "props":{"var":"img_1","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
@@ -201,6 +202,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
@@ -213,6 +215,7 @@
                     "compId":43,
                     "child":[
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label,roleName_1",
                             "props":{"var":"roleName_1","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
@@ -227,6 +230,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,select_1",
                     "props":{"var":"select_1","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},

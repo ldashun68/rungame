@@ -26,6 +26,7 @@ export default class Game extends rab.RabView {
     private _mouseDownX:number = 0;
     private _mouseDownY:number = 0;
     protected myManager:GameController;
+    private isclick:boolean = false;
 
     protected LoadView() {
         this.create<ui.view.GameUI>(ui.view.GameUI);
@@ -123,11 +124,13 @@ export default class Game extends rab.RabView {
         
         if(this.gameStart)
         {
+            this.isclick = false;
             this.mouseDown = true;
             this._mouseDownX = Laya.stage.mouseX;
             this._mouseDownY = Laya.stage.mouseY;
-            console.log('onStartDragPicture e', Laya.stage.mouseX);
-        }else{
+            // console.log('onStartDragPicture e', Laya.stage.mouseX);
+        }else if(!this.isclick){
+            this.isclick = true;
             this.m_currView.guild.visible = false;
             this.SendMessage(GameNotity.GameMessage_GameStart)
         }

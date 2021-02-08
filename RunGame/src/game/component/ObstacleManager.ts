@@ -54,7 +54,7 @@ export default class ObstacleManager extends rab.GameObject {
         let obstacleProp:ObstacleItem;
         if(!obstacle)
         {
-            obstacle = this.instantiate(this._baseobstacles[ObstacleID],null,false,new Laya.Vector3(0, 0, this._initPos));
+            obstacle = this.instantiate(this._baseobstacles[ObstacleID],null,true,new Laya.Vector3(0, 0, this._initPos));
             obstacleProp = obstacle.addComponent(ObstacleSimple);
         }else{
             obstacle.transform.localPositionZ = this._initPos;
@@ -64,6 +64,8 @@ export default class ObstacleManager extends rab.GameObject {
         console.log("创建好了障碍物",ObstacleID)
         this._obstacles.push(obstacleProp);
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
+        obstacle.transform.localPosition = new Laya.Vector3(0,0,this._initPos);
+        obstacle.active = true;
         if(this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1)
         {
             obstacle.transform.localPositionX = 0;
