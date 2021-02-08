@@ -108,6 +108,7 @@ export default class FightManager extends rab.GameObject {
 
     /**准备战斗 */
     public fightReady (): void {
+        this.scene3D.active = true;
         this.currlife = this.max_lifeCount;
         this.onLifeUpdate();
         this.isStart = false;
@@ -127,6 +128,7 @@ export default class FightManager extends rab.GameObject {
 
     /**开始战斗 */
     public onGameStart (): void {
+        this.scene3D.active = true;
         if(!this.isStart)
         {
             console.log("开始跑了");

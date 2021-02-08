@@ -3610,6 +3610,15 @@
             this.sky = this._playerPivot.getChildByName("Sky");
             this.sky.active = false;
         }
+        create3DScene() {
+            this.scene3D = Laya.stage.addChild(new Laya.Scene3D());
+            var camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100)));
+            camera.transform.translate(new Laya.Vector3(0, 4, 3));
+            camera.transform.rotate(new Laya.Vector3(-30, 0, 0), true, false);
+            var directionLight = this.scene3D.addChild(new Laya.DirectionLight());
+            directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
+            directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+        }
         onShowLanguage() {
         }
         onHide() {

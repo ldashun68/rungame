@@ -14,6 +14,9 @@ export default class GameFail extends rab.RabView {
     protected m_currView: ui.view.GameFailUI;
 
     private time: number;
+    private scene3D: Laya.Scene3D;
+    private playNode: Laya.Sprite3D;
+    protected myManager:GameController;
     protected LoadView() {
         this.create<ui.view.GameFailUI>(ui.view.GameFailUI);
         this._bannerPos = "GameFail";
@@ -42,6 +45,29 @@ export default class GameFail extends rab.RabView {
         // this.m_currView.timeText.value = ""+this.time;
 
         Laya.timer.loop(1000, this, this.countDown);
+        this.create3DScene();
+    }
+
+    private create3DScene()
+    {
+        this.myManager.scene3D.active = false;
+        //添加3D场景
+        this.scene3D = this.m_currView.cloudNode.addChild(new Laya.Scene3D()) as Laya.Scene3D;
+        //添加照相机
+        var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
+        camera.transform.translate(new Laya.Vector3(0, 1, 0));
+        camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
+        camera.clearFlag = 3;
+        //添加方向光
+        var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
+        directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
+        directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+        //添加自定义模型
+        this.playNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/play_"+this.myManager.playSelect+".lh"), this.scene3D),true,new Laya.Vector3(0,0,2);
+        this.playNode.transform.localPosition = new Laya.Vector3(0,-0.1,-3);
+        this.playNode.transform.localRotationEulerX = 0;
+        this.playNode.active = true;
+        // console.log("失败页面创建3D场景");
     }
 
     protected onShowLanguage()
@@ -65,6 +91,7 @@ export default class GameFail extends rab.RabView {
     /**分享 */
     private onShare (): void {
         // this.SendMessage(GameNotity.GameMessage_Revive);
+        // this.playNode.transform.localPositionY-= 0.05;
     }
 
     /**返回主页按钮事件 */
@@ -76,6 +103,14 @@ export default class GameFail extends rab.RabView {
         // rab.UIManager.onHideView(ViewConfig.gameView.GameView);
         this.SendMessage(GameNotity.Game_RemoveScene);
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
+    }
+
+    onHide()
+    {
+        this.myManager.scene3D.active = true;
+        this.scene3D.removeSelf();
+        this.scene3D.destroy();
+        super.onHide();
     }
 
     /**倒计时 */

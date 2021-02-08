@@ -13,6 +13,9 @@ export default class GameWin extends rab.RabView {
 
     protected m_currView: ui.view.GameWinUI;
 
+    private scene3D: Laya.Scene3D;
+    private playNode: Laya.Sprite3D;
+    protected myManager:GameController;
     // protected flagEffect: Laya.Skeleton;
 
     protected LoadView() {
@@ -28,39 +31,34 @@ export default class GameWin extends rab.RabView {
 
         this.m_currView.homeBtn.on(Laya.Event.CLICK, this, this.onHome);
         Tool.instance.addButtonAnimation(this.m_currView.homeBtn);
-
-        // let Templet1:Laya.Templet = new Laya.Templet();
-        // Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
-        //     let skeleton: Laya.Skeleton = Templet.buildArmature(1);
-        //     this.m_currView.addChild(skeleton);
-        //     skeleton.x = Laya.stage.width/2;
-        //     skeleton.y = Laya.stage.height/2;
-        //     skeleton.stop();
-        //     skeleton.play(name, true);
-        // }, [Templet1, "lizi"]);
-        // Templet1.loadAni("effect/bg/bg_lizi.sk");
-
-        // let Templet2:Laya.Templet = new Laya.Templet();
-        // Templet2.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
-        //     this.flagEffect = Templet.buildArmature(1);
-        //     this.m_currView.addChild(this.flagEffect);
-        //     this.flagEffect.x = Laya.stage.width/2;
-        //     this.flagEffect.y = 500;
-        //     this.flagEffect.stop();
-            
-            this.OnRefreshView();
-        // }, [Templet2, "shengli"]);
-        // Templet2.loadAni("effect/gameWin/shengli.sk");
+        this.OnRefreshView();
     }
 
     protected OnRefreshView() {
-        // this.flagEffect.play("shengli", false);
-        // this.flagEffect.visible = true;
-
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
        
-        
+        this.create3DScene();
         this.onwin();
+    }
+    private create3DScene()
+    {
+        this.myManager.scene3D.active = false;
+        //添加3D场景
+        this.scene3D = this.m_currView.cloudNode.addChild(new Laya.Scene3D()) as Laya.Scene3D;
+        //添加照相机
+        var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
+        camera.transform.translate(new Laya.Vector3(0, 1, 0));
+        camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
+        camera.clearFlag = 3;
+        //添加方向光
+        var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
+        directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
+        directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+        //添加自定义模型
+        this.playNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/play_"+this.myManager.playSelect+".lh"), this.scene3D),true,new Laya.Vector3(0,0,2);
+        this.playNode.transform.localPosition = new Laya.Vector3(0,-0.1,-3);
+        this.playNode.transform.localRotationEulerX = 0;
+        this.playNode.active = true;
     }
 
     protected onShowLanguage()
@@ -89,16 +87,13 @@ export default class GameWin extends rab.RabView {
     }
 
     onHide () {
-        super.onHide();
-        
-        // this.flagEffect.stop();
-        // this.flagEffect.visible = false;
-
+        this.myManager.scene3D.active = true;
+        this.scene3D.removeSelf();
+        this.scene3D.destroy();
         this.m_currView.award.visible = false;
         this.m_currView.next.visible = false;
-
+        super.onHide();
         
-        // this.SendMessage()
     }
 
 

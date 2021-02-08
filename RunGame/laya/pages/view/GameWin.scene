@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":33,
-    "selecteID":36,
+    "selectedBox":2,
+    "selecteID":65,
     "searchKey":"Scene,GameWin,GameWin",
     "props":{"y":0,"x":0,"width":750,"var":"GameWin","sceneColor":"#ffffff","sceneBg":"laya/views/view/GameWin.jpg","name":"GameWin","height":1334},
     "nodeParent":-1,
-    "maxID":65,
+    "maxID":66,
     "label":"GameWin",
     "isOpen":true,
     "isDirectory":true,
@@ -144,19 +144,34 @@
         },
         {
             "x":15,
+            "type":"Sprite",
+            "searchKey":"Sprite,cloudNode,cloudNode",
+            "props":{"y":0,"x":0,"width":750,"var":"cloudNode","name":"cloudNode","height":1334},
+            "nodeParent":2,
+            "label":"cloudNode",
+            "isOpen":true,
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":65,
+            "child":[
+                ],
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
             "type":"Image",
             "searchKey":"Image,winNode,winNode",
             "props":{"zOrder":1,"var":"winNode","top":0,"right":0,"name":"winNode","left":0,"bottom":0,"anchorX":0.5},
             "nodeParent":2,
             "label":"winNode",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":24,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,award,award",
                     "props":{"visible":false,"var":"award","name":"award","centerY":-377,"centerX":0,"anchorX":0.5},
@@ -169,7 +184,6 @@
                     "compId":33,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":55,"skin":"new/game/jinbi.png","centerX":-100,"anchorY":0.5,"anchorX":0.5},
@@ -183,7 +197,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,coinText,coinText",
                             "props":{"y":55,"var":"coinText","value":"2000","skin":"ui/coinNum.png","sheet":"0123456789","scaleY":1.2,"scaleX":1.2,"name":"coinText","centerX":23,"anchorY":0.5,"anchorX":0},
@@ -198,7 +211,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,next,next",
                     "props":{"visible":false,"var":"next","skin":"new/com/bd_xyg.png","name":"next","centerX":0,"bottom":47,"anchorY":0.5,"anchorX":0.5},
@@ -214,7 +226,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,homeBtn,homeBtn",
                     "props":{"x":112,"width":100,"visible":false,"var":"homeBtn","skin":"new/com/b_zhuye.png","pivotY":107,"pivotX":22,"name":"homeBtn","height":107,"bottom":54},
@@ -229,7 +240,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,share",
                     "props":{"x":577,"width":100,"visible":false,"var":"share","skin":"new/com/b_fenxiang.png","pivotY":107,"pivotX":22,"height":107,"bottom":47},
@@ -245,7 +255,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"top":30,"skin":"new/com/t_tzcg.png","centerX":0},

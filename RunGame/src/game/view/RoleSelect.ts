@@ -10,13 +10,9 @@ export default class RoleSelect extends rab.RabView {
     protected m_currView: ui.view.RoleSelectUI;
 
     protected myManager:GameController;
-    // private scene3D: Laya.Scene3D;
-    private camera: Laya.Camera;
+    private scene3D: Laya.Scene3D;
     private playNode: Laya.Sprite3D;
-    private sky: Laya.Sprite3D;
     private selectId:number;
-    private _playerPivot:Laya.Sprite3D;
-    private _characterSlot:Laya.Sprite3D;
     private mouseDown:boolean = false;
     private _mouseDownType:number = 0;
     private _mouseDownX:number = 0;
@@ -28,18 +24,11 @@ export default class RoleSelect extends rab.RabView {
         this.m_currView.break.on(Laya.Event.CLICK, this, this.onBreak);
         Tool.instance.addButtonAnimation(this.m_currView.break);
         this.m_currView.r1.on(Laya.Event.CLICK, this, this.onSelectRole_1);
-        // Tool.instance.addButtonAnimation(this.m_currView.r1);
         this.m_currView.r2.on(Laya.Event.CLICK, this, this.onSelectRole_2);
-        // Tool.instance.addButtonAnimation(this.m_currView.r2);
         this.m_currView.r3.on(Laya.Event.CLICK, this, this.onSelectRole_3);
-        // Tool.instance.addButtonAnimation(this.m_currView.r3);
         this.m_currView.r4.on(Laya.Event.CLICK, this, this.onSelectRole_4);
-        // Tool.instance.addButtonAnimation(this.m_currView.r4);
-
         this.m_currView.left.on(Laya.Event.MOUSE_DOWN, this, this.onRotateLeft);
         Tool.instance.addButtonAnimation(this.m_currView.left);
-        // this.m_currView.right.on(Laya.Event.CLICK, this, this.onRotateRight);
-        // Tool.instance.addButtonAnimation(this.m_currView.right);
         this.m_currView.right.on(Laya.Event.MOUSE_DOWN, this, this.onRotateRight);
         Tool.instance.addButtonAnimation(this.m_currView.right);
 
@@ -62,17 +51,27 @@ export default class RoleSelect extends rab.RabView {
     })
     }
     protected OnRefreshView() {
-        // this.myManager.scene3D.removeSelf();
-        
-        
-        this.camera = this.myManager.scene3D.getChildByName("Main Camera") as Laya.Camera;
-        this.camera.transform.position = new Laya.Vector3(0,4,-5);
-        // this.camera.clearFlag = 3;
-        this._playerPivot = <Laya.Sprite3D>this.myManager.scene3D.getChildByName("PlayerPivot");
-        this._characterSlot = <Laya.Sprite3D>this._playerPivot.getChildByName("CharacterSlot");
-        this.sky = <Laya.Sprite3D>this._playerPivot.getChildByName("Sky");
-        this.sky.active = false;
-        // Laya.stage.setChildIndex(this.myManager.scene3D,Laya.stage.numChildren-1);
+
+        // this.myManager.scene3D.active = false;
+        this.create3DScene();
+    }
+
+    private create3DScene()
+    {
+
+        this.myManager.scene3D.active = false;
+        //添加3D场景
+        this.scene3D = this.m_currView.cloudNode.addChild(new Laya.Scene3D()) as Laya.Scene3D;
+        //添加照相机
+        var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
+        camera.transform.translate(new Laya.Vector3(0, 1, 0));
+        camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
+        camera.clearFlag = 3;
+        //添加方向光
+        var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
+        directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
+        directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+                        
     }
 
     protected onShowLanguage()
@@ -85,7 +84,9 @@ export default class RoleSelect extends rab.RabView {
 
     onHide()
     {
-        this.sky.active = true;
+        this.myManager.scene3D.active = true;
+        this.scene3D.removeSelf();
+        this.scene3D.destroy();
         super.onHide();
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
         Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);
@@ -124,14 +125,13 @@ export default class RoleSelect extends rab.RabView {
         this.selectId = id;
         if(this.playNode)
         {
-            this.playNode.removeSelf();
+            this.playNode.destroy();
         }
-        this.playNode = Laya.loader.getRes("3d/prefab/Conventional/play_"+id+".lh");
-        this._characterSlot.addChild(this.playNode);
-        this._characterSlot.transform.position = new Laya.Vector3(0,0,0);
-        this.playNode.transform.position = new Laya.Vector3(0,1.8,0);
-        this.playNode.transform.localScale = new Laya.Vector3(1.5,1.5,1.5);
-        this.playNode.transform.localRotationEulerY = 180;
+
+        this.playNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/play_"+id+".lh"), this.scene3D,true,new Laya.Vector3(0,0,0));
+        this.playNode.active = true;
+        this.playNode.transform.localPosition = new Laya.Vector3(0,0.3,-3.5);
+        this.playNode.transform.localRotationEulerX = 0;
     }
 
     /**
@@ -139,6 +139,7 @@ export default class RoleSelect extends rab.RabView {
      */
     private onBreak()
     {
+        // this.playNode.removeSelf();
         this.playNode.removeSelf();
         this.myManager.playSelect = this.selectId;
         rab.UIManager.onCloseView(ViewConfig.gameView.RoleSelect);
@@ -237,5 +238,7 @@ export default class RoleSelect extends rab.RabView {
         this.mouseDown = true;
         this._mouseDownType = -1;
     }
+
+    
 
 }
