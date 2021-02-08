@@ -164,14 +164,14 @@ export default class Game extends rab.RabView {
                         dre = 1
                     }
                 }else{
-                    if(this._mouseDownY - Laya.stage.mouseY > 0)
-                    {
-                        // console.log('上');
-                        dre = 2;
-                    }else{
-                        // console.log('下');
-                        dre = 3
-                    }
+                    // if(this._mouseDownY - Laya.stage.mouseY > 0)
+                    // {
+                    //     // console.log('上');
+                    //     dre = 2;
+                    // }else{
+                    //     // console.log('下');
+                    //     dre = 3
+                    // }
                 }
                 this.SendMessage(GameNotity.Game_UpdateMouseMove,dre)
             }

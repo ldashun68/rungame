@@ -3108,12 +3108,6 @@
                         }
                     }
                     else {
-                        if (this._mouseDownY - Laya.stage.mouseY > 0) {
-                            dre = 2;
-                        }
-                        else {
-                            dre = 3;
-                        }
                     }
                     this.SendMessage(GameNotity.Game_UpdateMouseMove, dre);
                 }

@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":631,
+		"instanceID":672,
 		"props":{
 			"name":"ObstacleLowBarrier",
 			"active":true,
@@ -52,7 +52,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":632,
+				"instanceID":673,
 				"props":{
 					"name":"RoadWorksBarrierLow",
 					"active":true,
