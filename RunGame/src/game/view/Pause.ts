@@ -36,6 +36,7 @@ export default class Pause extends rab.RabView {
     /**金币复活按钮事件 */
     private onRestar (): void {
         this.SendMessage(GameNotity.GameMessage_ReGameStart);
+        this.onHide();
     }
 
     /**继续游戏按钮事件 */
@@ -47,8 +48,8 @@ export default class Pause extends rab.RabView {
     /**中止游戏按钮事件 */
     private onDiscontinue (): void {
         this.onHide();
-
-        rab.UIManager.onHideView(ViewConfig.gameView.GameView);
+        Laya.timer.resume();
+        this.SendMessage(GameNotity.Game_RemoveScene);
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
     }
 }

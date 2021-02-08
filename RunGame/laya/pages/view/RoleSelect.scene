@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":22,
+    "selecteID":75,
     "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","sceneBg":"laya/views/view/RoleSelect.jpg","height":1334},
     "nodeParent":-1,
-    "maxID":73,
+    "maxID":83,
     "label":"Scene",
     "isOpen":true,
     "isDirectory":true,
@@ -44,7 +44,119 @@
             "compId":4,
             "child":[
                 ],
-            "$HIDDEN":false
+            "$HIDDEN":true
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image",
+            "props":{"y":0,"x":0,"visible":false,"skin":"new/com/beijing.png"},
+            "nodeParent":2,
+            "label":"Image",
+            "isOpen":false,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":75,
+            "child":[
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":0,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":76,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":417,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":77,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":417,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":78,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":834,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":79,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":834,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":80,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":1243,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":81,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":1243,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":75,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":82,
+                    "child":[
+                        ]
+                }],
+            "$HIDDEN":true
         },
         {
             "x":15,

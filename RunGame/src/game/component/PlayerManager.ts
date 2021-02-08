@@ -98,6 +98,7 @@ export default class PlayerManager extends rab.GameObject {
         {
             this.animator.crossFade('run',0);
         }
+        this._characterSlot.transform.position = new Laya.Vector3(0,0,0);
     }
 
     /**退出战斗 */
@@ -158,6 +159,7 @@ export default class PlayerManager extends rab.GameObject {
         {
             this.animator.crossFade('idle',0);
         }
+        this._characterSlot.transform.position = new Laya.Vector3(0,0,0);
     }
 
    

@@ -99,17 +99,6 @@ export default class Game extends rab.RabView {
         // countdown();
     }
 
-    /**战斗继续 */
-    private fightContinue (): void {
-        // this.fightManager.fightContinue();
-    }
-
-    /**战斗中止 */
-    private fightDiscontinue (): void {
-        // this.fightManager.fightExit();
-        // this.fightManager.fightProfit();
-    }
-
     onKeyUp(e)
     {
         // console.log("键盘：",e);

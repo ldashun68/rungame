@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":252,
-    "selecteID":259,
+    "selectedBox":249,
+    "selecteID":281,
     "searchKey":"Scene,Game,Game",
     "props":{"width":750,"var":"Game","top":0,"sceneColor":"#000000","sceneBg":"laya/views/view/Game.jpg","right":0,"name":"Game","left":0,"height":1334,"centerY":0,"centerX":0,"bottom":0},
     "nodeParent":-1,
@@ -66,18 +66,19 @@
                     "props":{"y":193,"x":174,"width":290,"var":"lifeNode","skin":"new/game/jingdutiaodi1.png","sizeGrid":"13,13,13,13","name":"lifeNode","height":60,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":248,
                     "label":"lifeNode",
-                    "isOpen":false,
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":249,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"x":0,"width":200,"top":4,"skin":"new/game/jingdutiao1.png","left":0},
+                            "searchKey":"Image,life_bg",
+                            "props":{"width":290,"var":"life_bg","top":4,"skin":"new/game/jingdutiao1.png","left":4},
                             "nodeParent":249,
-                            "label":"Image",
+                            "label":"life_bg",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
@@ -86,6 +87,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"top":-10,"skin":"new/game/aixin.png","left":-10,"anchorY":0.5,"anchorX":0.5},
@@ -99,6 +101,7 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,lifeText,lifeText",
                             "props":{"x":162,"var":"lifeText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","name":"lifeText","centerY":0,"anchorY":0.5,"anchorX":0.5},
@@ -120,14 +123,13 @@
                     "props":{"width":540,"var":"progressNode","top":54,"name":"progressNode","height":26,"centerX":60,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":248,
                     "label":"progressNode",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":252,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,nextPass",
                             "props":{"skin":"new/game/qizhi.png","right":7,"name":"nextPass","centerY":-23,"anchorY":0.5,"anchorX":0.5},
@@ -141,7 +143,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,progress_b,progress_b",
                             "props":{"width":540,"var":"progress_b","skin":"new/game/jindutiao3.png","sizeGrid":"6,15,6,15","name":"progress_b","height":26,"centerY":0,"centerX":0},
@@ -154,7 +155,6 @@
                             "compId":259,
                             "child":[
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "searchKey":"Image,progress_m,progress_m",
                                     "props":{"width":540,"var":"progress_m","top":0,"skin":"new/game/jindutiao3.png","sizeGrid":"6,15,6,15","scaleX":0.98,"renderType":"mask","name":"progress_m","left":0,"bottom":0},
@@ -170,7 +170,6 @@
                                     "$HIDDEN":false
                                 },
                                 {
-                                    "x":60,
                                     "type":"Image",
                                     "searchKey":"Image,progress_t,progress_t",
                                     "props":{"x":0,"width":540,"var":"progress_t","skin":"new/game/jingdutiao2.png","sizeGrid":"6,15,6,15","scaleY":0.95,"name":"progress_t","centerY":-1,"anchorY":0.5,"anchorX":1},
@@ -187,7 +186,6 @@
                                 }]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,pauseBtn,pauseBtn",
                             "props":{"y":10,"x":-91,"var":"pauseBtn","skin":"new/com/b_zhanting.png","name":"pauseBtn","anchorY":0.5,"anchorX":0.5},
@@ -201,7 +199,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image,iconNode",
                             "props":{"x":340,"var":"iconNode","skin":"new/game/zhi.png","centerY":-13},

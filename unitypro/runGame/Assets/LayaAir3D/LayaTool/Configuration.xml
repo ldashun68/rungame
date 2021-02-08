@@ -2,7 +2,7 @@
 <LayaExportSetting>
   <config>1</config>
   <config1>
-    <FirstlevelMenu>1</FirstlevelMenu>
+    <FirstlevelMenu>0</FirstlevelMenu>
     <Scenes>False</Scenes>
     <ScenesDir>
     </ScenesDir>
@@ -30,7 +30,7 @@
     <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
     <CustomizeDirectory>True</CustomizeDirectory>
-    <CustomizeDirectoryName>prefab</CustomizeDirectoryName>
+    <CustomizeDirectoryName>game</CustomizeDirectoryName>
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
@@ -190,7 +190,7 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1612691137</time>
+  <time>1612783223</time>
   <saveAcount>
   </saveAcount>
   <savePassWorld>

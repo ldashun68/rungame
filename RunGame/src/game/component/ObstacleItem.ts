@@ -25,6 +25,7 @@ export default class ObstacleItem extends rab.GameObject {
     {
         this.prop = data;
         this._obstacleId = data.id;
+        this.transform.localRotationEulerX = 0;
         // this._posz = posZ+data.length;
     }
 

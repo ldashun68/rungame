@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":15,
+    "selectedBox":33,
+    "selecteID":36,
     "searchKey":"Scene,GameWin,GameWin",
     "props":{"y":0,"x":0,"width":750,"var":"GameWin","sceneColor":"#ffffff","sceneBg":"laya/views/view/GameWin.jpg","name":"GameWin","height":1334},
     "nodeParent":-1,
-    "maxID":55,
+    "maxID":65,
     "label":"GameWin",
     "isOpen":true,
     "isDirectory":true,
@@ -33,17 +33,113 @@
         {
             "x":15,
             "type":"Image",
-            "searchKey":"Image,bg,bg",
-            "props":{"var":"bg","top":0,"skin":"new/com/beijing.png","right":0,"name":"bg","left":0,"bottom":0},
+            "searchKey":"Image",
+            "props":{"top":0,"skin":"new/com/beijing.png","left":0},
             "nodeParent":2,
-            "label":"bg",
-            "isOpen":true,
-            "isDirectory":false,
+            "label":"Image",
+            "isOpen":false,
+            "isDirectory":true,
             "isAniNode":true,
-            "hasChild":false,
-            "compId":15,
+            "hasChild":true,
+            "compId":56,
             "child":[
-                ],
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":0,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":57,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":417,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":58,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":417,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":59,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":834,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":60,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":834,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":61,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":1243,"x":0,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":62,
+                    "child":[
+                        ]
+                },
+                {
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":1243,"x":529,"skin":"new/com/beijing.png"},
+                    "nodeParent":56,
+                    "label":"Image",
+                    "isOpen":true,
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":63,
+                    "child":[
+                        ]
+                }],
             "$HIDDEN":false
         },
         {
@@ -63,7 +159,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,award,award",
-                    "props":{"visible":false,"var":"award","name":"award","centerY":-377,"centerX":-94,"anchorX":0.5},
+                    "props":{"visible":false,"var":"award","name":"award","centerY":-377,"centerX":0,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"award",
                     "isOpen":true,
@@ -144,6 +240,21 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":20,
+                    "child":[
+                        ],
+                    "$HIDDEN":false
+                },
+                {
+                    "x":30,
+                    "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"top":30,"skin":"new/com/t_tzcg.png","centerX":0},
+                    "nodeParent":24,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":64,
                     "child":[
                         ]
                 }],

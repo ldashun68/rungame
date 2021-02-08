@@ -60,6 +60,7 @@ export default class ObstacleManager extends rab.GameObject {
             obstacle.transform.localPositionZ = this._initPos;
             obstacleProp = obstacle.getComponent(ObstacleSimple);
         }
+        this.scene3D.addChild(obstacle);
         console.log("创建好了障碍物",ObstacleID)
         this._obstacles.push(obstacleProp);
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));

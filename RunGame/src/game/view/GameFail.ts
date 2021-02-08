@@ -57,12 +57,12 @@ export default class GameFail extends rab.RabView {
         
     }
 
-    /**金币复活按钮事件 */
+    /**重新挑战 */
     private onRestar (): void {
         this.SendMessage(GameNotity.GameMessage_ReGameStart);
     }
 
-    /**视频复活按钮事件 */
+    /**分享 */
     private onShare (): void {
         // this.SendMessage(GameNotity.GameMessage_Revive);
     }

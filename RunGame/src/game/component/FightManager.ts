@@ -40,6 +40,11 @@ export default class FightManager extends rab.GameObject {
     /**当前角色位置 */
     /**相机初始位置 */
     // private camerapos:Laya.Vector3;
+    /**生命大小 */
+    private max_lifeCount:number;
+    /**当前生命值 */
+    private currlife:number;
+    private winLenght:number = 50;
 
     
 
@@ -60,6 +65,7 @@ export default class FightManager extends rab.GameObject {
     
     /**初始化 */
     public init (): void {
+        this.max_lifeCount = 3;
         this.scene3D = this.owner as Laya.Scene3D;
         // this.camera = this.scene3D.getChildByName("Main Camera") as Laya.Camera;
         // this.camerapos = new Laya.Vector3(0,4,-2);
@@ -84,6 +90,8 @@ export default class FightManager extends rab.GameObject {
      */
     private onInitScene()
     {
+        Laya.timer.resume();
+        this.max_lifeCount = 3;
         for(var i = 0;i<this.builds.length;i++)
         {
             this.builds[i].recover();
@@ -100,6 +108,8 @@ export default class FightManager extends rab.GameObject {
 
     /**准备战斗 */
     public fightReady (): void {
+        this.currlife = this.max_lifeCount;
+        this.onLifeUpdate();
         this.isStart = false;
         this.playerManager.fightReady();
         this.manager = rab.RabGameManager.getInterest().getMyManager();
@@ -117,9 +127,16 @@ export default class FightManager extends rab.GameObject {
 
     /**开始战斗 */
     public onGameStart (): void {
-        console.log("开始跑了");
-        this.isStart = true;
-        this.playerManager.onGameStart();
+        if(!this.isStart)
+        {
+            console.log("开始跑了");
+            this.currlife = this.max_lifeCount;
+            this.onLifeUpdate();
+            this.isStart = true;
+            this.playerManager.onGameStart();
+            this.updatePassProgressNode();
+        }
+        
     }
 
     /**退出战斗 */
@@ -173,7 +190,7 @@ export default class FightManager extends rab.GameObject {
             }
         }
         //TODO:到终点了做个动画就打开结算界面吧
-        if(this.playerManager.worldDistance > this.passData.length-9)
+        if(this.playerManager.worldDistance > this.passData.length-this.winLenght)
         {
             this.onGamewin();
         }
@@ -199,7 +216,13 @@ export default class FightManager extends rab.GameObject {
                 {
                     //TODO:过了
                 }else{
-                    this.onGameFail();
+                    this.currlife -=1;
+                    this.onLifeUpdate();
+                    if(this.currlife == 0)
+                    {
+                        this.onGameFail();
+                    }
+                    
                 }
             }else if(this.playerManager._playState == PlayState.slide)
             {
@@ -207,10 +230,20 @@ export default class FightManager extends rab.GameObject {
                 {
                     //TODO:过了
                 }else{
-                    this.onGameFail();
+                    this.currlife -= 1;
+                    this.onLifeUpdate();
+                    if(this.currlife == 0)
+                    {
+                        this.onGameFail();
+                    }
                 }
             }else{
-                this.onGameFail();
+                this.currlife -=1;
+                this.onLifeUpdate();
+                if(this.currlife == 0)
+                {
+                    this.onGameFail();
+                }
             }
             
         }
@@ -233,6 +266,8 @@ export default class FightManager extends rab.GameObject {
             this.isStart = true;
             this.playerManager.revive();
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
+            this.currlife = this.max_lifeCount;
+            this.onLifeUpdate();
         }
     }
 
@@ -243,16 +278,20 @@ export default class FightManager extends rab.GameObject {
     {
         if(!this.isStart)
         {
+            // this.isStart = true;
+            Laya.timer.resume();
+            this.currlife = this.max_lifeCount;
+            this.onLifeUpdate();
             console.log("重新开始");
             this.onInitScene();
             this.playerManager.reStart();
             Laya.timer.once(300, this, () => {
-                // this.isStart = true;
                 this.SendMessage(GameNotity.GameMessage_GameStart)
             });
             
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
-            
+        }else{
+            console.log("已经重新开始");
         }
     }
 
@@ -299,7 +338,7 @@ export default class FightManager extends rab.GameObject {
         this.builds.push(buildProp);
         buildProp.onInitProp(this.manager.getBuild(buildID),this._currLenght);
         this._currLenght +=this.manager.getBuild(buildID).length;
-        if(this._currLenght > 18)
+        if(this._currLenght > 18 && this._currLenght < this.passData.length-this.winLenght)
         {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID),build.transform.position.z);
         }
@@ -309,12 +348,16 @@ export default class FightManager extends rab.GameObject {
 
      /**更新关卡进度节点 */
      private updatePassProgressNode (): void {
-        //  this.view.mapName.text = this.passData.name;
-        // this.view.currentPassText.value = ""+this.manager.getCurrentPass();
-        // this.view.nextPassText.value = ""+(this.manager.getCurrentPass()+1);
-        this.view.progress_t.x = 2+(this.playerManager.worldDistance/this.passData.length*(this.view.progress_t.width));
+        this.view.progress_t.x = 2+(this.playerManager.worldDistance/(this.passData.length-this.winLenght)*(this.view.progress_t.width));
         this.view.coinText.value = ""+this.manager.fightGetCoin;
-        this.view.iconNode.x = this.view.progress_t.x
+        this.view.iconNode.x = this.view.progress_t.x-13;
+    }
+
+    /**设置生命值 */
+    private onLifeUpdate()
+    {
+        this.view.lifeText.value = this.currlife+"";
+        this.view.life_bg.width = (this.currlife/this.max_lifeCount)*290;
     }
 
 }

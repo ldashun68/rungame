@@ -13,6 +13,7 @@ export default class RoleSelect extends rab.RabView {
     // private scene3D: Laya.Scene3D;
     private camera: Laya.Camera;
     private playNode: Laya.Sprite3D;
+    private sky: Laya.Sprite3D;
     private selectId:number;
     private _playerPivot:Laya.Sprite3D;
     private _characterSlot:Laya.Sprite3D;
@@ -61,10 +62,17 @@ export default class RoleSelect extends rab.RabView {
     })
     }
     protected OnRefreshView() {
+        // this.myManager.scene3D.removeSelf();
+        
+        
         this.camera = this.myManager.scene3D.getChildByName("Main Camera") as Laya.Camera;
         this.camera.transform.position = new Laya.Vector3(0,4,-5);
+        // this.camera.clearFlag = 3;
         this._playerPivot = <Laya.Sprite3D>this.myManager.scene3D.getChildByName("PlayerPivot");
         this._characterSlot = <Laya.Sprite3D>this._playerPivot.getChildByName("CharacterSlot");
+        this.sky = <Laya.Sprite3D>this._playerPivot.getChildByName("Sky");
+        this.sky.active = false;
+        // Laya.stage.setChildIndex(this.myManager.scene3D,Laya.stage.numChildren-1);
     }
 
     protected onShowLanguage()
@@ -77,6 +85,7 @@ export default class RoleSelect extends rab.RabView {
 
     onHide()
     {
+        this.sky.active = true;
         super.onHide();
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
         Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);

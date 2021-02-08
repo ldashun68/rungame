@@ -13,7 +13,7 @@ export default class GameWin extends rab.RabView {
 
     protected m_currView: ui.view.GameWinUI;
 
-    protected flagEffect: Laya.Skeleton;
+    // protected flagEffect: Laya.Skeleton;
 
     protected LoadView() {
         this.create<ui.view.GameWinUI>(ui.view.GameWinUI);
@@ -29,33 +29,33 @@ export default class GameWin extends rab.RabView {
         this.m_currView.homeBtn.on(Laya.Event.CLICK, this, this.onHome);
         Tool.instance.addButtonAnimation(this.m_currView.homeBtn);
 
-        let Templet1:Laya.Templet = new Laya.Templet();
-        Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
-            let skeleton: Laya.Skeleton = Templet.buildArmature(1);
-            this.m_currView.addChild(skeleton);
-            skeleton.x = Laya.stage.width/2;
-            skeleton.y = Laya.stage.height/2;
-            skeleton.stop();
-            skeleton.play(name, true);
-        }, [Templet1, "lizi"]);
-        Templet1.loadAni("effect/bg/bg_lizi.sk");
+        // let Templet1:Laya.Templet = new Laya.Templet();
+        // Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
+        //     let skeleton: Laya.Skeleton = Templet.buildArmature(1);
+        //     this.m_currView.addChild(skeleton);
+        //     skeleton.x = Laya.stage.width/2;
+        //     skeleton.y = Laya.stage.height/2;
+        //     skeleton.stop();
+        //     skeleton.play(name, true);
+        // }, [Templet1, "lizi"]);
+        // Templet1.loadAni("effect/bg/bg_lizi.sk");
 
-        let Templet2:Laya.Templet = new Laya.Templet();
-        Templet2.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
-            this.flagEffect = Templet.buildArmature(1);
-            this.m_currView.addChild(this.flagEffect);
-            this.flagEffect.x = Laya.stage.width/2;
-            this.flagEffect.y = 500;
-            this.flagEffect.stop();
+        // let Templet2:Laya.Templet = new Laya.Templet();
+        // Templet2.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
+        //     this.flagEffect = Templet.buildArmature(1);
+        //     this.m_currView.addChild(this.flagEffect);
+        //     this.flagEffect.x = Laya.stage.width/2;
+        //     this.flagEffect.y = 500;
+        //     this.flagEffect.stop();
             
             this.OnRefreshView();
-        }, [Templet2, "shengli"]);
-        Templet2.loadAni("effect/gameWin/shengli.sk");
+        // }, [Templet2, "shengli"]);
+        // Templet2.loadAni("effect/gameWin/shengli.sk");
     }
 
     protected OnRefreshView() {
-        this.flagEffect.play("shengli", false);
-        this.flagEffect.visible = true;
+        // this.flagEffect.play("shengli", false);
+        // this.flagEffect.visible = true;
 
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
        
@@ -91,8 +91,8 @@ export default class GameWin extends rab.RabView {
     onHide () {
         super.onHide();
         
-        this.flagEffect.stop();
-        this.flagEffect.visible = false;
+        // this.flagEffect.stop();
+        // this.flagEffect.visible = false;
 
         this.m_currView.award.visible = false;
         this.m_currView.next.visible = false;
