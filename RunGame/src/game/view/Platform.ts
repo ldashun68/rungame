@@ -65,6 +65,12 @@ export default class Platform extends rab.RabView {
     protected OnRefreshView() {
         rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
         rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+        if(this.myManager.gameInfo.music == 0)
+        {
+            this.m_currView.set.skin = "ui/bd_syg.png";
+        }else{
+            this.m_currView.set.skin = "ui/bd_syk.png";
+        }
     }
 
     /**语言包 */
@@ -113,7 +119,16 @@ export default class Platform extends rab.RabView {
 
     /**设置按钮事件 */
     private onSet (): void {
-        rab.UIManager.onCreateView(ViewConfig.gameView.GameSetView);
+        // rab.UIManager.onCreateView(ViewConfig.gameView.GameSetView);
+        this.myManager.setMusic();
+        this.myManager.setAudio();
+        if(this.myManager.gameInfo.music == 0)
+        {
+            this.m_currView.set.skin = "ui/bd_syg.png";
+        }else{
+            this.m_currView.set.skin = "ui/bd_syk.png";
+        }
+        this.myManager.SaveData();
     }
 
     /**排行版 */

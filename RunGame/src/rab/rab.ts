@@ -498,7 +498,7 @@ class GameChannel {
     {
         if(rab.Util.isMobil)
         {
-            rab.wxSdk.init(this._Manager.gameConfig.serverurl);
+            rab.wxSdk.init(this.myManager.gameConfig.serverurl);
         }
     }
 
@@ -914,7 +914,7 @@ abstract class RabManager extends RabEvent{
      */
     public InitMusic()
     {
-        //MusicManager.getInstance().SetState(this.gameInfo.music,this.gameInfo.audio);
+        MusicManager.getInstance().SetState(this.gameInfo.music,this.gameInfo.audio);
     }
 
     /**
@@ -1853,7 +1853,6 @@ abstract class RabController extends RabManager {
             rab.wxSdk.onLoginWXServer(()=>{
                 this.LoginBreak();
             });
-            //this.InitMusic();
         }
         else{
             this.InitMusic();

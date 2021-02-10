@@ -620,6 +620,7 @@
             rab.SDKChannel.SaveData(this.gameInfo, this._gameType);
         }
         InitMusic() {
+            MusicManager.getInstance().SetState(this.gameInfo.music, this.gameInfo.audio);
         }
         PlayMusic(musiPath, loop = 0, vol = 1) {
             MusicManager.getInstance().OnPlayMusic(musiPath, loop, vol);
@@ -2463,6 +2464,12 @@
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
             rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+            if (this.myManager.gameInfo.music == 0) {
+                this.m_currView.set.skin = "ui/bd_syg.png";
+            }
+            else {
+                this.m_currView.set.skin = "ui/bd_syk.png";
+            }
         }
         onShowLanguage() {
         }
@@ -2480,7 +2487,15 @@
             this.clickList = [];
         }
         onSet() {
-            rab.UIManager.onCreateView(ViewConfig.gameView.GameSetView);
+            this.myManager.setMusic();
+            this.myManager.setAudio();
+            if (this.myManager.gameInfo.music == 0) {
+                this.m_currView.set.skin = "ui/bd_syg.png";
+            }
+            else {
+                this.m_currView.set.skin = "ui/bd_syk.png";
+            }
+            this.myManager.SaveData();
         }
         onRank() {
         }

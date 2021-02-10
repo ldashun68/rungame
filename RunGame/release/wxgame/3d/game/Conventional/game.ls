@@ -232,39 +232,77 @@
 								]
 							}
 						],
-						"child":[]
+						"child":[
+							{
+								"type":"MeshSprite3D",
+								"instanceID":4,
+								"props":{
+									"name":"BlobShadow",
+									"active":true,
+									"isStatic":false,
+									"layer":8,
+									"position":[
+										0,
+										0.01,
+										0
+									],
+									"rotation":[
+										-0.707106,
+										0,
+										0,
+										-0.7071076
+									],
+									"scale":[
+										0.6,
+										0.6,
+										0.4
+									],
+									"meshPath":"Library/unity default resources-Quad.lm",
+									"enableRender":true,
+									"receiveShadows":true,
+									"castShadow":true,
+									"materials":[
+										{
+											"path":"Assets/test/Materials/BlobShadow.lmat"
+										}
+									]
+								},
+								"components":[],
+								"child":[]
+							}
+						]
 					},
 					{
 						"type":"MeshSprite3D",
-						"instanceID":4,
+						"instanceID":5,
 						"props":{
-							"name":"BlobShadow",
+							"name":"Sky",
 							"active":true,
 							"isStatic":false,
-							"layer":8,
+							"layer":0,
 							"position":[
-								0,
-								0.01,
-								0
+								0.005,
+								21.605,
+								-3
 							],
 							"rotation":[
-								-0.707106,
 								0,
 								0,
-								-0.7071076
+								1,
+								0
 							],
 							"scale":[
-								0.6,
-								0.6,
-								0.4
+								2.893665,
+								1.396455,
+								2.893664
 							],
-							"meshPath":"Library/unity default resources-Quad.lm",
+							"meshPath":"Assets/test/Models/Daytime/Sky-Sky.lm",
 							"enableRender":true,
 							"receiveShadows":true,
 							"castShadow":true,
 							"materials":[
 								{
-									"path":"Assets/test/Materials/BlobShadow.lmat"
+									"path":"Assets/test/Materials/Sky.lmat"
 								}
 							]
 						},

@@ -3,62 +3,17 @@ R 39B957DA texture.png
 D effect
 D load
 D new
-D role
-P 1AC6A6F6 box.png
-P E5D1CB97 box2.png
-P 75A1B6BA r1.png
-P B0B759FA r2.png
-P 974BE827 r3.png
-P 971926BA r4.png
 D ui
 R D79F403F bg_1.jpg
-R 741F1770 bg_10.png
-R B3DD901A bg_11.png
-R 4CEB1F2D bg_12.png
-P 8B42C93C bg_13.png
-P EAEDBEC3 bg_14.png
-R E31432E6 bg_5.png
-P 88A3C1B2 bg_6.png
-P C8181A13 bg_8.png
-R 47923C41 bg_9.png
-P C781231B btn01_n.png
-P 6E05A7E6 btn01_p.png
-P FD19ACA9 btn02_n.png
-P 1801F292 btn02_p.png
-P A9D8F4B4 btn_blue_small.png
-P A85E9405 btn_blue_small2.png
-P AAC36425 btn_green.png
-P 764F9F2A btn_hui.png
-P 8F34810C btn_start.png
-P F92F5A66 btn_yellow_small.png
-P AA1FFE1D closeBtn.png
-P A769E440 coin1.png
-P 1F7EAFEB coinBg1.png
 P C1A37821 coinNum.png
-P 4D98FD2A continueText.png
 P D056AD81 failNum.png
-R 6C95A160 flag.png
-P DC1961CE flag2.png
-P C822FF85 grayBox.png
-P 333137DB hotText.png
-P B5032BBA hotText2.png
-R 5368E627 light.png
-R 85C69E7B light2.png
-P 46B41597 light3.png
-P EEB9BBE7 line.png
-R 4A3C15DB line2.png
-P 56DFA313 line3.png
 P AA5BA3D3 line4.png
 P D419F050 load1.png
 P 2088B518 load2.png
 P 1CCDAC5B load3.png
 P 27B22274 load4.png
 P E8436306 load5.png
-P 65F93C1A multipleGetCin.png
 P 3B989BE7 passNum.png
-P E3D43593 pauseBtn.png
-P 247FC136 pauseText.png
-P CAAD503E redPoint.png
 D effect/bg
 D effect/cloud
 D new/bg

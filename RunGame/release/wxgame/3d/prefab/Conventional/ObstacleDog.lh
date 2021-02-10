@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":625,
+		"instanceID":666,
 		"props":{
 			"name":"ObstacleDog",
 			"active":true,
@@ -50,7 +50,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":626,
+				"instanceID":667,
 				"props":{
 					"name":"Shadow",
 					"active":true,
@@ -101,7 +101,7 @@
 			},
 			{
 				"type":"Sprite3D",
-				"instanceID":627,
+				"instanceID":668,
 				"props":{
 					"name":"Dog",
 					"active":true,
@@ -155,7 +155,7 @@
 				"child":[
 					{
 						"type":"SkinnedMeshSprite3D",
-						"instanceID":628,
+						"instanceID":669,
 						"props":{
 							"name":"DogMesh",
 							"active":true,

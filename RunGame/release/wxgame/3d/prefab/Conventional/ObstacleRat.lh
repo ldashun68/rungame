@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":633,
+		"instanceID":674,
 		"props":{
 			"name":"ObstacleRat",
 			"active":true,
@@ -52,7 +52,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":634,
+				"instanceID":675,
 				"props":{
 					"name":"Shadow",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"Sprite3D",
-				"instanceID":635,
+				"instanceID":676,
 				"props":{
 					"name":"Rat",
 					"active":true,
@@ -153,7 +153,7 @@
 				"child":[
 					{
 						"type":"SkinnedMeshSprite3D",
-						"instanceID":636,
+						"instanceID":677,
 						"props":{
 							"name":"RatMesh",
 							"active":true,
