@@ -287,22 +287,24 @@ export default class GameController extends rab.RabController {
     */
    public onAddLevelDate()
    {
-        rab.wxSdk.onQueryRequest("api/playLog",{
+        rab.HTTP.post("api/playLog",{
             "passLv":1,
             "failLv":2,
             "score":22
-        },null);
+        },this,()=>{
+
+        });
    }
 
    public getRank()
    {
-    rab.wxSdk.onQueryRequest("api/rankList",{},(data)=>{
+    rab.HTTP.get("api/rankList",{},(data)=>{
         var _data = JSON.parse(data);
         // Object.keys(gameInfo).forEach(function(key){
         //     _data[key] = wx.getData(key, gameInfo[key]);
         // });
         rab.Util.log('获得排行榜数据',_data);
-    },"GET");
+    });
    }
 
    

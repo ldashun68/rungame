@@ -496,10 +496,7 @@ class GameChannel {
 
     onInitSDk()
     {
-        if(rab.Util.isMobil)
-        {
-            rab.wxSdk.init(this.myManager.gameConfig.serverurl);
-        }
+        rab.HTTP.init(this.myManager.gameConfig.serverurl);
     }
 
     /**
@@ -512,13 +509,13 @@ class GameChannel {
         if(typeof wx != "undefined")
         {
             {
-                rab.wxSdk.onQueryRequest("api/player",{},(data)=>{
+                rab.HTTP.get("api/player",{},(data)=>{
                     var _data = JSON.parse(data);
                     // Object.keys(gameInfo).forEach(function(key){
                     //     _data[key] = wx.getData(key, gameInfo[key]);
                     // });
                     rab.Util.log('初始化获得保存数据',_data);
-                },"GET");
+                });
                 
                 return gameInfo;
             }
@@ -546,7 +543,9 @@ class GameChannel {
     {
         if(typeof wx != "undefined")
         {
-            rab.wxSdk.onQueryRequest("api/player",gameInfo,null);
+            rab.HTTP.post("api/player",gameInfo,this,()=>{
+                //
+            });
         }else{
             Laya.LocalStorage.setItem(key,JSON.stringify(gameInfo));
         }
@@ -1855,8 +1854,11 @@ abstract class RabController extends RabManager {
             });
         }
         else{
-            this.InitMusic();
-            this.OnEnterGame();
+            rab.HTTP.post(this.gameConfig.serverurl+"/api/authCode",{"code":'aaa'},this,()=>{
+                this.InitMusic();
+                this.OnEnterGame();
+            })
+            
         }
     }
 
@@ -2081,10 +2083,7 @@ class wxSdk{
         console.log("初始化微信SDK");
     }
 
-    private _serverUrl:string;
-    init(path:string) {
-        this._serverUrl = path;
-    }
+   
 
     /**提示框 */
     public showModal(opt:any){
@@ -2271,84 +2270,101 @@ class wxSdk{
                         let code =res.code 
                         console.log("登录code",res.code)
                         
-                        this.onQueryRequest(path,{"code":res.code},()=>{
+                        rab.HTTP.post(path,{"code":res.code},this,()=>{
                             breakcall&&breakcall();
-                            // if(res.data.data.length > 0)
-                            // {
-                            //     breakcall&&breakcall();
-                            // }else
-                            // {
-                            //     this.onQueryRequest("api/wxLogin",{"code":res.code},()=>{
-                            //         if(res.data.data.length > 0)
-                            //         {
-                            //             breakcall&&breakcall();
-                            //         }else
-                            //         {
-                            //             this.wxLogin(code,breakcall);
-                            //         }
-                            //     })
-                            //     // this.wxLogin(code,breakcall);
-                            // }
                         })
+                        
                     } else {
                         console.log('登录失败！' + res.errMsg)
                     }
                 }
             })
+        }else{
+            
         }
     }
 
-    /**重新登录 */
-    private wxLogin(code,breakcall:Function)
-    {
-        wx.request({
-            // https://coolrun.liandaxinxi.com
-            url:"https://coolrun.liandaxinxi.com/api/wxLogin",
-            data:{
-                "code":code,
-                "rawData":"rawData",
-                "signature":"signature",
-                "encryptedData":"xxx",
-                "iv":"xxx"
-            },
-            header:{
-               "Content-Type":"application/json"
-            },
-            success:(res)=>{
-                breakcall&&breakcall();
-                console.log(res.data)
-            },
-            fail:function(err){
-                console.log(err)
-            }
-    
-        })
-    }
+    // /**HttP */
+    // public onQueryRequest(path:string,_data:any,breakcall:Function=null,method:string = "POST"){  
 
-    /**HttP */
-    public onQueryRequest(path:string,_data:any,breakcall:Function=null,method:string = "POST"){  
-        if(rab.Util.isMobil)
-        {  
-            wx.request({
-                // https://coolrun.liandaxinxi.com
-                url:this._serverUrl +"/"+path,
-                method: method,
-                data:_data,
-                header:{
-                "Content-Type":"application/json"
-                },
-                success:(res)=>{
-                    breakcall&&breakcall(res.data);
-                    console.log("成功返回服务器数据",res.data)
-                },
-                fail:function(err){
-                    console.log(err)
-                }
+    //     rab.HTTP.post(this._serverUrl+"/"+path,JSON.stringify(_data),"application/json",this,()=>{
+            
+    //     })
+    //     // if(rab.Util.isMobil)
+    //     // {  
+    //     //     wx.request({
+    //     //         // https://coolrun.liandaxinxi.com
+    //     //         url:this._serverUrl +"/"+path,
+    //     //         method: method,
+    //     //         data:_data,
+    //     //         header:{
+    //     //         "Content-Type":"application/json"
+    //     //         },
+    //     //         success:(res)=>{
+    //     //             breakcall&&breakcall(res.data);
+    //     //             console.log("成功返回服务器数据",res.data)
+    //     //         },
+    //     //         fail:function(err){
+    //     //             console.log(err)
+    //     //         }
         
-            })
+    //     //     })
+    //     // }
+    // }
+}
+
+
+class HTTP{
+ 
+    private callback:any;
+    private caller:any;
+ 
+    private http:Laya.HttpRequest;
+
+    private _serverUrl:string;
+    init(path:string) {
+        this._serverUrl = path;
+    }
+ 
+    constructor() {
+        this.http = new Laya.HttpRequest;
+    }
+ 
+    public get(url:string,caller:any,callback:any):HTTP{
+        this.caller = caller;
+        this.callback = callback;
+        //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
+		this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+		this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+        this.http.send(this._serverUrl+"/"+url, null, 'get', 'text');
+        return this;
+    }
+ 
+     public post(url:string,data:any,caller:any,callback:any,contentType:string="application/json"):HTTP{
+        this.caller = caller;
+        this.callback = callback;
+        //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
+		this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+		this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+        if(contentType==null){
+            this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json');
+        }else{
+            this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json',["content-type",contentType]);
         }
+        
+        return this;
+    }
+ 
+ 
+    private onHttpRequestError(e: any): void {
+        this.callback.apply(this.caller,[{state:500,msg:e}]);
+    }
+ 
+    private onHttpRequestComplete(e: any): void {
+        this.callback.apply(this.caller,[{state:200,data:this.http.data}]);
     }
 }
+
 
 var rab = {
     RabObj:RabObj,
@@ -2358,6 +2374,7 @@ var rab = {
     RabGameManager:RabGameManager,
     RabController:RabController,
     RabNotity:RabNotity,
+    HTTP:new HTTP(),
     wxSdk:new wxSdk(),
     UIManager:new ViewManager(),
     SDKChannel:new GameChannel(),

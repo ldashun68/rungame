@@ -393,17 +393,15 @@
             return this._Manager;
         }
         onInitSDk() {
-            if (rab.Util.isMobil) {
-                rab.wxSdk.init(this.myManager.gameConfig.serverurl);
-            }
+            rab.HTTP.init(this.myManager.gameConfig.serverurl);
         }
         initData(gameInfo, key = "gameinfo") {
             if (typeof wx != "undefined") {
                 {
-                    rab.wxSdk.onQueryRequest("api/player", {}, (data) => {
+                    rab.HTTP.get("api/player", {}, (data) => {
                         var _data = JSON.parse(data);
                         rab.Util.log('初始化获得保存数据', _data);
-                    }, "GET");
+                    });
                     return gameInfo;
                 }
             }
@@ -420,7 +418,8 @@
         }
         SaveData(gameInfo, key = "gameinfo") {
             if (typeof wx != "undefined") {
-                rab.wxSdk.onQueryRequest("api/player", gameInfo, null);
+                rab.HTTP.post("api/player", gameInfo, this, () => {
+                });
             }
             else {
                 Laya.LocalStorage.setItem(key, JSON.stringify(gameInfo));
@@ -1071,8 +1070,10 @@
                 });
             }
             else {
-                this.InitMusic();
-                this.OnEnterGame();
+                rab.HTTP.post(this.gameConfig.serverurl + "/api/authCode", { "code": 'aaa' }, this, () => {
+                    this.InitMusic();
+                    this.OnEnterGame();
+                });
             }
         }
         OnEnterGame() {
@@ -1185,9 +1186,6 @@
     class wxSdk {
         constructor() {
             console.log("初始化微信SDK");
-        }
-        init(path) {
-            this._serverUrl = path;
         }
         showModal(opt) {
             if (rab.Util.isMobil) {
@@ -1324,7 +1322,7 @@
                         if (res.code) {
                             let code = res.code;
                             console.log("登录code", res.code);
-                            this.onQueryRequest(path, { "code": res.code }, () => {
+                            rab.HTTP.post(path, { "code": res.code }, this, () => {
                                 breakcall && breakcall();
                             });
                         }
@@ -1334,47 +1332,43 @@
                     }
                 });
             }
-        }
-        wxLogin(code, breakcall) {
-            wx.request({
-                url: "https://coolrun.liandaxinxi.com/api/wxLogin",
-                data: {
-                    "code": code,
-                    "rawData": "rawData",
-                    "signature": "signature",
-                    "encryptedData": "xxx",
-                    "iv": "xxx"
-                },
-                header: {
-                    "Content-Type": "application/json"
-                },
-                success: (res) => {
-                    breakcall && breakcall();
-                    console.log(res.data);
-                },
-                fail: function (err) {
-                    console.log(err);
-                }
-            });
-        }
-        onQueryRequest(path, _data, breakcall = null, method = "POST") {
-            if (rab.Util.isMobil) {
-                wx.request({
-                    url: this._serverUrl + "/" + path,
-                    method: method,
-                    data: _data,
-                    header: {
-                        "Content-Type": "application/json"
-                    },
-                    success: (res) => {
-                        breakcall && breakcall(res.data);
-                        console.log("成功返回服务器数据", res.data);
-                    },
-                    fail: function (err) {
-                        console.log(err);
-                    }
-                });
+            else {
             }
+        }
+    }
+    class HTTP {
+        constructor() {
+            this.http = new Laya.HttpRequest;
+        }
+        init(path) {
+            this._serverUrl = path;
+        }
+        get(url, caller, callback) {
+            this.caller = caller;
+            this.callback = callback;
+            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+            this.http.send(this._serverUrl + "/" + url, null, 'get', 'text');
+            return this;
+        }
+        post(url, data, caller, callback, contentType = "application/json") {
+            this.caller = caller;
+            this.callback = callback;
+            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+            if (contentType == null) {
+                this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json');
+            }
+            else {
+                this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json', ["content-type", contentType]);
+            }
+            return this;
+        }
+        onHttpRequestError(e) {
+            this.callback.apply(this.caller, [{ state: 500, msg: e }]);
+        }
+        onHttpRequestComplete(e) {
+            this.callback.apply(this.caller, [{ state: 200, data: this.http.data }]);
         }
     }
     var rab = {
@@ -1385,6 +1379,7 @@
         RabGameManager: RabGameManager,
         RabController: RabController,
         RabNotity: RabNotity,
+        HTTP: new HTTP(),
         wxSdk: new wxSdk(),
         UIManager: new ViewManager(),
         SDKChannel: new GameChannel(),
@@ -1815,17 +1810,18 @@
             return build;
         }
         onAddLevelDate() {
-            rab.wxSdk.onQueryRequest("api/playLog", {
+            rab.HTTP.post("api/playLog", {
                 "passLv": 1,
                 "failLv": 2,
                 "score": 22
-            }, null);
+            }, this, () => {
+            });
         }
         getRank() {
-            rab.wxSdk.onQueryRequest("api/rankList", {}, (data) => {
+            rab.HTTP.get("api/rankList", {}, (data) => {
                 var _data = JSON.parse(data);
                 rab.Util.log('获得排行榜数据', _data);
-            }, "GET");
+            });
         }
     }
 
