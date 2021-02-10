@@ -101,7 +101,7 @@ export default class GameSet extends rab.RabView {
         manager.ResumeBGM();
         manager.SaveData();
         
-        rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+        rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
 
         this.onInitData();
     }

@@ -87,7 +87,7 @@ export default class GameWin extends rab.RabView {
         alpha(this.m_currView.homeBtn, 200);
 
         rab.MusicManager.playMusic("");
-        rab.MusicManager.playSound("sub4/audio/win.mp3");
+        rab.MusicManager.playSound("res/audio/win.mp3");
         this.SendMessage(GameNotity.Game_RemoveScene);
     }
 

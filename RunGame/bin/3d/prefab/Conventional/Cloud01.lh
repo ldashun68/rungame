@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":656,
+		"instanceID":305,
 		"props":{
 			"name":"Cloud01",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":657,
+				"instanceID":306,
 				"props":{
 					"name":"Cloud01",
 					"active":true,

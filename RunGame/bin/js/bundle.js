@@ -394,7 +394,7 @@
         }
         onInitSDk() {
             if (rab.Util.isMobil) {
-                rab.wxSdk.init(this._Manager.gameConfig.serverurl);
+                rab.wxSdk.init(this.myManager.gameConfig.serverurl);
             }
         }
         initData(gameInfo, key = "gameinfo") {
@@ -1804,7 +1804,7 @@
             let build = ["3d/prefab/Conventional/play_" + this.playSelect + ".lh"];
             let arr = this.CurrPassData().builds;
             for (var i = 0; i < arr.length; i++) {
-                build.push("3d/prefab/Conventional/" + this.jsonConfig.getBuildData(arr[i]).res + ".lh");
+                build.push("3d/build/Conventional/" + this.jsonConfig.getBuildData(arr[i]).res + ".lh");
                 let arr2 = this.jsonConfig.getBuildData(arr[i]).obstacle;
                 for (var j = 0; j < arr2.length; j++) {
                     if (build.indexOf("3d/prefab/Conventional/" + this.jsonConfig.getObstacleData(arr2[j]).res + ".lh") == -1) {
@@ -2218,7 +2218,7 @@
                 canClick = true;
                 event.stopPropagation();
                 if (isPlaySound == true) {
-                    rab.MusicManager.playSound("sub4/audio/click.wav");
+                    rab.MusicManager.playSound("res/audio/click.wav");
                 }
             };
             let onUp = (event) => {
@@ -2407,11 +2407,16 @@
                         window.wx.loadSubpackage({
                             name: 'sub4',
                             success: function (res) {
-                                enterGame();
                                 wx.loadSubpackage({
                                     name: 'sub2',
                                     success: function (res) {
-                                        Tool.instance.loadScene3D = true;
+                                        wx.loadSubpackage({
+                                            name: 'sub1',
+                                            success: function (res) {
+                                                enterGame();
+                                                Tool.instance.loadScene3D = true;
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -2457,13 +2462,13 @@
             Laya3D.physicsSettings.fixedTimeStep = 1 / 30;
             this.AddListenerMessage(GameNotity.GameMessage_GameShowMessage, () => {
                 if (this.m_currView.visible == true) {
-                    rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+                    rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
                 }
             });
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
-            rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+            rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
             if (this.myManager.gameInfo.music == 0) {
                 this.m_currView.set.skin = "ui/bd_syg.png";
             }
@@ -2888,7 +2893,7 @@
             this.updatePassProgressNode();
             let arr = this.manager.getPassBuild();
             for (var i = 0; i < this.passData.builds.length; i++) {
-                this._basebuilds[this.passData.builds[i]] = Laya.loader.getRes("3d/prefab/Conventional/" + this.manager.getBuild(this.passData.builds[i]).res + ".lh");
+                this._basebuilds[this.passData.builds[i]] = Laya.loader.getRes("3d/build/Conventional/" + this.manager.getBuild(this.passData.builds[i]).res + ".lh");
             }
             this.onInitScene();
             this.SendMessage(GameNotity.GameMessage_GameStart);
@@ -3092,7 +3097,7 @@
             this.gameStart = false;
             this.m_currView.timeDown.visible = false;
             this.fightManager.fightReady();
-            rab.MusicManager.playMusic("sub4/audio/AttackBGM.mp3");
+            rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
             this.m_currView.lifeText.value = "3";
         }
         onPause() {
@@ -3320,7 +3325,7 @@
             alpha(this.m_currView.next, 200);
             alpha(this.m_currView.homeBtn, 200);
             rab.MusicManager.playMusic("");
-            rab.MusicManager.playSound("sub4/audio/win.mp3");
+            rab.MusicManager.playSound("res/audio/win.mp3");
             this.SendMessage(GameNotity.Game_RemoveScene);
         }
         onHide() {
@@ -3530,7 +3535,7 @@
             manager.gameInfo.audio = 1;
             manager.ResumeBGM();
             manager.SaveData();
-            rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+            rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
             this.onInitData();
         }
         onSounClose() {

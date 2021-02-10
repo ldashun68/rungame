@@ -57,14 +57,14 @@ export default class Platform extends rab.RabView {
 
         this.AddListenerMessage(GameNotity.GameMessage_GameShowMessage, () => {
             if (this.m_currView.visible == true) {
-                rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+                rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
             }
         });
     }
 
     protected OnRefreshView() {
         rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
-        rab.MusicManager.playMusic("sub4/audio/MainBGM.mp3");
+        rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
         if(this.myManager.gameInfo.music == 0)
         {
             this.m_currView.set.skin = "ui/bd_syg.png";

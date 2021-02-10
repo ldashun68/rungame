@@ -14,19 +14,19 @@
   "subpackages": [
     {
       "name": "sub1",
-      "root": "sub1/"
-    }
-    ,{
-      "name": "sub2",
       "root": "3d/game/"
     }
     ,{
+      "name": "sub2",
+      "root": "3d/build/"
+    }
+    ,{
       "name": "sub3",
-      "root": "res/atlas/"
+      "root": "3d/prefab/"
     }
     ,{
       "name": "sub4",
-      "root": "sub4/"
+      "root": "res/"
     }
   ]
 }

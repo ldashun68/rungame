@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":662,
+		"instanceID":311,
 		"props":{
 			"name":"ObstacleBin",
 			"active":true,
@@ -52,7 +52,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":663,
+				"instanceID":312,
 				"props":{
 					"name":"BinBase",
 					"active":true,
@@ -89,7 +89,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":664,
+				"instanceID":313,
 				"props":{
 					"name":"BinTop",
 					"active":true,
@@ -126,7 +126,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":665,
+				"instanceID":314,
 				"props":{
 					"name":"Shadow",
 					"active":true,

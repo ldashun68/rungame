@@ -119,7 +119,7 @@ export default class FightManager extends rab.GameObject {
         let arr = this.manager.getPassBuild();
         for(var i = 0;i<this.passData.builds.length;i++)
         {
-            this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
+            this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/build/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
         }
         this.onInitScene();
         this.SendMessage(GameNotity.GameMessage_GameStart)

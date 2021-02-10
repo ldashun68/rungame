@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":682,
+		"instanceID":323,
 		"props":{
 			"name":"ObstacleWheelyBin",
 			"active":true,
@@ -52,7 +52,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":683,
+				"instanceID":324,
 				"props":{
 					"name":"WheelyBinBody",
 					"active":true,
@@ -88,7 +88,7 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":684,
+						"instanceID":325,
 						"props":{
 							"name":"TrashBag",
 							"active":true,
@@ -125,7 +125,7 @@
 					},
 					{
 						"type":"MeshSprite3D",
-						"instanceID":685,
+						"instanceID":326,
 						"props":{
 							"name":"WheelyBinTop",
 							"active":true,

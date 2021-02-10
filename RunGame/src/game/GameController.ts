@@ -269,7 +269,7 @@ export default class GameController extends rab.RabController {
         let arr = this.CurrPassData().builds;
         for(var i = 0;i<arr.length;i++)
         {
-            build.push("3d/prefab/Conventional/"+this.jsonConfig.getBuildData(arr[i]).res+".lh");
+            build.push("3d/build/Conventional/"+this.jsonConfig.getBuildData(arr[i]).res+".lh");
             let arr2 = this.jsonConfig.getBuildData(arr[i]).obstacle;
             for(var j = 0;j<arr2.length;j++)
             {

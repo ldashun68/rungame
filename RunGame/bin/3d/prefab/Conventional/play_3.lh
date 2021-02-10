@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":161,
+		"instanceID":162,
 		"props":{
 			"name":"play_3",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"Sprite3D",
-				"instanceID":162,
+				"instanceID":163,
 				"props":{
 					"name":"RaccoonBase",
 					"active":true,
@@ -107,7 +107,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":163,
+						"instanceID":164,
 						"props":{
 							"name":"Controls",
 							"active":true,
@@ -134,7 +134,7 @@
 						"child":[
 							{
 								"type":"Sprite3D",
-								"instanceID":164,
+								"instanceID":165,
 								"props":{
 									"name":"Control_UpperBody",
 									"active":true,
@@ -161,7 +161,7 @@
 								"child":[
 									{
 										"type":"Sprite3D",
-										"instanceID":165,
+										"instanceID":166,
 										"props":{
 											"name":"Control_Pelvis",
 											"active":true,
@@ -188,7 +188,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":166,
+												"instanceID":167,
 												"props":{
 													"name":"Control_Tail1",
 													"active":true,
@@ -215,7 +215,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":167,
+														"instanceID":168,
 														"props":{
 															"name":"Control_Tail2",
 															"active":true,
@@ -242,7 +242,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":168,
+																"instanceID":169,
 																"props":{
 																	"name":"Control_Tail3",
 																	"active":true,
@@ -276,7 +276,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":169,
+										"instanceID":170,
 										"props":{
 											"name":"Control_Spine1",
 											"active":true,
@@ -303,7 +303,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":170,
+												"instanceID":171,
 												"props":{
 													"name":"Control_Spine2",
 													"active":true,
@@ -330,7 +330,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":171,
+														"instanceID":172,
 														"props":{
 															"name":"Control_Neck",
 															"active":true,
@@ -357,7 +357,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":172,
+																"instanceID":173,
 																"props":{
 																	"name":"Control_Head",
 																	"active":true,
@@ -384,7 +384,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":173,
+																		"instanceID":174,
 																		"props":{
 																			"name":"Control_LeftEar",
 																			"active":true,
@@ -412,7 +412,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":174,
+																		"instanceID":175,
 																		"props":{
 																			"name":"Control_LeftLowerEyelid",
 																			"active":true,
@@ -440,7 +440,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":175,
+																		"instanceID":176,
 																		"props":{
 																			"name":"Control_LeftUpperEyelid",
 																			"active":true,
@@ -468,7 +468,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":176,
+																		"instanceID":177,
 																		"props":{
 																			"name":"Control_RightEar",
 																			"active":true,
@@ -496,7 +496,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":177,
+																		"instanceID":178,
 																		"props":{
 																			"name":"Control_RightLowerEyelid",
 																			"active":true,
@@ -524,7 +524,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":178,
+																		"instanceID":179,
 																		"props":{
 																			"name":"Control_RightUpperEyelid",
 																			"active":true,
@@ -556,7 +556,7 @@
 													},
 													{
 														"type":"Sprite3D",
-														"instanceID":179,
+														"instanceID":180,
 														"props":{
 															"name":"Controls_LeftClavicle",
 															"active":true,
@@ -584,7 +584,7 @@
 													},
 													{
 														"type":"Sprite3D",
-														"instanceID":180,
+														"instanceID":181,
 														"props":{
 															"name":"Controls_RightClavicle",
 															"active":true,
@@ -616,7 +616,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":181,
+										"instanceID":182,
 										"props":{
 											"name":"Controls_LeftWrist",
 											"active":true,
@@ -644,7 +644,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":182,
+										"instanceID":183,
 										"props":{
 											"name":"Controls_RightWrist",
 											"active":true,
@@ -676,7 +676,7 @@
 					},
 					{
 						"type":"Sprite3D",
-						"instanceID":183,
+						"instanceID":184,
 						"props":{
 							"name":"Mesh",
 							"active":true,
@@ -703,7 +703,7 @@
 						"child":[
 							{
 								"type":"SkinnedMeshSprite3D",
-								"instanceID":184,
+								"instanceID":185,
 								"props":{
 									"name":"RacoonMesh",
 									"active":true,
@@ -725,7 +725,7 @@
 										1,
 										1
 									],
-									"rootBone":185,
+									"rootBone":186,
 									"boundBox":{
 										"min":[
 											-0.4047577,
@@ -747,7 +747,6 @@
 										"radius":0.8507913
 									},
 									"bones":[
-										186,
 										187,
 										188,
 										189,
@@ -778,7 +777,8 @@
 										214,
 										215,
 										216,
-										185
+										217,
+										186
 									],
 									"enableRender":true,
 									"receiveShadows":true,
@@ -797,7 +797,7 @@
 					},
 					{
 						"type":"Sprite3D",
-						"instanceID":217,
+						"instanceID":218,
 						"props":{
 							"name":"Skeleton",
 							"active":true,
@@ -824,7 +824,7 @@
 						"child":[
 							{
 								"type":"Sprite3D",
-								"instanceID":185,
+								"instanceID":186,
 								"props":{
 									"name":"Hips",
 									"active":true,
@@ -851,7 +851,7 @@
 								"child":[
 									{
 										"type":"Sprite3D",
-										"instanceID":193,
+										"instanceID":194,
 										"props":{
 											"name":"LeftUpLeg",
 											"active":true,
@@ -878,7 +878,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":190,
+												"instanceID":191,
 												"props":{
 													"name":"LeftLeg",
 													"active":true,
@@ -905,7 +905,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":189,
+														"instanceID":190,
 														"props":{
 															"name":"LeftFoot",
 															"active":true,
@@ -932,7 +932,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":186,
+																"instanceID":187,
 																"props":{
 																	"name":"LeftToe",
 																	"active":true,
@@ -959,7 +959,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":218,
+																		"instanceID":219,
 																		"props":{
 																			"name":"LeftToeEnd",
 																			"active":true,
@@ -995,7 +995,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":192,
+										"instanceID":193,
 										"props":{
 											"name":"RightUpLeg",
 											"active":true,
@@ -1022,7 +1022,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":191,
+												"instanceID":192,
 												"props":{
 													"name":"RightLeg",
 													"active":true,
@@ -1049,7 +1049,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":188,
+														"instanceID":189,
 														"props":{
 															"name":"RightFoot",
 															"active":true,
@@ -1076,7 +1076,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":187,
+																"instanceID":188,
 																"props":{
 																	"name":"RightToe",
 																	"active":true,
@@ -1103,7 +1103,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":219,
+																		"instanceID":220,
 																		"props":{
 																			"name":"RightToeEnd",
 																			"active":true,
@@ -1139,7 +1139,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":213,
+										"instanceID":214,
 										"props":{
 											"name":"Spine1",
 											"active":true,
@@ -1166,7 +1166,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":212,
+												"instanceID":213,
 												"props":{
 													"name":"Spine2",
 													"active":true,
@@ -1193,7 +1193,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":200,
+														"instanceID":201,
 														"props":{
 															"name":"LeftShoulder",
 															"active":true,
@@ -1220,7 +1220,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":199,
+																"instanceID":200,
 																"props":{
 																	"name":"LeftArm",
 																	"active":true,
@@ -1247,7 +1247,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":195,
+																		"instanceID":196,
 																		"props":{
 																			"name":"LeftForeArm",
 																			"active":true,
@@ -1274,7 +1274,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":194,
+																				"instanceID":195,
 																				"props":{
 																					"name":"LeftHand",
 																					"active":true,
@@ -1301,7 +1301,7 @@
 																				"child":[
 																					{
 																						"type":"Sprite3D",
-																						"instanceID":220,
+																						"instanceID":221,
 																						"props":{
 																							"name":"LeftHandEnd",
 																							"active":true,
@@ -1337,7 +1337,7 @@
 													},
 													{
 														"type":"Sprite3D",
-														"instanceID":211,
+														"instanceID":212,
 														"props":{
 															"name":"Neck",
 															"active":true,
@@ -1364,7 +1364,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":210,
+																"instanceID":211,
 																"props":{
 																	"name":"Head",
 																	"active":true,
@@ -1391,7 +1391,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":221,
+																		"instanceID":222,
 																		"props":{
 																			"name":"HeadEnd",
 																			"active":true,
@@ -1419,7 +1419,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":204,
+																		"instanceID":205,
 																		"props":{
 																			"name":"LeftEar",
 																			"active":true,
@@ -1446,7 +1446,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":222,
+																				"instanceID":223,
 																				"props":{
 																					"name":"LeftEarEnd",
 																					"active":true,
@@ -1476,7 +1476,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":203,
+																		"instanceID":204,
 																		"props":{
 																			"name":"LeftEye",
 																			"active":true,
@@ -1504,7 +1504,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":223,
+																		"instanceID":224,
 																		"props":{
 																			"name":"LeftLowerLid",
 																			"active":true,
@@ -1531,7 +1531,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":209,
+																				"instanceID":210,
 																				"props":{
 																					"name":"LeftLowerLidEnd",
 																					"active":true,
@@ -1561,7 +1561,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":224,
+																		"instanceID":225,
 																		"props":{
 																			"name":"LeftUpperLid",
 																			"active":true,
@@ -1588,7 +1588,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":208,
+																				"instanceID":209,
 																				"props":{
 																					"name":"LeftUpperLidEnd",
 																					"active":true,
@@ -1618,7 +1618,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":205,
+																		"instanceID":206,
 																		"props":{
 																			"name":"RightEar",
 																			"active":true,
@@ -1645,7 +1645,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":225,
+																				"instanceID":226,
 																				"props":{
 																					"name":"RightEarEnd",
 																					"active":true,
@@ -1675,7 +1675,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":202,
+																		"instanceID":203,
 																		"props":{
 																			"name":"RightEye",
 																			"active":true,
@@ -1703,7 +1703,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":226,
+																		"instanceID":227,
 																		"props":{
 																			"name":"RightLowerLid",
 																			"active":true,
@@ -1730,7 +1730,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":206,
+																				"instanceID":207,
 																				"props":{
 																					"name":"RightLowerLidEnd",
 																					"active":true,
@@ -1760,7 +1760,7 @@
 																	},
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":227,
+																		"instanceID":228,
 																		"props":{
 																			"name":"RightUpperLid",
 																			"active":true,
@@ -1787,7 +1787,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":207,
+																				"instanceID":208,
 																				"props":{
 																					"name":"RightUpperLidEnd",
 																					"active":true,
@@ -1821,7 +1821,7 @@
 													},
 													{
 														"type":"Sprite3D",
-														"instanceID":201,
+														"instanceID":202,
 														"props":{
 															"name":"RightShoulder",
 															"active":true,
@@ -1848,7 +1848,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":198,
+																"instanceID":199,
 																"props":{
 																	"name":"RightArm",
 																	"active":true,
@@ -1875,7 +1875,7 @@
 																"child":[
 																	{
 																		"type":"Sprite3D",
-																		"instanceID":197,
+																		"instanceID":198,
 																		"props":{
 																			"name":"RightForeArm",
 																			"active":true,
@@ -1902,7 +1902,7 @@
 																		"child":[
 																			{
 																				"type":"Sprite3D",
-																				"instanceID":196,
+																				"instanceID":197,
 																				"props":{
 																					"name":"RightHand",
 																					"active":true,
@@ -1929,7 +1929,7 @@
 																				"child":[
 																					{
 																						"type":"Sprite3D",
-																						"instanceID":228,
+																						"instanceID":229,
 																						"props":{
 																							"name":"RightHandEnd",
 																							"active":true,
@@ -1969,7 +1969,7 @@
 									},
 									{
 										"type":"Sprite3D",
-										"instanceID":216,
+										"instanceID":217,
 										"props":{
 											"name":"Tail1",
 											"active":true,
@@ -1996,7 +1996,7 @@
 										"child":[
 											{
 												"type":"Sprite3D",
-												"instanceID":215,
+												"instanceID":216,
 												"props":{
 													"name":"Tail2",
 													"active":true,
@@ -2023,7 +2023,7 @@
 												"child":[
 													{
 														"type":"Sprite3D",
-														"instanceID":214,
+														"instanceID":215,
 														"props":{
 															"name":"Tail3",
 															"active":true,
@@ -2050,7 +2050,7 @@
 														"child":[
 															{
 																"type":"Sprite3D",
-																"instanceID":229,
+																"instanceID":230,
 																"props":{
 																	"name":"Tail4",
 																	"active":true,

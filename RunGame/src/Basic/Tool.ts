@@ -562,7 +562,7 @@ export default class Tool {
             event.stopPropagation();
 
             if (isPlaySound == true) {
-                rab.MusicManager.playSound("sub4/audio/click.wav");
+                rab.MusicManager.playSound("res/audio/click.wav");
             }
         };
         let onUp = (event: Laya.Event): void => {
