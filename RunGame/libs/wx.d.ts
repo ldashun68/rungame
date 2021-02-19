@@ -5004,6 +5004,8 @@ declare namespace wx {
    */
   export function getSystemInfoSync(): _getSystemInfoSyncReturnValue;
 
+  export function createUserInfoButton(object:any);
+
   /**
    * 获取用户信息，withCredentials 为 true 时需要先调用 [wx.login](./api-login.md#wxloginobject) 接口。
    */

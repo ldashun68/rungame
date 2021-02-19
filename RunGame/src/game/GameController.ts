@@ -83,7 +83,7 @@ export default class GameController extends rab.RabController {
             this.gameInfo.language = "cn"
         }
         Language.instance.SetLanguage(this.gameInfo.language);
-        this.SaveData();
+        this.SaveData(0);
     }
 
     protected onHide() {
@@ -106,7 +106,7 @@ export default class GameController extends rab.RabController {
 
         Language.instance.onInit(this.gameInfo.language)
         this.updateTime();
-        this.SaveData();
+        // this.SaveData();
     }
 
     /**更新时间 */
@@ -161,7 +161,7 @@ export default class GameController extends rab.RabController {
         }
 
         this.gameInfo.coin += coin;
-        this.SaveData();
+        this.SaveData(1);
         this.SendMessage(GameNotity.Game_UpdateCoin, this.gameInfo.coin);
         return true;
     }
@@ -183,7 +183,7 @@ export default class GameController extends rab.RabController {
             Laya.timer.loop(this.loopAddTicketTimeGap, this, this.loopAddTicket);
         }
 
-        this.SaveData();
+        this.SaveData(2);
         this.SendMessage(GameNotity.Game_UpdateTicket, this.gameInfo.ticket);
         return true;
     }
@@ -290,16 +290,17 @@ export default class GameController extends rab.RabController {
         rab.HTTP.post("api/playLog",{
             "passLv":1,
             "failLv":2,
-            "score":22
-        },this,()=>{
-
+            "score":22,
+            "token":this.userInfo.token
+        },this,(data)=>{
+            rab.Util.log('添加闯关数据',data);
         });
    }
 
    public getRank()
    {
-    rab.HTTP.get("api/rankList",{},(data)=>{
-        var _data = JSON.parse(data);
+    rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
+        var _data = (data);
         // Object.keys(gameInfo).forEach(function(key){
         //     _data[key] = wx.getData(key, gameInfo[key]);
         // });

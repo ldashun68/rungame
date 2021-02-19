@@ -1,7 +1,7 @@
 window.loadLib = require;
-loadLib("laya.core.js")
-loadLib("laya.ui.js")
-loadLib("laya.physics3D.js")
-loadLib("laya.d3.js")
-loadLib("laya.ani.js")
-loadLib("bundle.js")
+loadLib("../../libs/min/laya.core.min.js")
+loadLib("../../libs/min/laya.ui.min.js")
+loadLib("../../libs/min/laya.physics3D.min.js")
+loadLib("../../libs/min/laya.d3.min.js")
+loadLib("../../libs/min/laya.ani.min.js")
+loadLib("../../js/bundle.js")

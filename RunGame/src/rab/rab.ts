@@ -508,15 +508,18 @@ class GameChannel {
     {
         if(typeof wx != "undefined")
         {
-            {
-                rab.HTTP.get("api/player",{},(data)=>{
-                    var _data = JSON.parse(data);
+            if(this.myManager.userInfo){
+                var _data = gameInfo;  
+                rab.HTTP.get("api/player",this.myManager.userInfo.token,(data)=>{
+                    _data = (data);
                     // Object.keys(gameInfo).forEach(function(key){
                     //     _data[key] = wx.getData(key, gameInfo[key]);
                     // });
-                    rab.Util.log('初始化获得保存数据',_data);
+                    rab.Util.log('初始化获得保存数据',data);
                 });
+                return _data;
                 
+            }else{
                 return gameInfo;
             }
         }else
@@ -543,8 +546,10 @@ class GameChannel {
     {
         if(typeof wx != "undefined")
         {
-            rab.HTTP.post("api/player",gameInfo,this,()=>{
-                //
+            rab.HTTP.post("api/player",{"data":JSON.stringify(gameInfo),
+                                        "token":this.myManager.userInfo.token
+                                        },this,(data)=>{
+                console.log("保存数据：",data);
             });
         }else{
             Laya.LocalStorage.setItem(key,JSON.stringify(gameInfo));
@@ -821,6 +826,9 @@ abstract class RabManager extends RabEvent{
 
     public iscustomerService:number;
 
+    /**服务器返回用户数据 */
+    public userInfo:SerUserInfo;
+
     /**
      * 初始化
      */
@@ -857,7 +865,7 @@ abstract class RabManager extends RabEvent{
         this.lastTime = this.gameInfo.lastTime;
         this.isGuid = this.isNoob();
         rab.SDKChannel.onHide(()=>{
-            this.SaveData()
+            this.SaveData(-1)
         })
         rab.SDKChannel.onShow((res)=>{
             this.sceneId =  res.scene;
@@ -900,9 +908,9 @@ abstract class RabManager extends RabEvent{
     /**
      * 保存数据
      */
-    public SaveData()
+    public SaveData(typ:number)
     {
-        rab.Util.log("保存数据",this.gameInfo);
+        rab.Util.log(typ,"===保存数据====",this.gameInfo);
         this.onHide();
         rab.SDKChannel.SaveData(this.gameInfo,this._gameType);
     }
@@ -1775,6 +1783,17 @@ class RabNotity {
 
 }
 
+/**服务器返回用户数据 */
+export interface SerUserInfo
+{
+    avatar:string,
+    expires_in:number,
+    gamedata:any,
+    nickname:string,
+    token:string
+
+}
+
 abstract class RabController extends RabManager {
 
     /**
@@ -1849,8 +1868,12 @@ abstract class RabController extends RabManager {
         rab.Util.log("登录服务器");
         if(rab.Util.isMobil) {
             wx.showLoading({ title: '登录中' });
-            rab.wxSdk.onLoginWXServer(()=>{
+            rab.wxSdk.onLoginWXServer((data)=>{
+                console.log("登录服务器验证",data);
+                this.userInfo = data;
+                console.log("登录服务器验证====",this.userInfo.token);
                 this.LoginBreak();
+                
             });
         }
         else{
@@ -2270,8 +2293,15 @@ class wxSdk{
                         let code =res.code 
                         console.log("登录code",res.code)
                         
-                        rab.HTTP.post(path,{"code":res.code},this,()=>{
-                            breakcall&&breakcall();
+                        rab.HTTP.post(path,{"code":res.code},this,(data)=>{
+                            console.log("登录code返回：",data);
+                            if(data.data)
+                            {
+                                breakcall&&breakcall(data.data);
+                            }else{
+                                this.onCreateUserInfo(code,breakcall);
+                            }
+                            
                         })
                         
                     } else {
@@ -2284,33 +2314,119 @@ class wxSdk{
         }
     }
 
-    // /**HttP */
-    // public onQueryRequest(path:string,_data:any,breakcall:Function=null,method:string = "POST"){  
+    private getUserInfo(code:string,breakcall:Function)
+    {
+        wx.getUserInfo({
+            withCredentials: true,
+            lang: "zh_CN",
+            success:(res)=>{
+                var userInfo = res.userInfo;
+                console.log("用户信息：",userInfo);
+                rab.HTTP.post("api/wxLogin",{
+                    "code":code,
+                    "rawData":res.rawData,
+                    "signature":res.signature,
+                    "encryptedData":res.encryptedData,
+                    "iv":res.iv
+                },this,(data)=>{
+                    console.log("登录服务器返回：",data);
+                    breakcall&&breakcall(data.data);
+                })
+            },
+            fail: () => {
 
-    //     rab.HTTP.post(this._serverUrl+"/"+path,JSON.stringify(_data),"application/json",this,()=>{
-            
-    //     })
-    //     // if(rab.Util.isMobil)
-    //     // {  
-    //     //     wx.request({
-    //     //         // https://coolrun.liandaxinxi.com
-    //     //         url:this._serverUrl +"/"+path,
-    //     //         method: method,
-    //     //         data:_data,
-    //     //         header:{
-    //     //         "Content-Type":"application/json"
-    //     //         },
-    //     //         success:(res)=>{
-    //     //             breakcall&&breakcall(res.data);
-    //     //             console.log("成功返回服务器数据",res.data)
-    //     //         },
-    //     //         fail:function(err){
-    //     //             console.log(err)
-    //     //         }
-        
-    //     //     })
-    //     // }
-    // }
+            },
+            complete: () => {
+
+            }
+    })
+    }
+
+    public onCreateUserInfo(code:string,breakcall:Function)
+    {
+        if(rab.Util.isMobil)
+        {
+         
+            wx.getSetting({
+                success:(res)=>{
+                    if(res.authSetting['scope.userInfo'])
+                    {
+                        //已经授权了
+                        this.getUserInfo(code,breakcall)
+                    }else{
+                        let button = wx.createUserInfoButton({
+                            type: 'text',
+                            text: '获取用户信息',
+                            style: {
+                              left: 0,
+                              top: 0,
+                              width: 1000,
+                              height: 1000,
+                              lineHeight: 40,
+                              backgroundColor: '#ff0000',
+                              color: '#ffffff',
+                              textAlign: 'center',
+                              fontSize: 16,
+                              borderRadius: 4
+                            }
+                          })
+                          button.onTap((res) => {
+                            if(res.errMsg=="getUserInfo:ok")
+                            {
+                                console.log("授权用户信息")
+                                //清除微信授权按钮
+                                button.destroy()
+                                this.getUserInfo(code,breakcall)
+                            }
+                            else
+                            {
+                                console.log("授权失败")
+                            }
+                          })
+                    }
+                }
+            })
+        }
+    }
+
+    public wxHttp(path:string,_data:any,breakcall:Function,_method:string="POST")
+    {
+        if(rab.Util.isMobil)
+        {
+            wx.request({
+                url: path, //仅为示例，并非真实的接口地址
+                method:_method,
+                data: JSON.stringify(_data),
+                header: {
+                    'content-type': 'application/json' // 默认值
+                },
+                success:(res)=> {
+                    console.log(res.data)
+                    breakcall&&breakcall(res.data);
+                }
+            })
+        }
+    }
+
+    public wxGETHttp(path:string,token:string,breakcall:Function)
+    {
+        if(rab.Util.isMobil)
+        {
+            wx.request({
+                url: path, //仅为示例，并非真实的接口地址
+                method:"GET",
+                header: {
+                    'Accept': 'application/json', // 默认值
+                    'Authorization':token?`Bearer ${token}`:''
+
+                },
+                success:(res)=> {
+                    console.log(res.data)
+                    breakcall&&breakcall(res.data);
+                }
+            })
+        }
+    }
 }
 
 
@@ -2330,30 +2446,53 @@ class HTTP{
         this.http = new Laya.HttpRequest;
     }
  
-    public get(url:string,caller:any,callback:any):HTTP{
-        this.caller = caller;
-        this.callback = callback;
-        //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
-		this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
-		this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
-        this.http.send(this._serverUrl+"/"+url, null, 'get', 'text');
+    public get(url:string,token:string,callback:any):HTTP{
+        if(rab.Util.isMobil)
+        {
+            console.log("wxurlget",url,"===data===")
+            rab.wxSdk.wxGETHttp(this._serverUrl+"/"+url,token,callback)
+        }else
+        {
+            this.caller = null;
+            this.callback = callback;
+            //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
+            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+            this.http.send(this._serverUrl+"/"+url, null, 'get', 'text');
+        }
         return this;
     }
  
      public post(url:string,data:any,caller:any,callback:any,contentType:string="application/json"):HTTP{
-        this.caller = caller;
-        this.callback = callback;
-        //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
-		this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
-		this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
-        if(contentType==null){
-            this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json');
-        }else{
-            this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json',["content-type",contentType]);
+
+        if(rab.Util.isMobil)
+        {
+            console.log("wxurl",url,"===data===",data)
+            rab.wxSdk.wxHttp(this._serverUrl+"/"+url,data,callback)
+        }else
+        {
+            this.caller = caller;
+            this.callback = callback;
+            console.log("url",url,"===data===",data)
+            //this.http.once(Laya.Event.PROGRESS, this, this.onHttpRequestProgress);
+            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+            if(contentType==null){
+                this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json');
+            }else{
+                this.http.send(this._serverUrl+"/"+url, JSON.stringify(data), 'post', 'json',["content-type",contentType]);
+            }
         }
         
         return this;
     }
+
+    public wxHttp(url:string,data:any,callback:any)
+    {
+        rab.wxSdk.wxHttp(this._serverUrl+"/"+url,data,callback)
+    }
+
+    
  
  
     private onHttpRequestError(e: any): void {

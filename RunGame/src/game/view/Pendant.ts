@@ -42,10 +42,7 @@ export default class Pendant extends rab.RabView {
 
     protected OnRefreshView() {
         this.isLoopAddTicket = false;
-
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-        manager.addCoin(0);
-        manager.addTicket(0);
     }
 
     /**金币框按钮事件 */

@@ -34,6 +34,7 @@ export enum PlayState
     death
 }
 
+
 /**关卡数据结构 */
 export interface passProp {
     //{"id":10001,"builds":[],"name":"城市中","length":120,"score":320,"coin":"120","diamonds":30},

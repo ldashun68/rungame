@@ -99,7 +99,7 @@ export default class GameSet extends rab.RabView {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.audio = 1;
         manager.ResumeBGM();
-        manager.SaveData();
+        manager.SaveData(4);
         
         rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
 
@@ -111,7 +111,7 @@ export default class GameSet extends rab.RabView {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.audio = 0;
         manager.PauseBGM();
-        manager.SaveData();
+        manager.SaveData(5);
 
         this.onInitData();
     }
@@ -120,7 +120,7 @@ export default class GameSet extends rab.RabView {
     private onVibrateOpen (): void {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.vibrate = 1;
-        manager.SaveData();
+        manager.SaveData(6);
 
         this.onInitData();
     }

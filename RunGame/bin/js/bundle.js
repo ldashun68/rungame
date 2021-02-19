@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/RoleSelect.scene";
+    GameConfig.startScene = "view/Pendant.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -397,11 +397,15 @@
         }
         initData(gameInfo, key = "gameinfo") {
             if (typeof wx != "undefined") {
-                {
-                    rab.HTTP.get("api/player", {}, (data) => {
-                        var _data = JSON.parse(data);
-                        rab.Util.log('初始化获得保存数据', _data);
+                if (this.myManager.userInfo) {
+                    var _data = gameInfo;
+                    rab.HTTP.get("api/player", this.myManager.userInfo.token, (data) => {
+                        _data = (data);
+                        rab.Util.log('初始化获得保存数据', data);
                     });
+                    return _data;
+                }
+                else {
                     return gameInfo;
                 }
             }
@@ -418,7 +422,10 @@
         }
         SaveData(gameInfo, key = "gameinfo") {
             if (typeof wx != "undefined") {
-                rab.HTTP.post("api/player", gameInfo, this, () => {
+                rab.HTTP.post("api/player", { "data": JSON.stringify(gameInfo),
+                    "token": this.myManager.userInfo.token
+                }, this, (data) => {
+                    console.log("保存数据：", data);
                 });
             }
             else {
@@ -588,7 +595,7 @@
             this.lastTime = this.gameInfo.lastTime;
             this.isGuid = this.isNoob();
             rab.SDKChannel.onHide(() => {
-                this.SaveData();
+                this.SaveData(-1);
             });
             rab.SDKChannel.onShow((res) => {
                 this.sceneId = res.scene;
@@ -613,8 +620,8 @@
                 return OpenScene.moments;
             }
         }
-        SaveData() {
-            rab.Util.log("保存数据", this.gameInfo);
+        SaveData(typ) {
+            rab.Util.log(typ, "===保存数据====", this.gameInfo);
             this.onHide();
             rab.SDKChannel.SaveData(this.gameInfo, this._gameType);
         }
@@ -1065,7 +1072,10 @@
             rab.Util.log("登录服务器");
             if (rab.Util.isMobil) {
                 wx.showLoading({ title: '登录中' });
-                rab.wxSdk.onLoginWXServer(() => {
+                rab.wxSdk.onLoginWXServer((data) => {
+                    console.log("登录服务器验证", data);
+                    this.userInfo = data;
+                    console.log("登录服务器验证====", this.userInfo.token);
                     this.LoginBreak();
                 });
             }
@@ -1322,8 +1332,14 @@
                         if (res.code) {
                             let code = res.code;
                             console.log("登录code", res.code);
-                            rab.HTTP.post(path, { "code": res.code }, this, () => {
-                                breakcall && breakcall();
+                            rab.HTTP.post(path, { "code": res.code }, this, (data) => {
+                                console.log("登录code返回：", data);
+                                if (data.data) {
+                                    breakcall && breakcall(data.data);
+                                }
+                                else {
+                                    this.onCreateUserInfo(code, breakcall);
+                                }
                             });
                         }
                         else {
@@ -1335,6 +1351,101 @@
             else {
             }
         }
+        getUserInfo(code, breakcall) {
+            wx.getUserInfo({
+                withCredentials: true,
+                lang: "zh_CN",
+                success: (res) => {
+                    var userInfo = res.userInfo;
+                    console.log("用户信息：", userInfo);
+                    rab.HTTP.post("api/wxLogin", {
+                        "code": code,
+                        "rawData": res.rawData,
+                        "signature": res.signature,
+                        "encryptedData": res.encryptedData,
+                        "iv": res.iv
+                    }, this, (data) => {
+                        console.log("登录服务器返回：", data);
+                        breakcall && breakcall(data.data);
+                    });
+                },
+                fail: () => {
+                },
+                complete: () => {
+                }
+            });
+        }
+        onCreateUserInfo(code, breakcall) {
+            if (rab.Util.isMobil) {
+                wx.getSetting({
+                    success: (res) => {
+                        if (res.authSetting['scope.userInfo']) {
+                            this.getUserInfo(code, breakcall);
+                        }
+                        else {
+                            let button = wx.createUserInfoButton({
+                                type: 'text',
+                                text: '获取用户信息',
+                                style: {
+                                    left: 0,
+                                    top: 0,
+                                    width: 1000,
+                                    height: 1000,
+                                    lineHeight: 40,
+                                    backgroundColor: '#ff0000',
+                                    color: '#ffffff',
+                                    textAlign: 'center',
+                                    fontSize: 16,
+                                    borderRadius: 4
+                                }
+                            });
+                            button.onTap((res) => {
+                                if (res.errMsg == "getUserInfo:ok") {
+                                    console.log("授权用户信息");
+                                    button.destroy();
+                                    this.getUserInfo(code, breakcall);
+                                }
+                                else {
+                                    console.log("授权失败");
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        wxHttp(path, _data, breakcall, _method = "POST") {
+            if (rab.Util.isMobil) {
+                wx.request({
+                    url: path,
+                    method: _method,
+                    data: JSON.stringify(_data),
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    success: (res) => {
+                        console.log(res.data);
+                        breakcall && breakcall(res.data);
+                    }
+                });
+            }
+        }
+        wxGETHttp(path, token, breakcall) {
+            if (rab.Util.isMobil) {
+                wx.request({
+                    url: path,
+                    method: "GET",
+                    header: {
+                        'Accept': 'application/json',
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    },
+                    success: (res) => {
+                        console.log(res.data);
+                        breakcall && breakcall(res.data);
+                    }
+                });
+            }
+        }
     }
     class HTTP {
         constructor() {
@@ -1343,26 +1454,42 @@
         init(path) {
             this._serverUrl = path;
         }
-        get(url, caller, callback) {
-            this.caller = caller;
-            this.callback = callback;
-            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
-            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
-            this.http.send(this._serverUrl + "/" + url, null, 'get', 'text');
+        get(url, token, callback) {
+            if (rab.Util.isMobil) {
+                console.log("wxurlget", url, "===data===");
+                rab.wxSdk.wxGETHttp(this._serverUrl + "/" + url, token, callback);
+            }
+            else {
+                this.caller = null;
+                this.callback = callback;
+                this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+                this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+                this.http.send(this._serverUrl + "/" + url, null, 'get', 'text');
+            }
             return this;
         }
         post(url, data, caller, callback, contentType = "application/json") {
-            this.caller = caller;
-            this.callback = callback;
-            this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
-            this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
-            if (contentType == null) {
-                this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json');
+            if (rab.Util.isMobil) {
+                console.log("wxurl", url, "===data===", data);
+                rab.wxSdk.wxHttp(this._serverUrl + "/" + url, data, callback);
             }
             else {
-                this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json', ["content-type", contentType]);
+                this.caller = caller;
+                this.callback = callback;
+                console.log("url", url, "===data===", data);
+                this.http.once(Laya.Event.COMPLETE, this, this.onHttpRequestComplete);
+                this.http.once(Laya.Event.ERROR, this, this.onHttpRequestError);
+                if (contentType == null) {
+                    this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json');
+                }
+                else {
+                    this.http.send(this._serverUrl + "/" + url, JSON.stringify(data), 'post', 'json', ["content-type", contentType]);
+                }
             }
             return this;
+        }
+        wxHttp(url, data, callback) {
+            rab.wxSdk.wxHttp(this._serverUrl + "/" + url, data, callback);
         }
         onHttpRequestError(e) {
             this.callback.apply(this.caller, [{ state: 500, msg: e }]);
@@ -1476,7 +1603,7 @@
                     this.createView(NotClickUI.uiView);
                 }
             }
-            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "left": 0, "bottom": 0 }, "compId": 28 }, { "type": "Image", "props": { "var": "click", "top": 0, "right": 0, "name": "click", "left": 0, "bottom": 0 }, "compId": 24 }, { "type": "Image", "props": { "width": 200, "visible": false, "var": "loadNode", "skin": "ui/grayBox.png", "sizeGrid": "15,15,15,15", "name": "loadNode", "height": 75, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["ui/bg_1.jpg", "ui/grayBox.png"], "loadList3D": [] };
+            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "var": "bg", "top": 0, "skin": "new/com/beijing.png", "right": 0, "left": 0, "bottom": 0 }, "compId": 28 }, { "type": "Image", "props": { "var": "click", "top": 0, "right": 0, "name": "click", "left": 0, "bottom": 0 }, "compId": 24 }, { "type": "Image", "props": { "width": 200, "visible": false, "var": "loadNode", "skin": "ui/grayBox.png", "sizeGrid": "15,15,15,15", "name": "loadNode", "height": 75, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["new/com/beijing.png", "ui/grayBox.png"], "loadList3D": [] };
             view.NotClickUI = NotClickUI;
             REG("ui.view.NotClickUI", NotClickUI);
             class PauseUI extends Scene {
@@ -1500,7 +1627,7 @@
                     this.createView(PendantUI.uiView);
                 }
             }
-            PendantUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pendant", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 54, "x": 134, "width": 180, "var": "ticketBox", "skin": "ui/grayBox.png", "sizeGrid": "10,10,10,10", "name": "ticketBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": -1, "x": -24.5 }, "compId": 6 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 7 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "10:00", "strokeColor": "#000000", "stroke": 2, "name": "timeText", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "FontClip", "props": { "y": 46, "x": 15.9267578125, "value": "30", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 0.8, "scaleX": 0.8, "name": "text", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 15 }] }, { "type": "Image", "props": { "y": 54, "x": 370, "width": 180, "var": "coinBox", "skin": "ui/grayBox.png", "sizeGrid": "10,10,10,10", "name": "coinBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 10, "child": [{ "type": "Image", "props": { "y": -4, "x": -23.5, "skin": "ui/coin1.png" }, "compId": 11 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 12 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "100 万", "strokeColor": "#000000", "stroke": 2, "name": "text", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }] }], "loadList": ["ui/grayBox.png", "ui/coinNum.png", "ui/coin1.png"], "loadList3D": [] };
+            PendantUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pendant", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 54, "x": 134, "width": 180, "var": "ticketBox", "skin": "new/game/jingdutiao1.png", "sizeGrid": "10,10,10,10", "name": "ticketBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": -1, "x": -24.5, "skin": "new/game/aixin.png" }, "compId": 6 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 7 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "10:00", "strokeColor": "#000000", "stroke": 2, "name": "timeText", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "FontClip", "props": { "y": 46, "x": 15.9267578125, "value": "30", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 0.8, "scaleX": 0.8, "name": "text", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 15 }] }, { "type": "Image", "props": { "y": 54, "x": 370, "width": 180, "var": "coinBox", "skin": "new/game/jinbidi.png", "sizeGrid": "10,10,10,10", "name": "coinBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 10, "child": [{ "type": "Image", "props": { "y": -4, "x": -23.5, "skin": "new/game/jinbi.png" }, "compId": 11 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 12 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "100 万", "strokeColor": "#000000", "stroke": 2, "name": "text", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }] }], "loadList": ["new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/jinbidi.png", "new/game/jinbi.png"], "loadList3D": [] };
             view.PendantUI = PendantUI;
             REG("ui.view.PendantUI", PendantUI);
             class PlatformUI extends Scene {
@@ -1671,7 +1798,7 @@
                 this.gameInfo.language = "cn";
             }
             Language.instance.SetLanguage(this.gameInfo.language);
-            this.SaveData();
+            this.SaveData(0);
         }
         onHide() {
         }
@@ -1687,7 +1814,6 @@
             this.soldierSort = [];
             Language.instance.onInit(this.gameInfo.language);
             this.updateTime();
-            this.SaveData();
         }
         updateTime() {
             let date = new Date();
@@ -1732,7 +1858,7 @@
                 return false;
             }
             this.gameInfo.coin += coin;
-            this.SaveData();
+            this.SaveData(1);
             this.SendMessage(GameNotity.Game_UpdateCoin, this.gameInfo.coin);
             return true;
         }
@@ -1750,7 +1876,7 @@
                 this.isLoopAddTicket = true;
                 Laya.timer.loop(this.loopAddTicketTimeGap, this, this.loopAddTicket);
             }
-            this.SaveData();
+            this.SaveData(2);
             this.SendMessage(GameNotity.Game_UpdateTicket, this.gameInfo.ticket);
             return true;
         }
@@ -1813,13 +1939,15 @@
             rab.HTTP.post("api/playLog", {
                 "passLv": 1,
                 "failLv": 2,
-                "score": 22
-            }, this, () => {
+                "score": 22,
+                "token": this.userInfo.token
+            }, this, (data) => {
+                rab.Util.log('添加闯关数据', data);
             });
         }
         getRank() {
-            rab.HTTP.get("api/rankList", {}, (data) => {
-                var _data = JSON.parse(data);
+            rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
+                var _data = (data);
                 rab.Util.log('获得排行榜数据', _data);
             });
         }
@@ -2461,6 +2589,8 @@
                     rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
                 }
             });
+            this.myManager.onAddLevelDate();
+            this.myManager.getRank();
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -2496,7 +2626,7 @@
             else {
                 this.m_currView.set.skin = "ui/bd_syk.png";
             }
-            this.myManager.SaveData();
+            this.myManager.SaveData(9);
         }
         onRank() {
         }
@@ -3194,8 +3324,6 @@
         OnRefreshView() {
             this.isLoopAddTicket = false;
             let manager = rab.RabGameManager.getInterest().getMyManager();
-            manager.addCoin(0);
-            manager.addTicket(0);
         }
         onCoin() {
         }
@@ -3530,7 +3658,7 @@
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.audio = 1;
             manager.ResumeBGM();
-            manager.SaveData();
+            manager.SaveData(4);
             rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
             this.onInitData();
         }
@@ -3538,13 +3666,13 @@
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.audio = 0;
             manager.PauseBGM();
-            manager.SaveData();
+            manager.SaveData(5);
             this.onInitData();
         }
         onVibrateOpen() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.vibrate = 1;
-            manager.SaveData();
+            manager.SaveData(6);
             this.onInitData();
         }
         onVibrateClose() {

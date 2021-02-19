@@ -60,6 +60,9 @@ export default class Platform extends rab.RabView {
                 rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
             }
         });
+
+        this.myManager.onAddLevelDate();
+        this.myManager.getRank();
     }
 
     protected OnRefreshView() {
@@ -128,7 +131,7 @@ export default class Platform extends rab.RabView {
         }else{
             this.m_currView.set.skin = "ui/bd_syk.png";
         }
-        this.myManager.SaveData();
+        this.myManager.SaveData(9);
     }
 
     /**排行版 */
