@@ -1936,20 +1936,24 @@
             return build;
         }
         onAddLevelDate() {
-            rab.HTTP.post("api/playLog", {
-                "passLv": 1,
-                "failLv": 2,
-                "score": 22,
-                "token": this.userInfo.token
-            }, this, (data) => {
-                rab.Util.log('添加闯关数据', data);
-            });
+            if (rab.Util.isMobil) {
+                rab.HTTP.post("api/playLog", {
+                    "passLv": 1,
+                    "failLv": 2,
+                    "score": 22,
+                    "token": this.userInfo.token
+                }, this, (data) => {
+                    rab.Util.log('添加闯关数据', data);
+                });
+            }
         }
         getRank() {
-            rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
-                var _data = (data);
-                rab.Util.log('获得排行榜数据', _data);
-            });
+            if (rab.Util.isMobil) {
+                rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
+                    var _data = (data);
+                    rab.Util.log('获得排行榜数据', _data);
+                });
+            }
         }
     }
 
@@ -2606,9 +2610,11 @@
         }
         onstart() {
             this.myManager.onLoad3dScene(() => {
-                rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
-                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+                Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
+                    rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
+                    rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                    rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+                }));
             });
         }
         updateRedPoint() {
@@ -3792,9 +3798,7 @@
             Laya.timer.frameLoop(1, this, this.onFrameLoop);
             this.OnRefreshView();
             this.myManager.onLoad3dScene(() => {
-                Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-                    this.onShowRole(1);
-                }));
+                this.onShowRole(1);
             });
         }
         OnRefreshView() {

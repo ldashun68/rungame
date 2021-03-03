@@ -287,25 +287,33 @@ export default class GameController extends rab.RabController {
     */
    public onAddLevelDate()
    {
-        rab.HTTP.post("api/playLog",{
-            "passLv":1,
-            "failLv":2,
-            "score":22,
-            "token":this.userInfo.token
-        },this,(data)=>{
-            rab.Util.log('添加闯关数据',data);
-        });
+       if(rab.Util.isMobil)
+       {
+            rab.HTTP.post("api/playLog",{
+                "passLv":1,
+                "failLv":2,
+                "score":22,
+                "token":this.userInfo.token
+            },this,(data)=>{
+                rab.Util.log('添加闯关数据',data);
+            });
+       }
+        
    }
 
    public getRank()
    {
-    rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
-        var _data = (data);
-        // Object.keys(gameInfo).forEach(function(key){
-        //     _data[key] = wx.getData(key, gameInfo[key]);
-        // });
-        rab.Util.log('获得排行榜数据',_data);
-    });
+    if(rab.Util.isMobil)
+    {
+        rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
+            var _data = (data);
+            // Object.keys(gameInfo).forEach(function(key){
+            //     _data[key] = wx.getData(key, gameInfo[key]);
+            // });
+            rab.Util.log('获得排行榜数据',_data);
+        });
+    }
+   
    }
 
    

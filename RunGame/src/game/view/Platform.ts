@@ -63,6 +63,7 @@ export default class Platform extends rab.RabView {
 
         this.myManager.onAddLevelDate();
         this.myManager.getRank();
+        
     }
 
     protected OnRefreshView() {
@@ -102,9 +103,11 @@ export default class Platform extends rab.RabView {
         //     console.log("没有新关卡了");
         // }
         this.myManager.onLoad3dScene(() => {
-            rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
-            rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-            rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+            Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
+                rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
+                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+            }));
         })
         
     }
