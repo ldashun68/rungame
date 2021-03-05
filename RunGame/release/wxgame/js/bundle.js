@@ -2832,6 +2832,10 @@
     }
 
     class Play extends rab.GameObject {
+        constructor() {
+            super(...arguments);
+            this._count = 0;
+        }
         onInit() {
         }
         onTriggerEnter(other) {
@@ -2840,6 +2844,35 @@
             if (prop) {
                 prop.onCollisionPlay();
                 this.SendMessage(GameNotity.Game_TriggerEnter, prop.prop.up, prop.prop.down);
+                this.onFlash();
+            }
+        }
+        onSetMaterial(material) {
+            this._playmaterial = material;
+        }
+        onFlash() {
+            if (this._playmaterial) {
+                if (this._count <= 0) {
+                    this._count = 8;
+                    Laya.timer.frameLoop(10, this, () => {
+                        if (this._count > 0) {
+                            this._count -= 1;
+                            console.log("这里要开始闪烁了");
+                            if (this._playmaterial.albedoIntensity == 1) {
+                                this._playmaterial.albedoIntensity = 2;
+                            }
+                            else {
+                                this._playmaterial.albedoIntensity = 1;
+                            }
+                        }
+                        else {
+                            Laya.timer.clearAll(this);
+                        }
+                    });
+                }
+                else {
+                    this._count = 8;
+                }
             }
         }
     }
@@ -2854,7 +2887,6 @@
             this.slideLength = 4;
             this.m_JumpStart = 0;
             this.m_SlideStart = 0;
-            this.m_leftState = 0;
             this.minSpeed = 5.0;
             this.maxSpeed = 10.0;
             this.worldDistance = 0;
@@ -2892,6 +2924,10 @@
             this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
             if (this.animator) {
                 this.animator.crossFade('idle', 0);
+            }
+            this.model = this.playNode.getChildAt(0).getChildAt(0);
+            if (this.model) {
+                this._characterSlot.getComponent(Play).onSetMaterial(this.model.skinnedMeshRenderer.material);
             }
         }
         onGameStart() {
@@ -2971,13 +3007,6 @@
                     this._playState = PlayState.run;
                 }
             }
-            else if (this._playState == PlayState.left || this._playState == PlayState.right) {
-                this.m_leftState -= 0.02;
-                if (this.m_leftState <= 0) {
-                    this.animator.crossFade('run', 0);
-                    this._playState = PlayState.run;
-                }
-            }
             if (this.m_Speed < this.maxSpeed) {
                 this.m_Speed += 0.2 * 0.02;
             }
@@ -2991,24 +3020,24 @@
                 return;
             console.log("鼠标方向：", data);
             if (data[0] == 0) {
-                this._playState = PlayState.right;
-                this.m_leftState = 1.5;
                 if (this.localx < 1.25) {
                     this.localx += 1.25;
-                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
+                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 500, null, Laya.Handler.create(this, () => {
+                        this.animator.crossFade('run', 0);
+                    }));
                     if (this.animator) {
-                        this.animator.crossFade('left', 0.1);
+                        this.animator.crossFade('left', 0);
                     }
                 }
             }
             else if (data[0] == 1) {
-                this._playState = PlayState.left;
-                this.m_leftState = 1.5;
                 if (this.localx > -1.25) {
                     this.localx -= 1.25;
-                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
+                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 500, null, Laya.Handler.create(this, () => {
+                        this.animator.crossFade('run', 0);
+                    }));
                     if (this.animator) {
-                        this.animator.crossFade('right', 0.1);
+                        this.animator.crossFade('right', 0);
                     }
                 }
             }

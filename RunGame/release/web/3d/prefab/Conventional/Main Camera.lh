@@ -10,8 +10,8 @@
 			"layer":0,
 			"position":[
 				0,
-				3,
-				-6
+				1,
+				0
 			],
 			"rotation":[
 				0,
@@ -24,13 +24,13 @@
 				1,
 				1
 			],
-			"clearFlag":1,
+			"clearFlag":2,
 			"orthographic":false,
 			"orthographicVerticalSize":10,
 			"fieldOfView":60,
 			"enableHDR":true,
-			"nearPlane":0.3,
-			"farPlane":1000,
+			"nearPlane":0.1,
+			"farPlane":100,
 			"viewport":[
 				0,
 				0,
