@@ -87,11 +87,13 @@
     (function (PlayState) {
         PlayState[PlayState["none"] = 0] = "none";
         PlayState[PlayState["init"] = 1] = "init";
-        PlayState[PlayState["run"] = 2] = "run";
-        PlayState[PlayState["jump"] = 3] = "jump";
-        PlayState[PlayState["slide"] = 4] = "slide";
-        PlayState[PlayState["stop"] = 5] = "stop";
-        PlayState[PlayState["death"] = 6] = "death";
+        PlayState[PlayState["left"] = 2] = "left";
+        PlayState[PlayState["right"] = 3] = "right";
+        PlayState[PlayState["run"] = 4] = "run";
+        PlayState[PlayState["jump"] = 5] = "jump";
+        PlayState[PlayState["slide"] = 6] = "slide";
+        PlayState[PlayState["stop"] = 7] = "stop";
+        PlayState[PlayState["death"] = 8] = "death";
     })(PlayState || (PlayState = {}));
     class QueueT {
         constructor() {
@@ -2805,6 +2807,7 @@
             this.slideLength = 4;
             this.m_JumpStart = 0;
             this.m_SlideStart = 0;
+            this.m_leftState = 0;
             this.minSpeed = 5.0;
             this.maxSpeed = 10.0;
             this.worldDistance = 0;
@@ -2921,6 +2924,13 @@
                     this._playState = PlayState.run;
                 }
             }
+            else if (this._playState == PlayState.left || this._playState == PlayState.right) {
+                this.m_leftState -= 0.02;
+                if (this.m_leftState <= 0) {
+                    this.animator.crossFade('run', 0);
+                    this._playState = PlayState.run;
+                }
+            }
             if (this.m_Speed < this.maxSpeed) {
                 this.m_Speed += 0.2 * 0.02;
             }
@@ -2934,15 +2944,25 @@
                 return;
             console.log("鼠标方向：", data);
             if (data[0] == 0) {
+                this._playState = PlayState.right;
+                this.m_leftState = 1.5;
                 if (this.localx < 1.25) {
                     this.localx += 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
+                    if (this.animator) {
+                        this.animator.crossFade('right', 0.1);
+                    }
                 }
             }
             else if (data[0] == 1) {
+                this._playState = PlayState.left;
+                this.m_leftState = 1.5;
                 if (this.localx > -1.25) {
                     this.localx -= 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 200);
+                    if (this.animator) {
+                        this.animator.crossFade('left', 0.1);
+                    }
                 }
             }
             else if (data[0] == 2) {

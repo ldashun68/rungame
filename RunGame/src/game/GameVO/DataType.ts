@@ -22,6 +22,8 @@ export enum PlayState
     none,
     /**初始化 */
     init,
+    left,
+    right,
     /** 跑*/
     run,
     /** 跳*/
