@@ -38,6 +38,8 @@ declare namespace wx{
         export function request(opt:any);
         /**分包 */
         export function loadSubpackage(opt:any);
+
+        export function getData(v1:any, v2:any);
 }
 
 //--小萌牛统计平台

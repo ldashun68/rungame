@@ -63,7 +63,6 @@ export default class Platform extends rab.RabView {
 
         this.myManager.onAddLevelDate();
         this.myManager.getRank();
-        
     }
 
     protected OnRefreshView() {
@@ -139,12 +138,17 @@ export default class Platform extends rab.RabView {
 
     /**排行版 */
     private onRank (): void {
-        
+        rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
+        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
     }
 
     /**照片墙 */
     private onPic (): void {
         // rab.wxSdk.queryRequest();
+        rab.UIManager.onCreateView(ViewConfig.gameView.PhotoWall);
+        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
     }
 
     /**语言包 */
@@ -152,5 +156,4 @@ export default class Platform extends rab.RabView {
         this.myManager.onSetLanguage();
         this.onShowLanguage();
     }
-
 }

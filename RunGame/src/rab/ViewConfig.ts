@@ -10,6 +10,8 @@ import GetTicket from "../game/view/GetTicket";
 import GameSet from "../game/view/GameSet";
 import NotClick from "../game/view/NotClick";
 import RoleSelect from "../game/view/RoleSelect";
+import Rank from "../game/view/Rank";
+import PhotoWall from "../game/view/PhotoWall";
 
 
 export default class ViewConfig {
@@ -26,6 +28,8 @@ export default class ViewConfig {
         rab.RabViewConfig.regClass("GameSetView", GameSet);
         rab.RabViewConfig.regClass("NotClick", NotClick);
         rab.RabViewConfig.regClass("RoleSelect", RoleSelect);
+        rab.RabViewConfig.regClass("Rank", Rank);
+        rab.RabViewConfig.regClass("PhotoWall", PhotoWall);
     }
 
     static gameView = {
@@ -39,6 +43,8 @@ export default class ViewConfig {
         GetTicketView:"GetTicketView",
         GameSetView:"GameSetView",
         NotClick:"NotClick",
-        RoleSelect:"RoleSelect"
+        RoleSelect:"RoleSelect",
+        Rank:"Rank",
+        PhotoWall:"PhotoWall"
     }
 }

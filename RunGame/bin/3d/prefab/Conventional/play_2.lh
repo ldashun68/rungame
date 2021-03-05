@@ -31,7 +31,7 @@
 				"type":"Sprite3D",
 				"instanceID":53,
 				"props":{
-					"name":"role_02",
+					"name":"root",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -92,6 +92,10 @@
 									{
 										"name":"slide",
 										"clipPath":"Assets/new/role/02/role_02@left-left.lani"
+									},
+									{
+										"name":"slide 0",
+										"clipPath":"Assets/new/role/02/role_02@left-left.lani"
 									}
 								]
 							}
@@ -105,7 +109,7 @@
 						"type":"SkinnedMeshSprite3D",
 						"instanceID":54,
 						"props":{
-							"name":"002",
+							"name":"m",
 							"active":true,
 							"isStatic":false,
 							"layer":0,

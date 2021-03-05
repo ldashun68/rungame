@@ -59,7 +59,7 @@ Material:
     - _AlbedoIntensity: 1
     - _BumpScale: 1
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.227
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1

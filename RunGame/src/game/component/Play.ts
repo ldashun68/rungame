@@ -5,9 +5,10 @@ import ObstacleItem from "./ObstacleItem";
 export default class Play extends rab.GameObject {
 
 
-    
+    private _playmaterial:Laya.UnlitMaterial;
+    private _count:number = 0;
     onInit(): void {
-        
+        // this.model = <Laya.MeshSprite3D>this.gameObject.getChildByName('root').getChildByName('m')
     } 
 
     /**
@@ -22,8 +23,45 @@ export default class Play extends rab.GameObject {
         {
             prop.onCollisionPlay();
             this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
+            this.onFlash();
         }
         
+    }
+
+    public onSetMaterial(material:Laya.UnlitMaterial)
+    {
+        this._playmaterial = material;
+    }
+
+    private onFlash()
+    {
+        if(this._playmaterial)
+        {
+            if(this._count <= 0)
+            {
+                this._count = 8;
+                Laya.timer.frameLoop(10,this,()=>{
+                    if(this._count > 0)
+                    {
+                        this._count -= 1
+                        console.log("这里要开始闪烁了");
+                        // this._playmaterial.albedoColor = new Laya.Vector4(1,2,2,0.1);
+                        if(this._playmaterial.albedoIntensity == 1)
+                        {
+                            this._playmaterial.albedoIntensity = 2
+                        }else{
+                            this._playmaterial.albedoIntensity = 1;
+                        }
+                    }else{
+                        Laya.timer.clearAll(this);
+                    }
+                    
+                })
+            }else
+            {
+                this._count = 8;
+            }
+        }
     }
 
     // /**

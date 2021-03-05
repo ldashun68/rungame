@@ -4,7 +4,7 @@ D effect
 D load
 D new
 D ui
-R D79F403F bg_1.jpg
+R F35A8C67 bg_1.jpg
 P C1A37821 coinNum.png
 P D056AD81 failNum.png
 P AA5BA3D3 line4.png
@@ -13,21 +13,40 @@ P 2088B518 load2.png
 P 1CCDAC5B load3.png
 P 27B22274 load4.png
 P E8436306 load5.png
+R 1C7D4773 LOGO.png
 P 3B989BE7 passNum.png
 D effect/bg
 D effect/cloud
 D new/bg
+R FA662DFA LOGO.jpg
 R 46E030B6 挑战失败.jpg
 R D0F5FF1D 挑战成功.jpg
+R CE7C2666 排行榜.jpg
 R E9592F88 暂停.jpg
 R A258C656 未标题-1.jpg
 R AF99BDAB 游戏中.jpg
+R FC7F9BFC 照片墙1.jpg
+R 0525B0E3 照片墙2.jpg
 R D04E2BAE 首页.jpg
 D new/com
+P BE7C19F2 1st.png
+P D3AEC029 2st.png
+P 4CD24B2E 3st.png
+P EB4F4DF8 4st.png
+P D0811707 b_00years.png
+P D356233B b_00years1.png
+P 23A3C28A b_10years.png
+P C2900896 b_10years1.png
+P E056B55F b_80years.png
+P D43C3AA4 b_80years1.png
+P F6AB10CC b_90years.png
+P AFD194CF b_90years1.png
 P 79E42119 b_cxks.png
 P 75E78065 b_fanhui.png
 P 5E6B3574 b_fenxiang.png
 P 5679FC02 b_jxyx.png
+P EAAB332D b_shangyiye.png
+P EF3952CB b_xiayiye.png
 P 3E5AE213 b_zcd.png
 P 3AFD22FF b_zhanting.png
 P 3F667531 b_zhuye.png
@@ -41,12 +60,23 @@ P AA64134E bd_yy.png
 P D247FC11 bd_zpq.png
 R 468B80E7 beijing.png
 R 82838E0F guangxiao.png
+P 579686A8 kuang1.png
+P 4F57A9A2 kuang2.png
+P 1BBDB1F8 kuang3.png
+P 70F21C3F kuang4.png
+P 79B38892 paihangbangdiban.png
+P 13E1E2EE rect2.png
+P 22DD8E0C rect3.png
 P B140247E t_jsxz.png
+P 277D3B4D t_paihangb.png
 R B2409C3E t_tzcg.png
 R 2D916204 t_tzsb.png
+P CFC5595A t_zpq.png
 P BED830ED tanchuang.png
 P 3FA9A004 xuanzhuan.png
 P 837A9F47 xuanzhuan2.png
+P C4960CCF zhaopian X.png
+P A6F40688 zhaopian.png
 D new/game
 P A6AE254A 1.png
 P 99CBB14F 2.png
@@ -70,3 +100,49 @@ P F460C54E mingzidi.png
 P ADFE3CB3 touxiang_02.png
 P 9D1C4F4D touxiangk.png
 P 0973DE40 touxiangk2.png
+D new/com/num
+D new/com/Photo
+P 26B15903 pic_01.png
+R 0A91C399 pic_01_b.png
+P 9697F9D3 pic_02.png
+R 6E4AA4A3 pic_02_b.png
+P 2168483D pic_03.png
+R 15336444 pic_03_b.png
+P 1847309A pic_04.png
+R 14930267 pic_04_b.png
+P 817AFEE4 pic_05.png
+R 1A5676C0 pic_05_b.png
+P 3D549D4A pic_06.png
+R E9E2E7DE pic_06_b.png
+P 7BE36EB9 pic_07.png
+R 57656E4B pic_07_b.png
+P AA211F29 pic_08.png
+R 3730FC92 pic_08_b.png
+P 7309FB3C pic_09.png
+R 0696DE6F pic_09_b.png
+P F5D40DB8 pic_10.png
+R D2050F87 pic_10_b.png
+P C4193539 pic_11.png
+R BA346AD1 pic_11_b.png
+D new/com/num/index
+P CB8F8394 0.png
+P CB0C37FA 1.png
+P 1FB06ADB 2.png
+P 89C63E95 3.png
+P 635E5B31 4.png
+P E79C5A1B 5.png
+P 5C9A2A8B 6.png
+P 9B32C36A 7.png
+P 65CF7B32 8.png
+P EC4F47D3 9.png
+D new/com/num/score
+P DA0B6018 0.png
+P AC9E1F42 1.png
+P 32E3D302 2.png
+P AB130FB7 3.png
+P AFDC99E5 4.png
+P 66C607A1 5.png
+P C42D4E87 6.png
+P B970DFE7 7.png
+P 426EF5C5 8.png
+P 84EE963E 9.png

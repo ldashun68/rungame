@@ -48,6 +48,8 @@ export default class GameController extends rab.RabController {
 
     public playSelect:number = 1;
 
+    public rank: Array<any>;
+
     /**
      * 初始化资源
      */
@@ -103,6 +105,7 @@ export default class GameController extends rab.RabController {
         this.fightGetEquip = [];
         this.skillWeight = 0;
         this.soldierSort = [];
+        this.rank = [];
 
         Language.instance.onInit(this.gameInfo.language)
         this.updateTime();
@@ -193,8 +196,6 @@ export default class GameController extends rab.RabController {
         this.addTicket(this.loopAddTicketValue);
     }
 
-   
-
     /**获得观看视频后增加的体力 */
     public getVideoAddTicket (): number {
         return 15;
@@ -219,8 +220,6 @@ export default class GameController extends rab.RabController {
     public getCoinSmall (): number {
         return 500;
     }
-
-    
 
     /**获得兵种最大数量 */
     public getSoldierMaxCount (): number {
@@ -285,8 +284,8 @@ export default class GameController extends rab.RabController {
     /**
     * 添加闯关数据
     */
-   public onAddLevelDate()
-   {
+    public onAddLevelDate()
+    {
        if(rab.Util.isMobil)
        {
             rab.HTTP.post("api/playLog",{
@@ -298,23 +297,19 @@ export default class GameController extends rab.RabController {
                 rab.Util.log('添加闯关数据',data);
             });
        }
-        
-   }
+    }
 
    public getRank()
    {
-    if(rab.Util.isMobil)
-    {
-        rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
-            var _data = (data);
-            // Object.keys(gameInfo).forEach(function(key){
-            //     _data[key] = wx.getData(key, gameInfo[key]);
-            // });
-            rab.Util.log('获得排行榜数据',_data);
-        });
-    }
-   
+        if(rab.Util.isMobil)
+        {
+            rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
+                var _data = (data);
+                Object.keys(this.rank).forEach(function(key){
+                    _data[key] = wx.getData(key, this.rank[key]);
+                });
+                rab.Util.log('获得排行榜数据',_data);
+            });
+        }
    }
-
-   
 }

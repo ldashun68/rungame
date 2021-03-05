@@ -33,11 +33,12 @@ export default class PlayerManager extends rab.GameObject {
     public  slideLength:number = 4;
     public m_JumpStart:number = 0;
     public m_SlideStart:number = 0;
-    public m_leftState:number = 0;
     public minSpeed = 5.0;
     public maxSpeed = 10.0;
     public m_Speed:number;
     public worldDistance:number = 0;
+    private model:Laya.SkinnedMeshSprite3D;
+    private _playmaterial:Laya.UnlitMaterial;
 
     
     constructor () {
@@ -85,6 +86,13 @@ export default class PlayerManager extends rab.GameObject {
         if(this.animator)
         {
             this.animator.crossFade('idle',0);
+        }
+
+        this.model = <Laya.SkinnedMeshSprite3D>this.playNode.getChildAt(0).getChildAt(0);
+        if(this.model)
+        {
+            // this._playmaterial = <Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material;
+            this._characterSlot.getComponent(Play).onSetMaterial(<Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material)
         }
     }
 
@@ -193,14 +201,6 @@ export default class PlayerManager extends rab.GameObject {
                 this.animator.crossFade('run',0);
                 this._playState = PlayState.run
 			}
-        }else if(this._playState == PlayState.left || this._playState == PlayState.right){
-
-            this.m_leftState -= 0.02; 
-			if (this.m_leftState  <= 0)
-			{
-                this.animator.crossFade('run',0);
-                this._playState = PlayState.run
-            }
         }
 
         if (this.m_Speed < this.maxSpeed)
@@ -210,8 +210,9 @@ export default class PlayerManager extends rab.GameObject {
         {
             this.m_Speed = this.maxSpeed;
         }
-			
     }
+
+    
 
     private get speedRatio() {  return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed);}
 
@@ -221,32 +222,36 @@ export default class PlayerManager extends rab.GameObject {
         console.log("鼠标方向：",data);
         if(data[0] == 0)
         {
-            this._playState = PlayState.right;
-            this.m_leftState = 1.5;
+            
             if(this.localx< 1.25)
             {
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx += 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
-                Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},200)
+                Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},500,null,Laya.Handler.create(this, () => {
+                    this.animator.crossFade('run',0);
+                    // this._playState = PlayState.run
+                }));
                 if(this.animator)
                 {
-                    this.animator.crossFade('left',0.1);
+                    this.animator.crossFade('left',0);
                 }
             }
             
         }else if(data[0] == 1){
-            this._playState = PlayState.left;
-            this.m_leftState = 1.5;
+           
             if(this.localx > -1.25)
             {
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx -= 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
-                Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},200);
+                Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},500,null,Laya.Handler.create(this, () => {
+                    this.animator.crossFade('run',0);
+                    // this._playState = PlayState.run
+                }));
                 if(this.animator)
                 {
-                    this.animator.crossFade('right',0.1);
+                    this.animator.crossFade('right',0);
                 }
             }
         }else if(data[0] == 2)

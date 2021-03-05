@@ -754,11 +754,25 @@ export default class Tool {
     }
 
     /**弹窗动画 */
-    public winowAniamtion (window: Laya.Sprite): void {
-        window.scale(0.8, 0.8);
+    public winowAniamtion (window: Laya.Sprite, minScale?: number, callback?: Function): void {
+        window.scale(minScale, minScale);
+        Laya.Tween.clearAll(window);
         Laya.Tween.to(window, {scaleX: 1.05, scaleY: 1.05}, 100, null, Laya.Handler.create(this, () => {
-            Laya.Tween.to(window, {scaleX: 1, scaleY: 1}, 50, null);
+            Laya.Tween.to(window, {scaleX: 1, scaleY: 1}, 50, null, Laya.Handler.create(this, () => {
+                callback && callback();
+            }));
         }));
     }
-}
 
+    /**闪烁动画 */
+    public twinkleAniamtion (sprite: Laya.Sprite): void {
+        Laya.Tween.clearAll(sprite);
+        sprite.alpha = 0;
+        Laya.Tween.to(sprite, { alpha: 0.5 }, 100, null, null, 0);
+        Laya.Tween.to(sprite, { alpha: 0.25 }, 100, null, null, 100);
+        Laya.Tween.to(sprite, { alpha: 0.5 }, 100, null, null, 200);
+        Laya.Tween.to(sprite, { alpha: 0.25 }, 100, null, Laya.Handler.create(this, () => {
+            sprite.alpha = 0;
+        }), 300);
+    }
+}
