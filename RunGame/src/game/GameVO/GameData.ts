@@ -25,5 +25,11 @@ export default interface GameData extends RabGameInfo  {
     currentPass: number;
     /**语言包 */
     language:string;
-
+    /**照片墙 */
+    photo: {
+        year80: number,
+        year90: number,
+        year00: number,
+        year10: number,
+    }
 }

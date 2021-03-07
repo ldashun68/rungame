@@ -102,13 +102,15 @@ export default class RoleSelect extends rab.RabView {
         this.myManager.playSelect = this.selectId;
         if(this.myManager.CurrPassData())
         {
-            rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-            let arr = this.myManager.getPassBuild();
-            this.myManager.onLoad3dScene(() => {
-                    Laya.loader.create(arr, Laya.Handler.create(this, () => {
-                    this.SendMessage(GameNotity.Init_Loading);
-                }));
-            })
+            if (this.myManager.addTicket(-1) == true) {
+                rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
+                let arr = this.myManager.getPassBuild();
+                this.myManager.onLoad3dScene(() => {
+                        Laya.loader.create(arr, Laya.Handler.create(this, () => {
+                        this.SendMessage(GameNotity.Init_Loading);
+                    }));
+                })
+            }
         }else{
             console.log("没有新关卡了");
         }

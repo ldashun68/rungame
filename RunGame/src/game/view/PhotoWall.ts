@@ -55,9 +55,9 @@ export default class PhotoWall extends rab.RabView {
             }
         });
 
-        for (let index: number = 0; index < this.m_currView.photoNode.numChildren; index++) {
-            this.m_currView.photoNode.getChildAt(index).on(Laya.Event.CLICK, this, this.onLook, [index]);
-        }
+        this.m_currView.photoList.selectEnable = true;
+        this.m_currView.photoList.selectHandler = new Laya.Handler(this, this.onSelect);
+        this.m_currView.photoList.renderHandler = new Laya.Handler(this, this.updateItem);
 
         this.OnRefreshView();
     }
@@ -89,20 +89,45 @@ export default class PhotoWall extends rab.RabView {
                 button.visible = true;
             }
         }
+
+        let array: Array<any> = [];
+        for(let m: number = 0; m < 12; m++){
+            array.push("");
+        }
+        this.m_currView.photoList.array = array;
+        this.m_currView.photoList.scrollTo(0);
     }
 
-    private onLook (data: any): void {
-        console.log(data);
-        //if (data < this.myManager.gameInfo.pass) {
+    private updateItem(cell: Laya.Image, index: number): void {
+        let bool: boolean = false;
+        if (index < this.myManager.gameInfo.photo[this.year]) {
+            bool = true;
+        }
+        if (index >= 11) {
+            (cell.getChildAt(0) as Laya.Image).visible = false;
+        }
+
+        if (bool == true) {
+            (cell.getChildAt(0).getChildAt(0) as Laya.Image).skin = "new/com/Photo/pic_0" + (index+1) + ".png";
+        }
+        else {
+            (cell.getChildAt(0).getChildAt(0) as Laya.Image).skin = "new/com/zhaopian X.png";
+        }
+    }
+
+    private onSelect(index: number): void {
+        let bool: boolean = false;
+        if (index < this.myManager.gameInfo.photo[this.year]) {
+            bool = true;
+        }
+
+        if (bool == true) {
             this.m_currView.cover.visible = true;
             this.m_currView.cover.alpha = 0.5;
             this.m_currView.bigPhoto.visible = true;
             this.m_currView.bigPhoto.alpha = 1;
-            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (data+1) + "_b.png"
+            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index+1) + "_b.png"
             Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
-
-            let photo: Laya.Image = this.m_currView.photoNode.getChildAt(data).getChildAt(0) as Laya.Image;
-            photo.skin = "new/com/Photo/pic_0" + (data+1) + ".png"
-        //}
+        }
     }
 }

@@ -33,6 +33,12 @@ export default class Play extends rab.GameObject {
         this._playmaterial = material;
     }
 
+    public stopFlash() {
+        this._count = 0;
+        this._playmaterial.albedoIntensity = 1;
+        Laya.timer.clearAll(this);
+    }
+
     private onFlash()
     {
         if(this._playmaterial)

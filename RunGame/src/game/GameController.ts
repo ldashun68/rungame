@@ -65,6 +65,13 @@ export default class GameController extends rab.RabController {
         this.gameInfo.currentPass = 0;
         this.gameInfo.language = "cn";//cn中文、en英文
 
+        this.gameInfo.photo = {
+            year80: 0,
+            year90: 0,
+            year00: 0,
+            year10: 0,
+        };
+
         this.gameInfo.lastTime = {
             year: 0,
             month: 0,

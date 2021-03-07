@@ -92,7 +92,8 @@ export default class PlayerManager extends rab.GameObject {
         if(this.model)
         {
             // this._playmaterial = <Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material;
-            this._characterSlot.getComponent(Play).onSetMaterial(<Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material)
+            this._characterSlot.getComponent(Play).onSetMaterial(<Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material);
+            this._characterSlot.getComponent(Play).stopFlash();
         }
     }
 

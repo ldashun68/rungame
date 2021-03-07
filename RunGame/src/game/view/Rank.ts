@@ -3,8 +3,6 @@ import rab from "../../rab/rab";
 import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
-import GameNotity from "../GameNotity";
-import Language from "../GameVO/Language";
 
 /**
  * 排行榜界面
@@ -23,11 +21,16 @@ export default class Rank extends rab.RabView {
         this.m_currView.breakBtn.on(Laya.Event.CLICK, this, this.onBreak);
         Tool.instance.addButtonAnimation(this.m_currView.breakBtn);
 
-        this.m_currView.upBtn.on(Laya.Event.CLICK, this, this.onUp);
-        Tool.instance.addButtonAnimation(this.m_currView.upBtn);
+        this.m_currView.rankList.selectEnable = true;
+        this.m_currView.rankList.selectHandler = new Laya.Handler(this, this.onSelect);
+        this.m_currView.rankList.renderHandler = new Laya.Handler(this, this.updateItem);
 
-        this.m_currView.downBtn.on(Laya.Event.CLICK, this, this.onDown);
-        Tool.instance.addButtonAnimation(this.m_currView.downBtn);
+        // for (let i: number = 0; i < 20; i++) {
+        //     this.myManager.rank[i] = [];
+        //     this.myManager.rank[i]["name"] = "郭德纲";
+        //     this.myManager.rank[i]["avatar"] = "";
+        //     this.myManager.rank[i]["score"] = ""+i;
+        // }
 
         this.OnRefreshView();
     }
@@ -43,51 +46,14 @@ export default class Rank extends rab.RabView {
         rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
     }
 
-    private onUp (): void {
-        if (this.page == 0) {
-            return;
-        }
-
-        this.page -= 1;
-        if (this.page == 0) {
-            this.m_currView.item1.visible = true;
-            this.m_currView.item2.visible = true;
-            this.m_currView.item3.visible = true;
-            this.m_currView.item11.visible = false;
-            this.m_currView.item12.visible = false;
-            this.m_currView.item13.visible = false;
-        }
-
-        this.updateList();
-    }
-
-    private onDown (): void {
-        if ((this.page+1)*10 >= this.myManager.rank.length) {
-            return;
-        }
-
-        if (this.page == 0) {
-            this.m_currView.item1.visible = false;
-            this.m_currView.item2.visible = false;
-            this.m_currView.item3.visible = false;
-            this.m_currView.item11.visible = true;
-            this.m_currView.item12.visible = true;
-            this.m_currView.item13.visible = true;
-        }
-        this.page += 1;
-
-        this.updateList();
-    }
-
     private updateList (): void {
-        let tag: number = 0;
-        for (let index: number = this.page*10; index < this.page*10+10; index++) {
-            this.initItem(index, this.m_currView.itemNode.getChildAt(tag) as Laya.Image, this.myManager.rank[index]);
-            tag += 1;
+        let array: Array<any> = [];
+        for(let m: number = 0; m < 9; m++){
+            array.push("");
         }
-        for (let index: number = 10; index < 13; index++) {
-            tag = this.page*10+(index-10);
-            this.initItem(tag, this.m_currView.itemNode.getChildAt(index) as Laya.Image, this.myManager.rank[tag]);
+        this.m_currView.rankList.array = array;
+        for(let m: number = 9; m < this.myManager.rank.length; m++){
+            this.m_currView.rankList.addItem("");
         }
     }
 
@@ -142,5 +108,26 @@ export default class Rank extends rab.RabView {
                 }
             }
         }
+    }
+
+    private updateItem(cell: Laya.Image, index: number): void {
+        console.log(index, cell);
+
+        let item: Laya.Image;
+        for (let i: number = 0; i < cell.getChildAt(0).numChildren; i++) {
+            (cell.getChildAt(0).getChildAt(i) as Laya.Image).visible = false;
+        }
+        if (index < 3) {
+            item = (cell.getChildAt(0).getChildAt(index) as Laya.Image);
+        }
+        else {
+            item = (cell.getChildAt(0).getChildAt(3) as Laya.Image);
+        }
+        item.visible = true;
+        this.initItem(index, item, this.myManager.rank[index]);
+    }
+
+    private onSelect(index: number): void {
+        console.log(index);
     }
 }
