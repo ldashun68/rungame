@@ -6,7 +6,7 @@
     "searchKey":"Scene,PhotoWall,PhotoWall",
     "props":{"width":750,"var":"PhotoWall","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"PhotoWall","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
-    "maxID":524,
+    "maxID":537,
     "label":"PhotoWall",
     "isOpen":true,
     "isDirectory":true,
@@ -162,10 +162,10 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,list,list",
-            "props":{"y":778,"x":382,"width":700,"var":"list","skin":"new/com/tanchuang.png","sizeGrid":"75,77,75,65","name":"list","height":1080,"centerY":111,"centerX":7,"anchorY":0.5,"anchorX":0.5},
+            "props":{"width":700,"var":"list","skin":"new/com/tanchuang.png","sizeGrid":"75,77,75,65","name":"list","height":1080,"centerY":111,"centerX":7,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"list",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -301,250 +301,86 @@
         },
         {
             "x":15,
-            "type":"Image",
-            "searchKey":"Image,photoNode,photoNode",
-            "props":{"var":"photoNode","name":"photoNode","centerY":0,"centerX":0},
+            "type":"List",
+            "searchKey":"List,photoList,photoList",
+            "props":{"y":778,"x":375,"width":600,"var":"photoList","spaceY":22,"spaceX":30,"repeatY":6,"repeatX":2,"name":"photoList","height":980,"centerY":111,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
-            "label":"photoNode",
-            "isOpen":false,
+            "label":"photoList",
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":501,
+            "compId":526,
             "child":[
                 {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":-220,"skin":"new/com/zhaopian.png","name":"item","centerX":-150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
+                    "x":30,
+                    "type":"Box",
+                    "searchKey":"Box,render",
+                    "props":{"y":5,"x":10,"width":275,"name":"render","height":310},
+                    "nodeParent":526,
+                    "label":"render",
                     "isOpen":true,
                     "isDirectory":true,
-                    "isAniNode":true,
+                    "isAniNode":false,
                     "hasChild":true,
-                    "compId":499,
+                    "compId":525,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":499,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":500,
+                            "searchKey":"Image,item",
+                            "props":{"y":145.5,"x":137.5,"width":275,"skin":"new/com/zhaopian.png","name":"item","height":291,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":525,
+                            "label":"item",
+                            "isOpen":true,
+                            "isDirectory":true,
+                            "isAniNode":false,
+                            "hasChild":true,
+                            "compId":529,
                             "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":499,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":514,
-                            "child":[
-                                ]
+                                {
+                                    "x":60,
+                                    "type":"Image",
+                                    "searchKey":"Image",
+                                    "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
+                                    "nodeParent":529,
+                                    "label":"Image",
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "compId":530,
+                                    "child":[
+                                        ]
+                                },
+                                {
+                                    "x":60,
+                                    "type":"Label",
+                                    "searchKey":"Label",
+                                    "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
+                                    "nodeParent":529,
+                                    "label":"Label",
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "compId":531,
+                                    "child":[
+                                        ]
+                                }]
                         }]
                 },
                 {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":-220,"skin":"new/com/zhaopian.png","name":"item","centerX":150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":504,
+                    "x":30,
+                    "type":"VScrollBar",
+                    "searchKey":"VScrollBar,scrollBar",
+                    "props":{"y":14,"x":1046,"skin":"comp/vscroll.png","name":"scrollBar"},
+                    "nodeParent":526,
+                    "label":"scrollBar",
+                    "isDirectory":false,
+                    "isAniNode":false,
+                    "hasChild":false,
+                    "compId":536,
                     "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":504,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":505,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":504,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":517,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":93,"skin":"new/com/zhaopian.png","name":"item","centerX":-150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":506,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":506,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":508,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":506,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":518,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":95,"skin":"new/com/zhaopian.png","name":"item","centerX":150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":507,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":507,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":509,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":507,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":519,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":412,"skin":"new/com/zhaopian.png","name":"item","centerX":-150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":510,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":510,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":512,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":510,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":520,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "searchKey":"Image,item",
-                    "props":{"y":413,"skin":"new/com/zhaopian.png","name":"item","centerX":150,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":501,
-                    "label":"item",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":511,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "searchKey":"Image",
-                            "props":{"y":170,"x":137.5,"skin":"new/com/zhaopian X.png","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":511,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":513,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Label",
-                            "searchKey":"Label",
-                            "props":{"y":38,"x":137.5,"text":"老照片","fontSize":30,"font":"Microsoft YaHei","color":"#ffffff","bold":true,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":511,
-                            "label":"Label",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":521,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 }]
         },
         {
