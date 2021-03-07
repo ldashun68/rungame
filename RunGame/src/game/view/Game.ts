@@ -34,9 +34,9 @@ export default class Game extends rab.RabView {
 
     protected InitView() {
         this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGametart);
-        Laya.stage.on(Laya.Event.MOUSE_DOWN,this,this.onMouseDown);
-        Laya.stage.on(Laya.Event.MOUSE_UP,this,this.onMouseUp);
-
+        
+        this.m_currView.on(Laya.Event.MOUSE_DOWN,this,this.onMouseDown);
+        this.m_currView.on(Laya.Event.MOUSE_UP,this,this.onMouseUp);
         // Laya.stage.on(Laya.Event.KEY_DOWN,this,this.onKeyDown);
         Laya.stage.on(Laya.Event.KEY_UP,this,this.onKeyUp);
 
@@ -54,7 +54,10 @@ export default class Game extends rab.RabView {
         this.OnRefreshView();
     }
 
+   
+
     protected OnRefreshView() {
+        
         console.log("刷新游戏页面");
         this.m_currView.guild.visible = true;
         this.gameStart = false;

@@ -56,7 +56,7 @@ export default class PhotoWall extends rab.RabView {
         });
 
         this.m_currView.photoList.selectEnable = true;
-        this.m_currView.photoList.selectHandler = new Laya.Handler(this, this.onSelect);
+        this.m_currView.photoList.mouseHandler = new Laya.Handler(this, this.onSelect);
         this.m_currView.photoList.renderHandler = new Laya.Handler(this, this.updateItem);
 
         this.OnRefreshView();
@@ -115,12 +115,12 @@ export default class PhotoWall extends rab.RabView {
         }
     }
 
-    private onSelect(index: number): void {
+    private onSelect(e,index: number): void {
+        if(this.m_currView.bigPhoto.visible)return
         let bool: boolean = false;
         if (index < this.myManager.gameInfo.photo[this.year]) {
             bool = true;
         }
-
         if (bool == true) {
             this.m_currView.cover.visible = true;
             this.m_currView.cover.alpha = 0.5;

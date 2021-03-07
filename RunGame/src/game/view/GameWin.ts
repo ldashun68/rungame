@@ -74,6 +74,7 @@ export default class GameWin extends rab.RabView {
     onwin()
     {
 
+        this.myManager.openPhotowall();
         this.m_currView.award.visible = true;
 
         let alpha = (sprite: Laya.Sprite, time: number) => {

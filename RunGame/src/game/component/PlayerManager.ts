@@ -92,8 +92,11 @@ export default class PlayerManager extends rab.GameObject {
         if(this.model)
         {
             // this._playmaterial = <Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material;
-            this._characterSlot.getComponent(Play).onSetMaterial(<Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material);
-            this._characterSlot.getComponent(Play).stopFlash();
+            if(this.model.skinnedMeshRenderer)
+            {
+                this._characterSlot.getComponent(Play).onSetMaterial(<Laya.UnlitMaterial>this.model.skinnedMeshRenderer.material);
+                this._characterSlot.getComponent(Play).stopFlash();
+            }
         }
     }
 
@@ -113,6 +116,7 @@ export default class PlayerManager extends rab.GameObject {
 
     /**退出战斗 */
     public fightExit (): void {
+        this._characterSlot.getComponent(Play).stopFlash();
         this._playState = PlayState.death
         this.isMoveing = false;
         this._characterSlot.removeChild(this.playNode);
@@ -124,6 +128,7 @@ export default class PlayerManager extends rab.GameObject {
     /**跳舞 */
     public onhappydance()
     {
+        this._characterSlot.getComponent(Play).stopFlash();
         this.isMoveing = false;
         this._playState = PlayState.stop
         if(this.animator)
@@ -137,6 +142,7 @@ export default class PlayerManager extends rab.GameObject {
 
     public Ondeath()
     {
+        this._characterSlot.getComponent(Play).stopFlash();
         this._playState = PlayState.death
         this.isMoveing = false;
         if(this.animator)
@@ -220,18 +226,20 @@ export default class PlayerManager extends rab.GameObject {
     private onMouseMove(data:Array<any>)
     {
         if(!this.isMoveing) return;
-        console.log("鼠标方向：",data);
+        // console.log("鼠标方向：",data);
+        if(this._playState != PlayState.run)return
         if(data[0] == 0)
         {
             
             if(this.localx< 1.25)
             {
+                this._playState = PlayState.right;
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx += 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
                 Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},500,null,Laya.Handler.create(this, () => {
                     this.animator.crossFade('run',0);
-                    // this._playState = PlayState.run
+                    this._playState = PlayState.run
                 }));
                 if(this.animator)
                 {
@@ -243,12 +251,13 @@ export default class PlayerManager extends rab.GameObject {
            
             if(this.localx > -1.25)
             {
+                this._playState = PlayState.left;
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx -= 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
                 Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},500,null,Laya.Handler.create(this, () => {
                     this.animator.crossFade('run',0);
-                    // this._playState = PlayState.run
+                    this._playState = PlayState.run
                 }));
                 if(this.animator)
                 {

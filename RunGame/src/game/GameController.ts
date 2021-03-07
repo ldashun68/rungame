@@ -50,6 +50,8 @@ export default class GameController extends rab.RabController {
 
     public rank: Array<any>;
 
+    private m_selectYear:Array<string>;
+
     /**
      * 初始化资源
      */
@@ -80,6 +82,7 @@ export default class GameController extends rab.RabController {
             minute: 0,
             second: 0,
         };
+        this.m_selectYear = ["year80","year90","year00","year10"]
     }
 
     /**语言设置 */
@@ -196,6 +199,12 @@ export default class GameController extends rab.RabController {
         this.SaveData(2);
         this.SendMessage(GameNotity.Game_UpdateTicket, this.gameInfo.ticket);
         return true;
+    }
+
+    
+    public openPhotowall()
+    {
+        this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] += 1;
     }
 
     /**定时增加体力 */
