@@ -104,6 +104,7 @@ export default class FightManager extends rab.GameObject {
 
     /**准备战斗 */
     public fightReady (): void {
+        this.manager.fightGetCoin =0;
         this.scene3D.active = true;
         this.currlife = this.max_lifeCount;
         this.onLifeUpdate();
@@ -180,6 +181,7 @@ export default class FightManager extends rab.GameObject {
         {
             if(this._currLenght <= this.passData.length)
             {
+                this.manager.fightGetCoin += 1;
                 this.oncreateNextBuild();
             }
         }

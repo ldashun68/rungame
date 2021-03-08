@@ -318,11 +318,11 @@ export default class GameController extends rab.RabController {
         if(rab.Util.isMobil)
         {
             rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
-                var _data = (data);
-                Object.keys(this.rank).forEach(function(key){
-                    _data[key] = wx.getData(key, this.rank[key]);
-                });
-                rab.Util.log('获得排行榜数据',_data);
+                this.rank = data.data;
+                // Object.keys(this.rank).forEach(function(key){
+                //     _data[key] = wx.getData(key, this.rank[key]);
+                // });
+                rab.Util.log('获得排行榜数据',this.rank);
             });
         }
    }

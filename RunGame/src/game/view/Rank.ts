@@ -31,8 +31,8 @@ export default class Rank extends rab.RabView {
         //     this.myManager.rank[i]["avatar"] = "";
         //     this.myManager.rank[i]["score"] = ""+i;
         // }
-
-        this.OnRefreshView();
+        rab.UIManager.onHideView(ViewConfig.gameView.Rank);
+        // this.OnRefreshView();
     }
 
     protected OnRefreshView() {

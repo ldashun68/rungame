@@ -63,6 +63,7 @@ export default class Platform extends rab.RabView {
 
         this.myManager.onAddLevelDate();
         this.myManager.getRank();
+        rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
     }
 
     protected OnRefreshView() {
