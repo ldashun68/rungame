@@ -108,30 +108,8 @@ export default class SceneLoading extends rab.RabView {
         }
 
         if (typeof wx != "undefined") {
-            wx.loadSubpackage({
-                name: 'sub3', // name 可以填 name 或者 root
-                success: function(res) {
-                    window.wx.loadSubpackage({
-                        name: 'sub4', // name 可以填 name 或者 root
-                        success: function(res) {
-                            // 分包加载成功后通过 success 回调
-                            wx.loadSubpackage({
-                                name: 'sub2', // name 可以填 name 或者 root
-                                success: function(res) {
-                                    // Tool.instance.loadScene3D = true;
-                                    wx.loadSubpackage({
-                                        name: 'sub1', // name 可以填 name 或者 root
-                                        success: function(res) {
-                                            enterGame();
-                                            Tool.instance.loadScene3D = true;
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            });
+            enterGame();
+            Tool.instance.loadScene3D = true;
         }
         else {
             enterGame();
