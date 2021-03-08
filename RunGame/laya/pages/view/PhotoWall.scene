@@ -2,7 +2,7 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":488,
+    "selecteID":536,
     "searchKey":"Scene,PhotoWall,PhotoWall",
     "props":{"width":750,"var":"PhotoWall","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"PhotoWall","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
@@ -172,7 +172,6 @@
             "compId":488,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":-177,"x":217,"skin":"new/com/t_zpq.png"},
@@ -187,7 +186,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year80GaryBtn,year80GaryBtn",
                     "props":{"y":-39,"var":"year80GaryBtn","skin":"new/com/b_80years1.png","name":"year80GaryBtn","centerX":-261,"anchorY":0.5,"anchorX":0.5},
@@ -201,7 +199,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year80YellowBtn,year80YellowBtn",
                     "props":{"y":-39,"var":"year80YellowBtn","skin":"new/com/b_80years.png","name":"year80YellowBtn","centerX":-261,"anchorY":0.5,"anchorX":0.5},
@@ -215,7 +212,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year90GaryBtn,year90GaryBtn",
                     "props":{"y":-39,"var":"year90GaryBtn","skin":"new/com/b_90years1.png","name":"year90GaryBtn","centerX":-91,"anchorY":0.5,"anchorX":0.5},
@@ -229,7 +225,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year90YellowBtn,year90YellowBtn",
                     "props":{"y":-39,"var":"year90YellowBtn","skin":"new/com/b_90years.png","name":"year90YellowBtn","centerX":-91,"anchorY":0.5,"anchorX":0.5},
@@ -243,7 +238,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year00GaryBtn,year00GaryBtn",
                     "props":{"y":-39,"var":"year00GaryBtn","skin":"new/com/b_00years1.png","name":"year00GaryBtn","centerX":79,"anchorY":0.5,"anchorX":0.5},
@@ -257,7 +251,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year00YellowBtn,year00YellowBtn",
                     "props":{"y":-39,"var":"year00YellowBtn","skin":"new/com/b_00years.png","name":"year00YellowBtn","centerX":79,"anchorY":0.5,"anchorX":0.5},
@@ -271,7 +264,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year10GaryBtn,year10GaryBtn",
                     "props":{"y":-39,"var":"year10GaryBtn","skin":"new/com/b_10years1.png","name":"year10GaryBtn","centerX":249,"anchorY":0.5,"anchorX":0.5},
@@ -285,7 +277,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,year10YellowBtn,year10YellowBtn",
                     "props":{"y":-39,"var":"year10YellowBtn","skin":"new/com/b_10years.png","name":"year10YellowBtn","centerX":249,"anchorY":0.5,"anchorX":0.5},
@@ -372,7 +363,7 @@
                     "x":30,
                     "type":"VScrollBar",
                     "searchKey":"VScrollBar,scrollBar",
-                    "props":{"y":14,"x":1046,"skin":"comp/vscroll.png","name":"scrollBar"},
+                    "props":{"y":14,"x":1046,"name":"scrollBar"},
                     "nodeParent":526,
                     "label":"scrollBar",
                     "isDirectory":false,

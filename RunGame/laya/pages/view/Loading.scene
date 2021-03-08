@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":19,
+    "selecteID":7,
     "searchKey":"Scene,Loading,Loading",
     "props":{"width":750,"var":"Loading","sceneColor":"#000000","name":"Loading","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
-    "maxID":27,
+    "maxID":28,
     "label":"Loading",
     "isOpen":true,
     "isDirectory":true,
@@ -37,13 +37,14 @@
             "props":{"var":"bg","top":0,"skin":"new/com/beijing.png","left":0},
             "nodeParent":2,
             "label":"bg",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":19,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":0,"x":529,"skin":"new/com/beijing.png"},
@@ -58,6 +59,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":417,"x":0,"skin":"new/com/beijing.png"},
@@ -71,6 +73,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":417,"x":529,"skin":"new/com/beijing.png"},
@@ -85,6 +88,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":834,"x":0,"skin":"new/com/beijing.png"},
@@ -99,6 +103,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":834,"x":529,"skin":"new/com/beijing.png"},
@@ -113,6 +118,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1243,"x":0,"skin":"new/com/beijing.png"},
@@ -127,6 +133,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1243,"x":529,"skin":"new/com/beijing.png"},
