@@ -1426,6 +1426,7 @@ class ViewManager{
             console.log("==创建页面==",path);
             var view: RabView = <RabView>(rab.RabViewConfig.getRegClass(path));
             Laya.stage.addChild(view.getMyView());
+            (view.getMyView() as Laya.Sprite).zOrder = 1;
             this.UIList.add(path,view);
             this.UIList.get(path).ViewData(path,optionalParams);
         }
@@ -1964,6 +1965,7 @@ abstract class RabController extends RabManager {
                 rab.Util.log("3d场景加载成功");
                 this.scene3D = Laya.loader.getRes(this.gameConfig.scene3d);
                 Laya.stage.addChild(this.scene3D);
+                this.scene3D.zOrder = 0;
                 callback && callback();
             }), null);
         }

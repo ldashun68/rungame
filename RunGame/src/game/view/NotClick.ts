@@ -36,13 +36,11 @@ export default class NotClick extends rab.RabView {
     }
 
     protected OnRefreshView() {
-        this.m_currView.bg.visible = true;
         this.m_currView.loadNode.visible = true;
     }
 
     onHide () {
         super.onHide();
-        this.m_currView.bg.visible = false;
         this.m_currView.loadNode.visible = false;
     }
 
@@ -52,19 +50,18 @@ export default class NotClick extends rab.RabView {
 
     loadCloud()
     {
-        // this.m_currView.bg.visible = false;
-        // this.m_currView.loadNode.visible = false;
         let Templet1:Laya.Templet = new Laya.Templet();
-            Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
-                this.cloud = Templet.buildArmature(1);
-                this.m_currView.addChild(this.cloud);
-                this.cloud.x = Laya.stage.width/2;
-                this.cloud.y = Laya.stage.height/2;
-                this.cloud.stop();
-                this.onHideCloud();
-            }, [Templet1, "animation"]);
-            Templet1.loadAni("effect/cloud/effect_yun.sk");
+        Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
+            this.cloud = Templet.buildArmature(1);
+            this.m_currView.addChild(this.cloud);
+            this.cloud.x = Laya.stage.width/2;
+            this.cloud.y = Laya.stage.height/2;
+            this.cloud.stop();
+            this.onHideCloud();
+        }, [Templet1, "animation"]);
+        Templet1.loadAni("effect/cloud/effect_yun.sk");
     }
+    
     onHideCloud()
     {
         this.cloud.play("animation", false);

@@ -48,7 +48,7 @@ export default class PhotoWall extends rab.RabView {
                 Laya.Tween.clearAll(this.m_currView.bigPhoto);
                 Laya.Tween.to(this.m_currView.bigPhoto, { alpha:0 }, 1000, Laya.Ease.quadInOut);
                 Laya.Tween.clearAll(this.m_currView.cover);
-                Laya.Tween.to(this.m_currView.cover, {}, 800, null, Laya.Handler.create(this, () => {
+                Laya.Tween.to(this.m_currView.cover, {}, 850, null, Laya.Handler.create(this, () => {
                     this.m_currView.cover.visible = false;
                     this.m_currView.bigPhoto.visible = false;
                 }));

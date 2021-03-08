@@ -201,10 +201,8 @@ export default class GameController extends rab.RabController {
         return true;
     }
 
-    
-    public openPhotowall()
-    {
-        this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] += 1;
+    public openPhotowall(): number {
+        return this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] += 1;
     }
 
     /**定时增加体力 */

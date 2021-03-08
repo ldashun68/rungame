@@ -46,8 +46,6 @@ export default class FightManager extends rab.GameObject {
     private currlife:number;
     private winLenght:number = 50;
 
-    
-
     constructor () {
         super();
     }
@@ -82,7 +80,6 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.init();
         this.obstacleManager = this.scene3D.addComponent(ObstacleManager);
         this.obstacleManager.init();
-        
     }
 
     /**
@@ -103,7 +100,6 @@ export default class FightManager extends rab.GameObject {
         {
             this.oncreateNextBuild();
         }
-        
     }
 
     /**准备战斗 */
@@ -138,7 +134,6 @@ export default class FightManager extends rab.GameObject {
             this.playerManager.onGameStart();
             this.updatePassProgressNode();
         }
-        
     }
 
     /**退出战斗 */
@@ -149,7 +144,6 @@ export default class FightManager extends rab.GameObject {
         Laya.timer.once(2000, this, () => {
             rab.UIManager.onCreateView(ViewConfig.gameView.GameWinView);
         });
-        
     }
 
     /**暂停战斗 */
@@ -166,13 +160,11 @@ export default class FightManager extends rab.GameObject {
 
     /**战斗结算 */
     public fightProfit (): void {
-       
         Laya.timer.clearAll(this);
     }
 
     onUpdate (): void {
         if (this.isStart == true) {
-
             // this.fight();
             this.playerManager.update();
             this.updatePassProgressNode()
@@ -247,7 +239,6 @@ export default class FightManager extends rab.GameObject {
                     this.onGameFail();
                 }
             }
-            
         }
     }
 
@@ -287,6 +278,7 @@ export default class FightManager extends rab.GameObject {
             console.log("重新开始");
             this.onInitScene();
             this.playerManager.reStart();
+            this.updatePassProgressNode();
             Laya.timer.once(300, this, () => {
                 this.SendMessage(GameNotity.GameMessage_GameStart)
             });
@@ -296,8 +288,6 @@ export default class FightManager extends rab.GameObject {
             console.log("已经重新开始");
         }
     }
-
-
 
     /**回收场景了 */
     onReMoveScene()
@@ -361,5 +351,4 @@ export default class FightManager extends rab.GameObject {
         this.view.lifeText.value = this.currlife+"";
         this.view.life_bg.width = (this.currlife/this.max_lifeCount)*290;
     }
-
 }

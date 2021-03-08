@@ -31,17 +31,28 @@ export default class GameWin extends rab.RabView {
 
         this.m_currView.homeBtn.on(Laya.Event.CLICK, this, this.onHome);
         Tool.instance.addButtonAnimation(this.m_currView.homeBtn);
+
+        this.m_currView.cover.on(Laya.Event.CLICK, this, () => {
+            if (this.m_currView.bigPhoto.scaleX == 1 && this.m_currView.bigPhoto.alpha == 1) {
+                Laya.Tween.clearAll(this.m_currView.bigPhoto);
+                Laya.Tween.to(this.m_currView.bigPhoto, { alpha:0 }, 1000, Laya.Ease.quadInOut);
+                Laya.Tween.clearAll(this.m_currView.cover);
+                Laya.Tween.to(this.m_currView.cover, {}, 850, null, Laya.Handler.create(this, () => {
+                    this.m_currView.cover.visible = false;
+                    this.m_currView.bigPhoto.visible = false;
+                }));
+            }
+        });
+
         this.OnRefreshView();
     }
 
     protected OnRefreshView() {
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-       
         this.create3DScene();
         this.onwin();
     }
-    private create3DScene()
-    {
+
+    private create3DScene() {
         this.myManager.scene3D.active = false;
         //添加3D场景
         this.scene3D = this.m_currView.cloudNode.addChild(new Laya.Scene3D()) as Laya.Scene3D;
@@ -61,27 +72,32 @@ export default class GameWin extends rab.RabView {
         this.playNode.active = true;
         Laya.timer.frameLoop(1,this,this.onUpdate);
     }
-    onUpdate()
-    {
+
+    onUpdate() {
         this.m_currView.eff.rotation += 1;
     }
 
-    protected onShowLanguage()
-    {
+    protected onShowLanguage() {
         // this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
     }
 
-    onwin()
-    {
-
-        this.myManager.openPhotowall();
+    onwin() {
+        let index: number = this.myManager.openPhotowall();
         this.m_currView.award.visible = true;
+
+        this.m_currView.cover.visible = true;
+        this.m_currView.cover.alpha = 0.5;
+        this.m_currView.bigPhoto.visible = true;
+        this.m_currView.bigPhoto.alpha = 1;
+        this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
+        Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
 
         let alpha = (sprite: Laya.Sprite, time: number) => {
             sprite.alpha = 0;
             Laya.Tween.to(sprite, {alpha: 1}, time);
         }
 
+        this.m_currView.coinText.value = ""+this.myManager.fightGetCoin;
         this.m_currView.next.visible = true;
         this.m_currView.homeBtn.visible = true;
         alpha(this.m_currView.next, 200);
@@ -99,21 +115,17 @@ export default class GameWin extends rab.RabView {
         this.m_currView.award.visible = false;
         this.m_currView.next.visible = false;
         super.onHide();
-        
     }
-
 
     /**返回主页按钮事件 */
     private onHome (): void {
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-        manager.addCoin(manager.fightGetCoin);
+        this.myManager.addCoin(this.myManager.fightGetCoin);
         this.onHide();
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
     }
 
     /**10倍领取按钮事件 */
     private onNext (): void {
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         this.onHide();
         rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
     }

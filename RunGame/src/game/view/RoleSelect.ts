@@ -46,10 +46,11 @@ export default class RoleSelect extends rab.RabView {
 
         this.myManager.onLoad3dScene(() => {
             // Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-            this.onShowRole(1);
-        // }));
-    })
+                this.onShowRole(1);
+            // }));
+        })
     }
+
     protected OnRefreshView() {
 
         this.m_currView.roleName_1.text = "JACK";

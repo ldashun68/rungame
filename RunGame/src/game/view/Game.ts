@@ -54,10 +54,7 @@ export default class Game extends rab.RabView {
         this.OnRefreshView();
     }
 
-   
-
     protected OnRefreshView() {
-        
         console.log("刷新游戏页面");
         this.m_currView.guild.visible = true;
         this.gameStart = false;
@@ -78,29 +75,29 @@ export default class Game extends rab.RabView {
     /**战斗开始 */
     private onGametart (data: any): void {
         this.m_currView.guild.visible = false;
-        let time: number = 3;
         this.m_currView.timeDown.visible = true;
         this.m_currView.timeDown.skin = "ui/3.png";
-        let countdown = () => {
-            
-            time--;
-            if (time == -1) {
-                this.m_currView.timeDown.visible = false;
-                this.fightManager.onGameStart();
-                this.gameStart = true;
-                Laya.timer.clear(this, countdown);
-            }
-            else if (time > 0){
-                this.m_currView.timeDown.skin = "ui/"+time+".png";
-                Laya.timer.once(1000, this, countdown);
-            }else if(time == 0)
-            {
-                this.m_currView.timeDown.skin = "ui/go.png";
-                Laya.timer.once(1000, this, countdown);
-            }
+        Laya.timer.once(1800, this, this.countdown);
+    }
+
+    private countdown (): void {
+        Laya.timer.once(1000, this, this.countdown);
+        if (this.m_currView.timeDown.skin == "ui/3.png") {
+            this.m_currView.timeDown.skin = "ui/2.png";
         }
-        Laya.timer.once(1800, this, countdown);
-        // countdown();
+        else if (this.m_currView.timeDown.skin == "ui/2.png") {
+            this.m_currView.timeDown.skin = "ui/1.png";
+        }
+        else if (this.m_currView.timeDown.skin == "ui/1.png") {
+            this.m_currView.timeDown.skin = "ui/go.png";
+        }
+        else if (this.m_currView.timeDown.skin == "ui/go.png") {
+            this.m_currView.timeDown.skin = "ui/go.png";
+            this.m_currView.timeDown.visible = false;
+            this.fightManager.onGameStart();
+            this.gameStart = true;
+            Laya.timer.clear(this, this.countdown);
+        }
     }
 
     onKeyUp(e)
