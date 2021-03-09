@@ -4047,6 +4047,7 @@
             this.m_currView.rankList.selectEnable = true;
             this.m_currView.rankList.selectHandler = new Laya.Handler(this, this.onSelect);
             this.m_currView.rankList.renderHandler = new Laya.Handler(this, this.updateItem);
+            this.OnRefreshView();
         }
         OnRefreshView() {
             this.page = 0;
