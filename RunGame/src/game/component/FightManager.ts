@@ -104,7 +104,7 @@ export default class FightManager extends rab.GameObject {
 
     /**准备战斗 */
     public fightReady (): void {
-        this.manager.fightGetCoin =0;
+        
         this.scene3D.active = true;
         this.currlife = this.max_lifeCount;
         this.onLifeUpdate();
@@ -112,6 +112,7 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.fightReady();
         this.manager = rab.RabGameManager.getInterest().getMyManager();
         this.passData = this.manager.CurrPassData();
+        this.manager.fightGetCoin =0;
         this.updatePassProgressNode();
         let arr = this.manager.getPassBuild();
         for(var i = 0;i<this.passData.builds.length;i++)

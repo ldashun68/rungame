@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/PhotoWall.scene";
+    GameConfig.startScene = "view/Rank.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -2627,7 +2627,6 @@
             });
             this.myManager.onAddLevelDate();
             this.myManager.getRank();
-            rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -3106,7 +3105,6 @@
             }
         }
         fightReady() {
-            this.manager.fightGetCoin = 0;
             this.scene3D.active = true;
             this.currlife = this.max_lifeCount;
             this.onLifeUpdate();
@@ -3114,6 +3112,7 @@
             this.playerManager.fightReady();
             this.manager = rab.RabGameManager.getInterest().getMyManager();
             this.passData = this.manager.CurrPassData();
+            this.manager.fightGetCoin = 0;
             this.updatePassProgressNode();
             let arr = this.manager.getPassBuild();
             for (var i = 0; i < this.passData.builds.length; i++) {
@@ -4048,7 +4047,6 @@
             this.m_currView.rankList.selectEnable = true;
             this.m_currView.rankList.selectHandler = new Laya.Handler(this, this.onSelect);
             this.m_currView.rankList.renderHandler = new Laya.Handler(this, this.updateItem);
-            rab.UIManager.onHideView(ViewConfig.gameView.Rank);
         }
         OnRefreshView() {
             this.page = 0;
