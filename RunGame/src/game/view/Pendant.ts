@@ -11,6 +11,7 @@ import GameNotity from "../GameNotity";
 export default class Pendant extends rab.RabView {
 
     protected m_currView: ui.view.PendantUI;
+    protected myManager: GameController;
 
     private isLoopAddTicket: boolean;
     private loopAddTicketTimeGap: number;
@@ -42,7 +43,8 @@ export default class Pendant extends rab.RabView {
 
     protected OnRefreshView() {
         this.isLoopAddTicket = false;
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
+        this.updateCoin();
+        this.updateTicket();
     }
 
     /**金币框按钮事件 */
@@ -52,30 +54,29 @@ export default class Pendant extends rab.RabView {
 
     /**体力框按钮事件 */
     private onTicket (): void {
-        if (rab.UIManager.isShowView(ViewConfig.gameView.GetTicketView) == false) {
-            rab.UIManager.onCreateView(ViewConfig.gameView.GetTicketView);
-        }
+        // if (rab.UIManager.isShowView(ViewConfig.gameView.GetTicketView) == false) {
+        //     rab.UIManager.onCreateView(ViewConfig.gameView.GetTicketView);
+        // }
     }
 
     /**更新金币 */
-    private updateCoin (data: any): void {
-        (this.m_currView.coinBox.getChildByName("text") as Laya.Label).text = ""+rab.Util.formatter(data[0]);
+    private updateCoin (): void {
+        (this.m_currView.coinBox.getChildByName("text") as Laya.Label).text = ""+rab.Util.formatter(this.myManager.gameInfo.coin);
     }
 
     /**更新体力 */
-    private updateTicket (data: any): void {
-        (this.m_currView.ticketBox.getChildByName("text") as Laya.FontClip).value = ""+data[0];
+    private updateTicket (): void {
+        (this.m_currView.ticketBox.getChildByName("text") as Laya.FontClip).value = ""+this.myManager.gameInfo.ticket;
 
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-        if (manager.isLoopAddTicket == true && this.isLoopAddTicket == false) {
+        if (this.myManager.isLoopAddTicket == true && this.isLoopAddTicket == false) {
             this.isLoopAddTicket = true;
-            this.loopAddTicketTimeGap = manager.loopAddTicketTimeGap;
+            this.loopAddTicketTimeGap = this.myManager.loopAddTicketTimeGap;
             
             this.updateTicketTime();
             Laya.timer.clear(this, this.updateTicketTime);
             Laya.timer.loop(1000, this, this.updateTicketTime);
         }
-        else if (manager.isLoopAddTicket == false) {
+        else if (this.myManager.isLoopAddTicket == false) {
             this.isLoopAddTicket = false;
             this.loopAddTicketTimeGap = 0;
             (this.m_currView.ticketBox.getChildByName("timeText") as Laya.Label).text = "已满";

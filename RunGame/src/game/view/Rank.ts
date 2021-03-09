@@ -85,7 +85,7 @@ export default class Rank extends rab.RabView {
             }
         }
 
-        if (item.numChildren == 5) {
+        if ((item.getChildByName("index") as Laya.Image).visible == true) {
             let _index: Laya.Image = item.getChildAt(4) as Laya.Image;
             _index.skin = null;
             for (let i: number = 0; i < _index.numChildren; i++) {
@@ -113,17 +113,15 @@ export default class Rank extends rab.RabView {
     private updateItem(cell: Laya.Image, index: number): void {
         console.log(index, cell);
 
-        let item: Laya.Image;
-        for (let i: number = 0; i < cell.getChildAt(0).numChildren; i++) {
-            (cell.getChildAt(0).getChildAt(i) as Laya.Image).visible = false;
-        }
+        let item: Laya.Image = (cell.getChildAt(0).getChildAt(0) as Laya.Image);
         if (index < 3) {
-            item = (cell.getChildAt(0).getChildAt(index) as Laya.Image);
+            item.skin = "new/com/" + (index+1) + "st.png";
+            (item.getChildByName("index") as Laya.Image).visible = false;
         }
         else {
-            item = (cell.getChildAt(0).getChildAt(3) as Laya.Image);
+            item.skin = "new/com/4st.png";
+            (item.getChildByName("index") as Laya.Image).visible = true;
         }
-        item.visible = true;
         this.initItem(index, item, this.myManager.rank[index]);
     }
 

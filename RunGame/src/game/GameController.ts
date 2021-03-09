@@ -117,7 +117,7 @@ export default class GameController extends rab.RabController {
         this.soldierSort = [];
         this.rank = [];
 
-        Language.instance.onInit(this.gameInfo.language)
+        Language.instance.onInit(this.gameInfo.language);
         this.updateTime();
         // this.SaveData();
     }
