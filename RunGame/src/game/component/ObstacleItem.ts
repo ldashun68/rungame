@@ -55,6 +55,7 @@ export default class ObstacleItem extends rab.GameObject {
      */
     protected onHit() {
         Laya.timer.clear(this, this.idleAnimation);
+        Tool.instance.sprite3DStopTween(this.owner as Laya.Sprite3D, Tool.instance.tweenType.rotation);
     }
 
     protected idleAnimation () {
