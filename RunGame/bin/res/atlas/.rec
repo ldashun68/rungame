@@ -103,6 +103,10 @@ P 0973DE40 touxiangk2.png
 D new/com/num
 D new/com/Photo
 P 26B15903 pic_01.png
+P F5D40DB8 pic_010.png
+R D2050F87 pic_010_b.png
+P C4193539 pic_011.png
+R BA346AD1 pic_011_b.png
 R 0A91C399 pic_01_b.png
 P 9697F9D3 pic_02.png
 R 6E4AA4A3 pic_02_b.png
@@ -120,10 +124,6 @@ P AA211F29 pic_08.png
 R 3730FC92 pic_08_b.png
 P 7309FB3C pic_09.png
 R 0696DE6F pic_09_b.png
-P F5D40DB8 pic_10.png
-R D2050F87 pic_10_b.png
-P C4193539 pic_11.png
-R BA346AD1 pic_11_b.png
 D new/com/num/index
 P CB8F8394 0.png
 P CB0C37FA 1.png

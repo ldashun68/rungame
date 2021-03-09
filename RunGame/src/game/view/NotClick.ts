@@ -36,12 +36,12 @@ export default class NotClick extends rab.RabView {
     }
 
     protected OnRefreshView() {
+        this.m_currView.bg.visible = true;
         this.m_currView.loadNode.visible = true;
     }
 
     onHide () {
         super.onHide();
-        this.m_currView.loadNode.visible = false;
     }
 
     private initLoading (): void {
@@ -62,9 +62,12 @@ export default class NotClick extends rab.RabView {
         Templet1.loadAni("effect/cloud/effect_yun.sk");
     }
     
-    onHideCloud()
-    {
+    onHideCloud() {
         this.cloud.play("animation", false);
+        Laya.timer.frameOnce(this.cloud.total/1.5, this, () => {
+            this.m_currView.bg.visible = false;
+            this.m_currView.loadNode.visible = false;
+        });
         Laya.timer.frameOnce(this.cloud.total, this, () => {
             if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == false) {
                 this.cloud.paused();

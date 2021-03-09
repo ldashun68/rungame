@@ -6,5 +6,6 @@
     {"id":5,"name":"老鼠","res":"ObstacleRat","up":1,"down":0,"pos":0},
     {"id":6,"name":"道路工程屏障","res":"ObstacleRoadworksBarrier","up":1,"down":0,"pos":0},
     {"id":7,"name":"道路施工桶","res":"ObstacleRoadworksCone","up":1,"down":0,"pos":0},
-    {"id":8,"name":"垃圾桶","res":"ObstacleWheelyBin","up":0,"down":0,"pos":0}
+    {"id":8,"name":"垃圾桶","res":"ObstacleWheelyBin","up":0,"down":0,"pos":0},
+    {"id":100,"name":"硬币","res":"coin","up":0,"down":0,"pos":0}
 ]

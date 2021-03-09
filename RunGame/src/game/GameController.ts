@@ -4,11 +4,7 @@ import GameJsonConfig from "./GameVO/GameJsonConfig";
 import Algorithm from "./GameVO/Algorithm";
 import GameConfig from "./GameVO/GameConfig";
 import GameNotity from "./GameNotity";
-
-import BuildData from "./GameVO/BuildData";
-import BasicDictionary from "../Basic/BasicDictionary";
 import ViewConfig from "../rab/viewConfig";
-import Tool from "../Basic/Tool";
 import { buildProp, passProp } from "./GameVO/DataType";
 import Language from "./GameVO/Language";
 

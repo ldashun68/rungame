@@ -598,8 +598,8 @@ export default class Tool {
 
     /**是否在执行缓动动画 */
     public isSprite3DTween (sprite: Laya.Sprite3D): boolean {
-        return (this.tweenList[this.tweenType.move].getValueByName(sprite.name) != null) || (this.tweenList[this.tweenType.scale].getValueByName(sprite.name) != null) ||
-        (this.tweenList[this.tweenType.rotation].getValueByName(sprite.name) != null);
+        return (this.tweenList[this.tweenType.move].getValueByName(sprite.id) != null) || (this.tweenList[this.tweenType.scale].getValueByName(sprite.id) != null) ||
+        (this.tweenList[this.tweenType.rotation].getValueByName(sprite.id) != null);
     }
 
     /**删除缓动动画 */
@@ -611,11 +611,11 @@ export default class Tool {
         }
         
         for (let index: number = 0; index < this.tweenList[type].length; index++) {
-            let tween: Laya.Tween = this.tweenList[type].getValueByName(sprite.name);
+            let tween: Laya.Tween = this.tweenList[type].getValueByName(sprite.id);
             if (tween != null) {
                 stop(tween);
                 
-                this.tweenList[type].removeByName(sprite.name);
+                this.tweenList[type].removeByName(sprite.id);
                 index--;
             }
         }
@@ -633,7 +633,7 @@ export default class Tool {
     public sprite3DScale(sprite: Laya.Sprite3D, props: Laya.Vector3, duration: number,
         ease?: Function, completed?: Function, progress?: Function) {
         this.sprite3DStopTween(sprite, this.tweenType.scale);
-        this.tweenList[this.tweenType.scale].add(sprite.name,
+        this.tweenList[this.tweenType.scale].add(sprite.id,
             this.tweenUpdate(sprite, sprite.transform.getWorldLossyScale(), props, duration, ease,
                 () => {
                     this.sprite3DStopTween(sprite, this.tweenType.scale);
@@ -659,7 +659,7 @@ export default class Tool {
     public sprite3DMove(sprite: Laya.Sprite3D, props: Laya.Vector3, duration: number,
         ease?: Function, completed?: Function, progress?: Function) {
         this.sprite3DStopTween(sprite, this.tweenType.move);
-        this.tweenList[this.tweenType.move].add(sprite.name,
+        this.tweenList[this.tweenType.move].add(sprite.id,
             this.tweenUpdate(sprite, sprite.transform.position, props, duration, ease,
                 () => {
                     this.sprite3DStopTween(sprite, this.tweenType.move);
@@ -685,7 +685,7 @@ export default class Tool {
     public sprite3DRotation(sprite: Laya.Sprite3D, props: Laya.Vector3, duration: number,
         ease?: Function, completed?: Function, progress?: Function) {
         this.sprite3DStopTween(sprite, this.tweenType.rotation);
-        this.tweenList[this.tweenType.rotation].add(sprite.name,
+        this.tweenList[this.tweenType.rotation].add(sprite.id,
             this.tweenUpdate(sprite, sprite.transform.rotationEuler, props, duration, ease,
                 () => {
                     this.sprite3DStopTween(sprite, this.tweenType.rotation);

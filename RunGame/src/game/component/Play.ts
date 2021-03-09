@@ -1,4 +1,5 @@
 import rab from "../../rab/rab";
+import GameController from "../GameController";
 import GameNotity from "../GameNotity";
 import ObstacleItem from "./ObstacleItem";
 
@@ -15,19 +16,23 @@ export default class Play extends rab.GameObject {
      * 开始触发时执行
      * 此方法为虚方法，使用时重写覆盖即可
      */
-    onTriggerEnter(other:laya.d3.physics.PhysicsComponent):void
-    {
+    onTriggerEnter(other:laya.d3.physics.PhysicsComponent):void {
         console.log("开始触发时执行",other);
         let prop:ObstacleItem = other.owner.getComponent(ObstacleItem);
         if(prop) {
             prop.onCollisionPlay();
-            this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
-            this.onFlash();
+            if (prop.obstacleId != 100) {
+                this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
+                this.onFlash();
+            }
+            else {
+                let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
+                manager.fightGetCoin += 5;
+            }
         }
     }
 
-    public onSetMaterial(material:Laya.UnlitMaterial)
-    {
+    public onSetMaterial(material:Laya.UnlitMaterial) {
         this._playmaterial = material;
     }
 

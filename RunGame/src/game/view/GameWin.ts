@@ -40,6 +40,7 @@ export default class GameWin extends rab.RabView {
                 Laya.Tween.to(this.m_currView.cover, {}, 850, null, Laya.Handler.create(this, () => {
                     this.m_currView.cover.visible = false;
                     this.m_currView.bigPhoto.visible = false;
+                    this.m_currView.bigPhoto.skin = null;
                 }));
             }
         });
@@ -85,12 +86,14 @@ export default class GameWin extends rab.RabView {
         let index: number = this.myManager.openPhotowall();
         this.m_currView.award.visible = true;
 
-        this.m_currView.cover.visible = true;
-        this.m_currView.cover.alpha = 0.5;
-        this.m_currView.bigPhoto.visible = true;
-        this.m_currView.bigPhoto.alpha = 1;
-        this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
-        Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+        if (index <= 11) {
+            this.m_currView.cover.visible = true;
+            this.m_currView.cover.alpha = 0.5;
+            this.m_currView.bigPhoto.visible = true;
+            this.m_currView.bigPhoto.alpha = 1;
+            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
+            Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+        }
 
         let alpha = (sprite: Laya.Sprite, time: number) => {
             sprite.alpha = 0;

@@ -28,35 +28,32 @@ export default class ObstacleManager extends rab.GameObject {
     /**
      * 创建一个障碍物
      */
-    onCreateobstacle(data:buildProp,posz:number)
+    onCreateobstacle(data:buildProp, posZ:number)
     {
-        console.log("创建一个障碍物",posz)
-        this._initPos = posz+data.length;
+        console.log("创建一个障碍物", posZ)
+        this._initPos = posZ+data.length;
         let arr = data.obstacle;
         this._buildProp = data;
-        for(var i = 0;i<arr.length;i++)
-        {
-            if(!this._baseobstacles[arr[i]])
-            {
-                this._baseobstacles[arr[i]] = Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.jsonConfig.getObstacleData(arr[i]).res+".lh");
+        for(var i = 0;i<arr.length;i++) {
+            if(!this._baseobstacles[arr[i]]) {
+                this._baseobstacles[arr[i]] =
+                Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.jsonConfig.getObstacleData(arr[i]).res+".lh");
             }
         }
-        //if(Math.random() > 0.2)
-        {
-            this.createNextOb();
-        }
+        this.createNextOb();
     }
 
     createNextOb()
     {
         let ObstacleID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
+        //let ObstacleID = this._buildProp.obstacle[4];
         let obstacle:Laya.Sprite3D = Laya.Pool.getItem("ObstacleID"+ObstacleID);
         let obstacleProp:ObstacleItem;
-        if(!obstacle)
-        {
+        if(!obstacle) {
             obstacle = this.instantiate(this._baseobstacles[ObstacleID],null,true,new Laya.Vector3(0, 0, this._initPos));
             obstacleProp = obstacle.addComponent(ObstacleSimple);
-        }else{
+        }
+        else {
             obstacle.transform.localPositionZ = this._initPos;
             obstacleProp = obstacle.getComponent(ObstacleSimple);
         }
@@ -66,29 +63,27 @@ export default class ObstacleManager extends rab.GameObject {
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
         obstacle.transform.localPosition = new Laya.Vector3(0,0,this._initPos);
         obstacle.active = true;
-        if(this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1)
-        {
+        if(this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1) {
             obstacle.transform.localPositionX = 0;
-        }else{
-            if(Math.random() < 0.3)
-            {
+        }
+        else {
+            if(Math.random() < 0.3) {
                 obstacle.transform.localPositionX = 1.2;
-            }else if(Math.random() < 0.6)
-            {
+            }
+            else if(Math.random() < 0.6) {
                 obstacle.transform.localPositionX = 0;
-            }else
-            {
+            }
+            else {
                 obstacle.transform.localPositionX = -1.2;
             }
-            
         }
     }
 
     public SpawnCoinAndPowerup()
 	{
-		const increment = 1.5
-		let currentWorldPos = 0.0
-		let currentLane = Math.random()*3;
+		// const increment = 1.5
+		// let currentWorldPos = 0.0
+		// let currentLane = Math.random()*3;
 
 		// let powerupChance = Math.clamp01(Math.floor(m_TimeSincePowerup) * 0.5 * 0.001);
 		// let premiumChance = Math.Clamp01(Math.floor(m_TimeSinceLastPremium) * 0.5 * 0.0001);

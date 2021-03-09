@@ -22,7 +22,6 @@ export default class GameJsonConfig {
             let prop = <obstacleProp>obstacles[i]
             this._obstacles[prop.id] = prop;
         }
-
     }
 
     /**

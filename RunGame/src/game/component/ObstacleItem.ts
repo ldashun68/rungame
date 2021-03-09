@@ -1,3 +1,4 @@
+import Tool from "../../Basic/Tool";
 import rab from "../../rab/rab";
 import { obstacleProp } from "../GameVO/DataType";
 
@@ -10,12 +11,13 @@ export default class ObstacleItem extends rab.GameObject {
 
     public prop:obstacleProp;
     private _obstacleId:number;
+    private _posz:number;
+
     public get obstacleId():number
     {
         return this._obstacleId;
     }
 
-    private _posz:number;
     public get PosZ():number
     {
         return this._posz;
@@ -25,7 +27,13 @@ export default class ObstacleItem extends rab.GameObject {
     {
         this.prop = data;
         this._obstacleId = data.id;
-        this.transform.localRotationEulerX = 0;
+        if (this._obstacleId != 100) {
+            this.transform.localRotationEulerX = 0;
+        }
+        else {
+            this.transform.localRotationEulerX = -90;
+            this.idleAnimation();
+        }
         // this._posz = posZ+data.length;
     }
 
@@ -45,9 +53,15 @@ export default class ObstacleItem extends rab.GameObject {
     /**
      * 受伤的效果显示
      */
-    protected onHit()
-    {
-
+    protected onHit() {
+        Laya.timer.clear(this, this.idleAnimation);
     }
-   
+
+    protected idleAnimation () {
+        if (this.obstacleId == 100) {
+            let prop: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 90), this.owner as Laya.Sprite3D);
+            Tool.instance.sprite3DRotation(this.owner as Laya.Sprite3D, prop, 1000);
+            Laya.timer.once(1000, this, this.idleAnimation, null);
+        }
+    }
 }

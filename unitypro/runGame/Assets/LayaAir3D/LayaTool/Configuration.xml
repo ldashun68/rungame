@@ -34,7 +34,7 @@
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
-    <SavePath>/Users/Shared/Pro/lock/working/Laya/RunGame/RunGamePro/RunGame/bin/3d</SavePath>
+    <SavePath>G:/rungame/RunGame/bin/3d</SavePath>
     <ScrollPositionY>0</ScrollPositionY>
   </config1>
   <config2>
@@ -190,7 +190,7 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1614925488</time>
+  <time>1615278759</time>
   <saveAcount>
   </saveAcount>
   <savePassWorld>

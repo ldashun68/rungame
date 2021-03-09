@@ -121,15 +121,14 @@ export default class Game extends rab.RabView {
     /**鼠标按下 */
     private onMouseDown(e)
     {
-        
-        if(this.gameStart)
-        {
+        if(this.gameStart) {
             this.isclick = false;
             this.mouseDown = true;
             this._mouseDownX = Laya.stage.mouseX;
             this._mouseDownY = Laya.stage.mouseY;
             // console.log('onStartDragPicture e', Laya.stage.mouseX);
-        }else if(!this.isclick){
+        }
+        else if(!this.isclick) {
             this.isclick = true;
             this.m_currView.guild.visible = false;
             this.SendMessage(GameNotity.GameMessage_GameStart)

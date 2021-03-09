@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Game.scene";
+    GameConfig.startScene = "view/Rank.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -862,6 +862,7 @@
                 console.log("==创建页面==", path);
                 var view = (rab.RabViewConfig.getRegClass(path));
                 Laya.stage.addChild(view.getMyView());
+                view.getMyView().zOrder = 1;
                 this.UIList.add(path, view);
                 this.UIList.get(path).ViewData(path, optionalParams);
             }
@@ -1142,7 +1143,7 @@
                     rab.Util.log("3d场景加载成功");
                     this.scene3D = Laya.loader.getRes(this.gameConfig.scene3d);
                     Laya.stage.addChild(this.scene3D);
-                    this.scene3D.zOrder = -1;
+                    this.scene3D.zOrder = 0;
                     callback && callback();
                 }), null);
             }
@@ -1606,7 +1607,7 @@
                     this.createView(NotClickUI.uiView);
                 }
             }
-            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "var": "bg", "top": 0, "skin": "new/com/beijing.png", "name": "bg", "left": 0 }, "compId": 29, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 30 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 31 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 32 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 33 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 34 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 35 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 36 }] }, { "type": "Image", "props": { "var": "click", "top": 0, "right": 0, "name": "click", "left": 0, "bottom": 0 }, "compId": 24 }, { "type": "Image", "props": { "width": 200, "visible": false, "var": "loadNode", "skin": "new/com/paihangbangdiban.png", "sizeGrid": "20,20,20,20", "name": "loadNode", "height": 75, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["new/com/beijing.png", "new/com/paihangbangdiban.png"], "loadList3D": [] };
+            NotClickUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "NotClick", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "var": "bg                             ", "top": 0, "skin": "new/com/beijing.png", "name": "bg", "left": 0 }, "compId": 29, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 30 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 31 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 32 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 33 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 34 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 35 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 36 }] }, { "type": "Image", "props": { "var": "click", "top": 0, "right": 0, "name": "click", "left": 0, "bottom": 0 }, "compId": 24 }, { "type": "Image", "props": { "width": 200, "visible": false, "var": "loadNode", "skin": "new/com/paihangbangdiban.png", "sizeGrid": "20,20,20,20", "name": "loadNode", "height": 75, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 26, "child": [{ "type": "Label", "props": { "y": 37.5, "x": 23, "var": "loadText", "text": "加载中...", "strokeColor": "#2c2c2c", "stroke": 2, "name": "loadText", "fontSize": 40, "font": "SimHei", "color": "#ffffff", "anchorY": 0.5, "anchorX": 0 }, "compId": 27 }] }], "loadList": ["new/com/beijing.png", "new/com/paihangbangdiban.png"], "loadList3D": [] };
             view.NotClickUI = NotClickUI;
             REG("ui.view.NotClickUI", NotClickUI);
             class PauseUI extends Scene {
@@ -1630,7 +1631,7 @@
                     this.createView(PendantUI.uiView);
                 }
             }
-            PendantUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pendant", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 54, "x": 134, "width": 180, "var": "ticketBox", "skin": "new/game/jingdutiao1.png", "sizeGrid": "10,10,10,10", "name": "ticketBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": -1, "x": -24.5, "skin": "new/game/aixin.png" }, "compId": 6 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 7 }, { "type": "Label", "props": { "y": 25, "x": 117, "text": "10:00", "strokeColor": "#000000", "stroke": 2, "name": "timeText", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "FontClip", "props": { "y": 39.5, "x": 20.5, "value": "30", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 0.8, "scaleX": 0.8, "name": "text", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 15 }] }, { "type": "Image", "props": { "y": 54, "x": 370, "width": 180, "var": "coinBox", "skin": "new/game/jinbidi.png", "sizeGrid": "10,10,10,10", "name": "coinBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 10, "child": [{ "type": "Image", "props": { "y": -4, "x": -23.5, "skin": "new/game/jinbi.png" }, "compId": 11 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 12 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "0", "strokeColor": "#000000", "stroke": 2, "name": "text", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }] }], "loadList": ["new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/jinbidi.png", "new/game/jinbi.png"], "loadList3D": [] };
+            PendantUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "Pendant", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 54, "x": 134, "width": 180, "var": "ticketBox", "skin": "new/game/jingdutiao1.png", "sizeGrid": "10,10,10,10", "name": "ticketBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 4, "child": [{ "type": "Image", "props": { "y": -1, "x": -24.5, "skin": "new/game/aixin.png" }, "compId": 6 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 7 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "10:00", "strokeColor": "#000000", "stroke": 2, "name": "timeText", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 9 }, { "type": "FontClip", "props": { "y": 39.5, "x": 20.5, "value": "30", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 0.8, "scaleX": 0.8, "name": "text", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 15 }] }, { "type": "Image", "props": { "y": 54, "x": 370, "width": 180, "var": "coinBox", "skin": "new/game/jinbidi.png", "sizeGrid": "10,10,10,10", "name": "coinBox", "height": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 10, "child": [{ "type": "Image", "props": { "y": -4, "x": -23.5, "skin": "new/game/jinbi.png" }, "compId": 11 }, { "type": "Image", "props": { "y": -4, "x": 159.5 }, "compId": 12 }, { "type": "Label", "props": { "y": 27, "x": 98.9267578125, "text": "0", "strokeColor": "#000000", "stroke": 2, "name": "text", "fontSize": 30, "color": "#ffffff", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 13 }] }], "loadList": ["new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/jinbidi.png", "new/game/jinbi.png"], "loadList3D": [] };
             view.PendantUI = PendantUI;
             REG("ui.view.PendantUI", PendantUI);
             class PhotoWallUI extends Scene {
@@ -1666,7 +1667,7 @@
                     this.createView(RankUI.uiView);
                 }
             }
-            RankUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Rank", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "y": 0, "x": 0, "visible": true, "skin": "new/com/beijing.png" }, "compId": 261, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 262 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 263 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 264 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 265 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 266 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 267 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 268 }] }, { "type": "Image", "props": { "var": "breakBtn", "top": 16, "skin": "new/com/b_fanhui.png", "name": "breakBtn", "left": 37, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244 }, { "type": "Image", "props": { "width": 680, "var": "list", "skin": "new/com/paihangbangdiban.png", "sizeGrid": "25,25,25,25", "name": "list", "height": 1100, "centerY": 50, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 270, "child": [{ "type": "Image", "props": { "y": -91, "x": 212, "skin": "new/com/t_paihangb.png" }, "compId": 269 }, { "type": "Image", "props": { "y": 1120, "visible": false, "var": "upBtn", "skin": "new/com/b_shangyiye.png", "name": "upBtn", "centerX": -150, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 271 }, { "type": "Image", "props": { "y": 1120, "visible": false, "var": "downBtn", "skin": "new/com/b_xiayiye.png", "name": "downBtn", "centerX": 150, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 272 }, { "type": "List", "props": { "y": 507, "x": 340, "width": 630, "var": "rankList", "spaceY": 0, "spaceX": 0, "repeatY": 9, "repeatX": 1, "name": "rankList", "height": 1080, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 487, "child": [{ "type": "Box", "props": { "y": 10, "width": 630, "name": "render", "height": 120 }, "compId": 488, "child": [{ "type": "Image", "props": { "y": 50.5, "x": 315, "width": 630, "name": "item", "height": 105, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 489, "child": [{ "type": "Image", "props": { "y": 50.5, "width": 630, "skin": "new/com/4st.png", "sizeGrid": "0,15,0,109", "name": "item", "anchorY": 0.5, "anchorX": 0 }, "compId": 496, "child": [{ "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/beijing.png", "name": "head", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 539, "child": [{ "type": "Image", "props": { "y": 31, "x": 31, "width": 58, "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "5,5,5,5", "renderType": "mask", "pivotY": 30, "pivotX": 30, "height": 58 }, "compId": 540 }] }, { "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/kuang4.png", "pivotY": 30, "pivotX": 30, "height": 60 }, "compId": 541 }, { "type": "Label", "props": { "y": 56.5, "x": 190, "text": "松下纱荣子", "strokeColor": "#621311", "stroke": 0, "fontSize": 25, "font": "Microsoft YaHei", "color": "#00a3ff", "anchorY": 0.5 }, "compId": 542 }, { "type": "Image", "props": { "y": 51.5, "x": 332, "width": 300, "name": "score", "height": 100, "anchorY": 0.5 }, "compId": 543, "child": [{ "type": "Image", "props": { "y": 49, "x": 0, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 544 }, { "type": "Image", "props": { "y": 49, "x": 32, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 545 }, { "type": "Image", "props": { "y": 49, "x": 64, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 546 }, { "type": "Image", "props": { "y": 49, "x": 96, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 547 }, { "type": "Image", "props": { "y": 50, "x": 128, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 548 }, { "type": "Image", "props": { "y": 50, "x": 160, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 549 }, { "type": "Image", "props": { "y": 50, "x": 192, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 550 }, { "type": "Image", "props": { "y": 50, "x": 224, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 551 }, { "type": "Image", "props": { "y": 49, "x": 256, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 552 }] }, { "type": "Image", "props": { "y": 52, "x": 57, "width": 29, "skin": "new/com/num/index/0.png", "pivotY": 22, "pivotX": 15, "name": "index", "height": 44 }, "compId": 553 }] }] }] }, { "type": "VScrollBar", "props": { "y": 14, "x": 1046, "name": "scrollBar" }, "compId": 492 }] }] }], "loadList": ["new/com/beijing.png", "new/com/b_fanhui.png", "new/com/paihangbangdiban.png", "new/com/t_paihangb.png", "new/com/b_shangyiye.png", "new/com/b_xiayiye.png", "new/com/4st.png", "new/game/jingdutiaodi1.png", "new/com/kuang4.png", "new/com/num/score/0.png", "new/com/num/index/0.png"], "loadList3D": [] };
+            RankUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Rank", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "y": 0, "x": 0, "visible": true, "skin": "new/com/beijing.png" }, "compId": 261, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 262 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 263 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 264 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 265 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 266 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 267 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 268 }] }, { "type": "Image", "props": { "var": "breakBtn", "top": 16, "skin": "new/com/b_fanhui.png", "name": "breakBtn", "left": 37, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244 }, { "type": "Image", "props": { "width": 680, "var": "list", "skin": "new/com/paihangbangdiban.png", "sizeGrid": "25,25,25,25", "name": "list", "height": 1100, "centerY": 50, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 270, "child": [{ "type": "Image", "props": { "y": -91, "x": 212, "skin": "new/com/t_paihangb.png" }, "compId": 269 }, { "type": "Image", "props": { "y": 1120, "visible": false, "var": "upBtn", "skin": "new/com/b_shangyiye.png", "name": "upBtn", "centerX": -150, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 271 }, { "type": "Image", "props": { "y": 1120, "visible": false, "var": "downBtn", "skin": "new/com/b_xiayiye.png", "name": "downBtn", "centerX": 150, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 272 }, { "type": "List", "props": { "y": 507, "x": 340, "width": 630, "var": "rankList", "spaceY": 0, "spaceX": 0, "repeatY": 9, "repeatX": 1, "name": "rankList", "height": 1080, "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 487, "child": [{ "type": "Box", "props": { "y": 10, "width": 630, "name": "render", "height": 120 }, "compId": 488, "child": [{ "type": "Image", "props": { "y": 50.5, "x": 315, "width": 630, "name": "item", "height": 105, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 489, "child": [{ "type": "Image", "props": { "y": 50.5, "width": 630, "skin": "new/com/1st.png", "sizeGrid": "0,15,0,109", "name": "item1", "anchorY": 0.5, "anchorX": 0 }, "compId": 493, "child": [{ "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/beijing.png", "name": "head", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 497, "child": [{ "type": "Image", "props": { "y": 31, "x": 31, "width": 58, "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "5,5,5,5", "renderType": "mask", "pivotY": 30, "pivotX": 30, "height": 58 }, "compId": 498 }] }, { "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/kuang1.png", "pivotY": 30, "pivotX": 30, "height": 60 }, "compId": 499 }, { "type": "Label", "props": { "y": 56.5, "x": 190, "text": "松下纱荣子", "strokeColor": "#882f13", "stroke": 3, "fontSize": 25, "font": "Microsoft YaHei", "color": "#ffffff", "anchorY": 0.5 }, "compId": 500 }, { "type": "Image", "props": { "y": 51.5, "x": 332, "width": 300, "name": "score", "height": 100, "anchorY": 0.5 }, "compId": 501, "child": [{ "type": "Image", "props": { "y": 49, "x": 0, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 502 }, { "type": "Image", "props": { "y": 49, "x": 32, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 503 }, { "type": "Image", "props": { "y": 49, "x": 64, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 504 }, { "type": "Image", "props": { "y": 49, "x": 96, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 505 }, { "type": "Image", "props": { "y": 50, "x": 128, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 506 }, { "type": "Image", "props": { "y": 50, "x": 160, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 507 }, { "type": "Image", "props": { "y": 50, "x": 192, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 508 }, { "type": "Image", "props": { "y": 50, "x": 224, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 509 }, { "type": "Image", "props": { "y": 49, "x": 256, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 510 }] }] }, { "type": "Image", "props": { "y": 50, "width": 630, "skin": "new/com/2st.png", "sizeGrid": "0,15,0,109", "name": "item2", "anchorY": 0.5, "anchorX": 0 }, "compId": 494, "child": [{ "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/beijing.png", "name": "head", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 511, "child": [{ "type": "Image", "props": { "y": 31, "x": 31, "width": 58, "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "5,5,5,5", "renderType": "mask", "pivotY": 30, "pivotX": 30, "height": 58 }, "compId": 512 }] }, { "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/kuang2.png", "pivotY": 30, "pivotX": 30, "height": 60 }, "compId": 513 }, { "type": "Label", "props": { "y": 56.5, "x": 190, "text": "松下纱荣子", "strokeColor": "#5a5a5a", "stroke": 3, "fontSize": 25, "font": "Microsoft YaHei", "color": "#ffffff", "anchorY": 0.5 }, "compId": 514 }, { "type": "Image", "props": { "y": 51.5, "x": 332, "width": 300, "name": "score", "height": 100, "anchorY": 0.5 }, "compId": 515, "child": [{ "type": "Image", "props": { "y": 49, "x": 0, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 516 }, { "type": "Image", "props": { "y": 49, "x": 32, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 517 }, { "type": "Image", "props": { "y": 49, "x": 64, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 518 }, { "type": "Image", "props": { "y": 49, "x": 96, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 519 }, { "type": "Image", "props": { "y": 50, "x": 128, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 520 }, { "type": "Image", "props": { "y": 50, "x": 160, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 521 }, { "type": "Image", "props": { "y": 50, "x": 192, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 522 }, { "type": "Image", "props": { "y": 50, "x": 224, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 523 }, { "type": "Image", "props": { "y": 49, "x": 256, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 524 }] }] }, { "type": "Image", "props": { "y": 50.5, "width": 630, "skin": "new/com/3st.png", "sizeGrid": "0,15,0,109", "name": "item3", "anchorY": 0.5, "anchorX": 0 }, "compId": 495, "child": [{ "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/beijing.png", "name": "head", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 525, "child": [{ "type": "Image", "props": { "y": 31, "x": 31, "width": 58, "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "5,5,5,5", "renderType": "mask", "pivotY": 30, "pivotX": 30, "height": 58 }, "compId": 526 }] }, { "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/kuang3.png", "pivotY": 30, "pivotX": 30, "height": 60 }, "compId": 527 }, { "type": "Label", "props": { "y": 56.5, "x": 190, "text": "松下纱荣子", "strokeColor": "#621311", "stroke": 3, "fontSize": 25, "font": "Microsoft YaHei", "color": "#ffffff", "anchorY": 0.5 }, "compId": 528 }, { "type": "Image", "props": { "y": 51.5, "x": 332, "width": 300, "name": "score", "height": 100, "anchorY": 0.5 }, "compId": 529, "child": [{ "type": "Image", "props": { "y": 49, "x": 0, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 530 }, { "type": "Image", "props": { "y": 49, "x": 32, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 531 }, { "type": "Image", "props": { "y": 49, "x": 64, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 532 }, { "type": "Image", "props": { "y": 49, "x": 96, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 533 }, { "type": "Image", "props": { "y": 50, "x": 128, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 534 }, { "type": "Image", "props": { "y": 50, "x": 160, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 535 }, { "type": "Image", "props": { "y": 50, "x": 192, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 536 }, { "type": "Image", "props": { "y": 50, "x": 224, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 537 }, { "type": "Image", "props": { "y": 49, "x": 256, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 538 }] }] }, { "type": "Image", "props": { "y": 50.5, "width": 630, "skin": "new/com/4st.png", "sizeGrid": "0,15,0,109", "name": "item4", "anchorY": 0.5, "anchorX": 0 }, "compId": 496, "child": [{ "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/beijing.png", "name": "head", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 539, "child": [{ "type": "Image", "props": { "y": 31, "x": 31, "width": 58, "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "5,5,5,5", "renderType": "mask", "pivotY": 30, "pivotX": 30, "height": 58 }, "compId": 540 }] }, { "type": "Image", "props": { "y": 51.5, "x": 144, "width": 60, "skin": "new/com/kuang4.png", "pivotY": 30, "pivotX": 30, "height": 60 }, "compId": 541 }, { "type": "Label", "props": { "y": 56.5, "x": 190, "text": "松下纱荣子", "strokeColor": "#621311", "stroke": 0, "fontSize": 25, "font": "Microsoft YaHei", "color": "#00a3ff", "anchorY": 0.5 }, "compId": 542 }, { "type": "Image", "props": { "y": 51.5, "x": 332, "width": 300, "name": "score", "height": 100, "anchorY": 0.5 }, "compId": 543, "child": [{ "type": "Image", "props": { "y": 49, "x": 0, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 544 }, { "type": "Image", "props": { "y": 49, "x": 32, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 545 }, { "type": "Image", "props": { "y": 49, "x": 64, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 546 }, { "type": "Image", "props": { "y": 49, "x": 96, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 547 }, { "type": "Image", "props": { "y": 50, "x": 128, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 548 }, { "type": "Image", "props": { "y": 50, "x": 160, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 549 }, { "type": "Image", "props": { "y": 50, "x": 192, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 550 }, { "type": "Image", "props": { "y": 50, "x": 224, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 551 }, { "type": "Image", "props": { "y": 49, "x": 256, "skin": "new/com/num/score/0.png", "anchorY": 0.5 }, "compId": 552 }] }, { "type": "Image", "props": { "y": 52, "x": 57, "width": 29, "skin": "new/com/num/index/0.png", "pivotY": 22, "pivotX": 15, "name": "index", "height": 44 }, "compId": 553 }] }] }] }, { "type": "VScrollBar", "props": { "y": 14, "x": 1046, "name": "scrollBar" }, "compId": 492 }] }] }], "loadList": ["new/com/beijing.png", "new/com/b_fanhui.png", "new/com/paihangbangdiban.png", "new/com/t_paihangb.png", "new/com/b_shangyiye.png", "new/com/b_xiayiye.png", "new/com/1st.png", "new/game/jingdutiaodi1.png", "new/com/kuang1.png", "new/com/num/score/0.png", "new/com/2st.png", "new/com/kuang2.png", "new/com/3st.png", "new/com/kuang3.png", "new/com/4st.png", "new/com/kuang4.png", "new/com/num/index/0.png"], "loadList3D": [] };
             view.RankUI = RankUI;
             REG("ui.view.RankUI", RankUI);
             class RoleSelectUI extends Scene {
@@ -2417,8 +2418,8 @@
             image.offAll(Laya.Event.MOUSE_OUT);
         }
         isSprite3DTween(sprite) {
-            return (this.tweenList[this.tweenType.move].getValueByName(sprite.id) != null) || (this.tweenList[this.tweenType.scale].getValueByName(sprite.id) != null) ||
-                (this.tweenList[this.tweenType.rotation].getValueByName(sprite.id) != null);
+            return (this.tweenList[this.tweenType.move].getValueByName(sprite.name) != null) || (this.tweenList[this.tweenType.scale].getValueByName(sprite.name) != null) ||
+                (this.tweenList[this.tweenType.rotation].getValueByName(sprite.name) != null);
         }
         sprite3DStopTween(sprite, type = this.tweenType.move) {
             let stop = (tween) => {
@@ -2427,17 +2428,17 @@
                 tween.recover();
             };
             for (let index = 0; index < this.tweenList[type].length; index++) {
-                let tween = this.tweenList[type].getValueByName(sprite.id);
+                let tween = this.tweenList[type].getValueByName(sprite.name);
                 if (tween != null) {
                     stop(tween);
-                    this.tweenList[type].removeByName(sprite.id);
+                    this.tweenList[type].removeByName(sprite.name);
                     index--;
                 }
             }
         }
         sprite3DScale(sprite, props, duration, ease, completed, progress) {
             this.sprite3DStopTween(sprite, this.tweenType.scale);
-            this.tweenList[this.tweenType.scale].add(sprite.id, this.tweenUpdate(sprite, sprite.transform.getWorldLossyScale(), props, duration, ease, () => {
+            this.tweenList[this.tweenType.scale].add(sprite.name, this.tweenUpdate(sprite, sprite.transform.getWorldLossyScale(), props, duration, ease, () => {
                 this.sprite3DStopTween(sprite, this.tweenType.scale);
                 completed && completed();
             }, (toPos) => {
@@ -2447,7 +2448,7 @@
         }
         sprite3DMove(sprite, props, duration, ease, completed, progress) {
             this.sprite3DStopTween(sprite, this.tweenType.move);
-            this.tweenList[this.tweenType.move].add(sprite.id, this.tweenUpdate(sprite, sprite.transform.position, props, duration, ease, () => {
+            this.tweenList[this.tweenType.move].add(sprite.name, this.tweenUpdate(sprite, sprite.transform.position, props, duration, ease, () => {
                 this.sprite3DStopTween(sprite, this.tweenType.move);
                 completed && completed();
             }, (toPos) => {
@@ -2457,7 +2458,7 @@
         }
         sprite3DRotation(sprite, props, duration, ease, completed, progress) {
             this.sprite3DStopTween(sprite, this.tweenType.rotation);
-            this.tweenList[this.tweenType.rotation].add(sprite.id, this.tweenUpdate(sprite, sprite.transform.rotationEuler, props, duration, ease, () => {
+            this.tweenList[this.tweenType.rotation].add(sprite.name, this.tweenUpdate(sprite, sprite.transform.rotationEuler, props, duration, ease, () => {
                 this.sprite3DStopTween(sprite, this.tweenType.rotation);
                 completed && completed();
             }, (toPos) => {
@@ -2714,13 +2715,7 @@
         onInitProp(data) {
             this.prop = data;
             this._obstacleId = data.id;
-            if (this._obstacleId != 100) {
-                this.transform.localRotationEulerX = 0;
-            }
-            else {
-                this.transform.localRotationEulerX = -90;
-                this.idleAnimation();
-            }
+            this.transform.localRotationEulerX = 0;
         }
         recover() {
             this.gameObject.removeSelf();
@@ -2731,14 +2726,6 @@
             this.onHit();
         }
         onHit() {
-            Laya.timer.clear(this, this.idleAnimation);
-        }
-        idleAnimation() {
-            if (this.obstacleId == 100) {
-                let prop = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 90), this.owner);
-                Tool.instance.sprite3DRotation(this.owner, prop, 1000);
-                Laya.timer.once(1000, this, this.idleAnimation, null);
-            }
         }
     }
 
@@ -2763,18 +2750,19 @@
             this.scene3D = this.owner;
             this.manager = rab.RabGameManager.getInterest().getMyManager();
         }
-        onCreateobstacle(data, posZ) {
-            console.log("创建一个障碍物", posZ);
-            this._initPos = posZ + data.length;
+        onCreateobstacle(data, posz) {
+            console.log("创建一个障碍物", posz);
+            this._initPos = posz + data.length;
             let arr = data.obstacle;
             this._buildProp = data;
             for (var i = 0; i < arr.length; i++) {
                 if (!this._baseobstacles[arr[i]]) {
-                    this._baseobstacles[arr[i]] =
-                        Laya.loader.getRes("3d/prefab/Conventional/" + this.manager.jsonConfig.getObstacleData(arr[i]).res + ".lh");
+                    this._baseobstacles[arr[i]] = Laya.loader.getRes("3d/prefab/Conventional/" + this.manager.jsonConfig.getObstacleData(arr[i]).res + ".lh");
                 }
             }
-            this.createNextOb();
+            {
+                this.createNextOb();
+            }
         }
         createNextOb() {
             let ObstacleID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
@@ -2810,6 +2798,9 @@
             }
         }
         SpawnCoinAndPowerup() {
+            const increment = 1.5;
+            let currentWorldPos = 0.0;
+            let currentLane = Math.random() * 3;
         }
         onClearAll() {
             for (var i = 0; i < this._obstacles.length; i++) {
@@ -2841,14 +2832,8 @@
             let prop = other.owner.getComponent(ObstacleItem);
             if (prop) {
                 prop.onCollisionPlay();
-                if (prop.obstacleId != 100) {
-                    this.SendMessage(GameNotity.Game_TriggerEnter, prop.prop.up, prop.prop.down);
-                    this.onFlash();
-                }
-                else {
-                    let manager = rab.RabGameManager.getInterest().getMyManager();
-                    manager.fightGetCoin += 5;
-                }
+                this.SendMessage(GameNotity.Game_TriggerEnter, prop.prop.up, prop.prop.down);
+                this.onFlash();
             }
         }
         onSetMaterial(material) {
@@ -3438,26 +3423,29 @@
         }
         OnRefreshView() {
             this.isLoopAddTicket = false;
-            this.updateCoin();
-            this.updateTicket();
+            let manager = rab.RabGameManager.getInterest().getMyManager();
         }
         onCoin() {
         }
         onTicket() {
+            if (rab.UIManager.isShowView(ViewConfig.gameView.GetTicketView) == false) {
+                rab.UIManager.onCreateView(ViewConfig.gameView.GetTicketView);
+            }
         }
-        updateCoin() {
-            this.m_currView.coinBox.getChildByName("text").text = "" + rab.Util.formatter(this.myManager.gameInfo.coin);
+        updateCoin(data) {
+            this.m_currView.coinBox.getChildByName("text").text = "" + rab.Util.formatter(data[0]);
         }
-        updateTicket() {
-            this.m_currView.ticketBox.getChildByName("text").value = "" + this.myManager.gameInfo.ticket;
-            if (this.myManager.isLoopAddTicket == true && this.isLoopAddTicket == false) {
+        updateTicket(data) {
+            this.m_currView.ticketBox.getChildByName("text").value = "" + data[0];
+            let manager = rab.RabGameManager.getInterest().getMyManager();
+            if (manager.isLoopAddTicket == true && this.isLoopAddTicket == false) {
                 this.isLoopAddTicket = true;
-                this.loopAddTicketTimeGap = this.myManager.loopAddTicketTimeGap;
+                this.loopAddTicketTimeGap = manager.loopAddTicketTimeGap;
                 this.updateTicketTime();
                 Laya.timer.clear(this, this.updateTicketTime);
                 Laya.timer.loop(1000, this, this.updateTicketTime);
             }
-            else if (this.myManager.isLoopAddTicket == false) {
+            else if (manager.isLoopAddTicket == false) {
                 this.isLoopAddTicket = false;
                 this.loopAddTicketTimeGap = 0;
                 this.m_currView.ticketBox.getChildByName("timeText").text = "已满";
@@ -3530,7 +3518,6 @@
                     Laya.Tween.to(this.m_currView.cover, {}, 850, null, Laya.Handler.create(this, () => {
                         this.m_currView.cover.visible = false;
                         this.m_currView.bigPhoto.visible = false;
-                        this.m_currView.bigPhoto.skin = null;
                     }));
                 }
             });
@@ -3564,14 +3551,12 @@
         onwin() {
             let index = this.myManager.openPhotowall();
             this.m_currView.award.visible = true;
-            if (index <= 11) {
-                this.m_currView.cover.visible = true;
-                this.m_currView.cover.alpha = 0.5;
-                this.m_currView.bigPhoto.visible = true;
-                this.m_currView.bigPhoto.alpha = 1;
-                this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png";
-                Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
-            }
+            this.m_currView.cover.visible = true;
+            this.m_currView.cover.alpha = 0.5;
+            this.m_currView.bigPhoto.visible = true;
+            this.m_currView.bigPhoto.alpha = 1;
+            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png";
+            Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
             let alpha = (sprite, time) => {
                 sprite.alpha = 0;
                 Laya.Tween.to(sprite, { alpha: 1 }, time);
@@ -3842,11 +3827,11 @@
             this.OnRefreshView();
         }
         OnRefreshView() {
-            this.m_currView.bg.visible = true;
             this.m_currView.loadNode.visible = true;
         }
         onHide() {
             super.onHide();
+            this.m_currView.loadNode.visible = false;
         }
         initLoading() {
             this.loadCloud();
@@ -3865,10 +3850,6 @@
         }
         onHideCloud() {
             this.cloud.play("animation", false);
-            Laya.timer.frameOnce(this.cloud.total / 1.5, this, () => {
-                this.m_currView.bg.visible = false;
-                this.m_currView.loadNode.visible = false;
-            });
             Laya.timer.frameOnce(this.cloud.total, this, () => {
                 if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == false) {
                     this.cloud.paused();
@@ -4066,7 +4047,6 @@
             this.m_currView.rankList.selectEnable = true;
             this.m_currView.rankList.selectHandler = new Laya.Handler(this, this.onSelect);
             this.m_currView.rankList.renderHandler = new Laya.Handler(this, this.updateItem);
-            this.OnRefreshView();
         }
         OnRefreshView() {
             this.page = 0;
@@ -4112,7 +4092,7 @@
                     }
                 }
             }
-            if (item.getChildByName("index").visible == true) {
+            if (item.numChildren == 5) {
                 let _index = item.getChildAt(4);
                 _index.skin = null;
                 for (let i = 0; i < _index.numChildren; i++) {
@@ -4137,15 +4117,17 @@
         }
         updateItem(cell, index) {
             console.log(index, cell);
-            let item = cell.getChildAt(0).getChildAt(0);
+            let item;
+            for (let i = 0; i < cell.getChildAt(0).numChildren; i++) {
+                cell.getChildAt(0).getChildAt(i).visible = false;
+            }
             if (index < 3) {
-                item.skin = "new/com/" + (index + 1) + "st.png";
-                item.getChildByName("index").visible = false;
+                item = cell.getChildAt(0).getChildAt(index);
             }
             else {
-                item.skin = "new/com/4st.png";
-                item.getChildByName("index").visible = true;
+                item = cell.getChildAt(0).getChildAt(3);
             }
+            item.visible = true;
             this.initItem(index, item, this.myManager.rank[index]);
         }
         onSelect(index) {
