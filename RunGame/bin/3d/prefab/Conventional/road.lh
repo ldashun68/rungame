@@ -1,0 +1,55 @@
+{
+	"version":"LAYAHIERARCHY:02",
+	"data":{
+		"type":"MeshSprite3D",
+		"instanceID":7,
+		"props":{
+			"name":"road",
+			"active":true,
+			"isStatic":false,
+			"layer":0,
+			"position":[
+				1.525196,
+				0.2327938,
+				1.828952
+			],
+			"rotation":[
+				0,
+				0,
+				0,
+				-1
+			],
+			"scale":[
+				1,
+				1,
+				1
+			],
+			"meshPath":"Library/unity default resources-Plane.lm",
+			"enableRender":true,
+			"receiveShadows":true,
+			"castShadow":true,
+			"materials":[
+				{
+					"type":"Laya.BlinnPhongMaterial",
+					"path":"Resources/unity_builtin_extra.lmat"
+				}
+			]
+		},
+		"components":[
+			{
+				"type":"PhysicsCollider",
+				"restitution":0,
+				"friction":0.5,
+				"rollingFriction":0,
+				"shapes":[
+					{
+						"type":"MeshColliderShape",
+						"mesh":"Library/unity default resources-Plane.lm"
+					}
+				],
+				"isTrigger":false
+			}
+		],
+		"child":[]
+	}
+}
