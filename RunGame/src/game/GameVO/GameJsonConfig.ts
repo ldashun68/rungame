@@ -39,9 +39,13 @@ export default class GameJsonConfig {
     }
 
     /**获得关卡数据 */
-    public getPassData(index:number):passProp
+    public getPassData(year: string, index:number):passProp
     {
-        return <passProp>(this.jsonData['pass'][index]);
+        let yearNum: number = 0;
+        if (year == "year90") {
+            yearNum = 3;
+        }
+        return <passProp>(this.jsonData['pass'][index+yearNum]);
         // return data;
     }
 

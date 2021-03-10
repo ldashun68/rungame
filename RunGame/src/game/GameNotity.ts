@@ -13,4 +13,5 @@ export default class GameNotity extends rab.RabNotity {
     static Game_UpdateMouseMove: string = "Game_UpdateMouseMove";
     static Game_RemoveScene: string = "Game_RemoveScene";
     static Game_TriggerEnter:string ="Game_TriggerEnter";
+    static Game_RoleRetrogression: string = "Game_RoleRetrogression";
 }

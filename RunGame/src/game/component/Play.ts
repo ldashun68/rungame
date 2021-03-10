@@ -21,7 +21,16 @@ export default class Play extends rab.GameObject {
         let prop:ObstacleItem = other.owner.getComponent(ObstacleItem);
         if(prop) {
             prop.onCollisionPlay();
-            if (prop.obstacleId != 100) {
+            if (prop.isCoin() == false) {
+                if (prop.isTruck() == true) {
+                    if(prop.transform.localPositionX == 0) {
+                        this.SendMessage(GameNotity.Game_UpdateMouseMove, 1);
+                    }
+                    else {
+                        this.SendMessage(GameNotity.Game_UpdateMouseMove, 0);
+                    }
+                    this.SendMessage(GameNotity.Game_RoleRetrogression);
+                }
                 this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
                 this.onFlash();
             }

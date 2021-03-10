@@ -65,7 +65,7 @@ export default class ObstacleManager extends rab.GameObject {
         }
 
         if (this.obstaclesID == 100) {
-            let random: number = Math.round(Math.random()*2+3);
+            let random: number = Math.round(Math.random()*2+2);
             for(var i = 0; i < random; i++) {
                 this.createNextOb();
                 this._initPos += 2;

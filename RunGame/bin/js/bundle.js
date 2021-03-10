@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Platform.scene";
+    GameConfig.startScene = "view/Game.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -1692,6 +1692,7 @@
     GameNotity.Game_UpdateMouseMove = "Game_UpdateMouseMove";
     GameNotity.Game_RemoveScene = "Game_RemoveScene";
     GameNotity.Game_TriggerEnter = "Game_TriggerEnter";
+    GameNotity.Game_RoleRetrogression = "Game_RoleRetrogression";
 
     class GameJsonConfig {
         constructor(data) {
@@ -1715,8 +1716,12 @@
         getPassCount() {
             return (this.jsonData['pass'].length);
         }
-        getPassData(index) {
-            return (this.jsonData['pass'][index]);
+        getPassData(year, index) {
+            let yearNum = 0;
+            if (year == "year90") {
+                yearNum = 3;
+            }
+            return (this.jsonData['pass'][index + yearNum]);
         }
         getBuildData(id) {
             return this._builds[id];
@@ -1949,11 +1954,11 @@
             this.gameInfo.currentPass += 1;
         }
         CurrPassData() {
-            if (this.gameInfo.currentPass >= this.jsonConfig.getPassCount()) {
+            if (this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] >= this.jsonConfig.getPassCount()) {
                 this.gameInfo.currentPass = 0;
                 this.gameInfo.pass = 0;
             }
-            let data = this.jsonConfig.getPassData(this.gameInfo.currentPass);
+            let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect - 1], this.gameInfo.currentPass);
             return data;
         }
         getBuild(id) {
@@ -2714,6 +2719,7 @@
         onInitProp(data) {
             this.prop = data;
             this._obstacleId = data.id;
+            this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
             if (this._obstacleId != 100) {
                 this.transform.localRotationEulerX = 0;
             }
@@ -2731,22 +2737,40 @@
             this.onHit();
         }
         onHit() {
-            Laya.timer.clear(this, this.idleAnimation);
-            Tool.instance.sprite3DStopTween(this.owner, Tool.instance.tweenType.rotation);
+            if (this.isCoin() == true) {
+                Laya.timer.clear(this, this.idleAnimation);
+                Tool.instance.sprite3DStopTween(this.owner, Tool.instance.tweenType.rotation);
+                let prop1 = Tool.instance.getAddPosition(new Laya.Vector3(0, 2, 0), this.owner);
+                Tool.instance.sprite3DMove(this.owner, prop1, 100);
+                Tool.instance.sprite3DScale(this.owner, new Laya.Vector3(0.3, 0.3, 0.3), 100, null, () => {
+                    this.transform.setWorldLossyScale(new Laya.Vector3(0, 0, 0));
+                });
+            }
+            if (this.isTruck() == true) {
+            }
         }
         idleAnimation() {
-            if (this.obstacleId == 100) {
+            if (this.isCoin() == true) {
                 let prop = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 90), this.owner);
                 Tool.instance.sprite3DRotation(this.owner, prop, 1000);
                 Laya.timer.once(1000, this, this.idleAnimation, null);
             }
         }
+        isTruck() {
+            return this.obstacleId == 10;
+        }
+        isCoin() {
+            return this.obstacleId == 100;
+        }
     }
 
     class ObstacleSimple extends ObstacleItem {
         onHit() {
+            super.onHit();
             console.log("简单的障碍物碰到就直接倒了");
-            Tool.instance.sprite3DRotation(this.gameObject, new Laya.Vector3(90, 0, 0), 100);
+            if (this.isTruck() == false && this.isCoin() == false) {
+                Tool.instance.sprite3DRotation(this.gameObject, new Laya.Vector3(90, 0, 0), 100);
+            }
         }
     }
 
@@ -2795,7 +2819,7 @@
                 }
             }
             if (this.obstaclesID == 100) {
-                let random = Math.round(Math.random() * 2 + 3);
+                let random = Math.round(Math.random() * 2 + 2);
                 for (var i = 0; i < random; i++) {
                     this.createNextOb();
                     this._initPos += 2;
@@ -2880,7 +2904,16 @@
             let prop = other.owner.getComponent(ObstacleItem);
             if (prop) {
                 prop.onCollisionPlay();
-                if (prop.obstacleId != 100) {
+                if (prop.isCoin() == false) {
+                    if (prop.isTruck() == true) {
+                        if (prop.transform.localPositionX == 0) {
+                            this.SendMessage(GameNotity.Game_UpdateMouseMove, 1);
+                        }
+                        else {
+                            this.SendMessage(GameNotity.Game_UpdateMouseMove, 0);
+                        }
+                        this.SendMessage(GameNotity.Game_RoleRetrogression);
+                    }
                     this.SendMessage(GameNotity.Game_TriggerEnter, prop.prop.up, prop.prop.down);
                     this.onFlash();
                 }
@@ -2938,9 +2971,11 @@
             this.minSpeed = 5.0;
             this.maxSpeed = 10.0;
             this.worldDistance = 0;
+            this.retrogression = 0;
         }
         onInit() {
             this.AddListenerMessage(GameNotity.Game_UpdateMouseMove, this.onMouseMove);
+            this.AddListenerMessage(GameNotity.Game_RoleRetrogression, this.onRoletrogression);
         }
         init() {
             this.isMoveing = false;
@@ -2958,6 +2993,7 @@
             this.isMoveing = false;
             this.localx = 0;
             this.worldDistance = 0;
+            this.retrogression = 0;
             this.currentAnimation = "";
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
             this._playerPivot.addChild(this.camera);
@@ -3024,12 +3060,20 @@
             this.playAnimation("idle", 0);
             this._characterSlot.transform.position = new Laya.Vector3(0, 0, 0);
             this.worldDistance = 0;
+            this.retrogression = 0;
         }
         update() {
             let scaledSpeed = this.m_Speed * 0.02;
             let pos = this._playerPivot.transform.position;
-            pos.z += scaledSpeed;
-            this.worldDistance += scaledSpeed;
+            if (this.retrogression < 0.1) {
+                pos.z += scaledSpeed;
+                this.worldDistance += scaledSpeed;
+            }
+            else {
+                pos.z -= scaledSpeed;
+                this.worldDistance -= scaledSpeed;
+                this.retrogression *= 0.9;
+            }
             this._playerPivot.transform.position = pos;
             if (this._playState == PlayState.jump) {
                 let correctJumpLength = this.jumpLength * (1.0 + this.speedRatio);
@@ -3057,6 +3101,9 @@
             else {
                 this.m_Speed = this.maxSpeed;
             }
+        }
+        onRoletrogression() {
+            this.retrogression = 1;
         }
         get speedRatio() { return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed); }
         onMouseMove(data) {
@@ -3329,7 +3376,7 @@
             this.builds.push(buildProp);
             buildProp.onInitProp(this.manager.getBuild(buildID), this._currLenght);
             this._currLenght += this.manager.getBuild(buildID).length;
-            if (this._currLenght > 18 && this._currLenght < this.passData.length - this.winLenght) {
+            if (this._currLenght > 20 && this._currLenght < this.passData.length - this.winLenght) {
                 this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
             }
             return build;

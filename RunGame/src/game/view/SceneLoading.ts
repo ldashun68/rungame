@@ -38,6 +38,10 @@ export default class SceneLoading extends rab.RabView {
         }, [Templet1, "lizi"]);
         Templet1.loadAni("effect/bg/bg_lizi.sk");
         
+        // Laya.loader.load("https://coolrun.liandaxinxi.com/home/bubu/build", Laya.Handler.create(this, (error: any, data: any) => {
+        //     console.log("bubu", error, data);
+        // }));
+        
         this.AddListenerMessage(GameNotity.GameMessage_LoadingEnd,this.onLoadEnd);
 
         rab.RabGameManager.getInterest().AddManager(new GameController());

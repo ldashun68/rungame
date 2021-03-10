@@ -243,8 +243,7 @@ export default class FightManager extends rab.GameObject {
         }
     }
 
-    onGameFail()
-    {
+    onGameFail() {
         this.isStart = false;
         this.manager.fightGetCoin = 0;
         this.playerManager.Ondeath();
@@ -254,10 +253,8 @@ export default class FightManager extends rab.GameObject {
     }
 
     /**复活 */
-    onGameRevive()
-    {
-        if(!this.isStart)
-        {
+    onGameRevive() {
+        if(!this.isStart) {
             this.isStart = true;
             this.playerManager.revive();
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
@@ -269,10 +266,8 @@ export default class FightManager extends rab.GameObject {
     /**
      * 重新开始
      */
-    onGameReStart()
-    {
-        if(!this.isStart)
-        {
+    onGameReStart() {
+        if(!this.isStart) {
             // this.isStart = true;
             Laya.timer.resume();
             this.currlife = this.max_lifeCount;
@@ -292,17 +287,14 @@ export default class FightManager extends rab.GameObject {
     }
 
     /**回收场景了 */
-    onReMoveScene()
-    {
+    onReMoveScene() {
         console.log("回收场景了");
-        for(var i = 0;i<this.builds.length;i++)
-        {
+        for(var i = 0;i<this.builds.length;i++) {
             this.builds[i].recover();
         }
         this.builds = [];
         this.obstacleManager.onClearAll();
-        for(var i =0;i<this.passData.builds.length;i++)
-        {
+        for(var i =0;i<this.passData.builds.length;i++) {
             Laya.Pool.clearBySign("build_"+this.passData.builds[i]);
             this._basebuilds[this.passData.builds[i]].destroy();
         }
@@ -311,11 +303,9 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.fightExit();
         rab.UIManager.onHideView(ViewConfig.gameView.GameView);
     }
-    
 
     /**创建下一个建筑物 */
-    private oncreateNextBuild():Laya.Sprite3D
-    {
+    private oncreateNextBuild():Laya.Sprite3D {
         let buildID = this.passData.builds[Math.floor(Math.random()*this.passData.builds.length)];
         let build:Laya.Sprite3D = Laya.Pool.getItem("build_"+buildID);
         let buildProp:BuildItem;
@@ -331,9 +321,8 @@ export default class FightManager extends rab.GameObject {
         this.scene3D.addChild(build);
         this.builds.push(buildProp);
         buildProp.onInitProp(this.manager.getBuild(buildID),this._currLenght);
-        this._currLenght +=this.manager.getBuild(buildID).length;
-        if(this._currLenght > 18 && this._currLenght < this.passData.length-this.winLenght)
-        {
+        this._currLenght += this.manager.getBuild(buildID).length;
+        if(this._currLenght > 20 && this._currLenght < this.passData.length-this.winLenght) {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
         }
         // let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
@@ -342,16 +331,15 @@ export default class FightManager extends rab.GameObject {
         return build
     }
 
-     /**更新关卡进度节点 */
-     private updatePassProgressNode (): void {
+    /**更新关卡进度节点 */
+    private updatePassProgressNode (): void {
         this.view.progress_t.x = 2+(this.playerManager.worldDistance/(this.passData.length-this.winLenght)*(this.view.progress_t.width));
         this.view.coinText.value = ""+this.manager.fightGetCoin;
         this.view.iconNode.x = this.view.progress_t.x-13;
     }
 
     /**设置生命值 */
-    private onLifeUpdate()
-    {
+    private onLifeUpdate() {
         this.view.lifeText.value = this.currlife+"";
         this.view.life_bg.width = (this.currlife/this.max_lifeCount)*290;
     }

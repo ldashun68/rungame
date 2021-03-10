@@ -40,6 +40,7 @@ export default class PlayerManager extends rab.GameObject {
     private model:Laya.SkinnedMeshSprite3D;
     private _playmaterial:Laya.UnlitMaterial;
     private currentAnimation: string;
+    private retrogression: number = 0;
 
     constructor () {
         super();
@@ -47,7 +48,8 @@ export default class PlayerManager extends rab.GameObject {
 
     onInit(): void {
         // this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
-        this.AddListenerMessage(GameNotity.Game_UpdateMouseMove,this.onMouseMove)
+        this.AddListenerMessage(GameNotity.Game_UpdateMouseMove,this.onMouseMove);
+        this.AddListenerMessage(GameNotity.Game_RoleRetrogression,this.onRoletrogression);
     }
     
     /**初始化 */
@@ -70,6 +72,7 @@ export default class PlayerManager extends rab.GameObject {
         this.isMoveing = false;
         this.localx = 0;
         this.worldDistance = 0;
+        this.retrogression = 0;
         this.currentAnimation = "";
         this._playerPivot.transform.position = new Laya.Vector3(0,0,0);
         this._playerPivot.addChild(this.camera);
@@ -150,13 +153,21 @@ export default class PlayerManager extends rab.GameObject {
         this.playAnimation("idle", 0);
         this._characterSlot.transform.position = new Laya.Vector3(0,0,0);
         this.worldDistance = 0;
+        this.retrogression = 0;
     }
    
     public update (): void {
         let scaledSpeed = this.m_Speed * 0.02;
         let pos = this._playerPivot.transform.position;
-        pos.z += scaledSpeed;
-        this.worldDistance += scaledSpeed;
+        if (this.retrogression < 0.1) {
+            pos.z += scaledSpeed;
+            this.worldDistance += scaledSpeed;
+        }
+        else {
+            pos.z -= scaledSpeed;
+            this.worldDistance -= scaledSpeed;
+            this.retrogression *= 0.9;
+        }
         this._playerPivot.transform.position = pos;
 
         if(this._playState == PlayState.jump) {
@@ -186,6 +197,10 @@ export default class PlayerManager extends rab.GameObject {
         else {
             this.m_Speed = this.maxSpeed;
         }
+    }
+
+    private onRoletrogression (): void {
+        this.retrogression = 1;
     }
 
     private get speedRatio() {  return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed);}
