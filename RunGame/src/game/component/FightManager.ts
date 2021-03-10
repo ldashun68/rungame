@@ -236,8 +236,7 @@ export default class FightManager extends rab.GameObject {
             }else{
                 this.currlife -=1;
                 this.onLifeUpdate();
-                if(this.currlife == 0)
-                {
+                if(this.currlife == 0) {
                     this.onGameFail();
                 }
             }
@@ -247,6 +246,7 @@ export default class FightManager extends rab.GameObject {
     onGameFail()
     {
         this.isStart = false;
+        this.manager.fightGetCoin = 0;
         this.playerManager.Ondeath();
         Laya.timer.once(2000, this, () => {
             rab.UIManager.onCreateView(ViewConfig.gameView.GameFailView);
@@ -319,11 +319,11 @@ export default class FightManager extends rab.GameObject {
         let buildID = this.passData.builds[Math.floor(Math.random()*this.passData.builds.length)];
         let build:Laya.Sprite3D = Laya.Pool.getItem("build_"+buildID);
         let buildProp:BuildItem;
-        if(!build)
-        {
+        if(!build) {
             build = this.instantiate(this._basebuilds[buildID],null,false,new Laya.Vector3(0, 0, this._currLenght));
             buildProp = build.addComponent(BuildItem);
-        }else{
+        }
+        else {
             build.transform.localPositionZ = this._currLenght;
             buildProp = build.getComponent(BuildItem);
         }
@@ -336,6 +336,8 @@ export default class FightManager extends rab.GameObject {
         {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
         }
+        // let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
+        // this.scene3D.addChild(road);
         
         return build
     }

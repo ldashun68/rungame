@@ -13,6 +13,9 @@ export default class ObstacleManager extends rab.GameObject {
     private _baseobstacles:Map<number,Laya.Sprite3D> = new Map<number,Laya.Sprite3D>();
     private _initPos:number;
     private _obstacles:Array<ObstacleItem> = new Array<ObstacleItem>();
+    private obstaclesID: number = 0;
+    private posZ: number = 0;
+
     onInit(): void {
         this.AddListenerMessage(GameNotity.Game_RemoveScene,this.onReMoveScene)
         // this.AddListenerMessage(GameNotity.GameMessage_Revive,this.onGameRevive)
@@ -30,27 +33,58 @@ export default class ObstacleManager extends rab.GameObject {
      */
     onCreateobstacle(data:buildProp, posZ:number)
     {
-        console.log("创建一个障碍物", posZ)
+        console.log("创建一个障碍物", posZ);
         this._initPos = posZ+data.length;
         let arr = data.obstacle;
         this._buildProp = data;
+
         for(var i = 0;i<arr.length;i++) {
             if(!this._baseobstacles[arr[i]]) {
                 this._baseobstacles[arr[i]] =
                 Laya.loader.getRes("3d/prefab/Conventional/"+this.manager.jsonConfig.getObstacleData(arr[i]).res+".lh");
             }
         }
-        this.createNextOb();
+        let ObstacleID = this.obstaclesID;
+        this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
+        //let ObstacleID = this._buildProp.obstacle[0];
+        while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
+            this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
+        }
+
+        let randomZ: number = this.posZ;
+        while (randomZ == this.posZ) {
+            if(Math.random() < 0.3) {
+                this.posZ = 0;
+            }
+            else if(Math.random() < 0.6) {
+                this.posZ = 1;
+            }
+            else {
+                this.posZ = 2;
+            }
+        }
+
+        if (this.obstaclesID == 100) {
+            let random: number = Math.round(Math.random()*2+3);
+            for(var i = 0; i < random; i++) {
+                this.createNextOb();
+                this._initPos += 2;
+            }
+        }
+        else {
+            this.createNextOb();
+        }
+
+        if (this.obstaclesID == 100) {
+            this.posZ = randomZ;
+        }
     }
 
-    createNextOb()
-    {
-        let ObstacleID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
-        //let ObstacleID = this._buildProp.obstacle[4];
-        let obstacle:Laya.Sprite3D = Laya.Pool.getItem("ObstacleID"+ObstacleID);
+    createNextOb () {
+        let obstacle:Laya.Sprite3D = Laya.Pool.getItem("ObstacleID"+this.obstaclesID);
         let obstacleProp:ObstacleItem;
         if(!obstacle) {
-            obstacle = this.instantiate(this._baseobstacles[ObstacleID],null,true,new Laya.Vector3(0, 0, this._initPos));
+            obstacle = this.instantiate(this._baseobstacles[this.obstaclesID],null,true,new Laya.Vector3(0, 0, this._initPos));
             obstacleProp = obstacle.addComponent(ObstacleSimple);
         }
         else {
@@ -58,19 +92,27 @@ export default class ObstacleManager extends rab.GameObject {
             obstacleProp = obstacle.getComponent(ObstacleSimple);
         }
         this.scene3D.addChild(obstacle);
-        console.log("创建好了障碍物",ObstacleID)
+        console.log("创建好了障碍物", this.obstaclesID)
         this._obstacles.push(obstacleProp);
-        obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
+        obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
         obstacle.transform.localPosition = new Laya.Vector3(0,0,this._initPos);
         obstacle.active = true;
-        if(this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1) {
+        if(this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
             obstacle.transform.localPositionX = 0;
         }
+        else if(this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 2) {
+            if(Math.random() < 0.5) {
+                obstacle.transform.localPositionX = 0;
+            }
+            else {
+                obstacle.transform.localPositionX = -1.2;
+            }
+        }
         else {
-            if(Math.random() < 0.3) {
+            if(this.posZ == 0) {
                 obstacle.transform.localPositionX = 1.2;
             }
-            else if(Math.random() < 0.6) {
+            else if(this.posZ == 1) {
                 obstacle.transform.localPositionX = 0;
             }
             else {

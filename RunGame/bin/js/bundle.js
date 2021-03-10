@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Game.scene";
+    GameConfig.startScene = "view/Platform.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -2732,6 +2732,7 @@
         }
         onHit() {
             Laya.timer.clear(this, this.idleAnimation);
+            Tool.instance.sprite3DStopTween(this.owner, Tool.instance.tweenType.rotation);
         }
         idleAnimation() {
             if (this.obstacleId == 100) {
@@ -2754,6 +2755,8 @@
             super(...arguments);
             this._baseobstacles = new Map();
             this._obstacles = new Array();
+            this.obstaclesID = 0;
+            this.posZ = 0;
         }
         onInit() {
             this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene);
@@ -2774,14 +2777,42 @@
                         Laya.loader.getRes("3d/prefab/Conventional/" + this.manager.jsonConfig.getObstacleData(arr[i]).res + ".lh");
                 }
             }
-            this.createNextOb();
+            let ObstacleID = this.obstaclesID;
+            this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
+            while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
+                this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
+            }
+            let randomZ = this.posZ;
+            while (randomZ == this.posZ) {
+                if (Math.random() < 0.3) {
+                    this.posZ = 0;
+                }
+                else if (Math.random() < 0.6) {
+                    this.posZ = 1;
+                }
+                else {
+                    this.posZ = 2;
+                }
+            }
+            if (this.obstaclesID == 100) {
+                let random = Math.round(Math.random() * 2 + 3);
+                for (var i = 0; i < random; i++) {
+                    this.createNextOb();
+                    this._initPos += 2;
+                }
+            }
+            else {
+                this.createNextOb();
+            }
+            if (this.obstaclesID == 100) {
+                this.posZ = randomZ;
+            }
         }
         createNextOb() {
-            let ObstacleID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
-            let obstacle = Laya.Pool.getItem("ObstacleID" + ObstacleID);
+            let obstacle = Laya.Pool.getItem("ObstacleID" + this.obstaclesID);
             let obstacleProp;
             if (!obstacle) {
-                obstacle = this.instantiate(this._baseobstacles[ObstacleID], null, true, new Laya.Vector3(0, 0, this._initPos));
+                obstacle = this.instantiate(this._baseobstacles[this.obstaclesID], null, true, new Laya.Vector3(0, 0, this._initPos));
                 obstacleProp = obstacle.addComponent(ObstacleSimple);
             }
             else {
@@ -2789,19 +2820,27 @@
                 obstacleProp = obstacle.getComponent(ObstacleSimple);
             }
             this.scene3D.addChild(obstacle);
-            console.log("创建好了障碍物", ObstacleID);
+            console.log("创建好了障碍物", this.obstaclesID);
             this._obstacles.push(obstacleProp);
-            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(ObstacleID));
+            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
             obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
             obstacle.active = true;
-            if (this.manager.jsonConfig.getObstacleData(ObstacleID).pos == 1) {
+            if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
                 obstacle.transform.localPositionX = 0;
             }
+            else if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 2) {
+                if (Math.random() < 0.5) {
+                    obstacle.transform.localPositionX = 0;
+                }
+                else {
+                    obstacle.transform.localPositionX = -1.2;
+                }
+            }
             else {
-                if (Math.random() < 0.3) {
+                if (this.posZ == 0) {
                     obstacle.transform.localPositionX = 1.2;
                 }
-                else if (Math.random() < 0.6) {
+                else if (this.posZ == 1) {
                     obstacle.transform.localPositionX = 0;
                 }
                 else {
@@ -3224,6 +3263,7 @@
         }
         onGameFail() {
             this.isStart = false;
+            this.manager.fightGetCoin = 0;
             this.playerManager.Ondeath();
             Laya.timer.once(2000, this, () => {
                 rab.UIManager.onCreateView(ViewConfig.gameView.GameFailView);
@@ -3565,12 +3605,14 @@
             let index = this.myManager.openPhotowall();
             this.m_currView.award.visible = true;
             if (index <= 11) {
-                this.m_currView.cover.visible = true;
-                this.m_currView.cover.alpha = 0.5;
-                this.m_currView.bigPhoto.visible = true;
-                this.m_currView.bigPhoto.alpha = 1;
-                this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png";
-                Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+                Laya.timer.once(300, this, () => {
+                    this.m_currView.cover.visible = true;
+                    this.m_currView.cover.alpha = 0.5;
+                    this.m_currView.bigPhoto.visible = true;
+                    this.m_currView.bigPhoto.alpha = 1;
+                    this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png";
+                    Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+                });
             }
             let alpha = (sprite, time) => {
                 sprite.alpha = 0;

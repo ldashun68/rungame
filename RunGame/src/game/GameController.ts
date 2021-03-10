@@ -46,7 +46,7 @@ export default class GameController extends rab.RabController {
 
     public rank: Array<any>;
 
-    private m_selectYear:Array<string>;
+    public m_selectYear:Array<string>;
 
     /**
      * 初始化资源

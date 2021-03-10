@@ -87,12 +87,14 @@ export default class GameWin extends rab.RabView {
         this.m_currView.award.visible = true;
 
         if (index <= 11) {
-            this.m_currView.cover.visible = true;
-            this.m_currView.cover.alpha = 0.5;
-            this.m_currView.bigPhoto.visible = true;
-            this.m_currView.bigPhoto.alpha = 1;
-            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
-            Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+            Laya.timer.once(300, this, () => {
+                this.m_currView.cover.visible = true;
+                this.m_currView.cover.alpha = 0.5;
+                this.m_currView.bigPhoto.visible = true;
+                this.m_currView.bigPhoto.alpha = 1;
+                this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
+                Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
+            });
         }
 
         let alpha = (sprite: Laya.Sprite, time: number) => {
