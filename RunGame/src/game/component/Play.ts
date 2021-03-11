@@ -17,7 +17,7 @@ export default class Play extends rab.GameObject {
      * 此方法为虚方法，使用时重写覆盖即可
      */
     onTriggerEnter(other:laya.d3.physics.PhysicsComponent):void {
-        console.log("开始触发时执行",other);
+        //console.log("开始触发时执行",other);
         let prop:ObstacleItem = other.owner.getComponent(ObstacleItem);
         if(prop) {
             prop.onCollisionPlay();
@@ -31,6 +31,7 @@ export default class Play extends rab.GameObject {
                     }
                     this.SendMessage(GameNotity.Game_RoleRetrogression);
                 }
+                
                 this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
                 this.onFlash();
             }

@@ -97,6 +97,7 @@ export default class ObstacleManager extends rab.GameObject {
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
         obstacle.transform.localPosition = new Laya.Vector3(0,0,this._initPos);
         obstacle.active = true;
+        
         if(this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
             obstacle.transform.localPositionX = 0;
         }

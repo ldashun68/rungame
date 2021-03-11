@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Game.scene";
+    GameConfig.startScene = "view/Rank.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -2900,7 +2900,6 @@
         onInit() {
         }
         onTriggerEnter(other) {
-            console.log("开始触发时执行", other);
             let prop = other.owner.getComponent(ObstacleItem);
             if (prop) {
                 prop.onCollisionPlay();
@@ -4168,11 +4167,12 @@
         }
         updateList() {
             let array = [];
-            for (let m = 0; m < 9; m++) {
+            let count = (9 >= this.m_currView.rankList.length) ? 9 : this.m_currView.rankList.length;
+            for (let m = 0; m < count; m++) {
                 array.push("");
             }
             this.m_currView.rankList.array = array;
-            for (let m = 9; m < this.myManager.rank.length; m++) {
+            for (let m = count; m < this.myManager.rank.length; m++) {
                 this.m_currView.rankList.addItem("");
             }
         }
@@ -4225,7 +4225,6 @@
             }
         }
         updateItem(cell, index) {
-            console.log(index, cell);
             let item = cell.getChildAt(0).getChildAt(0);
             if (index < 3) {
                 item.skin = "new/com/" + (index + 1) + "st.png";
@@ -4238,7 +4237,6 @@
             this.initItem(index, item, this.myManager.rank[index]);
         }
         onSelect(index) {
-            console.log(index);
         }
     }
 

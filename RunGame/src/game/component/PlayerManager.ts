@@ -104,6 +104,7 @@ export default class PlayerManager extends rab.GameObject {
         this.currentAnimation = "";
         this._playState = PlayState.run;
         this.m_Speed = this.minSpeed;
+        this.localx = 0;
         this.playNode.transform.localRotationEulerY = 0;
         this.playAnimation("run",0);
         this._characterSlot.transform.position = new Laya.Vector3(0,0,0);

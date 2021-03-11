@@ -48,11 +48,12 @@ export default class Rank extends rab.RabView {
 
     private updateList (): void {
         let array: Array<any> = [];
-        for(let m: number = 0; m < 9; m++){
+        let count: number = (9 >= this.m_currView.rankList.length)? 9:this.m_currView.rankList.length;
+        for(let m: number = 0; m < count; m++){
             array.push("");
         }
         this.m_currView.rankList.array = array;
-        for(let m: number = 9; m < this.myManager.rank.length; m++){
+        for(let m: number = count; m < this.myManager.rank.length; m++){
             this.m_currView.rankList.addItem("");
         }
     }
@@ -111,8 +112,6 @@ export default class Rank extends rab.RabView {
     }
 
     private updateItem(cell: Laya.Image, index: number): void {
-        console.log(index, cell);
-
         let item: Laya.Image = (cell.getChildAt(0).getChildAt(0) as Laya.Image);
         if (index < 3) {
             item.skin = "new/com/" + (index+1) + "st.png";
@@ -126,6 +125,6 @@ export default class Rank extends rab.RabView {
     }
 
     private onSelect(index: number): void {
-        console.log(index);
+        
     }
 }
