@@ -16,6 +16,7 @@ export default class Platform extends rab.RabView {
     /**点击列表 */
     private clickList: Array<number>;
     protected myManager:GameController;
+    private isLoadSubpackage: boolean;
 
     protected LoadView() {
         this.create<ui.view.PlatformUI>(ui.view.PlatformUI);
@@ -41,6 +42,7 @@ export default class Platform extends rab.RabView {
         Tool.instance.addButtonAnimation(this.m_currView.lan);
 
         this.clickList = [];
+        this.isLoadSubpackage = false;
 
         let Templet1:Laya.Templet = new Laya.Templet();
         Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
@@ -62,7 +64,11 @@ export default class Platform extends rab.RabView {
         });
 
         this.myManager.onAddLevelDate();
-        this.myManager.getRank();
+        this.myManager.getRank(() => {
+            for (let index: number = 0; index < this.myManager.rank.length; index++) {
+                this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
+            }
+        });
         // rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
     }
 
@@ -102,14 +108,32 @@ export default class Platform extends rab.RabView {
         // }else{
         //     console.log("没有新关卡了");
         // }
-        this.myManager.onLoad3dScene(() => {
-            Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-                rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
-                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
-            }));
-        })
-        
+        let self = this;
+        let complete = () => {
+            rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
+            self.myManager.onLoad3dScene(() => {
+                Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
+                    rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
+                    rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
+                    rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                    rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+                }));
+            });
+        }
+
+        if (this.isLoadSubpackage == false && typeof wx != "undefined") {
+            window.wx.loadSubpackage({
+                name: 'sub2', // name 可以填 name 或者 root
+                success: (res) => {
+                    // 分包加载成功后通过 success 回调
+                    self.isLoadSubpackage = true;
+                    complete();
+                }
+            });
+        }
+        else {
+            complete();
+        }
     }
 
     updateRedPoint()

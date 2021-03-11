@@ -255,8 +255,8 @@ export default class GameController extends rab.RabController {
     public CurrPassData():passProp
     {
         if(this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] >= this.jsonConfig.getPassCount()) {
-            this.gameInfo.currentPass =0;
-            this.gameInfo.pass = 0;
+            this.gameInfo.currentPass = 11;
+            //this.gameInfo.pass = 0;
         }
        let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect-1], this.gameInfo.currentPass)
        return data;
@@ -308,12 +308,13 @@ export default class GameController extends rab.RabController {
        }
     }
 
-   public getRank()
+   public getRank(callback: Function)
    {
         if(rab.Util.isMobil)
         {
             rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
                 this.rank = data.data;
+                callback();
                 // Object.keys(this.rank).forEach(function(key){
                 //     _data[key] = wx.getData(key, this.rank[key]);
                 // });

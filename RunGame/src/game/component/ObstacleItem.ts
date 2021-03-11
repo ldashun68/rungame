@@ -28,12 +28,14 @@ export default class ObstacleItem extends rab.GameObject {
     {
         this.prop = data;
         this._obstacleId = data.id;
-        this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
+        
         if (this._obstacleId != 100) {
             this.transform.localRotationEulerX = 0;
         }
         else {
             this.transform.localRotationEulerX = -90;
+            this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
+            this.transform.localScale = new Laya.Vector3(1, 1, 1);
             this.idleAnimation();
         }
         // this._posz = posZ+data.length;
@@ -60,12 +62,8 @@ export default class ObstacleItem extends rab.GameObject {
             Laya.timer.clear(this, this.idleAnimation);
             Tool.instance.sprite3DStopTween(this.owner as Laya.Sprite3D, Tool.instance.tweenType.rotation);
             let prop1: Laya.Vector3 = Tool.instance.getAddPosition(new Laya.Vector3(0, 2, 0), this.owner as Laya.Sprite3D);
+            this.transform.setWorldLossyScale(new Laya.Vector3(0.3, 0.3, 0.3));
             Tool.instance.sprite3DMove(this.owner as Laya.Sprite3D, prop1, 100);
-            Tool.instance.sprite3DScale(this.owner as Laya.Sprite3D, new Laya.Vector3(0.3, 0.3, 0.3), 100, null,
-                () => {
-                    this.transform.setWorldLossyScale(new Laya.Vector3(0, 0, 0));
-                }
-            );
         }
         if (this.isTruck() == true) {
             

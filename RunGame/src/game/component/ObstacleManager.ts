@@ -196,7 +196,7 @@ export default class ObstacleManager extends rab.GameObject {
     onReMoveScene()
     {
         this.onClearAll();
-        for(var i =0;i<this._buildProp.obstacle.length;i++)
+        for(var i = 0; i < this._buildProp.obstacle.length; i++)
         {
             Laya.Pool.clearBySign("ObstacleID"+this._buildProp.obstacle[i]);
         }

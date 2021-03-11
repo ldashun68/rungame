@@ -60,8 +60,8 @@
 					"layer":0,
 					"position":[
 						0.81,
-						0,
-						0
+						0.15403,
+						3.5763E-07
 					],
 					"rotation":[
 						0,
@@ -72,7 +72,7 @@
 					"scale":[
 						1,
 						0.6,
-						1
+						0.85
 					],
 					"meshPath":"Assets/test/Animation/huoche-Object03.lm",
 					"enableRender":true,

@@ -34,7 +34,7 @@ export default class PlayerManager extends rab.GameObject {
     public m_JumpStart:number = 0;
     public m_SlideStart:number = 0;
     public minSpeed = 5.0;
-    public maxSpeed = 10.0;
+    public maxSpeed = 15.0;
     public m_Speed:number;
     public worldDistance:number = 0;
     private model:Laya.SkinnedMeshSprite3D;

@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/Rank.scene";
+    GameConfig.startScene = "view/Game.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -1045,7 +1045,6 @@
                 this.gameConfig = Laya.loader.getRes(path);
                 this.InitConfig();
             }));
-            this.playBGM();
         }
         InitConfig() {
             rab.Util.log("最新配置表", this.gameConfig);
@@ -1093,6 +1092,9 @@
             if (this.getIsNewDay()) {
             }
             this.loadView();
+            if (this.gameInfo.audio == 1) {
+                this.playBGM();
+            }
         }
         RandomUserName() {
             let index = Math.floor(Math.random() * this.randomUserName.length);
@@ -1534,7 +1536,7 @@
                     this.createView(GameUI.uiView);
                 }
             }
-            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 193, "x": 174, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "width": 290, "var": "life_bg", "top": 4, "skin": "new/game/jingdutiao1.png", "left": 4 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "width": 540, "var": "progressNode", "top": 54, "name": "progressNode", "height": 26, "centerX": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": 7, "name": "nextPass", "centerY": -23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 0, "centerX": 0 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 10, "x": -91, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "x": 340, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": -13 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 294, "x": 174, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/com/b_zhanting.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
+            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 193, "x": 174, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "width": 290, "var": "life_bg", "top": 4, "skin": "new/game/jingdutiao1.png", "left": 4 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "width": 540, "var": "progressNode", "top": 65, "name": "progressNode", "height": 26, "centerX": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": 7, "name": "nextPass", "centerY": -23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 0, "centerX": 0 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 10, "x": -91, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "x": 340, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": -13 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 294, "x": 174, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/com/b_zhanting.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
             view.GameUI = GameUI;
             REG("ui.view.GameUI", GameUI);
             class GameFailUI extends Scene {
@@ -1654,7 +1656,7 @@
                     this.createView(PlatformUI.uiView);
                 }
             }
-            PlatformUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Platform", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "left": 0, "bottom": 0 }, "compId": 127 }, { "type": "Sprite", "props": { "y": 204, "x": 65, "texture": "ui/LOGO.png" }, "compId": 258 }, { "type": "Image", "props": { "right": 0, "left": 0, "height": 200, "bottom": 100, "anchorY": 1, "anchorX": 0.5 }, "compId": 130, "child": [{ "type": "Image", "props": { "y": 140, "x": 189, "var": "set", "skin": "new/com/bd_syk.png", "centerY": 40, "centerX": -186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 255 }, { "type": "Image", "props": { "y": 140, "x": 561, "var": "lan", "skin": "new/com/bd_yy.png", "centerY": 40, "centerX": 186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 253 }, { "type": "Image", "props": { "y": 0, "x": 189, "var": "rank", "skin": "new/com/bd_phb.png", "centerY": -100, "centerX": -186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249 }, { "type": "Image", "props": { "y": 0, "x": 561, "var": "pic", "skin": "new/com/bd_zpq.png", "centerY": -100, "centerX": 186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 14, "bottom": 541, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244 }], "loadList": ["ui/bg_1.jpg", "ui/LOGO.png", "new/com/bd_syk.png", "new/com/bd_yy.png", "new/com/bd_phb.png", "new/com/bd_zpq.png", "new/com/bd_ksyx.png"], "loadList3D": [] };
+            PlatformUI.uiView = { "type": "Scene", "props": { "width": 750, "runtime": "runtime/ImgEffect.ts", "name": "Platform", "height": 1334, "centerY": 0, "centerX": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 119 }, { "type": "Image", "props": { "top": 0, "skin": "ui/bg_1.jpg", "right": 0, "left": 0, "bottom": 0 }, "compId": 127 }, { "type": "Sprite", "props": { "y": 204, "x": 65, "texture": "ui/LOGO.png" }, "compId": 258 }, { "type": "Image", "props": { "right": 0, "left": 0, "height": 200, "bottom": 100, "anchorY": 1, "anchorX": 0.5 }, "compId": 130, "child": [{ "type": "Image", "props": { "y": 140, "x": 189, "var": "set", "skin": "new/com/bd_syk.png", "centerY": 40, "centerX": -186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 255 }, { "type": "Image", "props": { "y": 140, "x": 561, "var": "lan", "skin": "new/com/bd_yy.png", "centerY": 40, "centerX": 186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 253 }, { "type": "Image", "props": { "y": 0, "x": 189, "var": "rank", "skin": "new/com/bd_phb.png", "centerY": -100, "centerX": -186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249 }, { "type": "Image", "props": { "y": 0, "x": 561, "var": "pic", "skin": "new/com/bd_zpq.png", "centerY": -100, "centerX": 186, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 14, "bottom": 541, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 244 }, { "type": "Image", "props": { "y": 72, "x": -380, "var": "preload", "name": "preload" }, "compId": 264 }], "loadList": ["ui/bg_1.jpg", "ui/LOGO.png", "new/com/bd_syk.png", "new/com/bd_yy.png", "new/com/bd_phb.png", "new/com/bd_zpq.png", "new/com/bd_ksyx.png"], "loadList3D": [] };
             view.PlatformUI = PlatformUI;
             REG("ui.view.PlatformUI", PlatformUI);
             class RankUI extends Scene {
@@ -1714,12 +1716,12 @@
             return this.jsonData[name];
         }
         getPassCount() {
-            return (this.jsonData['pass'].length);
+            return 11;
         }
         getPassData(year, index) {
             let yearNum = 0;
             if (year == "year90") {
-                yearNum = 3;
+                yearNum = 11;
             }
             return (this.jsonData['pass'][index + yearNum]);
         }
@@ -1955,8 +1957,7 @@
         }
         CurrPassData() {
             if (this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] >= this.jsonConfig.getPassCount()) {
-                this.gameInfo.currentPass = 0;
-                this.gameInfo.pass = 0;
+                this.gameInfo.currentPass = 11;
             }
             let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect - 1], this.gameInfo.currentPass);
             return data;
@@ -1990,10 +1991,11 @@
                 });
             }
         }
-        getRank() {
+        getRank(callback) {
             if (rab.Util.isMobil) {
                 rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
                     this.rank = data.data;
+                    callback();
                     rab.Util.log('获得排行榜数据', this.rank);
                 });
             }
@@ -2613,6 +2615,7 @@
             this.m_currView.lan.on(Laya.Event.CLICK, this, this.onLan);
             Tool.instance.addButtonAnimation(this.m_currView.lan);
             this.clickList = [];
+            this.isLoadSubpackage = false;
             let Templet1 = new Laya.Templet();
             Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
                 let skeleton = Templet.buildArmature(1);
@@ -2630,7 +2633,11 @@
                 }
             });
             this.myManager.onAddLevelDate();
-            this.myManager.getRank();
+            this.myManager.getRank(() => {
+                for (let index = 0; index < this.myManager.rank.length; index++) {
+                    this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
+                }
+            });
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -2645,13 +2652,30 @@
         onShowLanguage() {
         }
         onstart() {
-            this.myManager.onLoad3dScene(() => {
-                Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-                    rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
-                    rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-                    rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
-                }));
-            });
+            let self = this;
+            let complete = () => {
+                rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
+                self.myManager.onLoad3dScene(() => {
+                    Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
+                        rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
+                        rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
+                        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+                    }));
+                });
+            };
+            if (this.isLoadSubpackage == false && typeof wx != "undefined") {
+                window.wx.loadSubpackage({
+                    name: 'sub2',
+                    success: (res) => {
+                        self.isLoadSubpackage = true;
+                        complete();
+                    }
+                });
+            }
+            else {
+                complete();
+            }
         }
         updateRedPoint() {
         }
@@ -2719,12 +2743,13 @@
         onInitProp(data) {
             this.prop = data;
             this._obstacleId = data.id;
-            this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
             if (this._obstacleId != 100) {
                 this.transform.localRotationEulerX = 0;
             }
             else {
                 this.transform.localRotationEulerX = -90;
+                this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
+                this.transform.localScale = new Laya.Vector3(1, 1, 1);
                 this.idleAnimation();
             }
         }
@@ -2741,10 +2766,8 @@
                 Laya.timer.clear(this, this.idleAnimation);
                 Tool.instance.sprite3DStopTween(this.owner, Tool.instance.tweenType.rotation);
                 let prop1 = Tool.instance.getAddPosition(new Laya.Vector3(0, 2, 0), this.owner);
+                this.transform.setWorldLossyScale(new Laya.Vector3(0.3, 0.3, 0.3));
                 Tool.instance.sprite3DMove(this.owner, prop1, 100);
-                Tool.instance.sprite3DScale(this.owner, new Laya.Vector3(0.3, 0.3, 0.3), 100, null, () => {
-                    this.transform.setWorldLossyScale(new Laya.Vector3(0, 0, 0));
-                });
             }
             if (this.isTruck() == true) {
             }
@@ -2968,7 +2991,7 @@
             this.m_JumpStart = 0;
             this.m_SlideStart = 0;
             this.minSpeed = 5.0;
-            this.maxSpeed = 10.0;
+            this.maxSpeed = 15.0;
             this.worldDistance = 0;
             this.retrogression = 0;
         }
@@ -3021,6 +3044,7 @@
             this.currentAnimation = "";
             this._playState = PlayState.run;
             this.m_Speed = this.minSpeed;
+            this.localx = 0;
             this.playNode.transform.localRotationEulerY = 0;
             this.playAnimation("run", 0);
             this._characterSlot.transform.position = new Laya.Vector3(0, 0, 0);
@@ -3431,9 +3455,13 @@
             rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
         }
         onGametart(data) {
+            if (this.m_currView.timeDown.visible == true) {
+                return;
+            }
             this.m_currView.guild.visible = false;
             this.m_currView.timeDown.visible = true;
             this.m_currView.timeDown.skin = "ui/3.png";
+            Laya.timer.clear(this, this.countdown);
             Laya.timer.once(1800, this, this.countdown);
         }
         countdown() {
@@ -3935,29 +3963,36 @@
         }
         onHide() {
             super.onHide();
+            if (this.cloud != null) {
+                this.m_currView.removeChild(this.cloud);
+                this.cloud.destroy(true);
+                this.cloud = null;
+            }
         }
         initLoading() {
             this.loadCloud();
         }
         loadCloud() {
-            if (this.cloud != null) {
-                this.onHideCloud();
-                return;
-            }
-            let Templet1 = new Laya.Templet();
-            Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
-                this.cloud = Templet.buildArmature(1);
+            let cloud = () => {
+                this.cloud = this.templet.buildArmature(1);
                 this.m_currView.addChild(this.cloud);
                 this.cloud.x = Laya.stage.width / 2;
                 this.cloud.y = Laya.stage.height / 2;
                 this.cloudTotal = this.cloud.total;
                 this.onHideCloud();
-            }, [Templet1, "animation"]);
-            Templet1.loadAni("effect/cloud/effect_yun.sk");
+            };
+            if (this.templet != null) {
+                cloud();
+            }
+            else {
+                this.templet = new Laya.Templet();
+                this.templet.on(Laya.Event.COMPLETE, this, (Templet, name) => {
+                    cloud();
+                }, [this.templet, "animation"]);
+                this.templet.loadAni("effect/cloud/effect_yun.sk");
+            }
         }
         onHideCloud() {
-            console.log("onHideCloud Start");
-            this.cloud.stop();
             this.cloud.play("animation", false, true, 0, this.cloudTotal * (1 / 60) * 1000);
             Laya.timer.once(this.cloudTotal * (1 / 60) * 1000, this, () => {
                 rab.UIManager.onCreateView(ViewConfig.gameView.GameView);
@@ -3969,7 +4004,6 @@
                         this.m_currView.bg.visible = false;
                         this.m_currView.loadNode.visible = false;
                         this.cloud.play("animation", false, true, this.cloudTotal * (1 / 60) * 1000, this.cloudTotal * (1 / 60) * 2000);
-                        console.log("onHideCloud Resume");
                         Laya.timer.clear(this, resume);
                         Laya.timer.once(this.cloudTotal * (1 / 60) * 1000, this, this.onHide, null, false);
                     }
@@ -4008,6 +4042,7 @@
             this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
             Tool.instance.addButtonAnimation(this.m_currView.startBtn);
             Laya.timer.frameLoop(1, this, this.onFrameLoop);
+            this.isLoadSubpackage = false;
             this.OnRefreshView();
             this.myManager.onLoad3dScene(() => {
                 this.onShowRole(1);
@@ -4047,12 +4082,27 @@
             if (this.myManager.CurrPassData()) {
                 if (this.myManager.addTicket(-1) == true) {
                     rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-                    let arr = this.myManager.getPassBuild();
-                    this.myManager.onLoad3dScene(() => {
-                        Laya.loader.create(arr, Laya.Handler.create(this, () => {
-                            this.SendMessage(GameNotity.Init_Loading);
-                        }));
-                    });
+                    let self = this;
+                    let complete = () => {
+                        let arr = self.myManager.getPassBuild();
+                        self.myManager.onLoad3dScene(() => {
+                            Laya.loader.create(arr, Laya.Handler.create(self, () => {
+                                self.SendMessage(GameNotity.Init_Loading);
+                            }));
+                        });
+                    };
+                    if (this.isLoadSubpackage == false && typeof wx != "undefined") {
+                        window.wx.loadSubpackage({
+                            name: 'sub1',
+                            success: (res) => {
+                                self.isLoadSubpackage = true;
+                                complete();
+                            }
+                        });
+                    }
+                    else {
+                        complete();
+                    }
                 }
             }
             else {
@@ -4399,8 +4449,7 @@
                 Laya.enableDebugPanel();
             if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
                 Laya["PhysicsDebugDraw"].enable();
-            if (GameConfig.stat)
-                Laya.Stat.show();
+            Laya.Stat.show();
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

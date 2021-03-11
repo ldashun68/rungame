@@ -34,7 +34,7 @@ export default class GameJsonConfig {
 
     public getPassCount():number
     {
-        return (this.jsonData['pass'].length);
+        return 11;//(this.jsonData['pass'].length);
         // return data;
     }
 
@@ -43,7 +43,7 @@ export default class GameJsonConfig {
     {
         let yearNum: number = 0;
         if (year == "year90") {
-            yearNum = 3;
+            yearNum = 11;
         }
         return <passProp>(this.jsonData['pass'][index+yearNum]);
         // return data;

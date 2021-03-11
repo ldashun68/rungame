@@ -1816,8 +1816,6 @@ abstract class RabController extends RabManager {
             this.gameConfig= Laya.loader.getRes(path);
             this.InitConfig();
         }));
-       
-        this.playBGM();
     } 
 
      /**
@@ -1894,6 +1892,10 @@ abstract class RabController extends RabManager {
             //TODO:今天新的一天处理一些其他问题签到 每日提示等
         }
         this.loadView();
+
+        if (this.gameInfo.audio == 1) {
+            this.playBGM();
+        }
     }
 
     /**随机玩家名称 */

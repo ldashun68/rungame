@@ -16,6 +16,7 @@ export default class RoleSelect extends rab.RabView {
     private mouseDown:boolean = false;
     private _mouseDownType:number = 0;
     private _mouseDownX:number = 0;
+    private isLoadSubpackage: boolean;
 
     protected LoadView() {
         this.create<ui.view.RoleSelectUI>(ui.view.RoleSelectUI);
@@ -40,7 +41,9 @@ export default class RoleSelect extends rab.RabView {
 
         this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
         Tool.instance.addButtonAnimation(this.m_currView.startBtn);
-        Laya.timer.frameLoop(1,this,this.onFrameLoop)
+        Laya.timer.frameLoop(1,this,this.onFrameLoop);
+
+        this.isLoadSubpackage = false;
 
         this.OnRefreshView();
 
@@ -98,21 +101,38 @@ export default class RoleSelect extends rab.RabView {
         Laya.stage.off(Laya.Event.MOUSE_UP, this, this.onMouseUp);
     }
 
-    onstart()
-    {
+    onstart() {
         this.myManager.playSelect = this.selectId;
-        if(this.myManager.CurrPassData())
-        {
+        if(this.myManager.CurrPassData()) {
             if (this.myManager.addTicket(-1) == true) {
                 rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-                let arr = this.myManager.getPassBuild();
-                this.myManager.onLoad3dScene(() => {
-                        Laya.loader.create(arr, Laya.Handler.create(this, () => {
-                        this.SendMessage(GameNotity.Init_Loading);
-                    }));
-                })
+
+                let self = this;
+                let complete = () => {
+                    let arr = self.myManager.getPassBuild();
+                    self.myManager.onLoad3dScene(() => {
+                            Laya.loader.create(arr, Laya.Handler.create(self, () => {
+                            self.SendMessage(GameNotity.Init_Loading);
+                        }));
+                    });
+                }
+
+                if (this.isLoadSubpackage == false && typeof wx != "undefined") {
+                    window.wx.loadSubpackage({
+                        name: 'sub1', // name 可以填 name 或者 root
+                        success: (res) => {
+                            // 分包加载成功后通过 success 回调
+                            self.isLoadSubpackage = true;
+                            complete();
+                        }
+                    });
+                }
+                else {
+                    complete();
+                }
             }
-        }else{
+        }
+        else {
             console.log("没有新关卡了");
         }
     }

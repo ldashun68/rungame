@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":263,
+    "selecteID":264,
     "searchKey":"Scene,Platform,Platform",
     "props":{"width":750,"var":"Platform","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"Platform","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
-    "maxID":264,
+    "maxID":265,
     "label":"Platform",
     "isOpen":true,
     "isDirectory":true,
@@ -150,6 +150,20 @@
             "child":[
                 ],
             "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "searchKey":"Image,preload,preload",
+            "props":{"y":72,"x":-380,"var":"preload","name":"preload"},
+            "nodeParent":2,
+            "label":"preload",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":264,
+            "child":[
+                ]
         }],
     "animations":[
         {
