@@ -37,7 +37,7 @@ export default class Play extends rab.GameObject {
             }
             else {
                 let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-                manager.fightGetCoin += 5;
+                manager.fightGetCoin += 1;
             }
         }
     }
