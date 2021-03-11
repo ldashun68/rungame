@@ -2919,7 +2919,7 @@
                 }
                 else {
                     let manager = rab.RabGameManager.getInterest().getMyManager();
-                    manager.fightGetCoin += 5;
+                    manager.fightGetCoin += 1;
                 }
             }
         }
@@ -3941,43 +3941,42 @@
             this.loadCloud();
         }
         loadCloud() {
+            if (this.cloud != null) {
+                this.onHideCloud();
+                return;
+            }
             let Templet1 = new Laya.Templet();
             Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
                 this.cloud = Templet.buildArmature(1);
                 this.m_currView.addChild(this.cloud);
                 this.cloud.x = Laya.stage.width / 2;
                 this.cloud.y = Laya.stage.height / 2;
-                this.cloud.stop();
+                this.cloudTotal = this.cloud.total;
                 this.onHideCloud();
             }, [Templet1, "animation"]);
             Templet1.loadAni("effect/cloud/effect_yun.sk");
         }
         onHideCloud() {
-            this.cloud.play("animation", false);
-            Laya.timer.frameOnce(this.cloud.total / 1.5, this, () => {
-                this.m_currView.bg.visible = false;
-                this.m_currView.loadNode.visible = false;
-            });
-            Laya.timer.frameOnce(this.cloud.total, this, () => {
-                if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == false) {
-                    this.cloud.paused();
-                    let resume = () => {
-                        if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == true) {
-                            this.cloud.resume();
-                            Laya.timer.clear(this, resume);
-                            Laya.timer.frameOnce(this.cloud.total, this, this.onHide);
-                        }
-                    };
-                    Laya.timer.frameOnce(1, this, resume);
-                }
-                else {
-                    Laya.timer.frameOnce(this.cloud.total, this, this.onHide);
-                }
-                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
-                rab.UIManager.onCloseView(ViewConfig.gameView.RoleSelect);
+            console.log("onHideCloud Start");
+            this.cloud.stop();
+            this.cloud.play("animation", false, true, 0, this.cloudTotal * (1 / 60) * 1000);
+            Laya.timer.once(this.cloudTotal * (1 / 60) * 1000, this, () => {
                 rab.UIManager.onCreateView(ViewConfig.gameView.GameView);
-            });
+                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                rab.UIManager.onCloseView(ViewConfig.gameView.RoleSelect);
+                let resume = () => {
+                    if (rab.UIManager.isContainView(ViewConfig.gameView.GameView) == true) {
+                        this.m_currView.bg.visible = false;
+                        this.m_currView.loadNode.visible = false;
+                        this.cloud.play("animation", false, true, this.cloudTotal * (1 / 60) * 1000, this.cloudTotal * (1 / 60) * 2000);
+                        console.log("onHideCloud Resume");
+                        Laya.timer.clear(this, resume);
+                        Laya.timer.once(this.cloudTotal * (1 / 60) * 1000, this, this.onHide, null, false);
+                    }
+                };
+                Laya.timer.frameLoop(5, this, resume);
+            }, null, false);
         }
     }
 

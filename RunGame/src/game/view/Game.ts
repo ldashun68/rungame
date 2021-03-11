@@ -74,9 +74,13 @@ export default class Game extends rab.RabView {
 
     /**战斗开始 */
     private onGametart (data: any): void {
+        if (this.m_currView.timeDown.visible == true) {
+            return;
+        }
         this.m_currView.guild.visible = false;
         this.m_currView.timeDown.visible = true;
         this.m_currView.timeDown.skin = "ui/3.png";
+        Laya.timer.clear(this, this.countdown);
         Laya.timer.once(1800, this, this.countdown);
     }
 
