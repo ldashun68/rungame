@@ -2628,25 +2628,29 @@
         }
         calculator(key) {
             let value = 0;
-            let temp = key.split("");
+            if ((key[0] == "(" && key[key.length - 1] == ")") ||
+                (key[0] == "(" && key[key.length - 2] == ")")) {
+                key = key.replace("(", "");
+                key = key.replace(")", "");
+            }
+            if (key[key.length - 1] != "=") {
+                key += "=";
+            }
+            key = key.replace(" ", "");
             let index = 0;
             let parentheses = "";
-            let parenthesesList = new Array();
             while (index != -1) {
                 index = key.indexOf("(");
                 if (index != -1) {
-                    parentheses = key.slice(index, key.indexOf(")"));
-                    parenthesesList.push(this.calculator(parentheses));
+                    parentheses = key.slice(index, key.indexOf(")") + 1);
+                    key = key.replace(parentheses, "" + this.calculator(parentheses));
                 }
             }
             let calculat = (s) => {
-                if (index == 0) {
-                    key = parenthesesList.shift() + key;
-                }
-                let a1 = key.lastIndexOf("+", index);
-                let b1 = key.indexOf("*", index);
-                let c1 = key.indexOf("+", index);
-                let d1 = key.indexOf("=", index);
+                let a1 = key.lastIndexOf("+", index - 1);
+                let b1 = key.indexOf("*", index + 1);
+                let c1 = key.indexOf("+", index + 1);
+                let d1 = key.indexOf("=", index + 1);
                 let a2 = "";
                 let b2 = "";
                 let c2 = 0;
@@ -2654,18 +2658,18 @@
                     a2 = key.substr(0, index);
                 }
                 else {
-                    a2 = key.substr(a1, index);
+                    a2 = key.substr(a1 + 1, index - a1 - 1);
                 }
                 if (b1 == -1) {
                     if (c1 == -1) {
-                        b2 = key.substr(index, d1);
+                        b2 = key.substr(index + 1, d1 - index - 1);
                     }
                     else {
-                        b2 = key.substr(index, c1);
+                        b2 = key.substr(index + 1, c1 - index - 1);
                     }
                 }
                 else {
-                    b2 = key.substr(index, b1);
+                    b2 = key.substr(index + 1, b1 - index - 1);
                 }
                 if (s == "*") {
                     c2 += parseInt(a2) * parseInt(b2);
@@ -2673,7 +2677,7 @@
                 else if (s == "+") {
                     c2 += parseInt(a2) + parseInt(b2);
                 }
-                key.replace(a2 + s + b2, "" + c2);
+                key = key.replace(a2 + s + b2, "" + c2);
             };
             index = 0;
             while (index != -1) {
@@ -2797,7 +2801,6 @@
                     this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
                 }
             });
-            console.log(Tool.instance.calculator("50+70"));
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -2836,6 +2839,13 @@
             else {
                 complete();
             }
+            console.log(Tool.instance.calculator("50+70="));
+            console.log(Tool.instance.calculator("50*70="));
+            console.log(Tool.instance.calculator("(50+70)"));
+            console.log(Tool.instance.calculator("(50*70)="));
+            console.log(Tool.instance.calculator("(50+70)*1="));
+            console.log(Tool.instance.calculator("(50+70)+1*2="));
+            console.log(Tool.instance.calculator("(50+70)+(1*2)*1="));
         }
         updateRedPoint() {
         }
