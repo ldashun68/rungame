@@ -15,6 +15,8 @@ export default interface GameData extends RabGameInfo  {
     vibrate: number;
     /**金币 */
     coin: number;
+    /**分数 */
+    score: number;
     /**体力 */
     ticket: number;
     /**最大体力 */

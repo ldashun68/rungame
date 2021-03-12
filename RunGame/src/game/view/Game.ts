@@ -27,6 +27,7 @@ export default class Game extends rab.RabView {
     private _mouseDownY:number = 0;
     protected myManager:GameController;
     private isclick:boolean = false;
+    private countdown: number;
 
     protected LoadView() {
         this.create<ui.view.GameUI>(ui.view.GameUI);
@@ -67,9 +68,10 @@ export default class Game extends rab.RabView {
 
     /**暂停按钮事件 */
     private onPause (): void {
-        // this.fightManager.fightPause();
-        this.SendMessage(GameNotity.GameMessage_PauseGame);
-        rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+        if (this.m_currView.timeDown.visible == false) {
+            this.SendMessage(GameNotity.GameMessage_PauseGame);
+            rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+        }
     }
 
     /**战斗开始 */
@@ -80,28 +82,27 @@ export default class Game extends rab.RabView {
         this.m_currView.guild.visible = false;
         this.m_currView.timeDown.visible = true;
         this.m_currView.timeDown.skin = "ui/3.png";
-        Laya.timer.clear(this, this.countdown);
-        Laya.timer.once(1800, this, this.countdown);
+        this.countdown = 1;
+        Laya.timer.frameLoop(1, this, this.update);
     }
 
-    private countdown (): void {
-        Laya.timer.once(1000, this, this.countdown);
-        if (this.m_currView.timeDown.skin == "ui/3.png") {
-            this.m_currView.timeDown.skin = "ui/2.png";
-        }
-        else if (this.m_currView.timeDown.skin == "ui/2.png") {
-            this.m_currView.timeDown.skin = "ui/1.png";
-        }
-        else if (this.m_currView.timeDown.skin == "ui/1.png") {
-            this.m_currView.timeDown.skin = "ui/go.png";
-        }
-        else if (this.m_currView.timeDown.skin == "ui/go.png") {
-            this.m_currView.timeDown.skin = "ui/go.png";
+    update () {
+        if (this.countdown >= 240) {
             this.m_currView.timeDown.visible = false;
             this.fightManager.onGameStart();
             this.gameStart = true;
-            Laya.timer.clear(this, this.countdown);
+            Laya.timer.clear(this, this.update);
         }
+        else if (this.countdown >= 180) {
+            this.m_currView.timeDown.skin = "ui/go.png";
+        }
+        else if (this.countdown >= 120) {
+            this.m_currView.timeDown.skin = "ui/1.png";
+        }
+        else if (this.countdown >= 60) {
+            this.m_currView.timeDown.skin = "ui/2.png";
+        }
+        this.countdown++;
     }
 
     onKeyUp(e)

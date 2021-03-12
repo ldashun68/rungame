@@ -57,6 +57,7 @@ export default class GameController extends rab.RabController {
         this.gameInfo.music = 1;
         this.gameInfo.vibrate = 1;
         this.gameInfo.coin = 0;
+        this.gameInfo.score = 0;
         this.gameInfo.ticket = 30;
         this.gameInfo.maxTicket = 30;
         this.gameInfo.pass = 0;
@@ -298,9 +299,7 @@ export default class GameController extends rab.RabController {
        if(rab.Util.isMobil)
        {
             rab.HTTP.post("api/playLog",{
-                "passLv":1,
-                "failLv":2,
-                "score":22,
+                "score":this.gameInfo.score,
                 "token":this.userInfo.token
             },this,(data)=>{
                 rab.Util.log('添加闯关数据',data);

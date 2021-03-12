@@ -7,6 +7,7 @@ import GameController from "../GameController";
 import GameNotity from "../GameNotity";
 import { passProp, PlayState, QueueT } from "../GameVO/DataType";
 import BuildItem from "../GameVO/GamePool";
+import CurveBlinnPhong from "./CurveBlinnPhong";
 import ObstacleManager from "./ObstacleManager";
 import PlayerManager from "./PlayerManager";
 
@@ -100,6 +101,21 @@ export default class FightManager extends rab.GameObject {
         {
             this.oncreateNextBuild();
         }
+
+        Laya.loader.create(["3d/prefab/Conventional/road.lh", "new/com/beijing.png"], Laya.Handler.create(this, () => {
+            let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
+            this.scene3D.addChild(road);
+            road.transform.position = new Laya.Vector3(0, 4, this.passData.length/2);
+            road.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 100));
+            road.getComponent(Laya.PhysicsCollider).collisionGroup = 10;
+
+            let mat: CurveBlinnPhong = new CurveBlinnPhong();
+            mat.mainTex = Laya.loader.getRes("new/com/beijing.png");
+            mat.xoffset = 30;
+            mat.yoffset = -30;
+            mat.zdistance = 200;
+            (road as Laya.MeshSprite3D).meshRenderer.sharedMaterial = mat;
+        }));
     }
 
     /**准备战斗 */
@@ -119,9 +135,8 @@ export default class FightManager extends rab.GameObject {
             this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/build/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
         }
         this.onInitScene();
-        this.SendMessage(GameNotity.GameMessage_GameStart)
+        this.SendMessage(GameNotity.GameMessage_GameStart);
     }
-
 
     /**开始战斗 */
     public onGameStart (): void {
@@ -140,6 +155,7 @@ export default class FightManager extends rab.GameObject {
     /**退出战斗 */
     public onGamewin (): void {
         this.isStart = false;
+        this.manager.gameInfo.score += this.manager.CurrPassData().score;
         this.manager.onNextPass();
         this.playerManager.onhappydance();
         Laya.timer.once(2000, this, () => {
@@ -325,10 +341,8 @@ export default class FightManager extends rab.GameObject {
         if(this._currLenght > 20 && this._currLenght < this.passData.length-this.winLenght) {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
         }
-        // let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
-        // this.scene3D.addChild(road);
-        
-        return build
+
+        return build;
     }
 
     /**更新关卡进度节点 */

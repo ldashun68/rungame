@@ -75,6 +75,100 @@
     GameConfig.exportSceneToJson = true;
     GameConfig.init();
 
+    class CurveBlinnPhong extends Laya.BlinnPhongMaterial {
+        constructor() {
+            super();
+            this.MAIN_TEX = Laya.Shader3D.propertyNameToID("u_MainTex");
+            this.X_OFFSET = Laya.Shader3D.propertyNameToID("u_XOffset");
+            this.Y_OFFSET = Laya.Shader3D.propertyNameToID("u_YOffset");
+            this.Z_Distance = Laya.Shader3D.propertyNameToID("u_ZDistance");
+            this.setShaderName("CustomCurveShader");
+            this.enableVertexColor = false;
+            this.albedoColor = new Laya.Vector4(0.0, 0.0, 0.0, 0.0);
+            this.xoffset = 15.0;
+            this.yoffset = -15.0;
+            this.zdistance = 200.0;
+        }
+        static initShader() {
+            var attributeMap = {
+                "a_Position": Laya.VertexMesh.MESH_POSITION0,
+                "a_Normal": Laya.VertexMesh.MESH_NORMAL0,
+                "a_Textcoord": Laya.VertexMesh.MESH_TEXTURECOORDINATE0,
+                "a_Textcorrd1": Laya.VertexMesh.MESH_TEXTURECOORDINATE1,
+                "a_Tangent": Laya.VertexMesh.MESH_TANGENT0,
+                "a_Color": Laya.VertexMesh.MESH_COLOR0,
+            };
+            var uniformMap = {
+                "u_MainTex": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_MvpMatrix": Laya.Shader3D.PERIOD_SPRITE,
+                "u_View": Laya.Shader3D.PERIOD_CAMERA,
+                "u_Projection": Laya.Shader3D.PERIOD_CAMERA,
+                "u_WorldMat": Laya.Shader3D.PERIOD_SPRITE,
+                "u_XOffset": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_YOffset": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_ZDistance": Laya.Shader3D.PERIOD_MATERIAL
+            };
+            var vs = `
+            #include "Lighting.glsl";
+
+            attribute vec4 a_Position;
+            attribute vec2 a_Textcoord;
+
+            uniform mat4 u_WorldMat;
+            uniform mat4 u_MvpMatrix;
+            uniform mat4 u_View;
+            uniform mat4 u_Projection;
+
+            uniform float u_XOffset;
+            uniform float u_YOffset;
+            uniform float u_ZDistance;
+
+            varying vec2 v_textcoord;
+
+            void main() {
+                v_textcoord = a_Textcoord;
+                vec4 vPos = (u_View * u_WorldMat) * a_Position;
+                float zOff = vPos.z / u_ZDistance;
+                vPos += vec4(u_XOffset, u_YOffset, 0.0, 0.0) * zOff * zOff;
+                gl_Position = u_Projection * vPos;
+            }
+        `;
+            var ps = `
+            #ifdef HIGHPRECISION
+            precision highp float;
+            #else
+            precision mediump float;
+            #endif
+
+            #include "Lighting.glsl";
+
+            uniform sampler2D u_MainTex;
+            varying vec2 v_textcoord;
+
+            void main() {
+                vec4 col = texture2D(u_MainTex, v_textcoord);
+                gl_FragColor = col;
+            }
+        `;
+            var shader = Laya.Shader3D.add("CustomCurveShader");
+            var subShader = new Laya.SubShader(attributeMap, uniformMap);
+            shader.addSubShader(subShader);
+            subShader.addShaderPass(vs, ps);
+        }
+        set mainTex(value) {
+            this._shaderValues.setTexture(this.MAIN_TEX, value);
+        }
+        set xoffset(value) {
+            this._shaderValues.setNumber(this.X_OFFSET, value);
+        }
+        set yoffset(value) {
+            this._shaderValues.setNumber(this.Y_OFFSET, value);
+        }
+        set zdistance(value) {
+            this._shaderValues.setNumber(this.Z_Distance, value);
+        }
+    }
+
     var OpenScene;
     (function (OpenScene) {
         OpenScene[OpenScene["float"] = 0] = "float";
@@ -1810,6 +1904,7 @@
             this.gameInfo.music = 1;
             this.gameInfo.vibrate = 1;
             this.gameInfo.coin = 0;
+            this.gameInfo.score = 0;
             this.gameInfo.ticket = 30;
             this.gameInfo.maxTicket = 30;
             this.gameInfo.pass = 0;
@@ -1982,9 +2077,7 @@
         onAddLevelDate() {
             if (rab.Util.isMobil) {
                 rab.HTTP.post("api/playLog", {
-                    "passLv": 1,
-                    "failLv": 2,
-                    "score": 22,
+                    "score": this.gameInfo.score,
                     "token": this.userInfo.token
                 }, this, (data) => {
                     rab.Util.log('添加闯关数据', data);
@@ -2533,6 +2626,72 @@
                 sprite.alpha = 0;
             }), 300);
         }
+        calculator(key) {
+            let value = 0;
+            let temp = key.split("");
+            let index = 0;
+            let parentheses = "";
+            let parenthesesList = new Array();
+            while (index != -1) {
+                index = key.indexOf("(");
+                if (index != -1) {
+                    parentheses = key.slice(index, key.indexOf(")"));
+                    parenthesesList.push(this.calculator(parentheses));
+                }
+            }
+            let calculat = (s) => {
+                if (index == 0) {
+                    key = parenthesesList.shift() + key;
+                }
+                let a1 = key.lastIndexOf("+", index);
+                let b1 = key.indexOf("*", index);
+                let c1 = key.indexOf("+", index);
+                let d1 = key.indexOf("=", index);
+                let a2 = "";
+                let b2 = "";
+                let c2 = 0;
+                if (a1 == -1) {
+                    a2 = key.substr(0, index);
+                }
+                else {
+                    a2 = key.substr(a1, index);
+                }
+                if (b1 == -1) {
+                    if (c1 == -1) {
+                        b2 = key.substr(index, d1);
+                    }
+                    else {
+                        b2 = key.substr(index, c1);
+                    }
+                }
+                else {
+                    b2 = key.substr(index, b1);
+                }
+                if (s == "*") {
+                    c2 += parseInt(a2) * parseInt(b2);
+                }
+                else if (s == "+") {
+                    c2 += parseInt(a2) + parseInt(b2);
+                }
+                key.replace(a2 + s + b2, "" + c2);
+            };
+            index = 0;
+            while (index != -1) {
+                index = key.indexOf("*");
+                if (index != -1) {
+                    calculat("*");
+                }
+            }
+            index = 0;
+            while (index != -1) {
+                index = key.indexOf("+");
+                if (index != -1) {
+                    calculat("+");
+                }
+            }
+            value = parseInt(key.substr(0, key.length - 1));
+            return value;
+        }
     }
 
     class SceneLoading extends rab.RabView {
@@ -2638,6 +2797,7 @@
                     this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
                 }
             });
+            console.log(Tool.instance.calculator("50+70"));
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -3227,6 +3387,19 @@
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
             }
+            Laya.loader.create(["3d/prefab/Conventional/road.lh", "new/com/beijing.png"], Laya.Handler.create(this, () => {
+                let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
+                this.scene3D.addChild(road);
+                road.transform.position = new Laya.Vector3(0, 4, this.passData.length / 2);
+                road.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 100));
+                road.getComponent(Laya.PhysicsCollider).collisionGroup = 10;
+                let mat = new CurveBlinnPhong();
+                mat.mainTex = Laya.loader.getRes("new/com/beijing.png");
+                mat.xoffset = 30;
+                mat.yoffset = -30;
+                mat.zdistance = 200;
+                road.meshRenderer.sharedMaterial = mat;
+            }));
         }
         fightReady() {
             this.scene3D.active = true;
@@ -3258,6 +3431,7 @@
         }
         onGamewin() {
             this.isStart = false;
+            this.manager.gameInfo.score += this.manager.CurrPassData().score;
             this.manager.onNextPass();
             this.playerManager.onhappydance();
             Laya.timer.once(2000, this, () => {
@@ -3451,8 +3625,10 @@
             this.m_currView.lifeText.value = "3";
         }
         onPause() {
-            this.SendMessage(GameNotity.GameMessage_PauseGame);
-            rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+            if (this.m_currView.timeDown.visible == false) {
+                this.SendMessage(GameNotity.GameMessage_PauseGame);
+                rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+            }
         }
         onGametart(data) {
             if (this.m_currView.timeDown.visible == true) {
@@ -3461,27 +3637,26 @@
             this.m_currView.guild.visible = false;
             this.m_currView.timeDown.visible = true;
             this.m_currView.timeDown.skin = "ui/3.png";
-            Laya.timer.clear(this, this.countdown);
-            Laya.timer.once(1800, this, this.countdown);
+            this.countdown = 1;
+            Laya.timer.frameLoop(1, this, this.update);
         }
-        countdown() {
-            Laya.timer.once(1000, this, this.countdown);
-            if (this.m_currView.timeDown.skin == "ui/3.png") {
-                this.m_currView.timeDown.skin = "ui/2.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/2.png") {
-                this.m_currView.timeDown.skin = "ui/1.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/1.png") {
-                this.m_currView.timeDown.skin = "ui/go.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/go.png") {
-                this.m_currView.timeDown.skin = "ui/go.png";
+        update() {
+            if (this.countdown >= 240) {
                 this.m_currView.timeDown.visible = false;
                 this.fightManager.onGameStart();
                 this.gameStart = true;
-                Laya.timer.clear(this, this.countdown);
+                Laya.timer.clear(this, this.update);
             }
+            else if (this.countdown >= 180) {
+                this.m_currView.timeDown.skin = "ui/go.png";
+            }
+            else if (this.countdown >= 120) {
+                this.m_currView.timeDown.skin = "ui/1.png";
+            }
+            else if (this.countdown >= 60) {
+                this.m_currView.timeDown.skin = "ui/2.png";
+            }
+            this.countdown++;
         }
         onKeyUp(e) {
             if (e.keyCode == 37) {
@@ -3964,7 +4139,6 @@
         onHide() {
             super.onHide();
             if (this.cloud != null) {
-                this.m_currView.removeChild(this.cloud);
                 this.cloud.destroy(true);
                 this.cloud = null;
             }
@@ -4428,6 +4602,7 @@
     class Engine extends rab.RabObj {
         onInit() {
             new ViewConfig();
+            CurveBlinnPhong.initShader();
             rab.UIManager.onCreateView(ViewConfig.gameView.SceneLoading);
         }
     }

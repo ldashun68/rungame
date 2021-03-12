@@ -775,4 +775,83 @@ export default class Tool {
             sprite.alpha = 0;
         }), 300);
     }
+
+    /**计算器 */
+    public calculator (key: string): number {
+        let value: number = 0;
+        let temp: Array<string> = key.split("");
+
+        let index: number = 0;
+        let parentheses: string = "";
+        let parenthesesList: Array<number> = new Array<number>();
+        while (index != -1) {
+            index = key.indexOf("(");
+            if (index != -1) {
+                parentheses = key.slice(index, key.indexOf(")"));
+                parenthesesList.push(this.calculator(parentheses));
+            }
+        }
+
+        let calculat = (s: string) => {
+            if (index == 0) {
+                key = parenthesesList.shift()+key;
+            }
+
+            let a1: number = key.lastIndexOf("+", index);
+            let b1: number = key.indexOf("*", index);
+            let c1: number = key.indexOf("+", index);
+            let d1: number = key.indexOf("=", index);
+
+            let a2: string = "";
+            let b2: string = "";
+            let c2: number = 0;
+
+            if (a1 == -1) {
+                a2 = key.substr(0, index);
+            }
+            else {
+                a2 = key.substr(a1, index);
+            }
+
+            if (b1 == -1) {
+                if (c1 == -1) {
+                    b2 = key.substr(index, d1);
+                }
+                else {
+                    b2 = key.substr(index, c1);
+                }
+            }
+            else {
+                b2 = key.substr(index, b1);
+            }
+
+            if (s == "*") {
+                c2 += parseInt(a2)*parseInt(b2);
+            }
+            else if (s == "+") {
+                c2 += parseInt(a2)+parseInt(b2);
+            }
+
+            key.replace(a2+s+b2, ""+c2);
+        }
+
+        index = 0;
+        while (index != -1) {
+            index = key.indexOf("*");
+            if (index != -1) {
+                calculat("*");
+            }
+        }
+
+        index = 0;
+        while (index != -1) {
+            index = key.indexOf("+");
+            if (index != -1) {
+                calculat("+");
+            }
+        }
+
+        value = parseInt(key.substr(0, key.length-1));
+        return value;
+    }
 }

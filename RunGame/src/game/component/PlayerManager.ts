@@ -176,7 +176,7 @@ export default class PlayerManager extends rab.GameObject {
             let ratio = (this.worldDistance - this.m_JumpStart) / correctJumpLength;
             if (ratio >= 1) {
                 this.playAnimation("run",0);
-                this._playState = PlayState.run
+                this._playState = PlayState.run;
             }
             else {
                 this._characterSlot.transform.localPositionY = Math.sin(ratio * Math.PI) * this.jumpHeight;
@@ -188,7 +188,7 @@ export default class PlayerManager extends rab.GameObject {
 			let ratio = (this.worldDistance - this.m_SlideStart) / correctSlideLength;
 			if (ratio >= 1.0) {
                 this.playAnimation("run",0);
-                this._playState = PlayState.run
+                this._playState = PlayState.run;
 			}
         }
 
