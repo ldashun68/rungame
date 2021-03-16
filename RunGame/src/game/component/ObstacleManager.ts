@@ -14,7 +14,7 @@ export default class ObstacleManager extends rab.GameObject {
     private _initPos:number;
     private _obstacles:Array<ObstacleItem> = new Array<ObstacleItem>();
     private obstaclesID: number = 0;
-    private posZ: number = 0;
+    private randomX: number = 0;
 
     onInit(): void {
         this.AddListenerMessage(GameNotity.Game_RemoveScene,this.onReMoveScene)
@@ -51,16 +51,16 @@ export default class ObstacleManager extends rab.GameObject {
             this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
         }
 
-        let randomZ: number = this.posZ;
-        while (randomZ == this.posZ) {
+        let randomX: number = this.randomX;
+        while (randomX == this.randomX) {
             if(Math.random() < 0.3) {
-                this.posZ = 0;
+                this.randomX = 0;
             }
             else if(Math.random() < 0.6) {
-                this.posZ = 1;
+                this.randomX = 1;
             }
             else {
-                this.posZ = 2;
+                this.randomX = 2;
             }
         }
 
@@ -76,7 +76,7 @@ export default class ObstacleManager extends rab.GameObject {
         }
 
         if (this.obstaclesID == 100) {
-            this.posZ = randomZ;
+            this.randomX = randomX;
         }
     }
 
@@ -92,34 +92,12 @@ export default class ObstacleManager extends rab.GameObject {
             obstacleProp = obstacle.getComponent(ObstacleSimple);
         }
         this.scene3D.addChild(obstacle);
-        console.log("创建好了障碍物", this.obstaclesID)
         this._obstacles.push(obstacleProp);
-        obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
-        obstacle.transform.localPosition = new Laya.Vector3(0,0,this._initPos);
-        obstacle.active = true;
+        console.log("创建好了障碍物", this.obstaclesID);
         
-        if(this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
-            obstacle.transform.localPositionX = 0;
-        }
-        else if(this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 2) {
-            if(Math.random() < 0.5) {
-                obstacle.transform.localPositionX = 0;
-            }
-            else {
-                obstacle.transform.localPositionX = -1.2;
-            }
-        }
-        else {
-            if(this.posZ == 0) {
-                obstacle.transform.localPositionX = 1.2;
-            }
-            else if(this.posZ == 1) {
-                obstacle.transform.localPositionX = 0;
-            }
-            else {
-                obstacle.transform.localPositionX = -1.2;
-            }
-        }
+        obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
+        obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
+        obstacle.active = true;
     }
 
     public SpawnCoinAndPowerup()

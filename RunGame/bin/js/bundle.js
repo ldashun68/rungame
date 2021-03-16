@@ -1814,7 +1814,7 @@
         }
         getPassData(year, index) {
             let yearNum = 0;
-            if (year == "year90") {
+            if (year != "year80") {
                 yearNum = 11;
             }
             return (this.jsonData['pass'][index + yearNum]);
@@ -2839,13 +2839,6 @@
             else {
                 complete();
             }
-            console.log(Tool.instance.calculator("50+70="));
-            console.log(Tool.instance.calculator("50*70="));
-            console.log(Tool.instance.calculator("(50+70)"));
-            console.log(Tool.instance.calculator("(50*70)="));
-            console.log(Tool.instance.calculator("(50+70)*1="));
-            console.log(Tool.instance.calculator("(50+70)+1*2="));
-            console.log(Tool.instance.calculator("(50+70)+(1*2)*1="));
         }
         updateRedPoint() {
         }
@@ -2910,7 +2903,7 @@
         get PosZ() {
             return this._posz;
         }
-        onInitProp(data) {
+        onInitProp(data, randomX) {
             this.prop = data;
             this._obstacleId = data.id;
             if (this._obstacleId != 100) {
@@ -2921,6 +2914,39 @@
                 this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
                 this.transform.localScale = new Laya.Vector3(1, 1, 1);
                 this.idleAnimation();
+            }
+            if (data.pos == 1) {
+                this.transform.localPositionX = 0;
+            }
+            else if (data.pos == 2) {
+                if (Math.random() < 0.5) {
+                    this.transform.localPositionX = 0;
+                }
+                else {
+                    this.transform.localPositionX = -1.2;
+                }
+            }
+            else {
+                if (randomX == 0) {
+                    this.transform.localPositionX = 1.2;
+                }
+                else if (randomX == 1) {
+                    this.transform.localPositionX = 0;
+                }
+                else {
+                    this.transform.localPositionX = -1.2;
+                }
+            }
+            if (this.owner.name == "ObstacleRoadblocks") {
+                if (this.transform.localPositionX < -1) {
+                    this.owner.getChildAt(0).transform.localPositionX = -0.2;
+                }
+                else if (this.transform.localPositionX > 1) {
+                    this.owner.getChildAt(0).transform.localPositionX = 0.2;
+                }
+                else {
+                    this.owner.getChildAt(0).transform.localPositionX = 0;
+                }
             }
         }
         recover() {
@@ -2973,7 +2999,7 @@
             this._baseobstacles = new Map();
             this._obstacles = new Array();
             this.obstaclesID = 0;
-            this.posZ = 0;
+            this.randomX = 0;
         }
         onInit() {
             this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene);
@@ -2999,16 +3025,16 @@
             while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
                 this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
             }
-            let randomZ = this.posZ;
-            while (randomZ == this.posZ) {
+            let randomX = this.randomX;
+            while (randomX == this.randomX) {
                 if (Math.random() < 0.3) {
-                    this.posZ = 0;
+                    this.randomX = 0;
                 }
                 else if (Math.random() < 0.6) {
-                    this.posZ = 1;
+                    this.randomX = 1;
                 }
                 else {
-                    this.posZ = 2;
+                    this.randomX = 2;
                 }
             }
             if (this.obstaclesID == 100) {
@@ -3022,7 +3048,7 @@
                 this.createNextOb();
             }
             if (this.obstaclesID == 100) {
-                this.posZ = randomZ;
+                this.randomX = randomX;
             }
         }
         createNextOb() {
@@ -3037,33 +3063,11 @@
                 obstacleProp = obstacle.getComponent(ObstacleSimple);
             }
             this.scene3D.addChild(obstacle);
-            console.log("创建好了障碍物", this.obstaclesID);
             this._obstacles.push(obstacleProp);
-            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
+            console.log("创建好了障碍物", this.obstaclesID);
             obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
+            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
             obstacle.active = true;
-            if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
-                obstacle.transform.localPositionX = 0;
-            }
-            else if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 2) {
-                if (Math.random() < 0.5) {
-                    obstacle.transform.localPositionX = 0;
-                }
-                else {
-                    obstacle.transform.localPositionX = -1.2;
-                }
-            }
-            else {
-                if (this.posZ == 0) {
-                    obstacle.transform.localPositionX = 1.2;
-                }
-                else if (this.posZ == 1) {
-                    obstacle.transform.localPositionX = 0;
-                }
-                else {
-                    obstacle.transform.localPositionX = -1.2;
-                }
-            }
         }
         SpawnCoinAndPowerup() {
         }
@@ -3377,7 +3381,7 @@
             this.scene3D = this.owner;
             this.scene3D.enableFog = true;
             this.scene3D.fogColor = new Laya.Vector3(0.25, 0.55, 0.9);
-            this.scene3D.fogStart = 7;
+            this.scene3D.fogStart = 30;
             this.scene3D.fogRange = 50;
             this.playerManager = this.scene3D.addComponent(PlayerManager);
             this.playerManager.view = this.view;
@@ -3397,18 +3401,22 @@
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
             }
-            Laya.loader.create(["3d/prefab/Conventional/road.lh", "new/com/beijing.png"], Laya.Handler.create(this, () => {
-                let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
+            if (this.scene3D.getChildByName("road") != null) {
+                this.scene3D.getChildByName("road").destroy();
+            }
+            let year = 0;
+            if (this.manager.playSelect == 1) {
+                year = 80;
+            }
+            else {
+                year = 90;
+            }
+            Laya.loader.create("3d/build/Conventional/road" + year + ".lh", Laya.Handler.create(this, () => {
+                let road = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road" + year + ".lh"));
+                road.name = "road";
                 this.scene3D.addChild(road);
-                road.transform.position = new Laya.Vector3(0, 4, this.passData.length / 2);
-                road.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 100));
-                road.getComponent(Laya.PhysicsCollider).collisionGroup = 10;
-                let mat = new CurveBlinnPhong();
-                mat.mainTex = Laya.loader.getRes("new/com/beijing.png");
-                mat.xoffset = 30;
-                mat.yoffset = -30;
-                mat.zdistance = 200;
-                road.meshRenderer.sharedMaterial = mat;
+                road.transform.position = new Laya.Vector3(0, -0.2, 950);
+                road.transform.rotationEuler = new Laya.Vector3(-90);
             }));
         }
         fightReady() {
@@ -3422,6 +3430,7 @@
             this.manager.fightGetCoin = 0;
             this.updatePassProgressNode();
             let arr = this.manager.getPassBuild();
+            this.passData.builds.sort();
             for (var i = 0; i < this.passData.builds.length; i++) {
                 this._basebuilds[this.passData.builds[i]] = Laya.loader.getRes("3d/build/Conventional/" + this.manager.getBuild(this.passData.builds[i]).res + ".lh");
             }
@@ -3467,7 +3476,7 @@
             }
         }
         onCreateBuild() {
-            if (this._currLenght - this.playerManager.worldDistance <= 90) {
+            if (this._currLenght - this.playerManager.worldDistance <= 200) {
                 if (this._currLenght <= this.passData.length) {
                     this.manager.fightGetCoin += 1;
                     this.oncreateNextBuild();
@@ -3585,6 +3594,14 @@
             this._currLenght += this.manager.getBuild(buildID).length;
             if (this._currLenght > 20 && this._currLenght < this.passData.length - this.winLenght) {
                 this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
+            }
+            if (this.manager.playSelect == 1) {
+                Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
+                Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
+            }
+            else {
+                Tool.instance.setPosition(new Laya.Vector3(-3.6, 2.08, build.transform.position.z), build);
+                Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
             }
             return build;
         }
@@ -4269,6 +4286,8 @@
                     let self = this;
                     let complete = () => {
                         let arr = self.myManager.getPassBuild();
+                        arr.push("3d/build/Conventional/road80.lh");
+                        arr.push("3d/build/Conventional/road90.lh");
                         self.myManager.onLoad3dScene(() => {
                             Laya.loader.create(arr, Laya.Handler.create(self, () => {
                                 self.SendMessage(GameNotity.Init_Loading);

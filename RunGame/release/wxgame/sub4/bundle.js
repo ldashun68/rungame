@@ -75,6 +75,100 @@
     GameConfig.exportSceneToJson = true;
     GameConfig.init();
 
+    class CurveBlinnPhong extends Laya.BlinnPhongMaterial {
+        constructor() {
+            super();
+            this.MAIN_TEX = Laya.Shader3D.propertyNameToID("u_MainTex");
+            this.X_OFFSET = Laya.Shader3D.propertyNameToID("u_XOffset");
+            this.Y_OFFSET = Laya.Shader3D.propertyNameToID("u_YOffset");
+            this.Z_Distance = Laya.Shader3D.propertyNameToID("u_ZDistance");
+            this.setShaderName("CustomCurveShader");
+            this.enableVertexColor = false;
+            this.albedoColor = new Laya.Vector4(0.0, 0.0, 0.0, 0.0);
+            this.xoffset = 15.0;
+            this.yoffset = -15.0;
+            this.zdistance = 200.0;
+        }
+        static initShader() {
+            var attributeMap = {
+                "a_Position": Laya.VertexMesh.MESH_POSITION0,
+                "a_Normal": Laya.VertexMesh.MESH_NORMAL0,
+                "a_Textcoord": Laya.VertexMesh.MESH_TEXTURECOORDINATE0,
+                "a_Textcorrd1": Laya.VertexMesh.MESH_TEXTURECOORDINATE1,
+                "a_Tangent": Laya.VertexMesh.MESH_TANGENT0,
+                "a_Color": Laya.VertexMesh.MESH_COLOR0,
+            };
+            var uniformMap = {
+                "u_MainTex": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_MvpMatrix": Laya.Shader3D.PERIOD_SPRITE,
+                "u_View": Laya.Shader3D.PERIOD_CAMERA,
+                "u_Projection": Laya.Shader3D.PERIOD_CAMERA,
+                "u_WorldMat": Laya.Shader3D.PERIOD_SPRITE,
+                "u_XOffset": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_YOffset": Laya.Shader3D.PERIOD_MATERIAL,
+                "u_ZDistance": Laya.Shader3D.PERIOD_MATERIAL
+            };
+            var vs = `
+            #include "Lighting.glsl";
+
+            attribute vec4 a_Position;
+            attribute vec2 a_Textcoord;
+
+            uniform mat4 u_WorldMat;
+            uniform mat4 u_MvpMatrix;
+            uniform mat4 u_View;
+            uniform mat4 u_Projection;
+
+            uniform float u_XOffset;
+            uniform float u_YOffset;
+            uniform float u_ZDistance;
+
+            varying vec2 v_textcoord;
+
+            void main() {
+                v_textcoord = a_Textcoord;
+                vec4 vPos = (u_View * u_WorldMat) * a_Position;
+                float zOff = vPos.z / u_ZDistance;
+                vPos += vec4(u_XOffset, u_YOffset, 0.0, 0.0) * zOff * zOff;
+                gl_Position = u_Projection * vPos;
+            }
+        `;
+            var ps = `
+            #ifdef HIGHPRECISION
+            precision highp float;
+            #else
+            precision mediump float;
+            #endif
+
+            #include "Lighting.glsl";
+
+            uniform sampler2D u_MainTex;
+            varying vec2 v_textcoord;
+
+            void main() {
+                vec4 col = texture2D(u_MainTex, v_textcoord);
+                gl_FragColor = col;
+            }
+        `;
+            var shader = Laya.Shader3D.add("CustomCurveShader");
+            var subShader = new Laya.SubShader(attributeMap, uniformMap);
+            shader.addSubShader(subShader);
+            subShader.addShaderPass(vs, ps);
+        }
+        set mainTex(value) {
+            this._shaderValues.setTexture(this.MAIN_TEX, value);
+        }
+        set xoffset(value) {
+            this._shaderValues.setNumber(this.X_OFFSET, value);
+        }
+        set yoffset(value) {
+            this._shaderValues.setNumber(this.Y_OFFSET, value);
+        }
+        set zdistance(value) {
+            this._shaderValues.setNumber(this.Z_Distance, value);
+        }
+    }
+
     var OpenScene;
     (function (OpenScene) {
         OpenScene[OpenScene["float"] = 0] = "float";
@@ -1720,7 +1814,7 @@
         }
         getPassData(year, index) {
             let yearNum = 0;
-            if (year == "year90") {
+            if (year != "year80") {
                 yearNum = 11;
             }
             return (this.jsonData['pass'][index + yearNum]);
@@ -1810,6 +1904,7 @@
             this.gameInfo.music = 1;
             this.gameInfo.vibrate = 1;
             this.gameInfo.coin = 0;
+            this.gameInfo.score = 0;
             this.gameInfo.ticket = 30;
             this.gameInfo.maxTicket = 30;
             this.gameInfo.pass = 0;
@@ -1982,9 +2077,7 @@
         onAddLevelDate() {
             if (rab.Util.isMobil) {
                 rab.HTTP.post("api/playLog", {
-                    "passLv": 1,
-                    "failLv": 2,
-                    "score": 22,
+                    "score": this.gameInfo.score,
                     "token": this.userInfo.token
                 }, this, (data) => {
                     rab.Util.log('添加闯关数据', data);
@@ -2533,6 +2626,76 @@
                 sprite.alpha = 0;
             }), 300);
         }
+        calculator(key) {
+            let value = 0;
+            if ((key[0] == "(" && key[key.length - 1] == ")") ||
+                (key[0] == "(" && key[key.length - 2] == ")")) {
+                key = key.replace("(", "");
+                key = key.replace(")", "");
+            }
+            if (key[key.length - 1] != "=") {
+                key += "=";
+            }
+            key = key.replace(" ", "");
+            let index = 0;
+            let parentheses = "";
+            while (index != -1) {
+                index = key.indexOf("(");
+                if (index != -1) {
+                    parentheses = key.slice(index, key.indexOf(")") + 1);
+                    key = key.replace(parentheses, "" + this.calculator(parentheses));
+                }
+            }
+            let calculat = (s) => {
+                let a1 = key.lastIndexOf("+", index - 1);
+                let b1 = key.indexOf("*", index + 1);
+                let c1 = key.indexOf("+", index + 1);
+                let d1 = key.indexOf("=", index + 1);
+                let a2 = "";
+                let b2 = "";
+                let c2 = 0;
+                if (a1 == -1) {
+                    a2 = key.substr(0, index);
+                }
+                else {
+                    a2 = key.substr(a1 + 1, index - a1 - 1);
+                }
+                if (b1 == -1) {
+                    if (c1 == -1) {
+                        b2 = key.substr(index + 1, d1 - index - 1);
+                    }
+                    else {
+                        b2 = key.substr(index + 1, c1 - index - 1);
+                    }
+                }
+                else {
+                    b2 = key.substr(index + 1, b1 - index - 1);
+                }
+                if (s == "*") {
+                    c2 += parseInt(a2) * parseInt(b2);
+                }
+                else if (s == "+") {
+                    c2 += parseInt(a2) + parseInt(b2);
+                }
+                key = key.replace(a2 + s + b2, "" + c2);
+            };
+            index = 0;
+            while (index != -1) {
+                index = key.indexOf("*");
+                if (index != -1) {
+                    calculat("*");
+                }
+            }
+            index = 0;
+            while (index != -1) {
+                index = key.indexOf("+");
+                if (index != -1) {
+                    calculat("+");
+                }
+            }
+            value = parseInt(key.substr(0, key.length - 1));
+            return value;
+        }
     }
 
     class SceneLoading extends rab.RabView {
@@ -2740,7 +2903,7 @@
         get PosZ() {
             return this._posz;
         }
-        onInitProp(data) {
+        onInitProp(data, randomX) {
             this.prop = data;
             this._obstacleId = data.id;
             if (this._obstacleId != 100) {
@@ -2751,6 +2914,39 @@
                 this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
                 this.transform.localScale = new Laya.Vector3(1, 1, 1);
                 this.idleAnimation();
+            }
+            if (data.pos == 1) {
+                this.transform.localPositionX = 0;
+            }
+            else if (data.pos == 2) {
+                if (Math.random() < 0.5) {
+                    this.transform.localPositionX = 0;
+                }
+                else {
+                    this.transform.localPositionX = -1.2;
+                }
+            }
+            else {
+                if (randomX == 0) {
+                    this.transform.localPositionX = 1.2;
+                }
+                else if (randomX == 1) {
+                    this.transform.localPositionX = 0;
+                }
+                else {
+                    this.transform.localPositionX = -1.2;
+                }
+            }
+            if (this.owner.name == "ObstacleRoadblocks") {
+                if (this.transform.localPositionX < -1) {
+                    this.owner.getChildAt(0).transform.localPositionX = -0.2;
+                }
+                else if (this.transform.localPositionX > 1) {
+                    this.owner.getChildAt(0).transform.localPositionX = 0.2;
+                }
+                else {
+                    this.owner.getChildAt(0).transform.localPositionX = 0;
+                }
             }
         }
         recover() {
@@ -2803,7 +2999,7 @@
             this._baseobstacles = new Map();
             this._obstacles = new Array();
             this.obstaclesID = 0;
-            this.posZ = 0;
+            this.randomX = 0;
         }
         onInit() {
             this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene);
@@ -2829,16 +3025,16 @@
             while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
                 this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
             }
-            let randomZ = this.posZ;
-            while (randomZ == this.posZ) {
+            let randomX = this.randomX;
+            while (randomX == this.randomX) {
                 if (Math.random() < 0.3) {
-                    this.posZ = 0;
+                    this.randomX = 0;
                 }
                 else if (Math.random() < 0.6) {
-                    this.posZ = 1;
+                    this.randomX = 1;
                 }
                 else {
-                    this.posZ = 2;
+                    this.randomX = 2;
                 }
             }
             if (this.obstaclesID == 100) {
@@ -2852,7 +3048,7 @@
                 this.createNextOb();
             }
             if (this.obstaclesID == 100) {
-                this.posZ = randomZ;
+                this.randomX = randomX;
             }
         }
         createNextOb() {
@@ -2867,33 +3063,11 @@
                 obstacleProp = obstacle.getComponent(ObstacleSimple);
             }
             this.scene3D.addChild(obstacle);
-            console.log("创建好了障碍物", this.obstaclesID);
             this._obstacles.push(obstacleProp);
-            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID));
+            console.log("创建好了障碍物", this.obstaclesID);
             obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
+            obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
             obstacle.active = true;
-            if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 1) {
-                obstacle.transform.localPositionX = 0;
-            }
-            else if (this.manager.jsonConfig.getObstacleData(this.obstaclesID).pos == 2) {
-                if (Math.random() < 0.5) {
-                    obstacle.transform.localPositionX = 0;
-                }
-                else {
-                    obstacle.transform.localPositionX = -1.2;
-                }
-            }
-            else {
-                if (this.posZ == 0) {
-                    obstacle.transform.localPositionX = 1.2;
-                }
-                else if (this.posZ == 1) {
-                    obstacle.transform.localPositionX = 0;
-                }
-                else {
-                    obstacle.transform.localPositionX = -1.2;
-                }
-            }
         }
         SpawnCoinAndPowerup() {
         }
@@ -3205,10 +3379,6 @@
         init() {
             this.max_lifeCount = 3;
             this.scene3D = this.owner;
-            this.scene3D.enableFog = true;
-            this.scene3D.fogColor = new Laya.Vector3(0.25, 0.55, 0.9);
-            this.scene3D.fogStart = 7;
-            this.scene3D.fogRange = 50;
             this.playerManager = this.scene3D.addComponent(PlayerManager);
             this.playerManager.view = this.view;
             this.playerManager.init();
@@ -3227,6 +3397,23 @@
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
             }
+            if (this.scene3D.getChildByName("road") != null) {
+                this.scene3D.getChildByName("road").destroy();
+            }
+            let year = 0;
+            if (this.manager.playSelect == 1) {
+                year = 80;
+            }
+            else {
+                year = 90;
+            }
+            Laya.loader.create("3d/build/Conventional/road" + year + ".lh", Laya.Handler.create(this, () => {
+                let road = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road" + year + ".lh"));
+                road.name = "road";
+                this.scene3D.addChild(road);
+                road.transform.position = new Laya.Vector3(0, -0.2, 950);
+                road.transform.rotationEuler = new Laya.Vector3(-90);
+            }));
         }
         fightReady() {
             this.scene3D.active = true;
@@ -3239,6 +3426,7 @@
             this.manager.fightGetCoin = 0;
             this.updatePassProgressNode();
             let arr = this.manager.getPassBuild();
+            this.passData.builds.sort();
             for (var i = 0; i < this.passData.builds.length; i++) {
                 this._basebuilds[this.passData.builds[i]] = Laya.loader.getRes("3d/build/Conventional/" + this.manager.getBuild(this.passData.builds[i]).res + ".lh");
             }
@@ -3258,6 +3446,7 @@
         }
         onGamewin() {
             this.isStart = false;
+            this.manager.gameInfo.score += this.manager.CurrPassData().score;
             this.manager.onNextPass();
             this.playerManager.onhappydance();
             Laya.timer.once(2000, this, () => {
@@ -3283,7 +3472,7 @@
             }
         }
         onCreateBuild() {
-            if (this._currLenght - this.playerManager.worldDistance <= 90) {
+            if (this._currLenght - this.playerManager.worldDistance <= 200) {
                 if (this._currLenght <= this.passData.length) {
                     this.manager.fightGetCoin += 1;
                     this.oncreateNextBuild();
@@ -3402,6 +3591,14 @@
             if (this._currLenght > 20 && this._currLenght < this.passData.length - this.winLenght) {
                 this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
             }
+            if (this.manager.playSelect == 1) {
+                Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
+                Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
+            }
+            else {
+                Tool.instance.setPosition(new Laya.Vector3(-3.6, 2.08, build.transform.position.z), build);
+                Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
+            }
             return build;
         }
         updatePassProgressNode() {
@@ -3451,8 +3648,10 @@
             this.m_currView.lifeText.value = "3";
         }
         onPause() {
-            this.SendMessage(GameNotity.GameMessage_PauseGame);
-            rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+            if (this.m_currView.timeDown.visible == false) {
+                this.SendMessage(GameNotity.GameMessage_PauseGame);
+                rab.UIManager.onCreateView(ViewConfig.gameView.PauseView);
+            }
         }
         onGametart(data) {
             if (this.m_currView.timeDown.visible == true) {
@@ -3461,27 +3660,26 @@
             this.m_currView.guild.visible = false;
             this.m_currView.timeDown.visible = true;
             this.m_currView.timeDown.skin = "ui/3.png";
-            Laya.timer.clear(this, this.countdown);
-            Laya.timer.once(1800, this, this.countdown);
+            this.countdown = 1;
+            Laya.timer.frameLoop(1, this, this.update);
         }
-        countdown() {
-            Laya.timer.once(1000, this, this.countdown);
-            if (this.m_currView.timeDown.skin == "ui/3.png") {
-                this.m_currView.timeDown.skin = "ui/2.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/2.png") {
-                this.m_currView.timeDown.skin = "ui/1.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/1.png") {
-                this.m_currView.timeDown.skin = "ui/go.png";
-            }
-            else if (this.m_currView.timeDown.skin == "ui/go.png") {
-                this.m_currView.timeDown.skin = "ui/go.png";
+        update() {
+            if (this.countdown >= 240) {
                 this.m_currView.timeDown.visible = false;
                 this.fightManager.onGameStart();
                 this.gameStart = true;
-                Laya.timer.clear(this, this.countdown);
+                Laya.timer.clear(this, this.update);
             }
+            else if (this.countdown >= 180) {
+                this.m_currView.timeDown.skin = "ui/go.png";
+            }
+            else if (this.countdown >= 120) {
+                this.m_currView.timeDown.skin = "ui/1.png";
+            }
+            else if (this.countdown >= 60) {
+                this.m_currView.timeDown.skin = "ui/2.png";
+            }
+            this.countdown++;
         }
         onKeyUp(e) {
             if (e.keyCode == 37) {
@@ -3964,7 +4162,6 @@
         onHide() {
             super.onHide();
             if (this.cloud != null) {
-                //this.m_currView.removeChild(this.cloud);
                 this.cloud.destroy(true);
                 this.cloud = null;
             }
@@ -4085,6 +4282,8 @@
                     let self = this;
                     let complete = () => {
                         let arr = self.myManager.getPassBuild();
+                        arr.push("3d/build/Conventional/road80.lh");
+                        arr.push("3d/build/Conventional/road90.lh");
                         self.myManager.onLoad3dScene(() => {
                             Laya.loader.create(arr, Laya.Handler.create(self, () => {
                                 self.SendMessage(GameNotity.Init_Loading);
@@ -4428,6 +4627,7 @@
     class Engine extends rab.RabObj {
         onInit() {
             new ViewConfig();
+            CurveBlinnPhong.initShader();
             rab.UIManager.onCreateView(ViewConfig.gameView.SceneLoading);
         }
     }

@@ -42,7 +42,7 @@ export default class GameJsonConfig {
     public getPassData(year: string, index:number):passProp
     {
         let yearNum: number = 0;
-        if (year == "year90") {
+        if (year != "year80") {
             yearNum = 11;
         }
         return <passProp>(this.jsonData['pass'][index+yearNum]);

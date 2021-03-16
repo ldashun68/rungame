@@ -24,11 +24,11 @@ export default class ObstacleItem extends rab.GameObject {
         return this._posz;
     }
 
-    public onInitProp(data:obstacleProp)
+    public onInitProp(data:obstacleProp, randomX: Number)
     {
         this.prop = data;
         this._obstacleId = data.id;
-        
+
         if (this._obstacleId != 100) {
             this.transform.localRotationEulerX = 0;
         }
@@ -37,6 +37,41 @@ export default class ObstacleItem extends rab.GameObject {
             this.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 1));
             this.transform.localScale = new Laya.Vector3(1, 1, 1);
             this.idleAnimation();
+        }
+
+        if(data.pos == 1) {
+            this.transform.localPositionX = 0;
+        }
+        else if(data.pos == 2) {
+            if(Math.random() < 0.5) {
+                this.transform.localPositionX = 0;
+            }
+            else {
+                this.transform.localPositionX = -1.2;
+            }
+        }
+        else {
+            if(randomX == 0) {
+                this.transform.localPositionX = 1.2;
+            }
+            else if(randomX == 1) {
+                this.transform.localPositionX = 0;
+            }
+            else {
+                this.transform.localPositionX = -1.2;
+            }
+        }
+
+        if (this.owner.name == "ObstacleRoadblocks") {
+            if (this.transform.localPositionX < -1) {
+                (this.owner.getChildAt(0) as Laya.Sprite3D).transform.localPositionX = -0.2;
+            }
+            else if (this.transform.localPositionX > 1) {
+                (this.owner.getChildAt(0) as Laya.Sprite3D).transform.localPositionX = 0.2;
+            }
+            else {
+                (this.owner.getChildAt(0) as Laya.Sprite3D).transform.localPositionX = 0;
+            }
         }
         // this._posz = posZ+data.length;
     }

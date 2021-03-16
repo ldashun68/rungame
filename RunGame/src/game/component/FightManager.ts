@@ -1,5 +1,6 @@
 import BasicDictionary from "../../Basic/BasicDictionary";
 import Tool from "../../Basic/Tool";
+import Engine from "../../rab/Engine";
 import rab from "../../rab/rab";
 import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
@@ -73,7 +74,7 @@ export default class FightManager extends rab.GameObject {
         //设置雾化的颜色 65,138,229
         this.scene3D.fogColor = new Laya.Vector3(0.25,0.55,0.9);
         //设置雾化的起始位置，相对于相机的距离
-        this.scene3D.fogStart = 7;
+        this.scene3D.fogStart = 30;
         //设置雾化最浓处的距离。
         this.scene3D.fogRange = 50;
         this.playerManager = this.scene3D.addComponent(PlayerManager);
@@ -102,19 +103,23 @@ export default class FightManager extends rab.GameObject {
             this.oncreateNextBuild();
         }
 
-        Laya.loader.create(["3d/prefab/Conventional/road.lh", "new/com/beijing.png"], Laya.Handler.create(this, () => {
-            let road = this.instantiate(Laya.loader.getRes("3d/prefab/Conventional/road.lh"));
+        if (this.scene3D.getChildByName("road") != null) {
+            this.scene3D.getChildByName("road").destroy();
+        }
+        
+        let year: number = 0;
+        if (this.manager.playSelect == 1) {
+            year = 80;
+        }
+        else {
+            year = 90;
+        }
+        Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
+            let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
+            road.name = "road";
             this.scene3D.addChild(road);
-            road.transform.position = new Laya.Vector3(0, 4, this.passData.length/2);
-            road.transform.setWorldLossyScale(new Laya.Vector3(1, 1, 100));
-            road.getComponent(Laya.PhysicsCollider).collisionGroup = 10;
-
-            let mat: CurveBlinnPhong = new CurveBlinnPhong();
-            mat.mainTex = Laya.loader.getRes("new/com/beijing.png");
-            mat.xoffset = 30;
-            mat.yoffset = -30;
-            mat.zdistance = 200;
-            (road as Laya.MeshSprite3D).meshRenderer.sharedMaterial = mat;
+            road.transform.position = new Laya.Vector3(0, -0.2, 950);
+            road.transform.rotationEuler = new Laya.Vector3(-90);
         }));
     }
 
@@ -130,6 +135,7 @@ export default class FightManager extends rab.GameObject {
         this.manager.fightGetCoin =0;
         this.updatePassProgressNode();
         let arr = this.manager.getPassBuild();
+        this.passData.builds.sort();
         for(var i = 0;i<this.passData.builds.length;i++)
         {
             this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/build/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
@@ -193,7 +199,7 @@ export default class FightManager extends rab.GameObject {
      */
     onCreateBuild()
     {
-        if(this._currLenght - this.playerManager.worldDistance <= 90)
+        if(this._currLenght - this.playerManager.worldDistance <= 200)
         {
             if(this._currLenght <= this.passData.length)
             {
@@ -340,6 +346,15 @@ export default class FightManager extends rab.GameObject {
         this._currLenght += this.manager.getBuild(buildID).length;
         if(this._currLenght > 20 && this._currLenght < this.passData.length-this.winLenght) {
             this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
+        }
+
+        if (this.manager.playSelect == 1) {
+            Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
+            Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
+        }
+        else {
+            Tool.instance.setPosition(new Laya.Vector3(-3.6, 2.08, build.transform.position.z), build);
+            Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
         }
 
         return build;
