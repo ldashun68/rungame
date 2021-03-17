@@ -1,12 +1,12 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":2,
-    "selecteID":68,
+    "selectedBox":24,
+    "selecteID":20,
     "searchKey":"Scene,GameWin,GameWin",
     "props":{"y":0,"x":0,"width":750,"var":"GameWin","sceneColor":"#ffffff","sceneBg":"laya/views/view/GameWin.jpg","name":"GameWin","height":1334},
     "nodeParent":-1,
-    "maxID":69,
+    "maxID":70,
     "label":"GameWin",
     "isOpen":true,
     "isDirectory":true,
@@ -34,7 +34,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"top":0,"skin":"new/com/beijing.png","left":0},
+            "props":{"top":-1,"skin":"new/com/beijing.png","left":0},
             "nodeParent":2,
             "label":"Image",
             "isOpen":false,
@@ -146,7 +146,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,eff",
-            "props":{"y":776,"x":375,"var":"eff","skin":"new/com/guangxiao.png","rotation":0,"centerY":109,"centerX":0,"anchorY":0.5,"anchorX":0.5},
+            "props":{"var":"eff","skin":"new/com/guangxiao.png","rotation":0,"centerY":108,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"eff",
             "isDirectory":false,
@@ -160,7 +160,7 @@
             "x":15,
             "type":"Sprite",
             "searchKey":"Sprite,cloudNode,cloudNode",
-            "props":{"y":0,"x":0,"width":750,"var":"cloudNode","name":"cloudNode","height":1334},
+            "props":{"y":-1,"x":0,"width":750,"var":"cloudNode","name":"cloudNode","height":1334},
             "nodeParent":2,
             "label":"cloudNode",
             "isOpen":true,
@@ -179,7 +179,7 @@
             "props":{"zOrder":1,"var":"winNode","top":0,"right":0,"name":"winNode","left":0,"bottom":0,"anchorX":0.5},
             "nodeParent":2,
             "label":"winNode",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
@@ -188,18 +188,31 @@
                 {
                     "x":30,
                     "type":"Image",
+                    "searchKey":"Image",
+                    "props":{"y":190,"x":375,"skin":"new/com/t_tzcg.png","anchorY":0.5,"anchorX":0.5},
+                    "nodeParent":24,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":64,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Image",
                     "searchKey":"Image,award,award",
-                    "props":{"visible":false,"var":"award","name":"award","centerY":-377,"centerX":0,"anchorX":0.5},
+                    "props":{"y":325,"x":375,"width":750,"visible":false,"var":"award","name":"award","height":100,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"award",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":33,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "searchKey":"Image",
                             "props":{"y":55,"skin":"new/game/jinbi.png","centerX":-100,"anchorY":0.5,"anchorX":0.5},
@@ -213,7 +226,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"FontClip",
                             "searchKey":"FontClip,coinText,coinText",
                             "props":{"y":55,"var":"coinText","value":"0","skin":"ui/coinNum.png","sheet":"0123456789","scaleY":1.2,"scaleX":1.2,"name":"coinText","centerX":23,"anchorY":0.5,"anchorX":0},
@@ -231,7 +243,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,next,next",
-                    "props":{"visible":false,"var":"next","skin":"new/com/bd_xyg.png","name":"next","centerX":0,"bottom":47,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"y":1220,"x":375,"visible":false,"var":"next","skin":"new/com/bd_xyg.png","name":"next","anchorY":0.5,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"next",
                     "isOpen":true,
@@ -247,7 +259,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,homeBtn,homeBtn",
-                    "props":{"x":112,"width":100,"visible":false,"var":"homeBtn","skin":"new/com/b_zhuye.png","pivotY":107,"pivotX":22,"name":"homeBtn","height":107,"bottom":54},
+                    "props":{"y":1226,"x":140,"width":100,"visible":false,"var":"homeBtn","skin":"new/com/b_zhuye.png","name":"homeBtn","height":107,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"homeBtn",
                     "isOpen":true,
@@ -262,7 +274,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,share",
-                    "props":{"x":577,"width":100,"visible":false,"var":"share","skin":"new/com/b_fenxiang.png","pivotY":107,"pivotX":22,"height":107,"bottom":47},
+                    "props":{"y":1233,"x":605,"width":100,"visible":true,"var":"share","skin":"new/com/b_fenxiang.png","height":107,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"share",
                     "isOpen":true,
@@ -273,20 +285,6 @@
                     "child":[
                         ],
                     "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Image",
-                    "searchKey":"Image",
-                    "props":{"top":30,"skin":"new/com/t_tzcg.png","centerX":0},
-                    "nodeParent":24,
-                    "label":"Image",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":64,
-                    "child":[
-                        ]
                 }],
             "$HIDDEN":false
         },
@@ -294,7 +292,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,cover,cover",
-            "props":{"zOrder":2,"y":10,"x":10,"visible":false,"var":"cover","top":0,"skin":"new/com/rect3.png","right":0,"name":"cover","left":0,"bottom":0,"alpha":0.75},
+            "props":{"zOrder":2,"visible":false,"var":"cover","top":0,"skin":"new/com/rect3.png","right":0,"name":"cover","left":0,"bottom":0,"alpha":0.75},
             "nodeParent":2,
             "label":"cover",
             "isDirectory":false,
@@ -303,13 +301,13 @@
             "compId":67,
             "child":[
                 ],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Image",
             "searchKey":"Image,bigPhoto,bigPhoto",
-            "props":{"zOrder":3,"y":10,"x":10,"visible":false,"var":"bigPhoto","skin":"new/com/Photo/pic_01_b.png","name":"bigPhoto","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
+            "props":{"zOrder":3,"visible":false,"var":"bigPhoto","skin":"new/com/Photo/pic_01_b.png","name":"bigPhoto","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"bigPhoto",
             "isDirectory":false,
@@ -318,7 +316,7 @@
             "compId":68,
             "child":[
                 ],
-            "$HIDDEN":true
+            "$HIDDEN":false
         }],
     "animations":[
         {

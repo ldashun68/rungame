@@ -15,6 +15,7 @@ export default class GameWin extends rab.RabView {
 
     private scene3D: Laya.Scene3D;
     private playNode: Laya.Sprite3D;
+    private animator: Laya.Animator;
     protected myManager:GameController;
     // protected flagEffect: Laya.Skeleton;
 
@@ -71,7 +72,15 @@ export default class GameWin extends rab.RabView {
         this.playNode.transform.localPosition = new Laya.Vector3(0,-0.1,-3);
         this.playNode.transform.localRotationEulerX = 0;
         this.playNode.active = true;
+
         Laya.timer.frameLoop(1,this,this.onUpdate);
+
+        this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+        this.animator.play("happydance");
+        Laya.timer.frameLoop(180, this.animator, () => {
+            this.animator.play("idle")
+            this.animator.play("happydance");
+        }, null, false);
     }
 
     onUpdate() {

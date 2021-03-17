@@ -36,7 +36,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.500243,
+						2.74,
 						-1.784052,
 						-9.29
 					],
@@ -68,49 +68,12 @@
 				"type":"MeshSprite3D",
 				"instanceID":121,
 				"props":{
-					"name":"xiaoqu01 (1)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-12.47,
-						-1.78,
-						9.59
-					],
-					"rotation":[
-						0,
-						0.7071068,
-						0.7071068,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/xiaoqu01-xiaoqu01.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/xiaoqu01.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":122,
-				"props":{
 					"name":"xiaoqu01 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.500243,
+						2.74,
 						-1.78,
 						8.32
 					],
@@ -140,6 +103,43 @@
 			},
 			{
 				"type":"MeshSprite3D",
+				"instanceID":122,
+				"props":{
+					"name":"xiaoqu01 (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-9.83,
+						-1.78,
+						9.59
+					],
+					"rotation":[
+						0,
+						0.7071068,
+						0.7071068,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/xiaoqu01-xiaoqu01.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/xiaoqu01.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
 				"instanceID":123,
 				"props":{
 					"name":"xiaoqu01 (3)",
@@ -147,7 +147,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-12.47,
+						-9.83,
 						-1.78,
 						-8.42
 					],

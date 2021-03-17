@@ -16,7 +16,9 @@ export default class GameFail extends rab.RabView {
     private time: number;
     private scene3D: Laya.Scene3D;
     private playNode: Laya.Sprite3D;
+    private animator: Laya.Animator;
     protected myManager:GameController;
+
     protected LoadView() {
         this.create<ui.view.GameFailUI>(ui.view.GameFailUI);
         this._bannerPos = "GameFail";
@@ -45,8 +47,8 @@ export default class GameFail extends rab.RabView {
         // this.m_currView.homeBtn.visible = false;
         // this.m_currView.timeText.visible = true;
         // this.m_currView.timeText.value = ""+this.time;
+        // Laya.timer.loop(1000, this, this.countDown);
 
-        Laya.timer.loop(1000, this, this.countDown);
         this.create3DScene();
     }
 
@@ -70,6 +72,13 @@ export default class GameFail extends rab.RabView {
         this.playNode.transform.localRotationEulerX = 0;
         this.playNode.active = true;
         // console.log("失败页面创建3D场景");
+
+        this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+        this.animator.play("death");
+        Laya.timer.frameLoop(180, this.animator, () => {
+            this.animator.play("idle")
+            this.animator.play("death");
+        }, null, false);
     }
 
     protected onShowLanguage()

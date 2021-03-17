@@ -20,8 +20,9 @@ export default class Play extends rab.GameObject {
         //console.log("开始触发时执行",other);
         let prop:ObstacleItem = other.owner.getComponent(ObstacleItem);
         if(prop) {
-            prop.onCollisionPlay();
             if (prop.isCoin() == false) {
+                rab.MusicManager.playSound("res/audio/hit.wav", 1, 1);
+
                 if (prop.isTruck() == true) {
                     if(prop.transform.localPositionX == 0) {
                         this.SendMessage(GameNotity.Game_UpdateMouseMove, 1);
@@ -32,13 +33,17 @@ export default class Play extends rab.GameObject {
                     this.SendMessage(GameNotity.Game_RoleRetrogression);
                 }
                 
-                this.SendMessage(GameNotity.Game_TriggerEnter,prop.prop.up,prop.prop.down);
+                this.SendMessage(GameNotity.Game_TriggerEnter,prop);
                 this.onFlash();
             }
             else {
+                rab.MusicManager.playSound("res/audio/coin.wav", 1, 0.05);
+
                 let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
                 manager.fightGetCoin += 1;
             }
+
+            prop.onCollisionPlay();
         }
     }
 

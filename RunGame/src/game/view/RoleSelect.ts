@@ -17,6 +17,7 @@ export default class RoleSelect extends rab.RabView {
     private _mouseDownType:number = 0;
     private _mouseDownX:number = 0;
     private isLoadSubpackage: boolean;
+    private animator: Laya.Animator;
 
     protected LoadView() {
         this.create<ui.view.RoleSelectUI>(ui.view.RoleSelectUI);
@@ -46,12 +47,6 @@ export default class RoleSelect extends rab.RabView {
         this.isLoadSubpackage = false;
 
         this.OnRefreshView();
-
-        this.myManager.onLoad3dScene(() => {
-            // Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-                this.onShowRole(1);
-            // }));
-        })
     }
 
     protected OnRefreshView() {
@@ -79,7 +74,8 @@ export default class RoleSelect extends rab.RabView {
         var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
         directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
-                        
+        
+        this.onShowRole(1);
     }
 
     protected onShowLanguage()
@@ -142,25 +138,31 @@ export default class RoleSelect extends rab.RabView {
     onShowRole(id:number)
     {
         console.log("选择角色：",id);
-        if(this.selectId == id)
-        {
+        if (this.selectId == id) {
             return;
         }
+
         this.m_currView.select_1.visible = false;
         this.m_currView.select_2.visible = false;
         this.m_currView.select_3.visible = false;
         this.m_currView.select_4.visible = false;
         this.m_currView["select_"+id].visible = true;
         this.selectId = id;
-        if(this.playNode)
-        {
+
+        if (this.playNode) {
             this.playNode.destroy();
         }
-
         this.playNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/play_"+id+".lh"), this.scene3D,true,new Laya.Vector3(0,0,0));
         this.playNode.active = true;
         this.playNode.transform.localPosition = new Laya.Vector3(0,0.3,-3.5);
         this.playNode.transform.localRotationEulerX = 0;
+
+        this.m_currView.roleName_1.color ="#929b9e";
+        this.m_currView.roleName_2.color ="#929b9e";
+        this.m_currView.roleName_3.color ="#929b9e";
+        this.m_currView.roleName_4.color ="#929b9e";
+
+        (this.m_currView["roleName_"+id] as Laya.Label).color = "#ffffff";
     }
 
     /**
@@ -267,7 +269,4 @@ export default class RoleSelect extends rab.RabView {
         this.mouseDown = true;
         this._mouseDownType = -1;
     }
-
-    
-
 }

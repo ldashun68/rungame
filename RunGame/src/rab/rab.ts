@@ -363,9 +363,6 @@ class UtilTool {
 class MusicManager {
 
     private static _instance:MusicManager;
-    private audioState:number = 1;
-    private musicState:number = 1;
-    private audio = {};
 
     public static getInstance():MusicManager{
         if(this._instance == null){
@@ -379,77 +376,18 @@ class MusicManager {
      * @param music  1:正常0：不播放
      * @param audio 1:正常0：不播放
      */
-    SetState(music,audio)
+    setState(music, audio)
     {
-        this.musicState = music;
-        this.audioState = audio;
-        //this.state = _val;//1:正常0：不播放
-        if(music == 0)
-        {
-            this.pauseMusic();
-        }else{
-            this.resumeMusic();
-        }
+        Laya.SoundManager.musicMuted = (music == 0)? false:true;
+        Laya.SoundManager.soundMuted = (audio == 0)? false:true;
     }
 
-    pauseMusic(){
-        Laya.SoundManager.musicMuted = true;
-        Laya.SoundManager.soundMuted = true;
-    }
-
-    resumeMusic(){
-        Laya.SoundManager.musicMuted = false;
-        Laya.SoundManager.soundMuted = false;
-    }
-
-    /**
-     * 播放背景音乐
-     * @param _resName 
-     * @param loop 默认循环播放
-     */
-    OnPlayMusic(_resName:string,loop:number = 0,vol:number=1)
-    {
-        if(this.musicState == 0)
-        {
-            Laya.SoundManager.playMusic(_resName,loop)
-        }
-    }
-
-    /**
-     * 播放音效
-     * @param _resName 
-     */
-    OnPlayAudio(_resName)
-    {
-        if(this.audioState == 0)
-        {
-            return;
-        }
-        if(this.audio[_resName])
-        {
-            this.audio[_resName].play();
-        }else{
-            this.onLoad(_resName);
-        }
-    }
-
-    OnStopAudio(_resName:string)
-    {
-        if(this.audio[_resName]) {
-            this.audio[_resName].stop();
-        }
-    }
-
-    private onLoad(url){
-        
-    }
-    
     playMusic (url: string, volume: number = 0.2): void {
         Laya.SoundManager.musicVolume = volume;
         Laya.SoundManager.playMusic(url);
     }
 
-    playSound (url: string, loop: number = 1, callback: Laya.Handler = null, volume: number = 0.5): void {
+    playSound (url: string, loop: number = 1, volume: number = 0.5, callback: Laya.Handler = null): void {
         Laya.SoundManager.soundVolume = volume;
         Laya.SoundManager.playSound(url, loop, callback);
     }
@@ -504,37 +442,34 @@ class GameChannel {
      * @param gameInfo 数据对象
      * @param key 键值
      */
-    initData(gameInfo:any,key:string = "gameinfo")
+    initData(callback: Function)
     {
-        if(typeof wx != "undefined")
-        {
-            if(this.myManager.userInfo){
-                var _data = gameInfo;  
+        let gameInfo: any = null;
+        if(typeof wx != "undefined") {
+            if(this.myManager.userInfo) {
                 rab.HTTP.get("api/player",this.myManager.userInfo.token,(data)=>{
-                    _data = (data);
-                    // Object.keys(gameInfo).forEach(function(key){
-                    //     _data[key] = wx.getData(key, gameInfo[key]);
-                    // });
-                    rab.Util.log('初始化获得保存数据',data);
+                    gameInfo = JSON.parse(data.data.gamedata);
+
+                    callback && callback();
+                    rab.Util.log('初始化获得保存数据',gameInfo);
                 });
-                return _data;
-                
-            }else{
-                return gameInfo;
             }
-        }else
-        {
-            var info = Laya.LocalStorage.getItem(key); 
-            if(info)
-            {
+            else {
+                callback && callback(gameInfo);
+            }
+        }
+        else {
+            var info = Laya.LocalStorage.getItem("gameInfo"); 
+            if(info) {
                 let data = JSON.parse(info);
+                gameInfo = rab.Util.supplement(gameInfo,data);
+
+                callback && callback(gameInfo);
                 rab.Util.log('初始化获得保存数据===',data)
-               gameInfo = rab.Util.supplement(gameInfo,data);
             }
         }
         
         rab.Util.log('初始化获得保存数据',gameInfo)
-        return gameInfo;
     }
 
     /**
@@ -546,9 +481,10 @@ class GameChannel {
     {
         if(typeof wx != "undefined")
         {
-            rab.HTTP.post("api/player",{"data":JSON.stringify(gameInfo),
-                                        "token":this.myManager.userInfo.token
-                                        },this,(data)=>{
+            rab.HTTP.post("api/player",{
+                "data":JSON.stringify(gameInfo),
+                "token":this.myManager.userInfo.token
+            },this,(data)=>{
                 console.log("保存数据：",data);
             });
         }else{
@@ -857,20 +793,21 @@ abstract class RabManager extends RabEvent{
     /**
      * 初始化数据
      */
-    protected InitGameInfo()
-    {
+    protected InitGameInfo() {
         this.state = GameState.init;
-        this.gameInfo = rab.SDKChannel.initData(this.gameInfo,this._gameType);
-        rab.Util.log("获得数据",this.gameInfo);
-        this.lastTime = this.gameInfo.lastTime;
-        this.isGuid = this.isNoob();
-        rab.SDKChannel.onHide(()=>{
-            this.SaveData(-1)
-        })
-        rab.SDKChannel.onShow((res)=>{
-            this.sceneId =  res.scene;
-            console.log("场景=====id==========",res.scene);
-            EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage,res.scene);
+        rab.SDKChannel.initData((gameInfo: any) => {
+            this.gameInfo = gameInfo;
+            rab.Util.log("获得数据",this.gameInfo);
+            this.lastTime = this.gameInfo.lastTime;
+            this.isGuid = this.isNoob();
+            rab.SDKChannel.onHide(()=>{
+                this.SaveData(-1)
+            })
+            rab.SDKChannel.onShow((res)=>{
+                this.sceneId =  res.scene;
+                console.log("场景=====id==========",res.scene);
+                EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage,res.scene);
+            });
         });
     }
 
@@ -913,51 +850,6 @@ abstract class RabManager extends RabEvent{
         rab.Util.log(typ,"===保存数据====",this.gameInfo);
         this.onHide();
         rab.SDKChannel.SaveData(this.gameInfo,this._gameType);
-    }
-
-    //----------TODO音乐接口----------------------
-    /**
-     * 重新初始化声音 防止微信拉起的时候没声音
-     */
-    public InitMusic()
-    {
-        MusicManager.getInstance().SetState(this.gameInfo.music,this.gameInfo.audio);
-    }
-
-    /**
-     * 播放背景音乐
-     */
-    public PlayMusic(musiPath:string,loop:number = 0,vol:number =1)
-    {
-        MusicManager.getInstance().OnPlayMusic(musiPath,loop,vol);
-    }
-
-    /**暂停背景音 */
-    public PauseBGM(){
-        MusicManager.getInstance().pauseMusic();
-    }
-
-    /**继续背景音 */
-    public ResumeBGM(){
-        MusicManager.getInstance().resumeMusic();
-    }
-
-    /**
-     * 播放音效
-     * @param audioPath 
-     */
-    protected PlayAudio(audioPath:string)
-    {
-        MusicManager.getInstance().OnPlayAudio(audioPath);
-    }
-
-    /**
-     * 停止播放音效
-     * @param audioPath 
-     */
-    protected StopAudio(audioPath:string)
-    {
-        MusicManager.getInstance().OnStopAudio(audioPath);
     }
 
     //--------------设置info--------------
@@ -1003,7 +895,7 @@ abstract class RabManager extends RabEvent{
     public setMusic()
     {
         this.gameInfo.music = this.gameInfo.music?0:1;
-        this.InitMusic();
+        rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
     }
 
     /**
@@ -1013,7 +905,7 @@ abstract class RabManager extends RabEvent{
     public setAudio()
     {
         this.gameInfo.audio = this.gameInfo.audio?0:1;
-        this.InitMusic();
+        rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
     }
 
     /**
@@ -1826,12 +1718,6 @@ abstract class RabController extends RabManager {
     {
         rab.Util.log("最新配置表",this.gameConfig);
         rab.SDKChannel.onInitSDk();
-        if(rab.Util.isMobil)
-        {
-            // wx.onShow((res)=>{
-                this.InitMusic();
-            // })
-        }
         this.onInitServer(this.gameConfig.appid,this.gameConfig.secret,this.gameConfig.gamename,this.gameConfig.version);
     }
 
@@ -1854,7 +1740,6 @@ abstract class RabController extends RabManager {
     private LoginBreak() {
         wx.hideLoading();
         rab.SDKChannel.traceEvent("loginsuccess")
-        this.InitMusic();
         this.OnEnterGame();
         // this.OnReConfig(wx.conf);
     }
@@ -1876,7 +1761,6 @@ abstract class RabController extends RabManager {
         }
         else{
             rab.HTTP.post(this.gameConfig.serverurl+"/api/authCode",{"code":'aaa'},this,()=>{
-                this.InitMusic();
                 this.OnEnterGame();
             })
             
@@ -1892,10 +1776,6 @@ abstract class RabController extends RabManager {
             //TODO:今天新的一天处理一些其他问题签到 每日提示等
         }
         this.loadView();
-
-        if (this.gameInfo.audio == 1) {
-            this.playBGM();
-        }
     }
 
     /**随机玩家名称 */
@@ -2035,27 +1915,6 @@ abstract class RabController extends RabManager {
     protected onPreLoadRes(path)
     {
         
-    }
-
-    //-----------------------音乐接口---------------------------
-
-    protected bgm:string = "audio/bgm";
-
-    /**播放背景音 */
-    protected playBGM(){
-       this.PlayMusic("audio/bgm",0,0.1);
-    }
-
-    /**切换背景音 */
-    protected changeBgm(name){
-        this.StopAudio(this.bgm);
-        this.bgm = name;
-        this.playBGM();
-    }
-
-    /**点击音 */
-    public click(){
-        this.PlayAudio("audio/click");
     }
 }
 

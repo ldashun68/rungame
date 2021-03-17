@@ -1,1 +1,0 @@
-window.loadLib = require;

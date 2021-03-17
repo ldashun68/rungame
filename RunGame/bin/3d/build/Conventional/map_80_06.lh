@@ -31,80 +31,14 @@
 				"type":"MeshSprite3D",
 				"instanceID":76,
 				"props":{
-					"name":"gongchang",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-19.53,
-						18.73,
-						0.07999802
-					],
-					"rotation":[
-						0,
-						0,
-						-1,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/gongchang-gongchang.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/gongchang.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"instanceID":77,
-						"props":{
-							"name":"GameObject",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":78,
-				"props":{
 					"name":"nongtian",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						0,
+						-2.37,
 						23.14,
-						0
+						0.26
 					],
 					"rotation":[
 						0,
@@ -132,80 +66,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":79,
-				"props":{
-					"name":"nongtian (1)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-16.45,
-						0.72,
-						0
-					],
-					"rotation":[
-						0,
-						0,
-						1,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"instanceID":80,
-						"props":{
-							"name":"GameObject",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":81,
+				"instanceID":77,
 				"props":{
 					"name":"gongchang (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.17,
+						0.8,
 						7.47,
 						0.08
 					],
@@ -234,7 +102,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":82,
+						"instanceID":78,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -264,16 +132,16 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":83,
+				"instanceID":79,
 				"props":{
 					"name":"nongtian (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.42,
+						3.05,
 						23.14,
-						0
+						0.26
 					],
 					"rotation":[
 						0,
@@ -301,16 +169,148 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":84,
+				"instanceID":80,
+				"props":{
+					"name":"gongchang",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-16.94,
+						18.73,
+						0.07999802
+					],
+					"rotation":[
+						0,
+						0,
+						-1,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/gongchang-gongchang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/gongchang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[
+					{
+						"type":"Sprite3D",
+						"instanceID":81,
+						"props":{
+							"name":"GameObject",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":82,
 				"props":{
 					"name":"nongtian (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-21.91,
+						-19.32,
 						0.72,
+						0.26
+					],
+					"rotation":[
+						0,
+						0,
+						1,
 						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[
+					{
+						"type":"Sprite3D",
+						"instanceID":83,
+						"props":{
+							"name":"GameObject",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":84,
+				"props":{
+					"name":"nongtian (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-13.86,
+						0.72,
+						0.26
 					],
 					"rotation":[
 						0,

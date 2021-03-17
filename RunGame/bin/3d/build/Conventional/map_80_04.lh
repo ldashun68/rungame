@@ -36,9 +36,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						0,
+						-2.44,
 						22.41,
-						0
+						0.2
 					],
 					"rotation":[
 						0,
@@ -68,20 +68,20 @@
 				"type":"MeshSprite3D",
 				"instanceID":47,
 				"props":{
-					"name":"nongtian (1)",
+					"name":"nongtian (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-16.56,
-						22.5,
-						0
+						-2.44,
+						0,
+						0.2
 					],
 					"rotation":[
 						0,
 						0,
-						1,
-						0
+						0,
+						-1
 					],
 					"scale":[
 						1,
@@ -99,49 +99,57 @@
 					]
 				},
 				"components":[],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"instanceID":48,
-						"props":{
-							"name":"GameObject",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":48,
+				"props":{
+					"name":"nongtian (5)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						2.97,
+						22.41,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
 			},
 			{
 				"type":"MeshSprite3D",
 				"instanceID":49,
 				"props":{
-					"name":"nongtian (2)",
+					"name":"nongtian (7)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						0,
-						0,
-						0
+						2.97,
+						11.19,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -171,14 +179,14 @@
 				"type":"MeshSprite3D",
 				"instanceID":50,
 				"props":{
-					"name":"nongtian (3)",
+					"name":"nongtian (6)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
+						2.97,
 						0,
-						11.19,
-						0
+						0.2
 					],
 					"rotation":[
 						0,
@@ -208,14 +216,51 @@
 				"type":"MeshSprite3D",
 				"instanceID":51,
 				"props":{
-					"name":"nongtian (4)",
+					"name":"nongtian (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-16.56,
-						11.37,
-						0
+						-2.44,
+						11.19,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":52,
+				"props":{
+					"name":"nongtian (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-13.77,
+						22.5,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -242,7 +287,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":52,
+						"instanceID":53,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -272,59 +317,22 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":53,
-				"props":{
-					"name":"nongtian (5)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						5.41,
-						22.41,
-						0
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
 				"instanceID":54,
 				"props":{
-					"name":"nongtian (6)",
+					"name":"nongtian (4)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.41,
-						0,
-						0
+						-13.77,
+						11.37,
+						0.2
 					],
 					"rotation":[
 						0,
 						0,
-						0,
-						-1
+						1,
+						0
 					],
 					"scale":[
 						1,
@@ -342,44 +350,36 @@
 					]
 				},
 				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":55,
-				"props":{
-					"name":"nongtian (7)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						5.41,
-						11.19,
-						0
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
+				"child":[
+					{
+						"type":"Sprite3D",
+						"instanceID":55,
+						"props":{
+							"name":"GameObject",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								0,
+								0
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
 			},
 			{
 				"type":"MeshSprite3D",
@@ -390,9 +390,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-16.56,
+						-13.77,
 						-0.22,
-						0
+						0.2
 					],
 					"rotation":[
 						0,
@@ -456,9 +456,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-21.79,
+						-19,
 						22.5,
-						0
+						0.2
 					],
 					"rotation":[
 						0,
@@ -522,9 +522,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-21.79,
+						-19,
 						11.37,
-						0
+						0.2
 					],
 					"rotation":[
 						0,
@@ -588,9 +588,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-21.79,
+						-19,
 						-0.22,
-						0
+						0.2
 					],
 					"rotation":[
 						0,

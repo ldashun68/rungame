@@ -1,7 +1,7 @@
 import rab from "../../rab/rab";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
-import { buildProp } from "../GameVO/DataType";
+import { buildProp, passProp } from "../GameVO/DataType";
 import ObstacleItem from "./ObstacleItem";
 import ObstacleSimple from "./ObstacleSimple";
 
@@ -9,7 +9,7 @@ export default class ObstacleManager extends rab.GameObject {
 
     private scene3D: Laya.Scene3D;
     private manager: GameController;
-    private _buildProp:buildProp;
+    private _passProp:passProp;
     private _baseobstacles:Map<number,Laya.Sprite3D> = new Map<number,Laya.Sprite3D>();
     private _initPos:number;
     private _obstacles:Array<ObstacleItem> = new Array<ObstacleItem>();
@@ -17,9 +17,7 @@ export default class ObstacleManager extends rab.GameObject {
     private randomX: number = 0;
 
     onInit(): void {
-        this.AddListenerMessage(GameNotity.Game_RemoveScene,this.onReMoveScene)
-        // this.AddListenerMessage(GameNotity.GameMessage_Revive,this.onGameRevive)
-        this.AddListenerMessage(GameNotity.GameMessage_ReGameStart,this.onGameReStart)
+        this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene)
     }
 
     /**初始化 */
@@ -31,12 +29,12 @@ export default class ObstacleManager extends rab.GameObject {
     /**
      * 创建一个障碍物
      */
-    onCreateobstacle(data:buildProp, posZ:number)
+    onCreateobstacle(data:passProp, posZ:number)
     {
-        console.log("创建一个障碍物", posZ);
-        this._initPos = posZ+data.length;
-        let arr = data.obstacle;
-        this._buildProp = data;
+        console.log("创建一个障碍物 Z轴", posZ);
+        this._initPos = posZ;
+        let arr = data.obstacles;
+        this._passProp = data;
 
         for(var i = 0;i<arr.length;i++) {
             if(!this._baseobstacles[arr[i]]) {
@@ -45,10 +43,9 @@ export default class ObstacleManager extends rab.GameObject {
             }
         }
         let ObstacleID = this.obstaclesID;
-        this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
-        //let ObstacleID = this._buildProp.obstacle[0];
+        this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random()*this._passProp.obstacles.length)];
         while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
-            this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random()*this._buildProp.obstacle.length)];
+            this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random()*this._passProp.obstacles.length)];
         }
 
         let randomX: number = this.randomX;
@@ -93,7 +90,7 @@ export default class ObstacleManager extends rab.GameObject {
         }
         this.scene3D.addChild(obstacle);
         this._obstacles.push(obstacleProp);
-        console.log("创建好了障碍物", this.obstaclesID);
+        console.log("创建好了障碍物 ID", this.obstaclesID);
         
         obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
@@ -109,7 +106,7 @@ export default class ObstacleManager extends rab.GameObject {
 		// let powerupChance = Math.clamp01(Math.floor(m_TimeSincePowerup) * 0.5 * 0.001);
 		// let premiumChance = Math.Clamp01(Math.floor(m_TimeSinceLastPremium) * 0.5 * 0.0001);
 
-		// while (currentWorldPos < this._buildProp.length)
+		// while (currentWorldPos < this._passProp.length)
 		// {
 		// 	let pos;
 		// 	let rot;
@@ -162,28 +159,18 @@ export default class ObstacleManager extends rab.GameObject {
 
 	}
 
-    onClearAll()
-    {
-        for(var i =0;i<this._obstacles.length;i++)
-        {
+    onClearAll() {
+        for(var i =0;i<this._obstacles.length;i++) {
             this._obstacles[i].recover();
         }
         this._obstacles=[];
     }
 
-    onReMoveScene()
-    {
+    onReMoveScene() {
         this.onClearAll();
-        for(var i = 0; i < this._buildProp.obstacle.length; i++)
-        {
-            Laya.Pool.clearBySign("ObstacleID"+this._buildProp.obstacle[i]);
+        for(var i = 0; i < this._passProp.obstacles.length; i++) {
+            Laya.Pool.clearBySign("ObstacleID"+this._passProp.obstacles[i]);
         }
         this._baseobstacles.clear();
     }
-
-    onGameReStart()
-    {
-        this.onClearAll();
-    }
-    
 }

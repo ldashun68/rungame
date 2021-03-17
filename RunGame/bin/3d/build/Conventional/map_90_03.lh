@@ -36,7 +36,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-11.62,
+						-9.92,
 						-1.78,
 						-10.45
 					],
@@ -73,8 +73,8 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						14.66,
-						-2.52,
+						13.42,
+						-1.8,
 						0.27
 					],
 					"rotation":[
@@ -110,7 +110,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-11.62,
+						-9.92,
 						-1.78,
 						9.3
 					],
