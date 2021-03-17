@@ -183,7 +183,7 @@ export default class ObstacleManager extends rab.GameObject {
 
     onGameReStart()
     {
-        this.onClearAll();
+        //this.onClearAll();
     }
     
 }
