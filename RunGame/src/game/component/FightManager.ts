@@ -303,7 +303,6 @@ export default class FightManager extends rab.GameObject {
             Laya.timer.once(300, this, () => {
                 this.SendMessage(GameNotity.GameMessage_GameStart);
             });
-            
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
         }else{
             console.log("已经重新开始");
