@@ -23,4 +23,8 @@
    <item name="effect/unclock" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="effect/cloud" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
    <item name="effect/upgrade" type="" compress="0" pack="2" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/beijing.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/guangxiao.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/t_tzcg.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/t_tzsb.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
 </res>

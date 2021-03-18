@@ -448,10 +448,12 @@ class GameChannel {
         if(typeof wx != "undefined") {
             if(this.myManager.userInfo) {
                 rab.HTTP.get("api/player",this.myManager.userInfo.token,(data)=>{
-                    gameInfo = JSON.parse(data.data.gamedata);
+                    if (data.data != null && data.data.gamedata != null) {
+                        gameInfo = JSON.parse(data.data.gamedata);
+                    }
 
-                    callback && callback();
-                    rab.Util.log('初始化获得保存数据',gameInfo);
+                    callback && callback(gameInfo);
+                    rab.Util.log('初始化获得保存数据',data);
                 });
             }
             else {
@@ -796,8 +798,11 @@ abstract class RabManager extends RabEvent{
     protected InitGameInfo() {
         this.state = GameState.init;
         rab.SDKChannel.initData((gameInfo: any) => {
-            this.gameInfo = gameInfo;
+            if (gameInfo != null) {
+                this.gameInfo = gameInfo;
+            }
             rab.Util.log("获得数据",this.gameInfo);
+
             this.lastTime = this.gameInfo.lastTime;
             this.isGuid = this.isNoob();
             rab.SDKChannel.onHide(()=>{

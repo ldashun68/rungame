@@ -59,8 +59,10 @@ export default class RoleSelect extends rab.RabView {
         this.create3DScene();
     }
 
-    private create3DScene()
-    {
+    private create3DScene() {
+        if (this.scene3D != null) {
+            return;
+        }
 
         this.myManager.scene3D.active = false;
         //添加3D场景
@@ -69,7 +71,7 @@ export default class RoleSelect extends rab.RabView {
         var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         camera.transform.translate(new Laya.Vector3(0, 1, 0));
         camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
-        camera.clearFlag = 3;
+        //camera.clearFlag = 3;
         //添加方向光
         var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
@@ -91,6 +93,7 @@ export default class RoleSelect extends rab.RabView {
         this.myManager.scene3D.active = true;
         this.scene3D.removeSelf();
         this.scene3D.destroy();
+        console.log("this.scene3D.destroy");
         super.onHide();
         Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onMouseDown);
         Laya.stage.off(Laya.Event.MOUSE_MOVE, this, this.onMouseMove);

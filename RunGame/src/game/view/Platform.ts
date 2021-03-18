@@ -70,6 +70,21 @@ export default class Platform extends rab.RabView {
             }
         });
         // rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
+
+        if (this.isLoadSubpackage == false && typeof wx != "undefined") {
+            window.wx.loadSubpackage({
+                name: 'sub1', // name 可以填 name 或者 root
+                success: (res) => {
+                    // 分包加载成功后通过 success 回调
+                }
+            });
+            window.wx.loadSubpackage({
+                name: 'sub2', // name 可以填 name 或者 root
+                success: (res) => {
+                    // 分包加载成功后通过 success 回调
+                }
+            });
+        }
     }
 
     protected OnRefreshView() {
@@ -121,6 +136,7 @@ export default class Platform extends rab.RabView {
             });
         }
 
+        rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
         if (this.isLoadSubpackage == false && typeof wx != "undefined") {
             window.wx.loadSubpackage({
                 name: 'sub2', // name 可以填 name 或者 root

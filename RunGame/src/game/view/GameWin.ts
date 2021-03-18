@@ -62,7 +62,7 @@ export default class GameWin extends rab.RabView {
         var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
         camera.transform.translate(new Laya.Vector3(0, 1, 0));
         camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
-        camera.clearFlag = 3;
+        //camera.clearFlag = 3;
         //添加方向光
         var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
         directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
