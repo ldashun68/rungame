@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":61,
+    "selecteID":65,
     "searchKey":"Scene,GameFail,GameFail",
     "props":{"width":750,"var":"GameFail","sceneColor":"#000000","sceneBg":"laya/views/view/GameFail.jpg","name":"GameFail","height":1334},
     "nodeParent":-1,
-    "maxID":74,
+    "maxID":75,
     "label":"GameFail",
     "isOpen":true,
     "isDirectory":true,
@@ -37,14 +37,13 @@
             "props":{"visible":true,"top":0,"skin":"new/com/beijing.png","left":0},
             "nodeParent":2,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":65,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":0,"x":529,"skin":"new/com/beijing.png"},
@@ -59,7 +58,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":417,"x":0,"skin":"new/com/beijing.png"},
@@ -73,7 +71,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":417,"x":529,"skin":"new/com/beijing.png"},
@@ -88,7 +85,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":834,"x":0,"skin":"new/com/beijing.png"},
@@ -103,7 +99,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":834,"x":529,"skin":"new/com/beijing.png"},
@@ -118,7 +113,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1243,"x":0,"skin":"new/com/beijing.png"},
@@ -133,7 +127,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1243,"x":529,"skin":"new/com/beijing.png"},
@@ -167,7 +160,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,resrart",
-            "props":{"y":1226,"x":375,"var":"resrart","skin":"new/com/bd_cxtz.png","centerX":0,"bottom":41,"anchorY":0.5,"anchorX":0.5},
+            "props":{"y":1226,"x":375,"var":"resrart","skin":"new/com/bd_cxtz.png","anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"resrart",
             "isOpen":true,
@@ -182,7 +175,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,share",
-            "props":{"y":1230,"x":609,"var":"share","skin":"new/com/b_fenxiang.png","centerX":234,"bottom":50,"anchorY":0.5,"anchorX":0.5},
+            "props":{"y":1231,"x":605,"var":"share","skin":"new/com/b_fenxiang.png","anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"share",
             "isOpen":true,
@@ -198,7 +191,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,home",
-            "props":{"y":1230,"x":138,"var":"home","skin":"new/com/b_zhuye.png","centerX":-237,"bottom":50,"anchorY":0.5,"anchorX":0.5},
+            "props":{"y":1231,"x":140,"var":"home","skin":"new/com/b_zhuye.png","anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"home",
             "isOpen":true,
@@ -213,7 +206,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image",
-            "props":{"top":30,"skin":"new/com/t_tzsb.png","centerX":0},
+            "props":{"top":54,"skin":"new/com/t_tzsb.png","centerX":0},
             "nodeParent":2,
             "label":"Image",
             "isDirectory":false,
@@ -227,7 +220,7 @@
             "x":15,
             "type":"VBox",
             "searchKey":"VBox",
-            "props":{"top":300,"right":0,"left":0,"height":100},
+            "props":{"y":312,"right":0,"left":0,"height":100},
             "nodeParent":2,
             "label":"VBox",
             "isOpen":true,

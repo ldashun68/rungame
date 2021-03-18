@@ -98,7 +98,9 @@ export default class ObstacleItem extends rab.GameObject {
             Tool.instance.sprite3DStopTween(this.owner as Laya.Sprite3D, Tool.instance.tweenType.rotation);
             let prop1: Laya.Vector3 = Tool.instance.getAddPosition(new Laya.Vector3(0, 2, 0), this.owner as Laya.Sprite3D);
             this.transform.setWorldLossyScale(new Laya.Vector3(0.3, 0.3, 0.3));
-            Tool.instance.sprite3DMove(this.owner as Laya.Sprite3D, prop1, 100);
+            Tool.instance.sprite3DMove(this.owner as Laya.Sprite3D, prop1, 100, null, () => {
+                this.owner.active = false;
+            });
         }
         if (this.isTruck() == true) {
             

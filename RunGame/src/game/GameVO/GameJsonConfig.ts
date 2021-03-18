@@ -41,12 +41,29 @@ export default class GameJsonConfig {
     /**获得关卡数据 */
     public getPassData(year: string, index:number):passProp
     {
-        let yearNum: number = 0;
-        if (year != "year80") {
-            yearNum = 11;
-        }
-        return <passProp>(this.jsonData['pass'][index+yearNum]);
-        // return data;
+        let passIndex: Array<number> = [];
+        passIndex["year80"] = 0;
+        passIndex["year90"] = 11;
+        passIndex["year00"] = 11;
+        passIndex["year10"] = 11;
+
+        let build: Array<Array<number>> = [];
+        build["year80"] = [10001,10002,10003,10004,10005,10006,10007,10008];
+        build["year90"] = [20001,20002,20003,20004,20005,20006,20007,20008];
+        build["year00"] = [20001,20002,20003,20004,20005,20006,20007,20008];
+        build["year10"] = [20001,20002,20003,20004,20005,20006,20007,20008];
+
+        let obstacle: Array<Array<number>> = [];
+        obstacle["year80"] = [9,10,100];
+        obstacle["year90"] = [10,11,100];
+        obstacle["year00"] = [10,11,100];
+        obstacle["year10"] = [10,11,100];
+        
+        let i = index + passIndex[year];
+        let pass: passProp = <passProp>(this.jsonData['pass'][i]);
+        pass.builds = build[year];
+        pass.obstacles = obstacle[year];
+        return pass;
     }
 
     /**获得关卡数据 */

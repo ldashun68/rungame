@@ -9,6 +9,7 @@ import GameNotity from "../GameNotity";
 import { passProp, PlayState, QueueT } from "../GameVO/DataType";
 import BuildItem from "../GameVO/GamePool";
 import CurveBlinnPhong from "./CurveBlinnPhong";
+import ObstacleItem from "./ObstacleItem";
 import ObstacleManager from "./ObstacleManager";
 import PlayerManager from "./PlayerManager";
 
@@ -33,19 +34,19 @@ export default class FightManager extends rab.GameObject {
     /**基础资源 */
     private _basebuilds:Map<number,Laya.Sprite3D> = new Map<number,Laya.Sprite3D>();
 
-    /**当前路的长度 */
-    private _currLenght:number;
+    /**当前建筑Z坐标 */
+    private _buildPosZ:number;
+    /**当前障碍物Z坐标 */
+    private _obstaclePosZ:number;
     /**是否开始跑了 */
     private isStart: boolean;
     /**当前显示的建筑物 */
     private builds:Array<BuildItem> = new Array<BuildItem>();
-    /**当前角色位置 */
-    /**相机初始位置 */
-    // private camerapos:Laya.Vector3;
     /**生命大小 */
     private max_lifeCount:number;
     /**当前生命值 */
     private currlife:number;
+    private addCoinTime: number;
     private winLenght:number = 50;
 
     constructor () {
@@ -90,16 +91,17 @@ export default class FightManager extends rab.GameObject {
     private onInitScene()
     {
         Laya.timer.resume();
-        this.max_lifeCount = 3;
-        for(var i = 0;i<this.builds.length;i++)
-        {
+        
+        for(var i = 0;i<this.builds.length;i++) {
             this.builds[i].recover();
         }
+
         this.builds = [];
-        this._currLenght = 0;
+        this._buildPosZ = 0;
+        this._obstaclePosZ = 10;
+        this.max_lifeCount = 3;
         this.obstacleManager.onClearAll();
-        for(var i = 0;i<10;i++)
-        {
+        for(var i = 0; i < 10; i++) {
             this.oncreateNextBuild();
         }
 
@@ -151,6 +153,7 @@ export default class FightManager extends rab.GameObject {
         {
             console.log("开始跑了");
             this.currlife = this.max_lifeCount;
+            this.addCoinTime = 60;
             this.onLifeUpdate();
             this.isStart = true;
             this.playerManager.onGameStart();
@@ -192,6 +195,12 @@ export default class FightManager extends rab.GameObject {
             this.playerManager.update();
             this.updatePassProgressNode()
             this.onCreateBuild();
+
+            this.addCoinTime--;
+            if (this.addCoinTime <= 0) {
+                this.addCoinTime = 60;
+                this.manager.fightGetCoin += 1;
+            }
         }
     }
     /**
@@ -199,11 +208,10 @@ export default class FightManager extends rab.GameObject {
      */
     onCreateBuild()
     {
-        if(this._currLenght - this.playerManager.worldDistance <= 200)
+        if(this._buildPosZ - this.playerManager.worldDistance <= 100)
         {
-            if(this._currLenght <= this.passData.length)
+            if(this._buildPosZ <= this.passData.length)
             {
-                this.manager.fightGetCoin += 1;
                 this.oncreateNextBuild();
             }
         }
@@ -223,35 +231,29 @@ export default class FightManager extends rab.GameObject {
     }
 
     /**角色碰到东西了 */
-    onGameTriggerEnter(data:Array<any>)
+    onGameTriggerEnter(data:any)
     {
-        if(this.isStart)
-        {
+        let prop: ObstacleItem = data[0];
+        if(this.isStart) {
             //TODO:这里还要判断一下如果是向上跳了或向下滑了的话碰到也不能算失败
-            if(this.playerManager._playState == PlayState.jump)
-            {
-                if(data[0] == 1)
-                {
+            if(this.playerManager._playState == PlayState.jump) {
+                if(prop.prop.up == 1) {
                     //TODO:过了
                 }else{
                     this.currlife -=1;
                     this.onLifeUpdate();
-                    if(this.currlife == 0)
-                    {
+                    if(this.currlife == 0) {
                         this.onGameFail();
                     }
                     
                 }
-            }else if(this.playerManager._playState == PlayState.slide)
-            {
-                if(data[1] == 1)
-                {
+            }else if(this.playerManager._playState == PlayState.slide) {
+                if(prop.prop.down == 1) {
                     //TODO:过了
                 }else{
                     this.currlife -= 1;
                     this.onLifeUpdate();
-                    if(this.currlife == 0)
-                    {
+                    if(this.currlife == 0) {
                         this.onGameFail();
                     }
                 }
@@ -295,11 +297,11 @@ export default class FightManager extends rab.GameObject {
             this.currlife = this.max_lifeCount;
             this.onLifeUpdate();
             console.log("重新开始");
-            this.onInitScene();
             this.playerManager.reStart();
+            this.onInitScene();
             this.updatePassProgressNode();
             Laya.timer.once(300, this, () => {
-                this.SendMessage(GameNotity.GameMessage_GameStart)
+                this.SendMessage(GameNotity.GameMessage_GameStart);
             });
             rab.UIManager.onCloseView(ViewConfig.gameView.GameFailView);
         }else{
@@ -331,20 +333,22 @@ export default class FightManager extends rab.GameObject {
         let build:Laya.Sprite3D = Laya.Pool.getItem("build_"+buildID);
         let buildProp:BuildItem;
         if(!build) {
-            build = this.instantiate(this._basebuilds[buildID],null,false,new Laya.Vector3(0, 0, this._currLenght));
+            build = this.instantiate(this._basebuilds[buildID],null,false,new Laya.Vector3(0, 0, this._buildPosZ));
             buildProp = build.addComponent(BuildItem);
         }
         else {
-            build.transform.localPositionZ = this._currLenght;
+            build.transform.localPositionZ = this._buildPosZ;
             buildProp = build.getComponent(BuildItem);
         }
-        console.log("buildID:",this._currLenght);
         this.scene3D.addChild(build);
         this.builds.push(buildProp);
-        buildProp.onInitProp(this.manager.getBuild(buildID),this._currLenght);
-        this._currLenght += this.manager.getBuild(buildID).length;
-        if(this._currLenght > 20 && this._currLenght < this.passData.length-this.winLenght) {
-            this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
+        buildProp.onInitProp(this.manager.getBuild(buildID),this._buildPosZ);
+        console.log("buildID:", buildID);
+
+        this._buildPosZ += this.manager.getBuild(buildID).length;
+        while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length-this.winLenght-15) {
+            this._obstaclePosZ += 15;
+            this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
         }
 
         if (this.manager.playSelect == 1) {
@@ -363,7 +367,7 @@ export default class FightManager extends rab.GameObject {
     private updatePassProgressNode (): void {
         this.view.progress_t.x = 2+(this.playerManager.worldDistance/(this.passData.length-this.winLenght)*(this.view.progress_t.width));
         this.view.coinText.value = ""+this.manager.fightGetCoin;
-        this.view.iconNode.x = this.view.progress_t.x-13;
+        this.view.iconNode.x = this.view.progress_t.x-this.view.progress_t.width/2+20;
     }
 
     /**设置生命值 */

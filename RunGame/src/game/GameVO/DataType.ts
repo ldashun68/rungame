@@ -44,6 +44,8 @@ export interface passProp {
     id:number;
     /**关卡中的建筑物 */
     builds:Array<number>;
+    /**障碍物 */
+    obstacles:Array<number>;
     /**名称 */
     name:string;
     /**长度 */
@@ -54,7 +56,6 @@ export interface passProp {
     coin:number;
     /**关卡钻石 */
     diamonds:number;
-
 }
 
 /**建筑物数据结构 */
@@ -62,8 +63,6 @@ export interface buildProp {
     //{"id":10004,"name":"郊区车库1","res":"SuburbsGarage01","length":9,"obstacle":[]},
     /**id */
     id:number;
-    /**障碍物 */
-    obstacle:Array<number>;
     /**名称 */
     name:string;
     /**长度 */

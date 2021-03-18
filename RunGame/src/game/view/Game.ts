@@ -61,7 +61,6 @@ export default class Game extends rab.RabView {
         this.gameStart = false;
         this.m_currView.timeDown.visible = false;
         this.fightManager.fightReady();
-        rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
         this.m_currView.lifeText.value = "3";
         // this.m_currView.coinText.value = "0";
     }

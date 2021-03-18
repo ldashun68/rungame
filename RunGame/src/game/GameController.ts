@@ -114,9 +114,9 @@ export default class GameController extends rab.RabController {
         this.soldierSort = [];
         this.rank = [];
 
-        Language.instance.onInit(this.gameInfo.language);
         this.updateTime();
-        // this.SaveData();
+        Language.instance.onInit(this.gameInfo.language);
+        rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
     }
 
     /**更新时间 */
@@ -158,10 +158,6 @@ export default class GameController extends rab.RabController {
         this.gameInfo.lastTime.hour = date.getHours();
         this.gameInfo.lastTime.minute = date.getMinutes();
         this.gameInfo.lastTime.second = date.getSeconds();
-
-        if (this.gameInfo.audio == 0) {
-            this.PauseBGM();
-        }
     }
 
     /**增加（扣除）金币，返回false 金币不足 */
@@ -275,11 +271,12 @@ export default class GameController extends rab.RabController {
     public getPassBuild():Array<string>
     {
         let build = ["3d/prefab/Conventional/play_"+this.playSelect+".lh"];
-        let arr = this.CurrPassData().builds;
+        let pass: passProp = this.CurrPassData();
+        let arr = pass.builds;
         for(var i = 0;i<arr.length;i++)
         {
             build.push("3d/build/Conventional/"+this.jsonConfig.getBuildData(arr[i]).res+".lh");
-            let arr2 = this.jsonConfig.getBuildData(arr[i]).obstacle;
+            let arr2 = pass.obstacles;
             for(var j = 0;j<arr2.length;j++)
             {
                 if(build.indexOf("3d/prefab/Conventional/"+this.jsonConfig.getObstacleData(arr2[j]).res+".lh") == -1)

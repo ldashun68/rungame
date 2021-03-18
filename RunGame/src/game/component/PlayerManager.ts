@@ -67,8 +67,8 @@ export default class PlayerManager extends rab.GameObject {
 
     /**加载角色 */
     public fightReady (): void {
-        this._playState = PlayState.init;
         console.log("加载角色")
+        this._playState = PlayState.init;
         this.isMoveing = false;
         this.localx = 0;
         this.worldDistance = 0;
@@ -113,7 +113,7 @@ export default class PlayerManager extends rab.GameObject {
     /**退出战斗 */
     public fightExit (): void {
         this._characterSlot.getComponent(Play).stopFlash();
-        this._playState = PlayState.death
+        this._playState = PlayState.death;
         this.isMoveing = false;
         this._characterSlot.removeChild(this.playNode);
         this._playerPivot.transform.position = new Laya.Vector3(0,0,0);
@@ -125,21 +125,21 @@ export default class PlayerManager extends rab.GameObject {
     public onhappydance() {
         this._characterSlot.getComponent(Play).stopFlash();
         this.isMoveing = false;
-        this._playState = PlayState.stop
+        this._playState = PlayState.stop;
         this.playNode.transform.localRotationEulerY = 180;
         this.playAnimation("happydance",0.2);
     }
 
     public Ondeath() {
-        this._characterSlot.getComponent(Play).stopFlash();
-        this._playState = PlayState.death
+        this._playState = PlayState.death;
         this.isMoveing = false;
-        this.playAnimation("death",0.2);
+
+        Laya.timer.frameLoop(1, this, this.update);
     }
 
     /**复活 */
     public revive (): void {
-        this._playState = PlayState.run
+        this.setPlayState(PlayState.run);
         this.playAnimation("run",0);
         this.isMoveing = true;
     }
@@ -161,8 +161,16 @@ export default class PlayerManager extends rab.GameObject {
         let scaledSpeed = this.m_Speed * 0.02;
         let pos = this._playerPivot.transform.position;
         if (this.retrogression < 0.1) {
-            pos.z += scaledSpeed;
-            this.worldDistance += scaledSpeed;
+            if (this._playState == PlayState.death) {
+                this._characterSlot.getComponent(Play).stopFlash();
+                this.playAnimation("death",0.2);
+                Laya.timer.clear(this, this.update);
+                return;
+            }
+            else {
+                pos.z += scaledSpeed;
+                this.worldDistance += scaledSpeed;
+            }
         }
         else {
             pos.z -= scaledSpeed;
@@ -176,7 +184,7 @@ export default class PlayerManager extends rab.GameObject {
             let ratio = (this.worldDistance - this.m_JumpStart) / correctJumpLength;
             if (ratio >= 1) {
                 this.playAnimation("run",0);
-                this._playState = PlayState.run;
+                this.setPlayState(PlayState.run);
             }
             else {
                 this._characterSlot.transform.localPositionY = Math.sin(ratio * Math.PI) * this.jumpHeight;
@@ -188,7 +196,7 @@ export default class PlayerManager extends rab.GameObject {
 			let ratio = (this.worldDistance - this.m_SlideStart) / correctSlideLength;
 			if (ratio >= 1.0) {
                 this.playAnimation("run",0);
-                this._playState = PlayState.run;
+                this.setPlayState(PlayState.run);
 			}
         }
 
@@ -213,37 +221,37 @@ export default class PlayerManager extends rab.GameObject {
         if(this._playState != PlayState.run)return
         if(data[0] == 0) {
             if(this.localx< 1.25) {
-                this._playState = PlayState.right;
+                this.setPlayState(PlayState.right);
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx += 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
                 Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},400,null,Laya.Handler.create(this, () => {
                     this.playAnimation("run",0);
-                    this._playState = PlayState.run;
+                    this.setPlayState(PlayState.run);
                 }));
                 this.playAnimation("left",0);
             }
         }
         else if(data[0] == 1) {
             if(this.localx > -1.25) {
-                this._playState = PlayState.left;
+                this.setPlayState(PlayState.left);
                 // Laya.Tween.clearTween(this._characterSlot.transform);
                 this.localx -= 1.25;
                 // Tool.instance.sprite3DMove(this._characterSlot,new Laya.Vector3(this.localx,0,0),200)
                 Laya.Tween.to(this._characterSlot.transform,{localPositionX:this.localx},400,null,Laya.Handler.create(this, () => {
                     this.playAnimation("run",0);
-                    this._playState = PlayState.run;
+                    this.setPlayState(PlayState.run);
                 }));
                 this.playAnimation("right",0);
             }
         }
         else if(data[0] == 2) {
-            this._playState = PlayState.jump;
+            this.setPlayState(PlayState.jump);
             this.m_JumpStart = this.worldDistance;
             this.playAnimation("jump",0);
         }
         else if(data[0] == 3) {
-            this._playState = PlayState.slide;
+            this.setPlayState(PlayState.slide);
             this.m_SlideStart = this.worldDistance;
             this.playAnimation("slide",0);
         }
@@ -268,5 +276,13 @@ export default class PlayerManager extends rab.GameObject {
         }
         this.currentAnimation = name;
         this.animator.crossFade(name, transitionDuration);
+    }
+
+    private setPlayState (state: PlayState) {
+        if (this._playState == PlayState.death || this._playState == PlayState.stop){
+            return;
+        }
+
+        this._playState = state;
     }
 }

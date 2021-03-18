@@ -405,63 +405,21 @@
         }
     }
     class MusicManager {
-        constructor() {
-            this.audioState = 1;
-            this.musicState = 1;
-            this.audio = {};
-        }
         static getInstance() {
             if (this._instance == null) {
                 this._instance = new MusicManager();
             }
             return this._instance;
         }
-        SetState(music, audio) {
-            this.musicState = music;
-            this.audioState = audio;
-            if (music == 0) {
-                this.pauseMusic();
-            }
-            else {
-                this.resumeMusic();
-            }
-        }
-        pauseMusic() {
-            Laya.SoundManager.musicMuted = true;
-            Laya.SoundManager.soundMuted = true;
-        }
-        resumeMusic() {
-            Laya.SoundManager.musicMuted = false;
-            Laya.SoundManager.soundMuted = false;
-        }
-        OnPlayMusic(_resName, loop = 0, vol = 1) {
-            if (this.musicState == 0) {
-                Laya.SoundManager.playMusic(_resName, loop);
-            }
-        }
-        OnPlayAudio(_resName) {
-            if (this.audioState == 0) {
-                return;
-            }
-            if (this.audio[_resName]) {
-                this.audio[_resName].play();
-            }
-            else {
-                this.onLoad(_resName);
-            }
-        }
-        OnStopAudio(_resName) {
-            if (this.audio[_resName]) {
-                this.audio[_resName].stop();
-            }
-        }
-        onLoad(url) {
+        setState(music, audio) {
+            Laya.SoundManager.musicMuted = (music == 0) ? false : true;
+            Laya.SoundManager.soundMuted = (audio == 0) ? false : true;
         }
         playMusic(url, volume = 0.2) {
             Laya.SoundManager.musicVolume = volume;
             Laya.SoundManager.playMusic(url);
         }
-        playSound(url, loop = 1, callback = null, volume = 0.5) {
+        playSound(url, loop = 1, volume = 0.5, callback = null) {
             Laya.SoundManager.soundVolume = volume;
             Laya.SoundManager.playSound(url, loop, callback);
         }
@@ -491,34 +449,35 @@
         onInitSDk() {
             rab.HTTP.init(this.myManager.gameConfig.serverurl);
         }
-        initData(gameInfo, key = "gameinfo") {
+        initData(callback) {
+            let gameInfo = null;
             if (typeof wx != "undefined") {
                 if (this.myManager.userInfo) {
-                    var _data = gameInfo;
                     rab.HTTP.get("api/player", this.myManager.userInfo.token, (data) => {
-                        _data = (data);
-                        rab.Util.log('初始化获得保存数据', data);
+                        gameInfo = JSON.parse(data.data.gamedata);
+                        callback && callback();
+                        rab.Util.log('初始化获得保存数据', gameInfo);
                     });
-                    return _data;
                 }
                 else {
-                    return gameInfo;
+                    callback && callback(gameInfo);
                 }
             }
             else {
-                var info = Laya.LocalStorage.getItem(key);
+                var info = Laya.LocalStorage.getItem("gameInfo");
                 if (info) {
                     let data = JSON.parse(info);
-                    rab.Util.log('初始化获得保存数据===', data);
                     gameInfo = rab.Util.supplement(gameInfo, data);
+                    callback && callback(gameInfo);
+                    rab.Util.log('初始化获得保存数据===', data);
                 }
             }
             rab.Util.log('初始化获得保存数据', gameInfo);
-            return gameInfo;
         }
         SaveData(gameInfo, key = "gameinfo") {
             if (typeof wx != "undefined") {
-                rab.HTTP.post("api/player", { "data": JSON.stringify(gameInfo),
+                rab.HTTP.post("api/player", {
+                    "data": JSON.stringify(gameInfo),
                     "token": this.myManager.userInfo.token
                 }, this, (data) => {
                     console.log("保存数据：", data);
@@ -686,17 +645,19 @@
         }
         InitGameInfo() {
             this.state = GameState.init;
-            this.gameInfo = rab.SDKChannel.initData(this.gameInfo, this._gameType);
-            rab.Util.log("获得数据", this.gameInfo);
-            this.lastTime = this.gameInfo.lastTime;
-            this.isGuid = this.isNoob();
-            rab.SDKChannel.onHide(() => {
-                this.SaveData(-1);
-            });
-            rab.SDKChannel.onShow((res) => {
-                this.sceneId = res.scene;
-                console.log("场景=====id==========", res.scene);
-                EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage, res.scene);
+            rab.SDKChannel.initData((gameInfo) => {
+                this.gameInfo = gameInfo;
+                rab.Util.log("获得数据", this.gameInfo);
+                this.lastTime = this.gameInfo.lastTime;
+                this.isGuid = this.isNoob();
+                rab.SDKChannel.onHide(() => {
+                    this.SaveData(-1);
+                });
+                rab.SDKChannel.onShow((res) => {
+                    this.sceneId = res.scene;
+                    console.log("场景=====id==========", res.scene);
+                    EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage, res.scene);
+                });
             });
         }
         getSceneTyp() {
@@ -721,24 +682,6 @@
             this.onHide();
             rab.SDKChannel.SaveData(this.gameInfo, this._gameType);
         }
-        InitMusic() {
-            MusicManager.getInstance().SetState(this.gameInfo.music, this.gameInfo.audio);
-        }
-        PlayMusic(musiPath, loop = 0, vol = 1) {
-            MusicManager.getInstance().OnPlayMusic(musiPath, loop, vol);
-        }
-        PauseBGM() {
-            MusicManager.getInstance().pauseMusic();
-        }
-        ResumeBGM() {
-            MusicManager.getInstance().resumeMusic();
-        }
-        PlayAudio(audioPath) {
-            MusicManager.getInstance().OnPlayAudio(audioPath);
-        }
-        StopAudio(audioPath) {
-            MusicManager.getInstance().OnStopAudio(audioPath);
-        }
         setGameInfo(typ, val) {
             this.gameInfo[typ] = val;
         }
@@ -756,11 +699,11 @@
         }
         setMusic() {
             this.gameInfo.music = this.gameInfo.music ? 0 : 1;
-            this.InitMusic();
+            rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
         }
         setAudio() {
             this.gameInfo.audio = this.gameInfo.audio ? 0 : 1;
-            this.InitMusic();
+            rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
         }
         setVibrate() {
             this.gameInfo.vibrate = this.gameInfo.vibrate ? 0 : 1;
@@ -1126,7 +1069,6 @@
         constructor() {
             super(...arguments);
             this.jsonData = {};
-            this.bgm = "audio/bgm";
         }
         onInitManaager() {
             this.onInitUserDate();
@@ -1143,9 +1085,6 @@
         InitConfig() {
             rab.Util.log("最新配置表", this.gameConfig);
             rab.SDKChannel.onInitSDk();
-            if (rab.Util.isMobil) {
-                this.InitMusic();
-            }
             this.onInitServer(this.gameConfig.appid, this.gameConfig.secret, this.gameConfig.gamename, this.gameConfig.version);
         }
         onInitServer(appid, secret, name, version) {
@@ -1160,7 +1099,6 @@
         LoginBreak() {
             wx.hideLoading();
             rab.SDKChannel.traceEvent("loginsuccess");
-            this.InitMusic();
             this.OnEnterGame();
         }
         loginServer() {
@@ -1176,7 +1114,6 @@
             }
             else {
                 rab.HTTP.post(this.gameConfig.serverurl + "/api/authCode", { "code": 'aaa' }, this, () => {
-                    this.InitMusic();
                     this.OnEnterGame();
                 });
             }
@@ -1186,9 +1123,6 @@
             if (this.getIsNewDay()) {
             }
             this.loadView();
-            if (this.gameInfo.audio == 1) {
-                this.playBGM();
-            }
         }
         RandomUserName() {
             let index = Math.floor(Math.random() * this.randomUserName.length);
@@ -1279,17 +1213,6 @@
             return way;
         }
         onPreLoadRes(path) {
-        }
-        playBGM() {
-            this.PlayMusic("audio/bgm", 0, 0.1);
-        }
-        changeBgm(name) {
-            this.StopAudio(this.bgm);
-            this.bgm = name;
-            this.playBGM();
-        }
-        click() {
-            this.PlayAudio("audio/click");
         }
     }
     class wxSdk {
@@ -1630,7 +1553,7 @@
                     this.createView(GameUI.uiView);
                 }
             }
-            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 135, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "y": 193, "x": 174, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "width": 290, "var": "life_bg", "top": 4, "skin": "new/game/jingdutiao1.png", "left": 4 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "width": 540, "var": "progressNode", "top": 65, "name": "progressNode", "height": 26, "centerX": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": 7, "name": "nextPass", "centerY": -23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 0, "centerX": 0 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "y": 10, "x": -91, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "x": 340, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": -13 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 294, "x": 174, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/com/b_zhanting.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
+            GameUI.uiView = { "type": "Scene", "props": { "width": 750, "top": 0, "right": 0, "name": "Game", "left": 0, "height": 1334, "centerY": 0, "centerX": 0, "bottom": 0 }, "compId": 2, "child": [{ "type": "Script", "props": { "y": 0, "x": 0, "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 53 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 274 }, { "type": "Image", "props": { "y": 231, "x": 375, "width": 750, "var": "pendantNode", "name": "pendantNode", "height": 230, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 248, "child": [{ "type": "Image", "props": { "var": "progressNode", "name": "progressNode", "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 252, "child": [{ "type": "Image", "props": { "y": -54, "x": -308, "var": "pauseBtn", "skin": "new/com/b_zhanting.png", "name": "pauseBtn", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 263 }, { "type": "Image", "props": { "skin": "new/game/qizhi.png", "right": -286, "name": "nextPass", "centerY": 24, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 256 }, { "type": "Image", "props": { "width": 540, "var": "progress_b", "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "name": "progress_b", "height": 26, "centerY": 61, "centerX": 23 }, "compId": 259, "child": [{ "type": "Image", "props": { "width": 540, "var": "progress_m", "top": 0, "skin": "new/game/jindutiao3.png", "sizeGrid": "6,15,6,15", "scaleX": 0.98, "renderType": "mask", "name": "progress_m", "left": 0, "bottom": 0 }, "compId": 262 }, { "type": "Image", "props": { "x": 0, "width": 540, "var": "progress_t", "skin": "new/game/jingdutiao2.png", "sizeGrid": "6,15,6,15", "scaleY": 0.95, "name": "progress_t", "centerY": -1, "anchorY": 0.5, "anchorX": 1 }, "compId": 260 }] }, { "type": "Image", "props": { "x": -247, "var": "iconNode", "skin": "new/game/zhi.png", "centerY": 49, "anchorX": 0.5 }, "compId": 286, "child": [{ "type": "Image", "props": { "var": "icon", "skin": "new/game/tou_02.png", "centerY": -31, "centerX": 0 }, "compId": 287 }] }] }, { "type": "Image", "props": { "y": 116, "x": 172, "width": 290, "var": "lifeNode", "skin": "new/game/jingdutiaodi1.png", "sizeGrid": "13,13,13,13", "name": "lifeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 249, "child": [{ "type": "Image", "props": { "width": 290, "var": "life_bg", "top": 4, "skin": "new/game/jingdutiao1.png", "left": 4 }, "compId": 281 }, { "type": "Image", "props": { "top": -10, "skin": "new/game/aixin.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 250 }, { "type": "FontClip", "props": { "x": 162, "var": "lifeText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "name": "lifeText", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 251 }] }, { "type": "Image", "props": { "y": 216, "x": 172, "width": 290, "var": "coinNode", "skin": "new/game/jinbidi.png", "sizeGrid": "13,13,13,13", "name": "codeNode", "height": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 282, "child": [{ "type": "Image", "props": { "top": -10, "skin": "new/game/jinbi.png", "left": -10, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 284 }, { "type": "FontClip", "props": { "x": 162, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "centerY": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 285 }] }] }, { "type": "Image", "props": { "var": "timeDown", "skin": "new/game/3.png", "centerY": -160, "centerX": 0 }, "compId": 280 }, { "type": "Box", "props": { "width": 750, "var": "guild", "right": 0, "left": 0, "height": 308, "bottom": 94 }, "compId": 291, "child": [{ "type": "Image", "props": { "skin": "new/game/jiantou.png", "left": 74, "centerY": -107 }, "compId": 288 }, { "type": "Image", "props": { "skin": "new/game/jiantou.png", "scaleX": -1, "right": 185, "centerY": -107 }, "compId": 289 }, { "type": "Image", "props": { "skin": "new/game/t_xzhxyhdjs.png", "centerX": 12, "bottom": -37 }, "compId": 290 }] }], "loadList": ["new/com/b_zhanting.png", "new/game/qizhi.png", "new/game/jindutiao3.png", "new/game/jingdutiao2.png", "new/game/zhi.png", "new/game/tou_02.png", "new/game/jingdutiaodi1.png", "new/game/jingdutiao1.png", "new/game/aixin.png", "ui/coinNum.png", "new/game/jinbidi.png", "new/game/jinbi.png", "new/game/3.png", "new/game/jiantou.png", "new/game/t_xzhxyhdjs.png"], "loadList3D": [] };
             view.GameUI = GameUI;
             REG("ui.view.GameUI", GameUI);
             class GameFailUI extends Scene {
@@ -1642,7 +1565,7 @@
                     this.createView(GameFailUI.uiView);
                 }
             }
-            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "visible": true, "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 65, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 66 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 67 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 68 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 69 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 70 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 71 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 72 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "height": 1334 }, "compId": 73 }, { "type": "Image", "props": { "y": 1226, "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "centerX": 0, "bottom": 41, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "y": 1230, "x": 609, "var": "share", "skin": "new/com/b_fenxiang.png", "centerX": 234, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 1230, "x": 138, "var": "home", "skin": "new/com/b_zhuye.png", "centerX": -237, "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 30, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "top": 300, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -118 }, "compId": 59 }, { "type": "FontClip", "props": { "var": "coinText", "value": "0", "skin": "ui/failNum.png", "sheet": "0123456789", "name": "coinText", "centerY": 1, "centerX": 44 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
+            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "visible": true, "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 65, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 66 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 67 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 68 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 69 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 70 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 71 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 72 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "height": 1334 }, "compId": 73 }, { "type": "Image", "props": { "y": 1226, "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "y": 1231, "x": 605, "var": "share", "skin": "new/com/b_fenxiang.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "y": 1231, "x": 140, "var": "home", "skin": "new/com/b_zhuye.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 54, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "y": 312, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -118 }, "compId": 59 }, { "type": "FontClip", "props": { "var": "coinText", "value": "0", "skin": "ui/failNum.png", "sheet": "0123456789", "name": "coinText", "centerY": 1, "centerX": 44 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
             view.GameFailUI = GameFailUI;
             REG("ui.view.GameFailUI", GameFailUI);
             class GameSetUI extends Scene {
@@ -1666,7 +1589,7 @@
                     this.createView(GameWinUI.uiView);
                 }
             }
-            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "top": 0, "skin": "new/com/beijing.png", "left": 0 }, "compId": 56, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 57 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 58 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 59 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 60 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 61 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 62 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 63 }] }, { "type": "Image", "props": { "y": 776, "x": 375, "var": "eff", "skin": "new/com/guangxiao.png", "rotation": 0, "centerY": 109, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 66 }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 65 }, { "type": "Image", "props": { "zOrder": 1, "var": "winNode", "top": 0, "right": 0, "name": "winNode", "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "visible": false, "var": "award", "name": "award", "centerY": -377, "centerX": 0, "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 55, "skin": "new/game/jinbi.png", "centerX": -100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 55, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "centerX": 23, "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }] }, { "type": "Image", "props": { "visible": false, "var": "next", "skin": "new/com/bd_xyg.png", "name": "next", "centerX": 0, "bottom": 47, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "x": 112, "width": 100, "visible": false, "var": "homeBtn", "skin": "new/com/b_zhuye.png", "pivotY": 107, "pivotX": 22, "name": "homeBtn", "height": 107, "bottom": 54 }, "compId": 54 }, { "type": "Image", "props": { "x": 577, "width": 100, "visible": false, "var": "share", "skin": "new/com/b_fenxiang.png", "pivotY": 107, "pivotX": 22, "height": 107, "bottom": 47 }, "compId": 20 }, { "type": "Image", "props": { "top": 30, "skin": "new/com/t_tzcg.png", "centerX": 0 }, "compId": 64 }] }, { "type": "Image", "props": { "zOrder": 2, "y": 10, "x": 10, "visible": false, "var": "cover", "top": 0, "skin": "new/com/rect3.png", "right": 0, "name": "cover", "left": 0, "bottom": 0, "alpha": 0.75 }, "compId": 67 }, { "type": "Image", "props": { "zOrder": 3, "y": 10, "x": 10, "visible": false, "var": "bigPhoto", "skin": "new/com/Photo/pic_01_b.png", "name": "bigPhoto", "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 68 }], "loadList": ["new/com/beijing.png", "new/com/guangxiao.png", "new/game/jinbi.png", "ui/coinNum.png", "new/com/bd_xyg.png", "new/com/b_zhuye.png", "new/com/b_fenxiang.png", "new/com/t_tzcg.png", "new/com/rect3.png", "new/com/Photo/pic_01_b.png"], "loadList3D": [] };
+            GameWinUI.uiView = { "type": "Scene", "props": { "y": 0, "x": 0, "width": 750, "name": "GameWin", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "top": -1, "skin": "new/com/beijing.png", "left": 0 }, "compId": 56, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 57 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 58 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 59 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 60 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 61 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 62 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 63 }] }, { "type": "Image", "props": { "var": "eff", "skin": "new/com/guangxiao.png", "rotation": 0, "centerY": 108, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 66 }, { "type": "Sprite", "props": { "y": -1, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 65 }, { "type": "Image", "props": { "zOrder": 1, "var": "winNode", "top": 0, "right": 0, "name": "winNode", "left": 0, "bottom": 0, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "y": 190, "x": 375, "skin": "new/com/t_tzcg.png", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 64 }, { "type": "Image", "props": { "y": 325, "x": 375, "width": 750, "visible": false, "var": "award", "name": "award", "height": 100, "anchorX": 0.5 }, "compId": 33, "child": [{ "type": "Image", "props": { "y": 55, "skin": "new/game/jinbi.png", "centerX": -100, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 35 }, { "type": "FontClip", "props": { "y": 55, "var": "coinText", "value": "0", "skin": "ui/coinNum.png", "sheet": "0123456789", "scaleY": 1.2, "scaleX": 1.2, "name": "coinText", "centerX": 23, "anchorY": 0.5, "anchorX": 0 }, "compId": 36 }] }, { "type": "Image", "props": { "y": 1220, "x": 375, "visible": false, "var": "next", "skin": "new/com/bd_xyg.png", "name": "next", "anchorY": 0.5, "anchorX": 0.5 }, "compId": 18 }, { "type": "Image", "props": { "y": 1226, "x": 140, "width": 100, "visible": false, "var": "homeBtn", "skin": "new/com/b_zhuye.png", "name": "homeBtn", "height": 107, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 54 }, { "type": "Image", "props": { "y": 1233, "x": 605, "width": 100, "visible": true, "var": "share", "skin": "new/com/b_fenxiang.png", "height": 107, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 20 }] }, { "type": "Image", "props": { "zOrder": 2, "visible": false, "var": "cover", "top": 0, "skin": "new/com/rect3.png", "right": 0, "name": "cover", "left": 0, "bottom": 0, "alpha": 0.75 }, "compId": 67 }, { "type": "Image", "props": { "zOrder": 3, "visible": false, "var": "bigPhoto", "skin": "new/com/Photo/pic_01_b.png", "name": "bigPhoto", "centerY": 0, "centerX": 0, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 68 }], "loadList": ["new/com/beijing.png", "new/com/guangxiao.png", "new/com/t_tzcg.png", "new/game/jinbi.png", "ui/coinNum.png", "new/com/bd_xyg.png", "new/com/b_zhuye.png", "new/com/b_fenxiang.png", "new/com/rect3.png", "new/com/Photo/pic_01_b.png"], "loadList3D": [] };
             view.GameWinUI = GameWinUI;
             REG("ui.view.GameWinUI", GameWinUI);
             class GetTicketUI extends Scene {
@@ -1774,7 +1697,7 @@
                     this.createView(RoleSelectUI.uiView);
                 }
             }
-            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "visible": true, "skin": "new/com/beijing.png" }, "compId": 75, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 76 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 77 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 78 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 79 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 80 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 81 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 82 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 79, "x": 73, "var": "break", "top": 26, "skin": "new/com/b_fanhui.png", "left": 23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 22 }, { "type": "Image", "props": { "var": "r1", "skin": "new/role/touxiangk.png", "centerX": -282, "bottom": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "var": "img_1", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 25 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 43, "child": [{ "type": "Label", "props": { "var": "roleName_1", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 42 }] }, { "type": "Image", "props": { "var": "select_1", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 44 }] }, { "type": "Image", "props": { "var": "r2", "skin": "new/role/touxiangk.png", "centerX": -94, "bottom": 80 }, "compId": 45, "child": [{ "type": "Image", "props": { "var": "img_2", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 46 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 47, "child": [{ "type": "Label", "props": { "var": "roleName_2", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 48 }] }, { "type": "Image", "props": { "var": "select_2", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 49 }] }, { "type": "Image", "props": { "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 0, "bottom": 277, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39 }, { "type": "Image", "props": { "var": "r3", "skin": "new/role/touxiangk.png", "centerX": 94, "bottom": 80 }, "compId": 55, "child": [{ "type": "Image", "props": { "var": "img_3", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 56 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 57, "child": [{ "type": "Label", "props": { "var": "roleName_3", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 58 }] }, { "type": "Image", "props": { "var": "select_3", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 59 }] }, { "type": "Image", "props": { "var": "r4", "skin": "new/role/touxiangk.png", "centerX": 282, "bottom": 80 }, "compId": 60, "child": [{ "type": "Image", "props": { "var": "img_4", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 61 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 62, "child": [{ "type": "Label", "props": { "var": "roleName_4", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 63 }] }, { "type": "Image", "props": { "var": "select_4", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 64 }] }, { "type": "Image", "props": { "y": 160, "x": 204, "var": "title", "skin": "new/com/t_jsxz.png" }, "compId": 65 }, { "type": "Image", "props": { "var": "left", "skin": "new/com/xuanzhuan2.png", "left": 105, "centerY": -61 }, "compId": 66 }, { "type": "Image", "props": { "var": "right", "skin": "new/com/xuanzhuan.png", "right": 100, "centerY": -55 }, "compId": 72 }], "loadList": ["new/com/beijing.png", "new/com/b_fanhui.png", "new/role/touxiangk.png", "new/role/touxiang_02.png", "new/role/mingzidi.png", "new/role/touxiangk2.png", "new/com/bd_ksyx.png", "new/com/t_jsxz.png", "new/com/xuanzhuan2.png", "new/com/xuanzhuan.png"], "loadList3D": [] };
+            RoleSelectUI.uiView = { "type": "Scene", "props": { "width": 750, "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": 0, "x": 0, "visible": true, "skin": "new/com/beijing.png" }, "compId": 75, "child": [{ "type": "Image", "props": { "y": 0, "x": 529, "skin": "new/com/beijing.png" }, "compId": 76 }, { "type": "Image", "props": { "y": 417, "x": 0, "skin": "new/com/beijing.png" }, "compId": 77 }, { "type": "Image", "props": { "y": 417, "x": 529, "skin": "new/com/beijing.png" }, "compId": 78 }, { "type": "Image", "props": { "y": 834, "x": 0, "skin": "new/com/beijing.png" }, "compId": 79 }, { "type": "Image", "props": { "y": 834, "x": 529, "skin": "new/com/beijing.png" }, "compId": 80 }, { "type": "Image", "props": { "y": 1243, "x": 0, "skin": "new/com/beijing.png" }, "compId": 81 }, { "type": "Image", "props": { "y": 1243, "x": 529, "skin": "new/com/beijing.png" }, "compId": 82 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "name": "cloudNode", "height": 1334 }, "compId": 4 }, { "type": "Image", "props": { "y": 79, "x": 73, "var": "break", "top": 26, "skin": "new/com/b_fanhui.png", "left": 23, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 22 }, { "type": "Image", "props": { "y": 985, "x": 375, "var": "startBtn", "skin": "new/com/bd_ksyx.png", "name": "startBtn", "centerX": 0, "bottom": 277, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 39 }, { "type": "Image", "props": { "var": "r1", "skin": "new/role/touxiangk.png", "centerX": -282, "bottom": 80, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 24, "child": [{ "type": "Image", "props": { "var": "img_1", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 25 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 43, "child": [{ "type": "Label", "props": { "var": "roleName_1", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 42 }] }, { "type": "Image", "props": { "var": "select_1", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 44 }] }, { "type": "Image", "props": { "var": "r2", "skin": "new/role/touxiangk.png", "centerX": -94, "bottom": 80 }, "compId": 45, "child": [{ "type": "Image", "props": { "var": "img_2", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 46 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 47, "child": [{ "type": "Label", "props": { "var": "roleName_2", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 48 }] }, { "type": "Image", "props": { "var": "select_2", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 49 }] }, { "type": "Image", "props": { "var": "r3", "skin": "new/role/touxiangk.png", "centerX": 94, "bottom": 80 }, "compId": 55, "child": [{ "type": "Image", "props": { "var": "img_3", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 56 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 57, "child": [{ "type": "Label", "props": { "var": "roleName_3", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 58 }] }, { "type": "Image", "props": { "var": "select_3", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 59 }] }, { "type": "Image", "props": { "var": "r4", "skin": "new/role/touxiangk.png", "centerX": 282, "bottom": 80 }, "compId": 60, "child": [{ "type": "Image", "props": { "var": "img_4", "skin": "new/role/touxiang_02.png", "centerY": 0, "centerX": 0 }, "compId": 61 }, { "type": "Image", "props": { "skin": "new/role/mingzidi.png", "centerX": 0, "bottom": -60 }, "compId": 62, "child": [{ "type": "Label", "props": { "var": "roleName_4", "text": "JACK", "fontSize": 30, "color": "#929b9e", "centerY": 0, "centerX": 0, "bold": true }, "compId": 63 }] }, { "type": "Image", "props": { "var": "select_4", "skin": "new/role/touxiangk2.png", "centerY": 0, "centerX": 0 }, "compId": 64 }] }, { "type": "Image", "props": { "y": 160, "x": 204, "var": "title", "skin": "new/com/t_jsxz.png" }, "compId": 65 }, { "type": "Image", "props": { "var": "left", "skin": "new/com/xuanzhuan2.png", "left": 105, "centerY": -61 }, "compId": 66 }, { "type": "Image", "props": { "var": "right", "skin": "new/com/xuanzhuan.png", "right": 100, "centerY": -55 }, "compId": 72 }], "loadList": ["new/com/beijing.png", "new/com/b_fanhui.png", "new/com/bd_ksyx.png", "new/role/touxiangk.png", "new/role/touxiang_02.png", "new/role/mingzidi.png", "new/role/touxiangk2.png", "new/com/t_jsxz.png", "new/com/xuanzhuan2.png", "new/com/xuanzhuan.png"], "loadList3D": [] };
             view.RoleSelectUI = RoleSelectUI;
             REG("ui.view.RoleSelectUI", RoleSelectUI);
         })(view = ui.view || (ui.view = {}));
@@ -1813,11 +1736,26 @@
             return 11;
         }
         getPassData(year, index) {
-            let yearNum = 0;
-            if (year != "year80") {
-                yearNum = 11;
-            }
-            return (this.jsonData['pass'][index + yearNum]);
+            let passIndex = [];
+            passIndex["year80"] = 0;
+            passIndex["year90"] = 11;
+            passIndex["year00"] = 11;
+            passIndex["year10"] = 11;
+            let build = [];
+            build["year80"] = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008];
+            build["year90"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
+            build["year00"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
+            build["year10"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
+            let obstacle = [];
+            obstacle["year80"] = [9, 10, 100];
+            obstacle["year90"] = [10, 11, 100];
+            obstacle["year00"] = [10, 11, 100];
+            obstacle["year10"] = [10, 11, 100];
+            let i = index + passIndex[year];
+            let pass = (this.jsonData['pass'][i]);
+            pass.builds = build[year];
+            pass.obstacles = obstacle[year];
+            return pass;
         }
         getBuildData(id) {
             return this._builds[id];
@@ -1949,8 +1887,9 @@
             this.skillWeight = 0;
             this.soldierSort = [];
             this.rank = [];
-            Language.instance.onInit(this.gameInfo.language);
             this.updateTime();
+            Language.instance.onInit(this.gameInfo.language);
+            rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
         }
         updateTime() {
             let date = new Date();
@@ -1986,9 +1925,6 @@
             this.gameInfo.lastTime.hour = date.getHours();
             this.gameInfo.lastTime.minute = date.getMinutes();
             this.gameInfo.lastTime.second = date.getSeconds();
-            if (this.gameInfo.audio == 0) {
-                this.PauseBGM();
-            }
         }
         addCoin(coin) {
             if (this.gameInfo.coin + coin < 0) {
@@ -2062,10 +1998,11 @@
         }
         getPassBuild() {
             let build = ["3d/prefab/Conventional/play_" + this.playSelect + ".lh"];
-            let arr = this.CurrPassData().builds;
+            let pass = this.CurrPassData();
+            let arr = pass.builds;
             for (var i = 0; i < arr.length; i++) {
                 build.push("3d/build/Conventional/" + this.jsonConfig.getBuildData(arr[i]).res + ".lh");
-                let arr2 = this.jsonConfig.getBuildData(arr[i]).obstacle;
+                let arr2 = pass.obstacles;
                 for (var j = 0; j < arr2.length; j++) {
                     if (build.indexOf("3d/prefab/Conventional/" + this.jsonConfig.getObstacleData(arr2[j]).res + ".lh") == -1) {
                         build.push("3d/prefab/Conventional/" + this.jsonConfig.getObstacleData(arr2[j]).res + ".lh");
@@ -2792,7 +2729,7 @@
             Laya3D.physicsSettings.fixedTimeStep = 1 / 30;
             this.AddListenerMessage(GameNotity.GameMessage_GameShowMessage, () => {
                 if (this.m_currView.visible == true) {
-                    rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
+                    rab.MusicManager.playMusic("res/audio/bgm.mp3");
                 }
             });
             this.myManager.onAddLevelDate();
@@ -2804,7 +2741,7 @@
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
-            rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
+            rab.MusicManager.playMusic("res/audio/bgm.mp3");
             if (this.myManager.gameInfo.music == 0) {
                 this.m_currView.set.skin = "ui/bd_syg.png";
             }
@@ -2849,6 +2786,7 @@
         onSet() {
             this.myManager.setMusic();
             this.myManager.setAudio();
+            rab.MusicManager.playMusic("res/audio/bgm.mp3");
             if (this.myManager.gameInfo.music == 0) {
                 this.m_currView.set.skin = "ui/bd_syg.png";
             }
@@ -2963,7 +2901,9 @@
                 Tool.instance.sprite3DStopTween(this.owner, Tool.instance.tweenType.rotation);
                 let prop1 = Tool.instance.getAddPosition(new Laya.Vector3(0, 2, 0), this.owner);
                 this.transform.setWorldLossyScale(new Laya.Vector3(0.3, 0.3, 0.3));
-                Tool.instance.sprite3DMove(this.owner, prop1, 100);
+                Tool.instance.sprite3DMove(this.owner, prop1, 100, null, () => {
+                    this.owner.active = false;
+                });
             }
             if (this.isTruck() == true) {
             }
@@ -3003,17 +2943,16 @@
         }
         onInit() {
             this.AddListenerMessage(GameNotity.Game_RemoveScene, this.onReMoveScene);
-            this.AddListenerMessage(GameNotity.GameMessage_ReGameStart, this.onGameReStart);
         }
         init() {
             this.scene3D = this.owner;
             this.manager = rab.RabGameManager.getInterest().getMyManager();
         }
         onCreateobstacle(data, posZ) {
-            console.log("创建一个障碍物", posZ);
-            this._initPos = posZ + data.length;
-            let arr = data.obstacle;
-            this._buildProp = data;
+            console.log("创建一个障碍物 Z轴", posZ);
+            this._initPos = posZ;
+            let arr = data.obstacles;
+            this._passProp = data;
             for (var i = 0; i < arr.length; i++) {
                 if (!this._baseobstacles[arr[i]]) {
                     this._baseobstacles[arr[i]] =
@@ -3021,9 +2960,9 @@
                 }
             }
             let ObstacleID = this.obstaclesID;
-            this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
+            this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random() * this._passProp.obstacles.length)];
             while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
-                this.obstaclesID = this._buildProp.obstacle[Math.floor(Math.random() * this._buildProp.obstacle.length)];
+                this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random() * this._passProp.obstacles.length)];
             }
             let randomX = this.randomX;
             while (randomX == this.randomX) {
@@ -3064,7 +3003,7 @@
             }
             this.scene3D.addChild(obstacle);
             this._obstacles.push(obstacleProp);
-            console.log("创建好了障碍物", this.obstaclesID);
+            console.log("创建好了障碍物 ID", this.obstaclesID);
             obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
             obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
             obstacle.active = true;
@@ -3079,13 +3018,10 @@
         }
         onReMoveScene() {
             this.onClearAll();
-            for (var i = 0; i < this._buildProp.obstacle.length; i++) {
-                Laya.Pool.clearBySign("ObstacleID" + this._buildProp.obstacle[i]);
+            for (var i = 0; i < this._passProp.obstacles.length; i++) {
+                Laya.Pool.clearBySign("ObstacleID" + this._passProp.obstacles[i]);
             }
             this._baseobstacles.clear();
-        }
-        onGameReStart() {
-            this.onClearAll();
         }
     }
 
@@ -3099,8 +3035,8 @@
         onTriggerEnter(other) {
             let prop = other.owner.getComponent(ObstacleItem);
             if (prop) {
-                prop.onCollisionPlay();
                 if (prop.isCoin() == false) {
+                    rab.MusicManager.playSound("res/audio/hit.wav", 1, 1);
                     if (prop.isTruck() == true) {
                         if (prop.transform.localPositionX == 0) {
                             this.SendMessage(GameNotity.Game_UpdateMouseMove, 1);
@@ -3110,13 +3046,15 @@
                         }
                         this.SendMessage(GameNotity.Game_RoleRetrogression);
                     }
-                    this.SendMessage(GameNotity.Game_TriggerEnter, prop.prop.up, prop.prop.down);
+                    this.SendMessage(GameNotity.Game_TriggerEnter, prop);
                     this.onFlash();
                 }
                 else {
+                    rab.MusicManager.playSound("res/audio/coin.wav", 1, 0.05);
                     let manager = rab.RabGameManager.getInterest().getMyManager();
                     manager.fightGetCoin += 1;
                 }
+                prop.onCollisionPlay();
             }
         }
         onSetMaterial(material) {
@@ -3184,8 +3122,8 @@
             this.manager = rab.RabGameManager.getInterest().getMyManager();
         }
         fightReady() {
-            this._playState = PlayState.init;
             console.log("加载角色");
+            this._playState = PlayState.init;
             this.isMoveing = false;
             this.localx = 0;
             this.worldDistance = 0;
@@ -3240,13 +3178,12 @@
             this.playAnimation("happydance", 0.2);
         }
         Ondeath() {
-            this._characterSlot.getComponent(Play).stopFlash();
             this._playState = PlayState.death;
             this.isMoveing = false;
-            this.playAnimation("death", 0.2);
+            Laya.timer.frameLoop(1, this, this.update);
         }
         revive() {
-            this._playState = PlayState.run;
+            this.setPlayState(PlayState.run);
             this.playAnimation("run", 0);
             this.isMoveing = true;
         }
@@ -3263,8 +3200,16 @@
             let scaledSpeed = this.m_Speed * 0.02;
             let pos = this._playerPivot.transform.position;
             if (this.retrogression < 0.1) {
-                pos.z += scaledSpeed;
-                this.worldDistance += scaledSpeed;
+                if (this._playState == PlayState.death) {
+                    this._characterSlot.getComponent(Play).stopFlash();
+                    this.playAnimation("death", 0.2);
+                    Laya.timer.clear(this, this.update);
+                    return;
+                }
+                else {
+                    pos.z += scaledSpeed;
+                    this.worldDistance += scaledSpeed;
+                }
             }
             else {
                 pos.z -= scaledSpeed;
@@ -3277,7 +3222,7 @@
                 let ratio = (this.worldDistance - this.m_JumpStart) / correctJumpLength;
                 if (ratio >= 1) {
                     this.playAnimation("run", 0);
-                    this._playState = PlayState.run;
+                    this.setPlayState(PlayState.run);
                 }
                 else {
                     this._characterSlot.transform.localPositionY = Math.sin(ratio * Math.PI) * this.jumpHeight;
@@ -3289,7 +3234,7 @@
                 let ratio = (this.worldDistance - this.m_SlideStart) / correctSlideLength;
                 if (ratio >= 1.0) {
                     this.playAnimation("run", 0);
-                    this._playState = PlayState.run;
+                    this.setPlayState(PlayState.run);
                 }
             }
             if (this.m_Speed < this.maxSpeed) {
@@ -3310,33 +3255,33 @@
                 return;
             if (data[0] == 0) {
                 if (this.localx < 1.25) {
-                    this._playState = PlayState.right;
+                    this.setPlayState(PlayState.right);
                     this.localx += 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400, null, Laya.Handler.create(this, () => {
                         this.playAnimation("run", 0);
-                        this._playState = PlayState.run;
+                        this.setPlayState(PlayState.run);
                     }));
                     this.playAnimation("left", 0);
                 }
             }
             else if (data[0] == 1) {
                 if (this.localx > -1.25) {
-                    this._playState = PlayState.left;
+                    this.setPlayState(PlayState.left);
                     this.localx -= 1.25;
                     Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400, null, Laya.Handler.create(this, () => {
                         this.playAnimation("run", 0);
-                        this._playState = PlayState.run;
+                        this.setPlayState(PlayState.run);
                     }));
                     this.playAnimation("right", 0);
                 }
             }
             else if (data[0] == 2) {
-                this._playState = PlayState.jump;
+                this.setPlayState(PlayState.jump);
                 this.m_JumpStart = this.worldDistance;
                 this.playAnimation("jump", 0);
             }
             else if (data[0] == 3) {
-                this._playState = PlayState.slide;
+                this.setPlayState(PlayState.slide);
                 this.m_SlideStart = this.worldDistance;
                 this.playAnimation("slide", 0);
             }
@@ -3358,6 +3303,12 @@
             }
             this.currentAnimation = name;
             this.animator.crossFade(name, transitionDuration);
+        }
+        setPlayState(state) {
+            if (this._playState == PlayState.death || this._playState == PlayState.stop) {
+                return;
+            }
+            this._playState = state;
         }
     }
 
@@ -3391,12 +3342,13 @@
         }
         onInitScene() {
             Laya.timer.resume();
-            this.max_lifeCount = 3;
             for (var i = 0; i < this.builds.length; i++) {
                 this.builds[i].recover();
             }
             this.builds = [];
-            this._currLenght = 0;
+            this._buildPosZ = 0;
+            this._obstaclePosZ = 10;
+            this.max_lifeCount = 3;
             this.obstacleManager.onClearAll();
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
@@ -3442,6 +3394,7 @@
             if (!this.isStart) {
                 console.log("开始跑了");
                 this.currlife = this.max_lifeCount;
+                this.addCoinTime = 60;
                 this.onLifeUpdate();
                 this.isStart = true;
                 this.playerManager.onGameStart();
@@ -3473,12 +3426,16 @@
                 this.playerManager.update();
                 this.updatePassProgressNode();
                 this.onCreateBuild();
+                this.addCoinTime--;
+                if (this.addCoinTime <= 0) {
+                    this.addCoinTime = 60;
+                    this.manager.fightGetCoin += 1;
+                }
             }
         }
         onCreateBuild() {
-            if (this._currLenght - this.playerManager.worldDistance <= 200) {
-                if (this._currLenght <= this.passData.length) {
-                    this.manager.fightGetCoin += 1;
+            if (this._buildPosZ - this.playerManager.worldDistance <= 100) {
+                if (this._buildPosZ <= this.passData.length) {
                     this.oncreateNextBuild();
                 }
             }
@@ -3492,9 +3449,10 @@
             }
         }
         onGameTriggerEnter(data) {
+            let prop = data[0];
             if (this.isStart) {
                 if (this.playerManager._playState == PlayState.jump) {
-                    if (data[0] == 1) {
+                    if (prop.prop.up == 1) {
                     }
                     else {
                         this.currlife -= 1;
@@ -3505,7 +3463,7 @@
                     }
                 }
                 else if (this.playerManager._playState == PlayState.slide) {
-                    if (data[1] == 1) {
+                    if (prop.prop.down == 1) {
                     }
                     else {
                         this.currlife -= 1;
@@ -3547,8 +3505,8 @@
                 this.currlife = this.max_lifeCount;
                 this.onLifeUpdate();
                 console.log("重新开始");
-                this.onInitScene();
                 this.playerManager.reStart();
+                this.onInitScene();
                 this.updatePassProgressNode();
                 Laya.timer.once(300, this, () => {
                     this.SendMessage(GameNotity.GameMessage_GameStart);
@@ -3580,20 +3538,21 @@
             let build = Laya.Pool.getItem("build_" + buildID);
             let buildProp;
             if (!build) {
-                build = this.instantiate(this._basebuilds[buildID], null, false, new Laya.Vector3(0, 0, this._currLenght));
+                build = this.instantiate(this._basebuilds[buildID], null, false, new Laya.Vector3(0, 0, this._buildPosZ));
                 buildProp = build.addComponent(BuildItem);
             }
             else {
-                build.transform.localPositionZ = this._currLenght;
+                build.transform.localPositionZ = this._buildPosZ;
                 buildProp = build.getComponent(BuildItem);
             }
-            console.log("buildID:", this._currLenght);
             this.scene3D.addChild(build);
             this.builds.push(buildProp);
-            buildProp.onInitProp(this.manager.getBuild(buildID), this._currLenght);
-            this._currLenght += this.manager.getBuild(buildID).length;
-            if (this._currLenght > 20 && this._currLenght < this.passData.length - this.winLenght) {
-                this.obstacleManager.onCreateobstacle(this.manager.getBuild(buildID), build.transform.position.z);
+            buildProp.onInitProp(this.manager.getBuild(buildID), this._buildPosZ);
+            console.log("buildID:", buildID);
+            this._buildPosZ += this.manager.getBuild(buildID).length;
+            while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length - this.winLenght - 15) {
+                this._obstaclePosZ += 15;
+                this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
             }
             if (this.manager.playSelect == 1) {
                 Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
@@ -3608,7 +3567,7 @@
         updatePassProgressNode() {
             this.view.progress_t.x = 2 + (this.playerManager.worldDistance / (this.passData.length - this.winLenght) * (this.view.progress_t.width));
             this.view.coinText.value = "" + this.manager.fightGetCoin;
-            this.view.iconNode.x = this.view.progress_t.x - 13;
+            this.view.iconNode.x = this.view.progress_t.x - this.view.progress_t.width / 2 + 20;
         }
         onLifeUpdate() {
             this.view.lifeText.value = this.currlife + "";
@@ -3648,7 +3607,6 @@
             this.gameStart = false;
             this.m_currView.timeDown.visible = false;
             this.fightManager.fightReady();
-            rab.MusicManager.playMusic("res/audio/AttackBGM.mp3");
             this.m_currView.lifeText.value = "3";
         }
         onPause() {
@@ -3871,6 +3829,12 @@
             this.playNode.transform.localRotationEulerX = 0;
             this.playNode.active = true;
             Laya.timer.frameLoop(1, this, this.onUpdate);
+            this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+            this.animator.play("happydance");
+            Laya.timer.frameLoop(180, this.animator, () => {
+                this.animator.play("idle");
+                this.animator.play("happydance");
+            }, null, false);
         }
         onUpdate() {
             this.m_currView.eff.rotation += 1;
@@ -3939,7 +3903,6 @@
         OnRefreshView() {
             this.time = 3;
             this.m_currView.coinText.value = "" + this.myManager.fightGetCoin;
-            Laya.timer.loop(1000, this, this.countDown);
             this.create3DScene();
         }
         create3DScene() {
@@ -3956,6 +3919,12 @@
             this.playNode.transform.localPosition = new Laya.Vector3(0, -0.1, -3);
             this.playNode.transform.localRotationEulerX = 0;
             this.playNode.active = true;
+            this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+            this.animator.play("death");
+            Laya.timer.frameLoop(180, this.animator, () => {
+                this.animator.play("idle");
+                this.animator.play("death");
+            }, null, false);
         }
         onShowLanguage() {
         }
@@ -4245,9 +4214,6 @@
             Laya.timer.frameLoop(1, this, this.onFrameLoop);
             this.isLoadSubpackage = false;
             this.OnRefreshView();
-            this.myManager.onLoad3dScene(() => {
-                this.onShowRole(1);
-            });
         }
         OnRefreshView() {
             this.m_currView.roleName_1.text = "JACK";
@@ -4266,6 +4232,7 @@
             var directionLight = this.scene3D.addChild(new Laya.DirectionLight());
             directionLight.color = new Laya.Vector3(0.6, 0.6, 0.6);
             directionLight.transform.worldMatrix.setForward(new Laya.Vector3(1, -1, 0));
+            this.onShowRole(1);
         }
         onShowLanguage() {
         }
@@ -4330,6 +4297,11 @@
             this.playNode.active = true;
             this.playNode.transform.localPosition = new Laya.Vector3(0, 0.3, -3.5);
             this.playNode.transform.localRotationEulerX = 0;
+            this.m_currView.roleName_1.color = "#929b9e";
+            this.m_currView.roleName_2.color = "#929b9e";
+            this.m_currView.roleName_3.color = "#929b9e";
+            this.m_currView.roleName_4.color = "#929b9e";
+            this.m_currView["roleName_" + id].color = "#ffffff";
         }
         onBreak() {
             this.playNode.removeSelf();
