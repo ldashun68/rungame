@@ -98,7 +98,6 @@ export default class GameSet extends rab.RabView {
     private onSoundOpen (): void {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.audio = 1;
-        manager.ResumeBGM();
         manager.SaveData(4);
         
         rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
@@ -110,7 +109,6 @@ export default class GameSet extends rab.RabView {
     private onSounClose (): void {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
         manager.gameInfo.audio = 0;
-        manager.PauseBGM();
         manager.SaveData(5);
 
         this.onInitData();

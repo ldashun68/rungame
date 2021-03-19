@@ -36,18 +36,13 @@ export default class GameFail extends rab.RabView {
 
 
         this.OnRefreshView();
-
-        // this.AddListenerMessage(GameNotity.Game_FightFail, this.fightFail);
     }
 
     protected OnRefreshView() {
         this.time = 3;
         
         this.m_currView.coinText.value = ""+this.myManager.fightGetCoin;
-        // this.m_currView.homeBtn.visible = false;
-        // this.m_currView.timeText.visible = true;
-        // this.m_currView.timeText.value = ""+this.time;
-        // Laya.timer.loop(1000, this, this.countDown);
+        this.myManager.addCoin(this.myManager.fightGetCoin);
 
         this.create3DScene();
     }
@@ -83,9 +78,7 @@ export default class GameFail extends rab.RabView {
 
     protected onShowLanguage()
     {
-        // this.m_currView.continueTxt.text = Language.instance.getTxt("fail_1");
-        // this.m_currView.restartTxt.text = Language.instance.getTxt("fail_2");
-        // this.m_currView.breakHomeTxt.text = Language.instance.getTxt("fail_3");
+        
     }
 
     /**重新挑战 */
@@ -95,38 +88,20 @@ export default class GameFail extends rab.RabView {
 
     /**分享 */
     private onShare (): void {
-        // this.SendMessage(GameNotity.GameMessage_Revive);
-        // this.playNode.transform.localPositionY-= 0.05;
+        
     }
 
     /**返回主页按钮事件 */
     private onHome (): void {
-        let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
-        manager.addCoin(manager.fightGetCoin);
-        
         this.onHide();
-        // rab.UIManager.onHideView(ViewConfig.gameView.GameView);
         this.SendMessage(GameNotity.Game_RemoveScene);
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
     }
 
-    onHide()
-    {
+    onHide() {
         this.myManager.scene3D.active = true;
         this.scene3D.removeSelf();
         this.scene3D.destroy();
         super.onHide();
-    }
-
-    /**倒计时 */
-    private countDown() {
-        this.time--;
-        // this.m_currView.timeText.value = ""+this.time;
-        // if (this.time == 0) {
-        //     this.m_currView.homeBtn.visible = true;
-        //     this.m_currView.timeText.visible = false;
-
-        //     Laya.timer.clear(this, this.countDown);
-        // }
     }
 }

@@ -3,8 +3,6 @@ import rab from "../../rab/rab";
 import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
-import GameNotity from "../GameNotity";
-import Language from "../GameVO/Language";
 
 /**
  * 照片墙界面
@@ -126,7 +124,7 @@ export default class PhotoWall extends rab.RabView {
             this.m_currView.cover.alpha = 0.5;
             this.m_currView.bigPhoto.visible = true;
             this.m_currView.bigPhoto.alpha = 1;
-            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index+1) + "_b.png"
+            this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index+1) + "_b.png";
             Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
         }
     }

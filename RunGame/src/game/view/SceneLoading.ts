@@ -37,15 +37,10 @@ export default class SceneLoading extends rab.RabView {
             skeleton.play(name, true);
         }, [Templet1, "lizi"]);
         Templet1.loadAni("effect/bg/bg_lizi.sk");
-        
-        // Laya.loader.load("https://coolrun.liandaxinxi.com/home/bubu/build", Laya.Handler.create(this, (error: any, data: any) => {
-        //     console.log("bubu", error, data);
-        // }));
-        
+
         this.AddListenerMessage(GameNotity.GameMessage_LoadingEnd,this.onLoadEnd);
 
         rab.RabGameManager.getInterest().AddManager(new GameController());
-        // rab.UIManager.onCreateView(ViewConfig.gameView.NotClickView);
     }
 
     protected OnRefreshView() {
@@ -96,19 +91,21 @@ export default class SceneLoading extends rab.RabView {
         let manager: GameController = rab.RabGameManager.getInterest().getMyManager();
 
         let enterGame = () => {
-            // if (manager.gameInfo.isGuide == true && manager.gameInfo.guideCount.welcome == 0) {
-            //     rab.UIManager.onCreateView(ViewConfig.gameView.WelcomeView);
-            // }
-            // else {
-            //     if (manager.gameInfo.isGuide == true) {
-            //         rab.UIManager.onCreateView(ViewConfig.gameView.GuideView);
-            //     }
-            //     else {
-                    rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
-            //     }
-            // }
-            this.OnCloseView();
-            // rab.UIManager.onHideView(ViewConfig.gameView.NotClickView);
+            let array = [];
+            array.push("res/atlas/ui.atlas");
+            array.push("res/atlas/new/com.atlas");
+            array.push("res/atlas/new/game.atlas");
+            array.push("res/atlas/new/role.atlas");
+            array.push("res/atlas/new/com/Photo.atlas");
+            array.push("res/atlas/new/com/num/index.atlas");
+            array.push("res/atlas/new/com/num/score.atlas");
+
+            Laya.loader.load(array, Laya.Handler.create(this, (error: any, data: any) => {
+                console.log(error, data);
+
+                rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
+                this.OnCloseView();
+            }));
         }
 
         if (typeof wx != "undefined") {

@@ -23,7 +23,6 @@
     "shareDuration":3000,
     "allow_adGame":true,
     "showShareMenu":true,
-
     "welfare":{"0":[1000,1000,1000,1000]},
     "upgradeWay":0,
     "chooseSkillWay":0,

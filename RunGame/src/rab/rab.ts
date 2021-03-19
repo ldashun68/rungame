@@ -492,9 +492,7 @@ class GameChannel {
         }else{
             Laya.LocalStorage.setItem(key,JSON.stringify(gameInfo));
         }
-        
     }
-
 
     onHide(breakcall:Function)
     {
@@ -795,7 +793,7 @@ abstract class RabManager extends RabEvent{
     /**
      * 初始化数据
      */
-    protected InitGameInfo() {
+    protected InitGameInfo(callback: Function) {
         this.state = GameState.init;
         rab.SDKChannel.initData((gameInfo: any) => {
             if (gameInfo != null) {
@@ -813,6 +811,8 @@ abstract class RabManager extends RabEvent{
                 console.log("场景=====id==========",res.scene);
                 EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage,res.scene);
             });
+
+            callback && callback();
         });
     }
 
@@ -1776,11 +1776,19 @@ abstract class RabController extends RabManager {
      * 可以执行下一步了
      */
     private OnEnterGame() {
-        this.InitGameInfo();
+        if(rab.Util.isMobil) {
+            this.InitGameInfo(() => {
+                this.loadView();
+            });
+        }
+        else {
+            this.InitGameInfo(null);
+            this.loadView();
+        }
+
         if(this.getIsNewDay()) {
             //TODO:今天新的一天处理一些其他问题签到 每日提示等
         }
-        this.loadView();
     }
 
     /**随机玩家名称 */
@@ -1855,10 +1863,9 @@ abstract class RabController extends RabManager {
                 callback && callback();
             }), null);
         }
-        
     }
 
-     /**
+    /**
      * 初始化游戏配置信息
      */
     private OnReConfig(conf) {
@@ -2152,30 +2159,28 @@ class wxSdk{
     /**微信登录 */
     public onLoginWXServer(breakcall:Function,path:string="api/authCode")
     {
-        if(rab.Util.isMobil)
-        {
+        if(rab.Util.isMobil) {
             wx.login({
                 success:(res)=> {
                     if (res.code) {
-                        let code =res.code 
-                        console.log("登录code",res.code)
+                        let code = res.code;
+                        console.log("登录code",res.code);
                         
                         rab.HTTP.post(path,{"code":res.code},this,(data)=>{
                             console.log("登录code返回：",data);
-                            if(data.data)
+                            if(data.data != null && data.data.gamedata != null)
                             {
-                                breakcall&&breakcall(data.data);
+                                breakcall && breakcall(data.data);
                             }else{
                                 this.onCreateUserInfo(code,breakcall);
                             }
-                            
-                        })
-                        
-                    } else {
+                        });
+                    }
+                    else {
                         console.log('登录失败！' + res.errMsg)
                     }
                 }
-            })
+            });
         }else{
             
         }
@@ -2222,19 +2227,14 @@ class wxSdk{
                         this.getUserInfo(code,breakcall)
                     }else{
                         let button = wx.createUserInfoButton({
-                            type: 'text',
-                            text: '获取用户信息',
+                            type: 'image',
+                            image: 'load/rect5.png',
                             style: {
-                              left: 0,
-                              top: 0,
-                              width: 1000,
-                              height: 1000,
-                              lineHeight: 40,
-                              backgroundColor: '#ff0000',
-                              color: '#ffffff',
-                              textAlign: 'center',
-                              fontSize: 16,
-                              borderRadius: 4
+                                left: 0,
+                                top: 0,
+                                width: 1000,
+                                height: 1000,
+                                borderRadius: 4
                             }
                           })
                           button.onTap((res) => {

@@ -25,13 +25,6 @@ export default class Rank extends rab.RabView {
         this.m_currView.rankList.selectHandler = new Laya.Handler(this, this.onSelect);
         this.m_currView.rankList.renderHandler = new Laya.Handler(this, this.updateItem);
 
-        // for (let i: number = 0; i < 20; i++) {
-        //     this.myManager.rank[i] = [];
-        //     this.myManager.rank[i]["name"] = "郭德纲";
-        //     this.myManager.rank[i]["avatar"] = "";
-        //     this.myManager.rank[i]["score"] = ""+i;
-        // }
-        // rab.UIManager.onHideView(ViewConfig.gameView.Rank);
         this.OnRefreshView();
     }
 

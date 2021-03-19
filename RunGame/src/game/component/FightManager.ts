@@ -164,8 +164,9 @@ export default class FightManager extends rab.GameObject {
     /**退出战斗 */
     public onGamewin (): void {
         this.isStart = false;
-        this.manager.gameInfo.score += this.manager.CurrPassData().score;
+        this.manager.gameInfo.score += this.manager.CurrPassData().length+this.manager.fightGetCoin;
         this.manager.onNextPass();
+        this.manager.onAddLevelDate();
         this.playerManager.onhappydance();
         Laya.timer.once(2000, this, () => {
             rab.UIManager.onCreateView(ViewConfig.gameView.GameWinView);
@@ -208,23 +209,18 @@ export default class FightManager extends rab.GameObject {
      */
     onCreateBuild()
     {
-        if(this._buildPosZ - this.playerManager.worldDistance <= 100)
-        {
-            if(this._buildPosZ <= this.passData.length)
-            {
+        if(this._buildPosZ - this.playerManager.worldDistance <= 100) {
+            if(this._buildPosZ <= this.passData.length) {
                 this.oncreateNextBuild();
             }
         }
         //TODO:到终点了做个动画就打开结算界面吧
-        if(this.playerManager.worldDistance > this.passData.length-this.winLenght)
-        {
+        if(this.playerManager.worldDistance > this.passData.length-this.winLenght) {
             this.onGamewin();
         }
         //TODO:超出的回收了
-        if(this.playerManager.worldDistance < this.passData.length-15)
-        {
-            if(this.playerManager.worldDistance > this.builds[0].PosZ)
-            {
+        if(this.playerManager.worldDistance < this.passData.length-15) {
+            if(this.playerManager.worldDistance > this.builds[0].PosZ) {
                 this.builds.shift().recover();
             }
         }

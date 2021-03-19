@@ -114,6 +114,9 @@ export default class GameController extends rab.RabController {
         this.soldierSort = [];
         this.rank = [];
 
+        if (this.gameInfo.score == 0) {
+            this.onAddLevelDate();
+        }
         this.updateTime();
         Language.instance.onInit(this.gameInfo.language);
         rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
@@ -296,6 +299,8 @@ export default class GameController extends rab.RabController {
        if(rab.Util.isMobil)
        {
             rab.HTTP.post("api/playLog",{
+                "passLv": 0,
+                "failLv": 0,
                 "score":this.gameInfo.score,
                 "token":this.userInfo.token
             },this,(data)=>{
@@ -310,12 +315,12 @@ export default class GameController extends rab.RabController {
         {
             rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
                 this.rank = data.data;
-                callback();
-                // Object.keys(this.rank).forEach(function(key){
-                //     _data[key] = wx.getData(key, this.rank[key]);
-                // });
+                callback && callback();
                 rab.Util.log('获得排行榜数据',this.rank);
             });
+        }
+        else {
+            callback && callback();
         }
    }
 }

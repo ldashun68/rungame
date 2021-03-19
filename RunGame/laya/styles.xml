@@ -27,4 +27,15 @@
    <item name="new/com/guangxiao.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="new/com/t_tzcg.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
    <item name="new/com/t_tzsb.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_010_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_011_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_01_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_02_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_03_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_04_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_05_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_06_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_07_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_08_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
+   <item name="new/com/Photo/pic_09_b.png" type="Sprite" compress="0" pack="1" quality="80" props="" picType="0" scale="0"/>
 </res>

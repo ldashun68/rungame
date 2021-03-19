@@ -2,7 +2,7 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":537,
+    "selecteID":530,
     "searchKey":"Scene,PhotoWall,PhotoWall",
     "props":{"width":750,"var":"PhotoWall","sceneColor":"#000000","runtime":"runtime/ImgEffect.ts","name":"PhotoWall","height":1334,"centerY":0,"centerX":0},
     "nodeParent":-1,
@@ -394,7 +394,7 @@
             "compId":522,
             "child":[
                 ],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -409,7 +409,7 @@
             "compId":523,
             "child":[
                 ],
-            "$HIDDEN":true
+            "$HIDDEN":false
         }],
     "animations":[
         {

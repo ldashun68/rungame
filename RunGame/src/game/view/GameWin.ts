@@ -17,7 +17,6 @@ export default class GameWin extends rab.RabView {
     private playNode: Laya.Sprite3D;
     private animator: Laya.Animator;
     protected myManager:GameController;
-    // protected flagEffect: Laya.Skeleton;
 
     protected LoadView() {
         this.create<ui.view.GameWinUI>(ui.view.GameWinUI);
@@ -88,7 +87,7 @@ export default class GameWin extends rab.RabView {
     }
 
     protected onShowLanguage() {
-        // this.m_currView.nextTxt.text = Language.instance.getTxt("win_1");
+        
     }
 
     onwin() {
@@ -116,6 +115,7 @@ export default class GameWin extends rab.RabView {
         this.m_currView.homeBtn.visible = true;
         alpha(this.m_currView.next, 200);
         alpha(this.m_currView.homeBtn, 200);
+        this.myManager.addCoin(this.myManager.fightGetCoin);
 
         rab.MusicManager.playMusic("");
         rab.MusicManager.playSound("res/audio/win.mp3");
@@ -133,7 +133,6 @@ export default class GameWin extends rab.RabView {
 
     /**返回主页按钮事件 */
     private onHome (): void {
-        this.myManager.addCoin(this.myManager.fightGetCoin);
         this.onHide();
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
     }

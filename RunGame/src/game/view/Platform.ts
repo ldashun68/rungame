@@ -16,7 +16,6 @@ export default class Platform extends rab.RabView {
     /**点击列表 */
     private clickList: Array<number>;
     protected myManager:GameController;
-    private isLoadSubpackage: boolean;
 
     protected LoadView() {
         this.create<ui.view.PlatformUI>(ui.view.PlatformUI);
@@ -42,7 +41,6 @@ export default class Platform extends rab.RabView {
         Tool.instance.addButtonAnimation(this.m_currView.lan);
 
         this.clickList = [];
-        this.isLoadSubpackage = false;
 
         let Templet1:Laya.Templet = new Laya.Templet();
         Templet1.on(Laya.Event.COMPLETE, this, (Templet:Laya.Templet, name: string) => {
@@ -63,28 +61,11 @@ export default class Platform extends rab.RabView {
             }
         });
 
-        this.myManager.onAddLevelDate();
         this.myManager.getRank(() => {
             for (let index: number = 0; index < this.myManager.rank.length; index++) {
                 this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
             }
         });
-        // rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
-
-        if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-            window.wx.loadSubpackage({
-                name: 'sub1', // name 可以填 name 或者 root
-                success: (res) => {
-                    // 分包加载成功后通过 success 回调
-                }
-            });
-            window.wx.loadSubpackage({
-                name: 'sub2', // name 可以填 name 或者 root
-                success: (res) => {
-                    // 分包加载成功后通过 success 回调
-                }
-            });
-        }
     }
 
     protected OnRefreshView() {
@@ -99,30 +80,12 @@ export default class Platform extends rab.RabView {
     }
 
     /**语言包 */
-    protected onShowLanguage()
-    {
-        // this.m_currView.startTxt.text = Language.instance.getTxt("startGame")
-        // this.m_currView.rankTxt.text = Language.instance.getTxt("rank")
-        // this.m_currView.picTxt.text = Language.instance.getTxt("pic")
-        // this.m_currView.setTxt.text = Language.instance.getTxt("set")
-        // this.m_currView.lanTxt.text = Language.instance.getTxt("language")
+    protected onShowLanguage() {
+        
     }
 
     onstart()
     {
-        // if(this.myManager.CurrPassData())
-        // {
-        //     rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-        //     let arr = this.myManager.getPassBuild();
-        //     this.myManager.onLoad3dScene(() => {
-        //             Laya.loader.create(arr, Laya.Handler.create(this, () => {
-        //             this.SendMessage(GameNotity.Init_Loading);
-                
-        //         }));
-        //     })
-        // }else{
-        //     console.log("没有新关卡了");
-        // }
         let self = this;
         let complete = () => {
             rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
@@ -137,19 +100,7 @@ export default class Platform extends rab.RabView {
         }
 
         rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-        if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-            window.wx.loadSubpackage({
-                name: 'sub2', // name 可以填 name 或者 root
-                success: (res) => {
-                    // 分包加载成功后通过 success 回调
-                    self.isLoadSubpackage = true;
-                    complete();
-                }
-            });
-        }
-        else {
-            complete();
-        }
+        complete();
     }
 
     updateRedPoint()
@@ -180,14 +131,17 @@ export default class Platform extends rab.RabView {
 
     /**排行版 */
     private onRank (): void {
-        rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
-        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+        rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
+        this.myManager.getRank(() => {
+            rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
+            rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
+            rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+            rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+        });
     }
 
     /**照片墙 */
     private onPic (): void {
-        // rab.wxSdk.queryRequest();
         rab.UIManager.onCreateView(ViewConfig.gameView.PhotoWall);
         rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
         rab.UIManager.onHideView(ViewConfig.gameView.PendantView);

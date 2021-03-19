@@ -105,26 +105,26 @@ D new/com/num
 D new/com/Photo
 P 26B15903 pic_01.png
 P F5D40DB8 pic_010.png
-R D2050F87 pic_010_b.png
+P D2050F87 pic_010_b.png
 P C4193539 pic_011.png
-R BA346AD1 pic_011_b.png
-R 0A91C399 pic_01_b.png
+P BA346AD1 pic_011_b.png
+P 0A91C399 pic_01_b.png
 P 9697F9D3 pic_02.png
-R 6E4AA4A3 pic_02_b.png
+P 6E4AA4A3 pic_02_b.png
 P 2168483D pic_03.png
-R 15336444 pic_03_b.png
+P 15336444 pic_03_b.png
 P 1847309A pic_04.png
-R 14930267 pic_04_b.png
+P 14930267 pic_04_b.png
 P 817AFEE4 pic_05.png
-R 1A5676C0 pic_05_b.png
+P 1A5676C0 pic_05_b.png
 P 3D549D4A pic_06.png
-R E9E2E7DE pic_06_b.png
+P E9E2E7DE pic_06_b.png
 P 7BE36EB9 pic_07.png
-R 57656E4B pic_07_b.png
+P 57656E4B pic_07_b.png
 P AA211F29 pic_08.png
-R 3730FC92 pic_08_b.png
+P 3730FC92 pic_08_b.png
 P 7309FB3C pic_09.png
-R 0696DE6F pic_09_b.png
+P 0696DE6F pic_09_b.png
 D new/com/num/index
 P CB8F8394 0.png
 P CB0C37FA 1.png

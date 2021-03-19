@@ -67,7 +67,7 @@
     GameConfig.screenMode = "none";
     GameConfig.alignV = "top";
     GameConfig.alignH = "left";
-    GameConfig.startScene = "view/GameWin.scene";
+    GameConfig.startScene = "view/Game.scene";
     GameConfig.sceneRoot = "";
     GameConfig.debug = false;
     GameConfig.stat = false;
@@ -645,7 +645,7 @@
             this.onInitManaager();
             this.state = GameState.init;
         }
-        InitGameInfo() {
+        InitGameInfo(callback) {
             this.state = GameState.init;
             rab.SDKChannel.initData((gameInfo) => {
                 if (gameInfo != null) {
@@ -662,6 +662,7 @@
                     console.log("场景=====id==========", res.scene);
                     EventListener.getInstance().Emit(RabNotity.GameMessage_GameShowMessage, res.scene);
                 });
+                callback && callback();
             });
         }
         getSceneTyp() {
@@ -1123,10 +1124,17 @@
             }
         }
         OnEnterGame() {
-            this.InitGameInfo();
+            if (rab.Util.isMobil) {
+                this.InitGameInfo(() => {
+                    this.loadView();
+                });
+            }
+            else {
+                this.InitGameInfo(null);
+                this.loadView();
+            }
             if (this.getIsNewDay()) {
             }
-            this.loadView();
         }
         RandomUserName() {
             let index = Math.floor(Math.random() * this.randomUserName.length);
@@ -1360,7 +1368,7 @@
                             console.log("登录code", res.code);
                             rab.HTTP.post(path, { "code": res.code }, this, (data) => {
                                 console.log("登录code返回：", data);
-                                if (data.data) {
+                                if (data.data != null && data.data.gamedata != null) {
                                     breakcall && breakcall(data.data);
                                 }
                                 else {
@@ -1410,18 +1418,13 @@
                         }
                         else {
                             let button = wx.createUserInfoButton({
-                                type: 'text',
-                                text: '获取用户信息',
+                                type: 'image',
+                                image: 'load/rect5.png',
                                 style: {
                                     left: 0,
                                     top: 0,
                                     width: 1000,
                                     height: 1000,
-                                    lineHeight: 40,
-                                    backgroundColor: '#ff0000',
-                                    color: '#ffffff',
-                                    textAlign: 'center',
-                                    fontSize: 16,
                                     borderRadius: 4
                                 }
                             });
@@ -1891,6 +1894,9 @@
             this.skillWeight = 0;
             this.soldierSort = [];
             this.rank = [];
+            if (this.gameInfo.score == 0) {
+                this.onAddLevelDate();
+            }
             this.updateTime();
             Language.instance.onInit(this.gameInfo.language);
             rab.MusicManager.setState(this.gameInfo.music, this.gameInfo.audio);
@@ -2018,6 +2024,8 @@
         onAddLevelDate() {
             if (rab.Util.isMobil) {
                 rab.HTTP.post("api/playLog", {
+                    "passLv": 0,
+                    "failLv": 0,
                     "score": this.gameInfo.score,
                     "token": this.userInfo.token
                 }, this, (data) => {
@@ -2029,9 +2037,12 @@
             if (rab.Util.isMobil) {
                 rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
                     this.rank = data.data;
-                    callback();
+                    callback && callback();
                     rab.Util.log('获得排行榜数据', this.rank);
                 });
+            }
+            else {
+                callback && callback();
             }
         }
     }
@@ -2687,8 +2698,19 @@
             console.log("====登录服务器成功进入游戏=======");
             let manager = rab.RabGameManager.getInterest().getMyManager();
             let enterGame = () => {
-                rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
-                this.OnCloseView();
+                let array = [];
+                array.push("res/atlas/ui.atlas");
+                array.push("res/atlas/new/com.atlas");
+                array.push("res/atlas/new/game.atlas");
+                array.push("res/atlas/new/role.atlas");
+                array.push("res/atlas/new/com/Photo.atlas");
+                array.push("res/atlas/new/com/num/index.atlas");
+                array.push("res/atlas/new/com/num/score.atlas");
+                Laya.loader.load(array, Laya.Handler.create(this, (error, data) => {
+                    console.log(error, data);
+                    rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
+                    this.OnCloseView();
+                }));
             };
             if (typeof wx != "undefined") {
                 enterGame();
@@ -2719,7 +2741,6 @@
             this.m_currView.lan.on(Laya.Event.CLICK, this, this.onLan);
             Tool.instance.addButtonAnimation(this.m_currView.lan);
             this.clickList = [];
-            this.isLoadSubpackage = false;
             let Templet1 = new Laya.Templet();
             Templet1.on(Laya.Event.COMPLETE, this, (Templet, name) => {
                 let skeleton = Templet.buildArmature(1);
@@ -2736,24 +2757,11 @@
                     rab.MusicManager.playMusic("res/audio/bgm.mp3");
                 }
             });
-            this.myManager.onAddLevelDate();
             this.myManager.getRank(() => {
                 for (let index = 0; index < this.myManager.rank.length; index++) {
                     this.m_currView.preload.skin = this.myManager.rank[index]["avatar"];
                 }
             });
-            if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-                window.wx.loadSubpackage({
-                    name: 'sub1',
-                    success: (res) => {
-                    }
-                });
-                window.wx.loadSubpackage({
-                    name: 'sub2',
-                    success: (res) => {
-                    }
-                });
-            }
         }
         OnRefreshView() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PendantView);
@@ -2781,18 +2789,7 @@
                 });
             };
             rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
-            if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-                window.wx.loadSubpackage({
-                    name: 'sub2',
-                    success: (res) => {
-                        self.isLoadSubpackage = true;
-                        complete();
-                    }
-                });
-            }
-            else {
-                complete();
-            }
+            complete();
         }
         updateRedPoint() {
         }
@@ -2813,9 +2810,13 @@
             this.myManager.SaveData(9);
         }
         onRank() {
-            rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
-            rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-            rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+            rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
+            this.myManager.getRank(() => {
+                rab.UIManager.onCreateView(ViewConfig.gameView.Rank);
+                rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
+                rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
+            });
         }
         onPic() {
             rab.UIManager.onCreateView(ViewConfig.gameView.PhotoWall);
@@ -3420,8 +3421,9 @@
         }
         onGamewin() {
             this.isStart = false;
-            this.manager.gameInfo.score += this.manager.CurrPassData().score;
+            this.manager.gameInfo.score += this.manager.CurrPassData().length + this.manager.fightGetCoin;
             this.manager.onNextPass();
+            this.manager.onAddLevelDate();
             this.playerManager.onhappydance();
             Laya.timer.once(2000, this, () => {
                 rab.UIManager.onCreateView(ViewConfig.gameView.GameWinView);
@@ -3879,6 +3881,7 @@
             this.m_currView.homeBtn.visible = true;
             alpha(this.m_currView.next, 200);
             alpha(this.m_currView.homeBtn, 200);
+            this.myManager.addCoin(this.myManager.fightGetCoin);
             rab.MusicManager.playMusic("");
             rab.MusicManager.playSound("res/audio/win.mp3");
             this.SendMessage(GameNotity.Game_RemoveScene);
@@ -3892,7 +3895,6 @@
             super.onHide();
         }
         onHome() {
-            this.myManager.addCoin(this.myManager.fightGetCoin);
             this.onHide();
             rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
         }
@@ -3919,6 +3921,7 @@
         OnRefreshView() {
             this.time = 3;
             this.m_currView.coinText.value = "" + this.myManager.fightGetCoin;
+            this.myManager.addCoin(this.myManager.fightGetCoin);
             this.create3DScene();
         }
         create3DScene() {
@@ -3949,8 +3952,6 @@
         onShare() {
         }
         onHome() {
-            let manager = rab.RabGameManager.getInterest().getMyManager();
-            manager.addCoin(manager.fightGetCoin);
             this.onHide();
             this.SendMessage(GameNotity.Game_RemoveScene);
             rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
@@ -3960,9 +3961,6 @@
             this.scene3D.removeSelf();
             this.scene3D.destroy();
             super.onHide();
-        }
-        countDown() {
-            this.time--;
         }
     }
 
@@ -4088,7 +4086,6 @@
         onSoundOpen() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.audio = 1;
-            manager.ResumeBGM();
             manager.SaveData(4);
             rab.MusicManager.playMusic("res/audio/MainBGM.mp3");
             this.onInitData();
@@ -4096,7 +4093,6 @@
         onSounClose() {
             let manager = rab.RabGameManager.getInterest().getMyManager();
             manager.gameInfo.audio = 0;
-            manager.PauseBGM();
             manager.SaveData(5);
             this.onInitData();
         }
@@ -4227,7 +4223,6 @@
             this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
             Tool.instance.addButtonAnimation(this.m_currView.startBtn);
             Laya.timer.frameLoop(1, this, this.onFrameLoop);
-            this.isLoadSubpackage = false;
             this.OnRefreshView();
         }
         OnRefreshView() {
@@ -4279,18 +4274,7 @@
                             }));
                         });
                     };
-                    if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-                        window.wx.loadSubpackage({
-                            name: 'sub1',
-                            success: (res) => {
-                                self.isLoadSubpackage = true;
-                                complete();
-                            }
-                        });
-                    }
-                    else {
-                        complete();
-                    }
+                    complete();
                 }
             }
             else {
@@ -4644,6 +4628,7 @@
             if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
                 Laya["PhysicsDebugDraw"].enable();
             Laya.Stat.show();
+            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

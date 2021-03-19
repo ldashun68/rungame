@@ -16,7 +16,6 @@ export default class RoleSelect extends rab.RabView {
     private mouseDown:boolean = false;
     private _mouseDownType:number = 0;
     private _mouseDownX:number = 0;
-    private isLoadSubpackage: boolean;
     private animator: Laya.Animator;
 
     protected LoadView() {
@@ -43,8 +42,6 @@ export default class RoleSelect extends rab.RabView {
         this.m_currView.startBtn.on(Laya.Event.CLICK, this, this.onstart);
         Tool.instance.addButtonAnimation(this.m_currView.startBtn);
         Laya.timer.frameLoop(1,this,this.onFrameLoop);
-
-        this.isLoadSubpackage = false;
 
         this.OnRefreshView();
     }
@@ -118,19 +115,7 @@ export default class RoleSelect extends rab.RabView {
                     });
                 }
 
-                if (this.isLoadSubpackage == false && typeof wx != "undefined") {
-                    window.wx.loadSubpackage({
-                        name: 'sub1', // name 可以填 name 或者 root
-                        success: (res) => {
-                            // 分包加载成功后通过 success 回调
-                            self.isLoadSubpackage = true;
-                            complete();
-                        }
-                    });
-                }
-                else {
-                    complete();
-                }
+                complete();
             }
         }
         else {
