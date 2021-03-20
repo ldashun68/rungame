@@ -9,7 +9,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: gongchang
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gongchang
+    second: {fileID: 2100000, guid: c6c60e543da414e4dbe02675e250cce6, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

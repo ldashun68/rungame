@@ -9,7 +9,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: nongtian
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: nongtian
+    second: {fileID: 2100000, guid: 3457e68bc5b921c41882ff00e3650cb8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

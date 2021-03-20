@@ -9,7 +9,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: xiaoqu01
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: xiaoqu01
+    second: {fileID: 2100000, guid: 6f0b5722bf38f214da8883495e07f470, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
