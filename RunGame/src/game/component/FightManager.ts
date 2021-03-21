@@ -69,7 +69,7 @@ export default class FightManager extends rab.GameObject {
     public init (): void {
         this.max_lifeCount = 3;
         this.scene3D = this.owner as Laya.Scene3D;
-        this.scene3D.enableFog = false;
+        this.scene3D.enableFog = true;
         //设置雾化的颜色 65,138,229
         this.scene3D.fogColor = new Laya.Vector3(0.25,0.55,0.9);
         //设置雾化的起始位置，相对于相机的距离
