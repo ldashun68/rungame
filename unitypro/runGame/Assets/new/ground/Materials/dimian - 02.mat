@@ -21,7 +21,7 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: e9904c61362e7c6429fad45b0ee4b77b, type: 3}
-        m_Scale: {x: 2000, y: 2000}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlbedoIntensity: 1

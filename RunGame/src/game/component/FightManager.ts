@@ -154,7 +154,7 @@ export default class FightManager extends rab.GameObject {
             this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/build/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
         }
         this.onInitScene();
-        // this.SendMessage(GameNotity.GameMessage_GameStart);
+        this.SendMessage(GameNotity.GameMessage_GameStart);
     }
 
     /**开始战斗 */
