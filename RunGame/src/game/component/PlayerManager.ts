@@ -50,6 +50,7 @@ export default class PlayerManager extends rab.GameObject {
         // this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
         this.AddListenerMessage(GameNotity.Game_UpdateMouseMove,this.onMouseMove);
         this.AddListenerMessage(GameNotity.Game_RoleRetrogression,this.onRoletrogression);
+        // this.AddListenerMessage(GameNotity.GameMessage_testScene,this.onTestScene);
     }
     
     /**初始化 */
@@ -63,6 +64,14 @@ export default class PlayerManager extends rab.GameObject {
         this.camerapos = new Laya.Vector3(0,4,-5);
         this.manager = rab.RabGameManager.getInterest().getMyManager();
         // this.fightReady();
+    }
+
+    onTestScene()
+    {
+        if (this.camera != null) {
+            console.log("相机" );
+            this.camera.transform.localPositionY -= 1;
+        }
     }
 
     /**加载角色 */

@@ -48,6 +48,7 @@ export default class FightManager extends rab.GameObject {
     private currlife:number;
     private addCoinTime: number;
     private winLenght:number = 50;
+    private _road:Laya.Sprite3D;
 
     constructor () {
         super();
@@ -62,16 +63,14 @@ export default class FightManager extends rab.GameObject {
         this.AddListenerMessage(GameNotity.Game_TriggerEnter,this.onGameTriggerEnter);
         this.AddListenerMessage(GameNotity.GameMessage_Revive,this.onGameRevive)
         this.AddListenerMessage(GameNotity.GameMessage_ReGameStart,this.onGameReStart)
+        // this.AddListenerMessage(GameNotity.GameMessage_testScene,this.onTestScene);
     }
     
     /**初始化 */
     public init (): void {
         this.max_lifeCount = 3;
         this.scene3D = this.owner as Laya.Scene3D;
-        // this.camera = this.scene3D.getChildByName("Main Camera") as Laya.Camera;
-        // this.camerapos = new Laya.Vector3(0,4,-2);
-        // this.camera.transform.localRotationEulerX = 14;
-        this.scene3D.enableFog = true;
+        this.scene3D.enableFog = false;
         //设置雾化的颜色 65,138,229
         this.scene3D.fogColor = new Laya.Vector3(0.25,0.55,0.9);
         //设置雾化的起始位置，相对于相机的距离
@@ -83,6 +82,7 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.init();
         this.obstacleManager = this.scene3D.addComponent(ObstacleManager);
         this.obstacleManager.init();
+        
     }
 
     /**
@@ -119,10 +119,21 @@ export default class FightManager extends rab.GameObject {
         Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
             let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
             road.name = "road";
+            this._road = road;
             this.scene3D.addChild(road);
-            road.transform.position = new Laya.Vector3(0, -0.2, 950);
+            road.transform.position = new Laya.Vector3(0, 0, 100);
             road.transform.rotationEuler = new Laya.Vector3(-90);
+            this.manager.setScene();
         }));
+        
+    }
+
+    onTestScene()
+    {
+        if (this._road != null) {
+            console.log("键盘：",this._road.transform.localPositionY );
+            this._road.transform.localPositionZ += 1;
+        }
     }
 
     /**准备战斗 */
@@ -143,7 +154,7 @@ export default class FightManager extends rab.GameObject {
             this._basebuilds[this.passData.builds[i]]= Laya.loader.getRes("3d/build/Conventional/"+this.manager.getBuild(this.passData.builds[i]).res+".lh");
         }
         this.onInitScene();
-        this.SendMessage(GameNotity.GameMessage_GameStart);
+        // this.SendMessage(GameNotity.GameMessage_GameStart);
     }
 
     /**开始战斗 */

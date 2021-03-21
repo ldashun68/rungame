@@ -1674,7 +1674,7 @@ class RabNotity {
     static Game_LoadGameScene:string = "Game_LoadGameScene";
     static Game_RemoveGameScene:string = "Game_RemoveGameScene";
     static GameMessage_RefreshScene:string = "GameMessage_RefreshScene";
-
+    static GameMessage_testScene:string = "GameMessage_testScene";
 
     //-------------------------------------
 

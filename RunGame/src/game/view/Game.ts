@@ -120,6 +120,10 @@ export default class Game extends rab.RabView {
         {
             this.SendMessage(GameNotity.Game_UpdateMouseMove,3)//下
         }
+        else if(e.keyCode == 32)
+        {
+            this.SendMessage(GameNotity.GameMessage_testScene)//下
+        }
     }
 
     /**鼠标按下 */
