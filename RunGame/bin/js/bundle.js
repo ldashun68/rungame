@@ -3392,16 +3392,6 @@
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
             }
-            if (this.scene3D.getChildByName("road") != null) {
-                this.scene3D.getChildByName("road").destroy();
-            }
-            let year = 0;
-            if (this.manager.playSelect == 1) {
-                year = 80;
-            }
-            else {
-                year = 90;
-            }
             this.manager.setScene();
         }
         fightReady() {
@@ -4646,7 +4636,6 @@
             if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
                 Laya["PhysicsDebugDraw"].enable();
             Laya.Stat.show();
-            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

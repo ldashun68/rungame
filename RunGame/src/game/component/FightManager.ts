@@ -48,7 +48,6 @@ export default class FightManager extends rab.GameObject {
     private currlife:number;
     private addCoinTime: number;
     private winLenght:number = 50;
-    private _road:Laya.Sprite3D;
 
     constructor () {
         super();
@@ -105,17 +104,17 @@ export default class FightManager extends rab.GameObject {
             this.oncreateNextBuild();
         }
 
-        if (this.scene3D.getChildByName("road") != null) {
-            this.scene3D.getChildByName("road").destroy();
-        }
+        // if (this.scene3D.getChildByName("road") != null) {
+        //     this.scene3D.getChildByName("road").destroy();
+        // }
         
-        let year: number = 0;
-        if (this.manager.playSelect == 1) {
-            year = 80;
-        }
-        else {
-            year = 90;
-        }
+        // let year: number = 0;
+        // if (this.manager.playSelect == 1) {
+        //     year = 80;
+        // }
+        // else {
+        //     year = 90;
+        // }
         // Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
         //     let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
         //     road.name = "road";
