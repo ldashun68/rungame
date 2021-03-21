@@ -3369,7 +3369,7 @@
         init() {
             this.max_lifeCount = 3;
             this.scene3D = this.owner;
-            this.scene3D.enableFog = false;
+            this.scene3D.enableFog = true;
             this.scene3D.fogColor = new Laya.Vector3(0.25, 0.55, 0.9);
             this.scene3D.fogStart = 30;
             this.scene3D.fogRange = 50;
@@ -4635,7 +4635,8 @@
                 Laya.enableDebugPanel();
             if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
                 Laya["PhysicsDebugDraw"].enable();
-            Laya.Stat.show();
+            if (GameConfig.stat)
+                Laya.Stat.show();
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

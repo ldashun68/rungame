@@ -17,8 +17,8 @@ class Main {
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		//if (GameConfig.stat) 
-		Laya.Stat.show();
+		if (GameConfig.stat) 
+			Laya.Stat.show();
 		// Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/"
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);

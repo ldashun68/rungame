@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":147,
+		"instanceID":154,
 		"props":{
 			"name":"map_90_07",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":148,
+				"instanceID":155,
 				"props":{
 					"name":"loufang",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":149,
+				"instanceID":156,
 				"props":{
 					"name":"loufang (2)",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":150,
+				"instanceID":157,
 				"props":{
 					"name":"loufang (3)",
 					"active":true,
@@ -140,7 +140,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":151,
+				"instanceID":158,
 				"props":{
 					"name":"loufang (1)",
 					"active":true,
@@ -177,7 +177,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":152,
+				"instanceID":159,
 				"props":{
 					"name":"loufang (4)",
 					"active":true,
@@ -214,7 +214,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":153,
+				"instanceID":160,
 				"props":{
 					"name":"road90",
 					"active":true,
@@ -222,8 +222,8 @@
 					"layer":0,
 					"position":[
 						-3.6,
-						-1.88,
-						0
+						0,
+						-7.55
 					],
 					"rotation":[
 						0,
@@ -247,7 +247,45 @@
 					]
 				},
 				"components":[],
-				"child":[]
+				"child":[
+					{
+						"type":"MeshSprite3D",
+						"instanceID":161,
+						"props":{
+							"name":"road90 (1)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								14.29,
+								-0.02
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-Object01.lm",
+							"enableRender":true,
+							"receiveShadows":true,
+							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian 1.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
 			}
 		]
 	}
