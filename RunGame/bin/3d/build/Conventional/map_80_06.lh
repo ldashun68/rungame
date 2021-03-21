@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":75,
+		"instanceID":85,
 		"props":{
 			"name":"map_80_06",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":76,
+				"instanceID":86,
 				"props":{
 					"name":"nongtian",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":77,
+				"instanceID":87,
 				"props":{
 					"name":"gongchang (1)",
 					"active":true,
@@ -102,7 +102,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":78,
+						"instanceID":88,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -132,7 +132,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":79,
+				"instanceID":89,
 				"props":{
 					"name":"nongtian (2)",
 					"active":true,
@@ -169,7 +169,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":80,
+				"instanceID":90,
 				"props":{
 					"name":"gongchang",
 					"active":true,
@@ -205,7 +205,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":81,
+						"instanceID":91,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -235,7 +235,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":82,
+				"instanceID":92,
 				"props":{
 					"name":"nongtian (3)",
 					"active":true,
@@ -271,7 +271,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":83,
+						"instanceID":93,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -301,7 +301,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":84,
+				"instanceID":94,
 				"props":{
 					"name":"nongtian (1)",
 					"active":true,
@@ -337,7 +337,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":85,
+						"instanceID":95,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -358,6 +358,81 @@
 								1,
 								1,
 								1
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":96,
+				"props":{
+					"name":"road80",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-8.1,
+						0,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[
+					{
+						"type":"MeshSprite3D",
+						"instanceID":97,
+						"props":{
+							"name":"road80 (1)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								17.41,
+								-0.02
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"enableRender":true,
+							"receiveShadows":true,
+							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+								}
 							]
 						},
 						"components":[],

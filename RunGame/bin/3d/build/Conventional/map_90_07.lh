@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":124,
+		"instanceID":144,
 		"props":{
 			"name":"map_90_07",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":125,
+				"instanceID":145,
 				"props":{
 					"name":"loufang",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":126,
+				"instanceID":146,
 				"props":{
 					"name":"loufang (2)",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":127,
+				"instanceID":147,
 				"props":{
 					"name":"loufang (3)",
 					"active":true,
@@ -140,7 +140,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":128,
+				"instanceID":148,
 				"props":{
 					"name":"loufang (1)",
 					"active":true,
@@ -177,7 +177,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":129,
+				"instanceID":149,
 				"props":{
 					"name":"loufang (4)",
 					"active":true,

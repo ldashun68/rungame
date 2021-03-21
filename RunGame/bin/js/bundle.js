@@ -3402,21 +3402,7 @@
             else {
                 year = 90;
             }
-            Laya.loader.create("3d/build/Conventional/road" + year + ".lh", Laya.Handler.create(this, () => {
-                let road = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road" + year + ".lh"));
-                road.name = "road";
-                this._road = road;
-                this.scene3D.addChild(road);
-                road.transform.position = new Laya.Vector3(0, 0, 100);
-                road.transform.rotationEuler = new Laya.Vector3(-90);
-                this.manager.setScene();
-            }));
-        }
-        onTestScene() {
-            if (this._road != null) {
-                console.log("键盘：", this._road.transform.localPositionY);
-                this._road.transform.localPositionZ += 1;
-            }
+            this.manager.setScene();
         }
         fightReady() {
             this.scene3D.active = true;

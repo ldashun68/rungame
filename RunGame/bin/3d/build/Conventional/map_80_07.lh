@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":86,
+		"instanceID":98,
 		"props":{
 			"name":"map_80_07",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":87,
+				"instanceID":99,
 				"props":{
 					"name":"pingfang",
 					"active":true,
@@ -65,7 +65,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":88,
+						"instanceID":100,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -95,7 +95,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":89,
+				"instanceID":101,
 				"props":{
 					"name":"pingfang (3)",
 					"active":true,
@@ -131,7 +131,7 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":90,
+						"instanceID":102,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -161,7 +161,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":91,
+				"instanceID":103,
 				"props":{
 					"name":"lunchuan",
 					"active":true,
@@ -195,6 +195,81 @@
 				},
 				"components":[],
 				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":104,
+				"props":{
+					"name":"road80",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-8.1,
+						0,
+						-0.009999995
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[
+					{
+						"type":"MeshSprite3D",
+						"instanceID":105,
+						"props":{
+							"name":"road80 (1)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								17.41,
+								-0.02
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"enableRender":true,
+							"receiveShadows":true,
+							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					}
+				]
 			}
 		]
 	}

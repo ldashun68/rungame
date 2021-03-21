@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":106,
+		"instanceID":124,
 		"props":{
 			"name":"map_90_03",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":107,
+				"instanceID":125,
 				"props":{
 					"name":"xiaoqu01",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":108,
+				"instanceID":126,
 				"props":{
 					"name":"lunchuan",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":109,
+				"instanceID":127,
 				"props":{
 					"name":"xiaoqu01 (1)",
 					"active":true,
@@ -132,6 +132,43 @@
 					"materials":[
 						{
 							"path":"Assets/new/build/xiaoqu01.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":128,
+				"props":{
+					"name":"road90",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-3.6,
+						-1.88,
+						0
+					],
+					"rotation":[
+						0,
+						0.7071068,
+						0.7071068,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/Materials/dimian.lmat"
 						}
 					]
 				},
