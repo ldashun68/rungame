@@ -1,10 +1,9 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"MeshSprite3D",
-		"instanceID":136,
 		"props":{
-			"name":"road80",
+			"name":"road90",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
@@ -24,13 +23,11 @@
 				2000,
 				1
 			],
-			"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+			"meshPath":"Assets/new/ground/dimian-Object01.lm",
 			"enableRender":true,
-			"receiveShadows":true,
-			"castShadow":true,
 			"materials":[
 				{
-					"path":"Assets/new/ground/Materials/dimian - 03.lmat"
+					"path":"Assets/new/ground/Materials/dimian.lmat"
 				}
 			]
 		},
@@ -38,9 +35,8 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":137,
 				"props":{
-					"name":"road80 (1)",
+					"name":"road90 (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
@@ -60,13 +56,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+							"path":"Assets/new/ground/Materials/dimian 1.lmat"
 						}
 					]
 				},

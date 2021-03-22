@@ -106,8 +106,8 @@ export default class RoleSelect extends rab.RabView {
                 let self = this;
                 let complete = () => {
                     let arr = self.myManager.getPassBuild();
-                    arr.push("3d/build/Conventional/road80.lh");
-                    arr.push("3d/build/Conventional/road90.lh");
+                    // arr.push("3d/build/Conventional/road80.lh");
+                    // arr.push("3d/build/Conventional/road90.lh");
                     self.myManager.onLoad3dScene(() => {
                             Laya.loader.create(arr, Laya.Handler.create(self, () => {
                             self.SendMessage(GameNotity.Init_Loading);

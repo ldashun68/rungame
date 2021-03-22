@@ -40,8 +40,8 @@
 			{
 				"name":"tilingOffset",
 				"value":[
-					2,
-					2000,
+					6,
+					1,
 					0,
 					1
 				]

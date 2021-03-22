@@ -1070,6 +1070,7 @@
     RabNotity.Game_LoadGameScene = "Game_LoadGameScene";
     RabNotity.Game_RemoveGameScene = "Game_RemoveGameScene";
     RabNotity.GameMessage_RefreshScene = "GameMessage_RefreshScene";
+    RabNotity.GameMessage_testScene = "GameMessage_testScene";
     class RabController extends RabManager {
         constructor() {
             super(...arguments);
@@ -1842,8 +1843,13 @@
             this.dieSoundCount = 0;
             this.vibrateCount = 0;
             this.playSelect = 1;
+            this.curveScale = 0.1;
+            this.curveOffset = 2.6;
+            this.curveFactor = 0.43;
         }
         onInitUserDate() {
+            GameController.DEF_CURVE_ROAD = Laya.Shader3D.getDefineByName("CURVE_ROAD");
+            GameController.curve_params = Laya.Shader3D.propertyNameToID("u_curveParam");
             rab.Util.log("onInitUserDate=====");
             this.gameInfo.audio = 1;
             this.gameInfo.music = 1;
@@ -1880,6 +1886,15 @@
             }
             Language.instance.SetLanguage(this.gameInfo.language);
             this.SaveData(0);
+        }
+        setScene() {
+            let v4 = new Laya.Vector4();
+            v4.x = this.curveScale;
+            v4.y = this.curveOffset;
+            v4.z = this.curveFactor;
+            let sv = this.scene3D["_shaderValues"];
+            sv.addDefine(GameController.DEF_CURVE_ROAD);
+            sv.setVector(GameController.curve_params, v4);
         }
         onHide() {
         }
@@ -3139,6 +3154,12 @@
             this.camerapos = new Laya.Vector3(0, 4, -5);
             this.manager = rab.RabGameManager.getInterest().getMyManager();
         }
+        onTestScene() {
+            if (this.camera != null) {
+                console.log("相机");
+                this.camera.transform.localPositionY -= 1;
+            }
+        }
         fightReady() {
             console.log("加载角色");
             this._playState = PlayState.init;
@@ -3371,23 +3392,7 @@
             for (var i = 0; i < 10; i++) {
                 this.oncreateNextBuild();
             }
-            if (this.scene3D.getChildByName("road") != null) {
-                this.scene3D.getChildByName("road").destroy();
-            }
-            let year = 0;
-            if (this.manager.playSelect == 1) {
-                year = 80;
-            }
-            else {
-                year = 90;
-            }
-            Laya.loader.create("3d/build/Conventional/road" + year + ".lh", Laya.Handler.create(this, () => {
-                let road = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road" + year + ".lh"));
-                road.name = "road";
-                this.scene3D.addChild(road);
-                road.transform.position = new Laya.Vector3(0, -0.2, 950);
-                road.transform.rotationEuler = new Laya.Vector3(-90);
-            }));
+            this.manager.setScene();
         }
         fightReady() {
             this.scene3D.active = true;
@@ -3674,6 +3679,9 @@
             }
             else if (e.keyCode == 40) {
                 this.SendMessage(GameNotity.Game_UpdateMouseMove, 3);
+            }
+            else if (e.keyCode == 32) {
+                this.SendMessage(GameNotity.GameMessage_testScene);
             }
         }
         onMouseDown(e) {
@@ -4627,8 +4635,8 @@
                 Laya.enableDebugPanel();
             if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"])
                 Laya["PhysicsDebugDraw"].enable();
-            Laya.Stat.show();
-            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
+            if (GameConfig.stat)
+                Laya.Stat.show();
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

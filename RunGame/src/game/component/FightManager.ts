@@ -62,15 +62,13 @@ export default class FightManager extends rab.GameObject {
         this.AddListenerMessage(GameNotity.Game_TriggerEnter,this.onGameTriggerEnter);
         this.AddListenerMessage(GameNotity.GameMessage_Revive,this.onGameRevive)
         this.AddListenerMessage(GameNotity.GameMessage_ReGameStart,this.onGameReStart)
+        // this.AddListenerMessage(GameNotity.GameMessage_testScene,this.onTestScene);
     }
     
     /**初始化 */
     public init (): void {
         this.max_lifeCount = 3;
         this.scene3D = this.owner as Laya.Scene3D;
-        // this.camera = this.scene3D.getChildByName("Main Camera") as Laya.Camera;
-        // this.camerapos = new Laya.Vector3(0,4,-2);
-        // this.camera.transform.localRotationEulerX = 14;
         this.scene3D.enableFog = true;
         //设置雾化的颜色 65,138,229
         this.scene3D.fogColor = new Laya.Vector3(0.25,0.55,0.9);
@@ -83,6 +81,7 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.init();
         this.obstacleManager = this.scene3D.addComponent(ObstacleManager);
         this.obstacleManager.init();
+        
     }
 
     /**
@@ -105,24 +104,27 @@ export default class FightManager extends rab.GameObject {
             this.oncreateNextBuild();
         }
 
-        if (this.scene3D.getChildByName("road") != null) {
-            this.scene3D.getChildByName("road").destroy();
-        }
+        // if (this.scene3D.getChildByName("road") != null) {
+        //     this.scene3D.getChildByName("road").destroy();
+        // }
         
-        let year: number = 0;
-        if (this.manager.playSelect == 1) {
-            year = 80;
-        }
-        else {
-            year = 90;
-        }
-        Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
-            let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
-            road.name = "road";
-            this.scene3D.addChild(road);
-            road.transform.position = new Laya.Vector3(0, -0.2, 950);
-            road.transform.rotationEuler = new Laya.Vector3(-90);
-        }));
+        // let year: number = 0;
+        // if (this.manager.playSelect == 1) {
+        //     year = 80;
+        // }
+        // else {
+        //     year = 90;
+        // }
+        // Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
+        //     let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
+        //     road.name = "road";
+        //     this._road = road;
+        //     this.scene3D.addChild(road);
+        //     road.transform.position = new Laya.Vector3(0, 0, 100);
+        //     road.transform.rotationEuler = new Laya.Vector3(-90);
+        //     this.manager.setScene();
+        // }));
+        this.manager.setScene();
     }
 
     /**准备战斗 */

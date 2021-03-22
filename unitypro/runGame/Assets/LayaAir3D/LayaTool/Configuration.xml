@@ -30,11 +30,11 @@
     <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
     <CustomizeDirectory>True</CustomizeDirectory>
-    <CustomizeDirectoryName>prefab</CustomizeDirectoryName>
+    <CustomizeDirectoryName>build</CustomizeDirectoryName>
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
-    <SavePath>G:/rungame/RunGame/bin/3d</SavePath>
+    <SavePath>/Users/Shared/Pro/lock/working/Laya/RunGame/run/RunGame/bin/3d</SavePath>
     <ScrollPositionY>0</ScrollPositionY>
   </config1>
   <config2>
@@ -190,7 +190,7 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1615528335</time>
+  <time>1616316360</time>
   <saveAcount>
   </saveAcount>
   <savePassWorld>

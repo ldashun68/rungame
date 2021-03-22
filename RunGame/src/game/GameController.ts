@@ -10,6 +10,8 @@ import Language from "./GameVO/Language";
 
 export default class GameController extends rab.RabController {
 
+    public static DEF_CURVE_ROAD:Laya.ShaderDefine;
+    public static curve_params:number;
     /**重新初始化类型 */
     public gameInfo: GameData;
     /**游戏配置 */
@@ -48,10 +50,17 @@ export default class GameController extends rab.RabController {
 
     public m_selectYear:Array<string>;
 
+    private readonly curveScale:number = 0.1;
+    private readonly curveOffset:number = 2.6;
+    private readonly curveFactor:number = 0.43;
+
     /**
      * 初始化资源
      */
     protected onInitUserDate() {
+
+        GameController.DEF_CURVE_ROAD = Laya.Shader3D.getDefineByName("CURVE_ROAD");
+        GameController.curve_params = Laya.Shader3D.propertyNameToID("u_curveParam");
         rab.Util.log("onInitUserDate=====")
         this.gameInfo.audio = 1;
         this.gameInfo.music = 1;
@@ -93,6 +102,21 @@ export default class GameController extends rab.RabController {
         }
         Language.instance.SetLanguage(this.gameInfo.language);
         this.SaveData(0);
+    }
+
+    public setScene()
+    {
+        let v4:Laya.Vector4 = new Laya.Vector4();
+        v4.x = this.curveScale;
+        v4.y = this.curveOffset;
+        v4.z = this.curveFactor;
+        //step3.设置全局的道路弯曲参数
+        let sv = (this.scene3D["_shaderValues"] as Laya.ShaderData)//'u_curveParam': Shader3D.PERIOD_SCENE
+        sv.addDefine(GameController.DEF_CURVE_ROAD);
+        //参数说明V4.x 第一个参数是z轴系数，决定弯曲曲率，越大弯曲越快
+        //V4.y 第二个参数，弯曲起点偏移，越大越往里推移
+        //v4.z 第三个参数，弯曲曲率系数，可以默认设置1，优先修改x参数，再考虑此参数调整
+        sv.setVector(GameController.curve_params,v4)//第一个参数是z轴系数，巨顶
     }
 
     protected onHide() {
