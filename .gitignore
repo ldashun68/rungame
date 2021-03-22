@@ -2,3 +2,7 @@
 /RunGame/release
 /unitypro/runGame/Library
 /unitypro/runGame/Assets/StreamingAssets
+unitypro/runGame/Temp
+unitypro/runGame/runGame.sln
+unitypro/runGame/Assembly-CSharp.csproj
+unitypro/runGame/Assembly-CSharp-Editor.csproj
