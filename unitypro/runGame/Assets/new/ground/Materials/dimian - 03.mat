@@ -25,7 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: e9904c61362e7c6429fad45b0ee4b77b, type: 3}
-        m_Scale: {x: 6, y: 1}
+        m_Scale: {x: 2, y: 1}
         m_Offset: {x: 0, y: 1}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}

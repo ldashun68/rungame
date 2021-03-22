@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":128,
 		"props":{
 			"name":"map_90_03",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":129,
 				"props":{
 					"name":"xiaoqu01",
 					"active":true,
@@ -53,8 +51,6 @@
 					],
 					"meshPath":"Assets/new/build/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/xiaoqu01.lmat"
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":130,
 				"props":{
 					"name":"lunchuan",
 					"active":true,
@@ -90,8 +85,6 @@
 					],
 					"meshPath":"Assets/new/landmark/lunchuan-lunchuan.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/landmark/lunchuan.lmat"
@@ -103,7 +96,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":131,
 				"props":{
 					"name":"xiaoqu01 (1)",
 					"active":true,
@@ -127,8 +119,6 @@
 					],
 					"meshPath":"Assets/new/build/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/xiaoqu01.lmat"
@@ -140,16 +130,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":132,
 				"props":{
-					"name":"road90",
+					"name":"road90 (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						-3.6,
-						0,
-						-8.38
+						-2.15,
+						-11.76
 					],
 					"rotation":[
 						0,
@@ -164,8 +153,6 @@
 					],
 					"meshPath":"Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/ground/Materials/dimian.lmat"
@@ -176,7 +163,6 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":133,
 						"props":{
 							"name":"road90 (1)",
 							"active":true,
@@ -184,7 +170,7 @@
 							"layer":0,
 							"position":[
 								0,
-								17.49,
+								20.34,
 								-0.02
 							],
 							"rotation":[
@@ -195,13 +181,11 @@
 							],
 							"scale":[
 								1,
-								1,
+								1.3658,
 								1
 							],
 							"meshPath":"Assets/new/ground/dimian-Object01.lm",
 							"enableRender":true,
-							"receiveShadows":true,
-							"castShadow":true,
 							"materials":[
 								{
 									"path":"Assets/new/ground/Materials/dimian 1.lmat"

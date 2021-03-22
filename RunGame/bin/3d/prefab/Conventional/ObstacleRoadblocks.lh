@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":1,
 		"props":{
 			"name":"ObstacleRoadblocks",
 			"active":true,
@@ -52,7 +51,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":2,
 				"props":{
 					"name":"ObstacleRoadblocks",
 					"active":true,
@@ -76,8 +74,6 @@
 					],
 					"meshPath":"Assets/test/Animation/luzhang-Box04.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/test/Animation/luzhang.lmat"

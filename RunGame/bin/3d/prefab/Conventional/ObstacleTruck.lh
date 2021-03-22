@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":5,
 		"props":{
 			"name":"ObstacleTruck",
 			"active":true,
@@ -52,7 +51,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":6,
 				"props":{
 					"name":"huoche",
 					"active":true,
@@ -60,7 +58,7 @@
 					"layer":0,
 					"position":[
 						0.81,
-						0.15403,
+						0,
 						3.5763E-07
 					],
 					"rotation":[
@@ -76,8 +74,6 @@
 					],
 					"meshPath":"Assets/test/Animation/huoche-Object03.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/test/Animation/huoche.lmat"

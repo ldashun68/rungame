@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":19,
 		"props":{
 			"name":"map_80_02",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":20,
 				"props":{
 					"name":"pingfang",
 					"active":true,
@@ -53,8 +51,6 @@
 					],
 					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/pingfang.lmat"
@@ -65,7 +61,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":21,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -95,7 +90,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":22,
 				"props":{
 					"name":"nongtian",
 					"active":true,
@@ -119,8 +113,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -132,7 +124,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":23,
 				"props":{
 					"name":"nongtian (2)",
 					"active":true,
@@ -156,8 +147,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -169,7 +158,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":24,
 				"props":{
 					"name":"nongtian (3)",
 					"active":true,
@@ -193,8 +181,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -206,7 +192,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":25,
 				"props":{
 					"name":"nongtian (5)",
 					"active":true,
@@ -230,8 +215,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -243,7 +226,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":26,
 				"props":{
 					"name":"nongtian (6)",
 					"active":true,
@@ -267,8 +249,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -280,7 +260,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":27,
 				"props":{
 					"name":"pingfang (1)",
 					"active":true,
@@ -304,8 +283,6 @@
 					],
 					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/pingfang.lmat"
@@ -316,7 +293,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":28,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -346,7 +322,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":29,
 				"props":{
 					"name":"pingfang (2)",
 					"active":true,
@@ -370,8 +345,6 @@
 					],
 					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/pingfang.lmat"
@@ -382,7 +355,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":30,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -412,7 +384,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":31,
 				"props":{
 					"name":"nongtian (1)",
 					"active":true,
@@ -436,8 +407,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -448,7 +417,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":32,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -478,7 +446,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":33,
 				"props":{
 					"name":"nongtian (4)",
 					"active":true,
@@ -502,8 +469,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -514,7 +479,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":34,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -544,7 +508,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":35,
 				"props":{
 					"name":"nongtian (7)",
 					"active":true,
@@ -568,8 +531,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -580,7 +541,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":36,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -610,7 +570,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":37,
 				"props":{
 					"name":"nongtian (8)",
 					"active":true,
@@ -634,8 +593,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -646,7 +603,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":38,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -676,15 +632,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":39,
 				"props":{
-					"name":"road80",
+					"name":"road80 (6)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						-8.1,
-						3.12,
+						-0.9600028,
 						0
 					],
 					"rotation":[
@@ -700,8 +655,6 @@
 					],
 					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
@@ -712,7 +665,6 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":40,
 						"props":{
 							"name":"road80 (1)",
 							"active":true,
@@ -720,7 +672,7 @@
 							"layer":0,
 							"position":[
 								0,
-								17.41,
+								15.42,
 								-0.02
 							],
 							"rotation":[
@@ -736,8 +688,40 @@
 							],
 							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 							"enableRender":true,
-							"receiveShadows":true,
-							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"road80 (2)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								23.34,
+								-0.02000069
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"enableRender":true,
 							"materials":[
 								{
 									"path":"Assets/new/ground/Materials/dimian - 02.lmat"

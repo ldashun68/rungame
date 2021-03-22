@@ -4274,8 +4274,6 @@
                     let self = this;
                     let complete = () => {
                         let arr = self.myManager.getPassBuild();
-                        arr.push("3d/build/Conventional/road80.lh");
-                        arr.push("3d/build/Conventional/road90.lh");
                         self.myManager.onLoad3dScene(() => {
                             Laya.loader.create(arr, Laya.Handler.create(self, () => {
                                 self.SendMessage(GameNotity.Init_Loading);
@@ -4637,6 +4635,7 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
+            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

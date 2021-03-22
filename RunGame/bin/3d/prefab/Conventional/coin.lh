@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"MeshSprite3D",
-		"instanceID":365,
 		"props":{
 			"name":"coin",
 			"active":true,
@@ -26,8 +25,6 @@
 			],
 			"meshPath":"Assets/new/jinbi-default.lm",
 			"enableRender":true,
-			"receiveShadows":true,
-			"castShadow":true,
 			"materials":[
 				{
 					"path":"Assets/test/Materials/VCOL 1.lmat"

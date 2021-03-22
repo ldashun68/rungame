@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":41,
 		"props":{
 			"name":"map_80_03",
 			"active":true,
@@ -10,7 +9,7 @@
 			"layer":0,
 			"position":[
 				8.1,
-				-1.117587E-08,
+				0,
 				0
 			],
 			"rotation":[
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":42,
 				"props":{
 					"name":"jiudian",
 					"active":true,
@@ -38,7 +36,7 @@
 					"position":[
 						-25.11,
 						11.43,
-						-0.66
+						-0.1
 					],
 					"rotation":[
 						0,
@@ -53,8 +51,6 @@
 					],
 					"meshPath":"Assets/new/landmark/jiudian-jiudian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/landmark/jiudian.lmat"
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":43,
 				"props":{
 					"name":"nongtian",
 					"active":true,
@@ -90,8 +85,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -103,7 +96,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":44,
 				"props":{
 					"name":"nongtian (1)",
 					"active":true,
@@ -127,8 +119,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -140,7 +130,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":45,
 				"props":{
 					"name":"nongtian (2)",
 					"active":true,
@@ -164,8 +153,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -177,7 +164,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":46,
 				"props":{
 					"name":"nongtian (3)",
 					"active":true,
@@ -201,8 +187,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -214,7 +198,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":47,
 				"props":{
 					"name":"nongtian (4)",
 					"active":true,
@@ -238,8 +221,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -251,7 +232,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":48,
 				"props":{
 					"name":"nongtian (5)",
 					"active":true,
@@ -275,8 +255,6 @@
 					],
 					"meshPath":"Assets/new/build/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/nongtian.lmat"
@@ -288,15 +266,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":49,
 				"props":{
-					"name":"road80",
+					"name":"road80 (5)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						-8.1,
-						2.05,
+						-0.9600024,
 						0
 					],
 					"rotation":[
@@ -312,8 +289,6 @@
 					],
 					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
@@ -324,7 +299,6 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":50,
 						"props":{
 							"name":"road80 (1)",
 							"active":true,
@@ -332,7 +306,7 @@
 							"layer":0,
 							"position":[
 								0,
-								17.41,
+								15.42,
 								-0.02
 							],
 							"rotation":[
@@ -348,8 +322,40 @@
 							],
 							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 							"enableRender":true,
-							"receiveShadows":true,
-							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"road80 (2)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								23.34,
+								-0.02000069
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"enableRender":true,
 							"materials":[
 								{
 									"path":"Assets/new/ground/Materials/dimian - 02.lmat"

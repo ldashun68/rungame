@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":98,
 		"props":{
 			"name":"map_80_07",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":99,
 				"props":{
 					"name":"pingfang",
 					"active":true,
@@ -53,8 +51,6 @@
 					],
 					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/pingfang.lmat"
@@ -65,7 +61,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":100,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -95,7 +90,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":101,
 				"props":{
 					"name":"pingfang (3)",
 					"active":true,
@@ -119,8 +113,6 @@
 					],
 					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/build/pingfang.lmat"
@@ -131,7 +123,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":102,
 						"props":{
 							"name":"GameObject",
 							"active":true,
@@ -161,7 +152,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":103,
 				"props":{
 					"name":"lunchuan",
 					"active":true,
@@ -170,7 +160,7 @@
 					"position":[
 						-25.04,
 						11.2,
-						-0.63
+						-0.06
 					],
 					"rotation":[
 						0,
@@ -185,8 +175,6 @@
 					],
 					"meshPath":"Assets/new/landmark/lunchuan-lunchuan.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/landmark/lunchuan.lmat"
@@ -198,16 +186,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":104,
 				"props":{
-					"name":"road80",
+					"name":"road80 (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						-8.1,
-						2.56,
-						-0.009999995
+						-0.9600005,
+						-0.00999999
 					],
 					"rotation":[
 						0,
@@ -222,8 +209,6 @@
 					],
 					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
 							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
@@ -234,7 +219,6 @@
 				"child":[
 					{
 						"type":"MeshSprite3D",
-						"instanceID":105,
 						"props":{
 							"name":"road80 (1)",
 							"active":true,
@@ -242,7 +226,7 @@
 							"layer":0,
 							"position":[
 								0,
-								17.41,
+								15.42,
 								-0.02
 							],
 							"rotation":[
@@ -258,8 +242,40 @@
 							],
 							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 							"enableRender":true,
-							"receiveShadows":true,
-							"castShadow":true,
+							"materials":[
+								{
+									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
+								}
+							]
+						},
+						"components":[],
+						"child":[]
+					},
+					{
+						"type":"MeshSprite3D",
+						"props":{
+							"name":"road80 (2)",
+							"active":true,
+							"isStatic":false,
+							"layer":0,
+							"position":[
+								0,
+								23.34,
+								-0.02000069
+							],
+							"rotation":[
+								0,
+								0,
+								0,
+								-1
+							],
+							"scale":[
+								1,
+								1,
+								1
+							],
+							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"enableRender":true,
 							"materials":[
 								{
 									"path":"Assets/new/ground/Materials/dimian - 02.lmat"

@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"MeshSprite3D",
-		"instanceID":184,
 		"props":{
 			"name":"Cube",
 			"active":true,
@@ -11,7 +10,7 @@
 			"position":[
 				-0.06207711,
 				0.6321564,
-				-22.338
+				0
 			],
 			"rotation":[
 				0,
@@ -22,12 +21,10 @@
 			"scale":[
 				1,
 				1,
-				1
+				41
 			],
 			"meshPath":"Library/unity default resources-Cube.lm",
 			"enableRender":true,
-			"receiveShadows":true,
-			"castShadow":true,
 			"materials":[
 				{
 					"type":"Laya.BlinnPhongMaterial",
