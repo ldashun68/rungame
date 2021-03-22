@@ -8,15 +8,15 @@
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				8.1,
+				0,
 				0,
 				0
 			],
 			"rotation":[
-				0.7071068,
 				0,
-				0,
-				-0.7071068
+				-0.7071068,
+				-0.7071068,
+				0
 			],
 			"scale":[
 				1,
@@ -36,7 +36,7 @@
 					"position":[
 						-16.37,
 						18.73,
-						0.07999802
+						0.15
 					],
 					"rotation":[
 						0,
@@ -97,8 +97,8 @@
 					"layer":0,
 					"position":[
 						-13.23,
-						0.6499997,
-						0.05999994
+						0.65,
+						0.13
 					],
 					"rotation":[
 						0,
@@ -160,7 +160,7 @@
 					"position":[
 						-2.75,
 						24.61,
-						0.05999565
+						0.13
 					],
 					"rotation":[
 						0,
@@ -222,7 +222,7 @@
 					"position":[
 						-2.4,
 						0,
-						0.16
+						0.23
 					],
 					"rotation":[
 						0,
@@ -256,7 +256,7 @@
 					"position":[
 						-2.4,
 						11.63,
-						0.16
+						0.23
 					],
 					"rotation":[
 						0,
@@ -318,7 +318,7 @@
 					"position":[
 						2.79,
 						11.63,
-						0.16
+						0.23
 					],
 					"rotation":[
 						0,
@@ -380,7 +380,7 @@
 					"position":[
 						2.85,
 						0,
-						0.16
+						0.23
 					],
 					"rotation":[
 						0,
@@ -414,7 +414,7 @@
 					"position":[
 						2.79,
 						23.12,
-						0.16
+						0.23
 					],
 					"rotation":[
 						0,
@@ -469,31 +469,31 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"road80 (7)",
+					"name":"road90 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
 						-8.1,
-						-0.9600033,
+						22.54,
 						0
 					],
 					"rotation":[
 						0,
 						0,
-						0,
-						-1
+						1,
+						0
 					],
 					"scale":[
 						1,
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
+							"path":"Assets/new/ground/Materials/dimian - 02.lmat"
 						}
 					]
 				},
@@ -502,13 +502,13 @@
 					{
 						"type":"MeshSprite3D",
 						"props":{
-							"name":"road80 (1)",
+							"name":"road90 (1)",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
 								0,
-								15.42,
+								20.34,
 								-0.02
 							],
 							"rotation":[
@@ -519,44 +519,10 @@
 							],
 							"scale":[
 								1,
-								1,
+								1.3658,
 								1
 							],
-							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"road80 (2)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								23.34,
-								-0.02000069
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"meshPath":"Assets/new/ground/dimian-Object01.lm",
 							"enableRender":true,
 							"materials":[
 								{

@@ -3583,7 +3583,7 @@
                 Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
             }
             else {
-                Tool.instance.setPosition(new Laya.Vector3(-3.6, 2.08, build.transform.position.z), build);
+                Tool.instance.setPosition(new Laya.Vector3(-3.6, 0, build.transform.position.z), build);
                 Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
             }
             return build;
@@ -4305,6 +4305,8 @@
             this.playNode.active = true;
             this.playNode.transform.localPosition = new Laya.Vector3(0, 0.3, -3.5);
             this.playNode.transform.localRotationEulerX = 0;
+            this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+            this.animator.play("idle");
             this.m_currView.roleName_1.color = "#929b9e";
             this.m_currView.roleName_2.color = "#929b9e";
             this.m_currView.roleName_3.color = "#929b9e";
@@ -4635,7 +4637,6 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
-            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

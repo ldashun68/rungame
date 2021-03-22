@@ -10,23 +10,5 @@
 
   "navigateToMiniProgramAppIdList": [
     
-  ],
-  "subpackages": [
-    {
-      "name": "sub1",
-      "root": "3d/build/"
-    }
-    ,{
-      "name": "sub2",
-      "root": "3d/prefab/"
-    }
-    ,{
-      "name": "sub3",
-      "root": "res/"
-    }
-    ,{
-      "name": "sub4",
-      "root": "sub4/"
-    }
   ]
 }

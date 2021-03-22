@@ -144,6 +144,8 @@ export default class RoleSelect extends rab.RabView {
         this.playNode.active = true;
         this.playNode.transform.localPosition = new Laya.Vector3(0,0.3,-3.5);
         this.playNode.transform.localRotationEulerX = 0;
+        this.animator = this.playNode.getChildAt(0).getComponent(Laya.Animator);
+        this.animator.play("idle");
 
         this.m_currView.roleName_1.color ="#929b9e";
         this.m_currView.roleName_2.color ="#929b9e";

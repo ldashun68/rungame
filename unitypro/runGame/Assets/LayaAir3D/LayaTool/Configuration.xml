@@ -24,13 +24,13 @@
     <TerrainToMeshResolution>8</TerrainToMeshResolution>
     <GameObjectSetting>True</GameObjectSetting>
     <IgnoreNullGameObject>True</IgnoreNullGameObject>
-    <IgnoreNotActiveGameObject>True</IgnoreNotActiveGameObject>
+    <IgnoreNotActiveGameObject>False</IgnoreNotActiveGameObject>
     <OptimizeGameObject>False</OptimizeGameObject>
     <BatchMade>True</BatchMade>
     <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
     <CustomizeDirectory>True</CustomizeDirectory>
-    <CustomizeDirectoryName>build</CustomizeDirectoryName>
+    <CustomizeDirectoryName>prefab</CustomizeDirectoryName>
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>

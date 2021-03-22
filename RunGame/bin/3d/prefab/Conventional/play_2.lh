@@ -64,8 +64,16 @@
 								"blendingMode":0,
 								"states":[
 									{
-										"name":"death",
-										"clipPath":"Assets/new/role/02/role_02@fail-fail.lani"
+										"name":"idle",
+										"clipPath":"Assets/new/role/02/role_02@standby-standby.lani"
+									},
+									{
+										"name":"slide 0",
+										"clipPath":"Assets/new/role/02/role_02@left-left.lani"
+									},
+									{
+										"name":"run",
+										"clipPath":"Assets/new/role/02/role_02@run-run.lani"
 									},
 									{
 										"name":"left",
@@ -76,28 +84,12 @@
 										"clipPath":"Assets/new/role/02/role_02@right-right.lani"
 									},
 									{
-										"name":"run",
-										"clipPath":"Assets/new/role/02/role_02@run-run.lani"
-									},
-									{
-										"name":"idle",
-										"clipPath":"Assets/new/role/02/role_02@standby-standby.lani"
-									},
-									{
 										"name":"happydance",
 										"clipPath":"Assets/new/role/02/role_02@win-win.lani"
 									},
 									{
-										"name":"jump",
-										"clipPath":"Assets/new/role/02/role_02@right-right.lani"
-									},
-									{
-										"name":"slide",
-										"clipPath":"Assets/new/role/02/role_02@left-left.lani"
-									},
-									{
-										"name":"slide 0",
-										"clipPath":"Assets/new/role/02/role_02@left-left.lani"
+										"name":"death",
+										"clipPath":"Assets/new/role/02/role_02@fail-fail.lani"
 									}
 								]
 							}

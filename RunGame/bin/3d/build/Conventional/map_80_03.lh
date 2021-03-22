@@ -8,15 +8,15 @@
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				8.1,
+				0,
 				0,
 				0
 			],
 			"rotation":[
-				0.7071068,
 				0,
-				0,
-				-0.7071068
+				-0.7071068,
+				-0.7071068,
+				0
 			],
 			"scale":[
 				1,
@@ -267,31 +267,31 @@
 			{
 				"type":"MeshSprite3D",
 				"props":{
-					"name":"road80 (5)",
+					"name":"road90 (4)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-8.1,
-						-0.9600024,
+						-8.100016,
+						22.54002,
 						0
 					],
 					"rotation":[
 						0,
 						0,
-						0,
-						-1
+						1,
+						0
 					],
 					"scale":[
 						1,
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/Materials/dimian - 03.lmat"
+							"path":"Assets/new/ground/Materials/dimian - 02.lmat"
 						}
 					]
 				},
@@ -300,13 +300,13 @@
 					{
 						"type":"MeshSprite3D",
 						"props":{
-							"name":"road80 (1)",
+							"name":"road90 (1)",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
 								0,
-								15.42,
+								20.34,
 								-0.02
 							],
 							"rotation":[
@@ -317,44 +317,10 @@
 							],
 							"scale":[
 								1,
-								1,
+								1.3658,
 								1
 							],
-							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					},
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"road80 (2)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								23.34,
-								-0.02000069
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							],
-							"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+							"meshPath":"Assets/new/ground/dimian-Object01.lm",
 							"enableRender":true,
 							"materials":[
 								{

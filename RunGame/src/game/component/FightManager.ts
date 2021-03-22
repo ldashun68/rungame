@@ -81,7 +81,6 @@ export default class FightManager extends rab.GameObject {
         this.playerManager.init();
         this.obstacleManager = this.scene3D.addComponent(ObstacleManager);
         this.obstacleManager.init();
-        
     }
 
     /**
@@ -354,7 +353,7 @@ export default class FightManager extends rab.GameObject {
             Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
         }
         else {
-            Tool.instance.setPosition(new Laya.Vector3(-3.6, 2.08, build.transform.position.z), build);
+            Tool.instance.setPosition(new Laya.Vector3(-3.6, 0, build.transform.position.z), build);
             Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
         }
 
