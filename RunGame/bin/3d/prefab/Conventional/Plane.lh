@@ -3,14 +3,14 @@
 	"data":{
 		"type":"MeshSprite3D",
 		"props":{
-			"name":"Cube",
+			"name":"Plane",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				-0.06207711,
-				0.6321564,
-				0
+				-4.180497,
+				0,
+				-2.570271
 			],
 			"rotation":[
 				0,
@@ -21,9 +21,9 @@
 			"scale":[
 				1,
 				1,
-				41
+				1
 			],
-			"meshPath":"Library/unity default resources-Cube.lm",
+			"meshPath":"Library/unity default resources-Plane.lm",
 			"enableRender":true,
 			"materials":[
 				{
@@ -40,17 +40,8 @@
 				"rollingFriction":0,
 				"shapes":[
 					{
-						"type":"BoxColliderShape",
-						"center":[
-							0,
-							0,
-							0
-						],
-						"size":[
-							1,
-							1,
-							1
-						]
+						"type":"MeshColliderShape",
+						"mesh":"Library/unity default resources-Plane.lm"
 					}
 				],
 				"isTrigger":false

@@ -1,8 +1,8 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.UnlitMaterial",
-		"name":"Material #0",
+		"type":"Laya.BlinnPhongMaterial",
+		"name":"lunchuan",
 		"renderStates":[
 			{
 				"cull":2,
@@ -13,19 +13,24 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
 		"renderQueue":2000,
-		"albedoIntensity":1,
+		"metallic":0,
+		"smoothness":0,
+		"smoothnessTextureScale":1,
+		"smoothnessSource":0,
+		"normalTextureScale":1,
+		"parallaxTextureScale":0.02,
+		"occlusionTextureStrength":1,
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"dimian - 02.png",
+				"path":"../lunchuan.jpg",
 				"constructParams":[
-					512,
-					512,
-					1,
+					1024,
+					1024,
+					0,
 					true
 				],
 				"propertyParams":{
@@ -40,9 +45,9 @@
 			{
 				"name":"tilingOffset",
 				"value":[
-					2,
 					1,
 					1,
+					0,
 					0
 				]
 			},
@@ -53,6 +58,15 @@
 					1,
 					1,
 					1
+				]
+			},
+			{
+				"name":"emissionColor",
+				"value":[
+					0,
+					0,
+					0,
+					0
 				]
 			}
 		],

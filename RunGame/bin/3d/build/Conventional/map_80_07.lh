@@ -158,7 +158,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-25.04,
+						-17.35,
 						11.2,
 						-0.06
 					],
@@ -177,7 +177,8 @@
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/lunchuan.lmat"
+							"type":"Laya.BlinnPhongMaterial",
+							"path":"Assets/new/landmark/Materials/lunchuan.lmat"
 						}
 					]
 				},

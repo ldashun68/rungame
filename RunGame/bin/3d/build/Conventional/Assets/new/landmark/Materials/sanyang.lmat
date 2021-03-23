@@ -1,8 +1,8 @@
 {
 	"version":"LAYAMATERIAL:02",
 	"props":{
-		"type":"Laya.BlinnPhongMaterial",
-		"name":"Default-Material",
+		"type":"Laya.UnlitMaterial",
+		"name":"sanyang",
 		"renderStates":[
 			{
 				"cull":2,
@@ -13,17 +13,29 @@
 				"depthTest":515
 			}
 		],
+		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
 		"renderQueue":2000,
-		"metallic":0,
-		"smoothness":0.5,
-		"smoothnessTextureScale":1,
-		"smoothnessSource":0,
-		"normalTextureScale":1,
-		"parallaxTextureScale":0.02,
-		"occlusionTextureStrength":1,
-		"textures":[],
+		"albedoIntensity":1,
+		"textures":[
+			{
+				"name":"albedoTexture",
+				"path":"../sanyang.jpg",
+				"constructParams":[
+					1024,
+					1024,
+					0,
+					true
+				],
+				"propertyParams":{
+					"filterMode":1,
+					"wrapModeU":0,
+					"wrapModeV":0,
+					"anisoLevel":1
+				}
+			}
+		],
 		"vectors":[
 			{
 				"name":"tilingOffset",
@@ -41,15 +53,6 @@
 					1,
 					1,
 					1
-				]
-			},
-			{
-				"name":"emissionColor",
-				"value":[
-					0,
-					0,
-					0,
-					0.9999999
 				]
 			}
 		],

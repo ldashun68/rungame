@@ -158,9 +158,9 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.29,
-						11.25,
-						-0.67
+						-1.605884,
+						11.5337,
+						-0.1104546
 					],
 					"rotation":[
 						0,
@@ -177,7 +177,7 @@
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/sanyang.lmat"
+							"path":"Assets/new/landmark/Materials/sanyang.lmat"
 						}
 					]
 				},

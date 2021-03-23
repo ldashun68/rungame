@@ -24,7 +24,7 @@
     <TerrainToMeshResolution>8</TerrainToMeshResolution>
     <GameObjectSetting>True</GameObjectSetting>
     <IgnoreNullGameObject>True</IgnoreNullGameObject>
-    <IgnoreNotActiveGameObject>False</IgnoreNotActiveGameObject>
+    <IgnoreNotActiveGameObject>True</IgnoreNotActiveGameObject>
     <OptimizeGameObject>False</OptimizeGameObject>
     <BatchMade>True</BatchMade>
     <OtherSetting>True</OtherSetting>

@@ -34,7 +34,7 @@
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-25.11,
+						-18.67,
 						11.43,
 						-0.1
 					],
@@ -53,7 +53,7 @@
 					"enableRender":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/jiudian.lmat"
+							"path":"Assets/new/landmark/Materials/jiudian.lmat"
 						}
 					]
 				},
