@@ -18,7 +18,7 @@
     <TexAnimationSocket>False</TexAnimationSocket>
     <TerrainSetting>False</TerrainSetting>
     <TextureSetting>False</TextureSetting>
-    <JPGQuality>75</JPGQuality>
+    <JPGQuality>100</JPGQuality>
     <PVRQuality>2</PVRQuality>
     <ConvertTerrain>False</ConvertTerrain>
     <TerrainToMeshResolution>8</TerrainToMeshResolution>
@@ -30,7 +30,7 @@
     <OtherSetting>True</OtherSetting>
     <CoverOriginalFile>True</CoverOriginalFile>
     <CustomizeDirectory>True</CustomizeDirectory>
-    <CustomizeDirectoryName>prefab</CustomizeDirectoryName>
+    <CustomizeDirectoryName>build</CustomizeDirectoryName>
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
@@ -190,7 +190,7 @@
     <ScrollPositionY>0</ScrollPositionY>
   </config5>
   <language>1</language>
-  <time>1616403389</time>
+  <time>1616463998</time>
   <saveAcount>
   </saveAcount>
   <savePassWorld>
