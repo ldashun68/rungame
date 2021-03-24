@@ -1,11 +1,12 @@
 {
   "debug":true,
   "version":"1.0.0",
-  "loadJsonCount": 3,
+  "loadJsonCount": 4,
   "loadJson":{
     "obstacle":"json/obstacle.json",
     "build":"json/build.json",
-    "pass":"json/pass.json"
+    "pass":"json/pass.json",
+    "player":"json/player.json"
   },
   "loadui":[
     "prefab/arrowPrefab.json"

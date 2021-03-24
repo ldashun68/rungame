@@ -33,7 +33,7 @@ export default class PlayerManager extends rab.GameObject {
     public slideLength:number = 4;
     public m_JumpStart:number = 0;
     public m_SlideStart:number = 0;
-    public minSpeed = 5.0;
+    public minSpeed = 8.0;
     public maxSpeed = 15.0;
     public m_Speed:number;
     public worldDistance:number = 0;
@@ -47,6 +47,9 @@ export default class PlayerManager extends rab.GameObject {
     }
 
     onInit(): void {
+        this.minSpeed = this.manager.jsonConfig.getConfig("player").minSpeed;
+        this.maxSpeed = this.manager.jsonConfig.getConfig("player").maxSpeed;
+        
         // this.AddListenerMessage(GameNotity.GameMessage_GameStart, this.onGameStart);
         this.AddListenerMessage(GameNotity.Game_UpdateMouseMove,this.onMouseMove);
         this.AddListenerMessage(GameNotity.Game_RoleRetrogression,this.onRoletrogression);
@@ -218,7 +221,7 @@ export default class PlayerManager extends rab.GameObject {
     }
 
     private onRoletrogression (): void {
-        this.retrogression = 1;
+        this.retrogression = 0.5;
     }
 
     private get speedRatio() {  return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed);}

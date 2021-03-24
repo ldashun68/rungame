@@ -3135,12 +3135,14 @@
             this.slideLength = 4;
             this.m_JumpStart = 0;
             this.m_SlideStart = 0;
-            this.minSpeed = 5.0;
+            this.minSpeed = 8.0;
             this.maxSpeed = 15.0;
             this.worldDistance = 0;
             this.retrogression = 0;
         }
         onInit() {
+            this.minSpeed = this.manager.jsonConfig.getConfig("player").minSpeed;
+            this.maxSpeed = this.manager.jsonConfig.getConfig("player").maxSpeed;
             this.AddListenerMessage(GameNotity.Game_UpdateMouseMove, this.onMouseMove);
             this.AddListenerMessage(GameNotity.Game_RoleRetrogression, this.onRoletrogression);
         }
@@ -3284,7 +3286,7 @@
             }
         }
         onRoletrogression() {
-            this.retrogression = 1;
+            this.retrogression = 0.5;
         }
         get speedRatio() { return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed); }
         onMouseMove(data) {
@@ -4637,6 +4639,7 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
+            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
