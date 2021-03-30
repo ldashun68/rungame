@@ -477,7 +477,7 @@
             rab.Util.log('初始化获得保存数据', gameInfo);
         }
         SaveData(gameInfo, key = "gameinfo") {
-            if (typeof wx != "undefined") {
+            if (typeof wx != "undefined" && this.myManager.userInfo && this.myManager.userInfo.token) {
                 rab.HTTP.post("api/player", {
                     "data": JSON.stringify(gameInfo),
                     "token": this.myManager.userInfo.token
@@ -1112,10 +1112,19 @@
             if (rab.Util.isMobil) {
                 wx.showLoading({ title: '登录中' });
                 rab.wxSdk.onLoginWXServer((data) => {
-                    console.log("登录服务器验证", data);
+                    if (data) {
+                        console.log("登录服务器验证", data);
+                        this.userInfo = data;
+                        console.log("登录服务器验证====", this.userInfo.token);
+                        this.LoginBreak();
+                    }
+                    else {
+                        console.log("新用户先进游戏", data);
+                        this.LoginBreak();
+                    }
+                }, (data) => {
                     this.userInfo = data;
                     console.log("登录服务器验证====", this.userInfo.token);
-                    this.LoginBreak();
                 });
             }
             else {
@@ -1360,7 +1369,7 @@
             }
             return 0;
         }
-        onLoginWXServer(breakcall, path = "api/authCode") {
+        onLoginWXServer(breakcall, breakcall2, path = "api/authCode") {
             if (rab.Util.isMobil) {
                 wx.login({
                     success: (res) => {
@@ -1369,11 +1378,12 @@
                             console.log("登录code", res.code);
                             rab.HTTP.post(path, { "code": res.code }, this, (data) => {
                                 console.log("登录code返回：", data);
-                                if (data.data != null && data.data.gamedata != null) {
+                                if (data.data != null) {
                                     breakcall && breakcall(data.data);
                                 }
                                 else {
-                                    this.onCreateUserInfo(code, breakcall);
+                                    breakcall && breakcall(null);
+                                    this.onCreateUserInfo(code, breakcall2);
                                 }
                             });
                         }
@@ -1412,6 +1422,7 @@
         }
         onCreateUserInfo(code, breakcall) {
             if (rab.Util.isMobil) {
+                wx.hideLoading();
                 wx.getSetting({
                     success: (res) => {
                         if (res.authSetting['scope.userInfo']) {
@@ -2037,7 +2048,7 @@
             return build;
         }
         onAddLevelDate() {
-            if (rab.Util.isMobil) {
+            if (rab.Util.isMobil && this.userInfo && this.userInfo.token) {
                 rab.HTTP.post("api/playLog", {
                     "passLv": 0,
                     "failLv": 0,
@@ -2049,7 +2060,7 @@
             }
         }
         getRank(callback) {
-            if (rab.Util.isMobil) {
+            if (rab.Util.isMobil && this.userInfo && this.userInfo.token) {
                 rab.HTTP.get("api/rankList", this.userInfo.token, (data) => {
                     this.rank = data.data;
                     callback && callback();
@@ -4637,6 +4648,7 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
+            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {

@@ -24,7 +24,7 @@
     <TerrainToMeshResolution>8</TerrainToMeshResolution>
     <GameObjectSetting>True</GameObjectSetting>
     <IgnoreNullGameObject>True</IgnoreNullGameObject>
-    <IgnoreNotActiveGameObject>False</IgnoreNotActiveGameObject>
+    <IgnoreNotActiveGameObject>True</IgnoreNotActiveGameObject>
     <OptimizeGameObject>False</OptimizeGameObject>
     <BatchMade>True</BatchMade>
     <OtherSetting>True</OtherSetting>
@@ -34,7 +34,7 @@
     <Ios>False</Ios>
     <Android>False</Android>
     <Conventional>True</Conventional>
-    <SavePath>G:/rungame/RunGame/bin/3d</SavePath>
+    <SavePath>/Users/Shared/Pro/lock/working/Laya/RunGame/run/RunGame/bin/3d</SavePath>
     <ScrollPositionY>0</ScrollPositionY>
   </config1>
   <config2>
