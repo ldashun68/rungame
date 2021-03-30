@@ -481,7 +481,7 @@ class GameChannel {
      */
     SaveData(gameInfo:any,key:string = "gameinfo")
     {
-        if(typeof wx != "undefined")
+        if(typeof wx != "undefined" && this.myManager.userInfo&&this.myManager.userInfo.token)
         {
             rab.HTTP.post("api/player",{
                 "data":JSON.stringify(gameInfo),
@@ -1757,11 +1757,19 @@ abstract class RabController extends RabManager {
         if(rab.Util.isMobil) {
             wx.showLoading({ title: '登录中' });
             rab.wxSdk.onLoginWXServer((data)=>{
-                console.log("登录服务器验证",data);
+                if(data)
+                {
+                    console.log("登录服务器验证",data);
+                    this.userInfo = data;
+                    console.log("登录服务器验证====",this.userInfo.token);
+                    this.LoginBreak();
+                }else{
+                    console.log("新用户先进游戏",data);
+                    this.LoginBreak();
+                }
+            },(data)=>{
                 this.userInfo = data;
                 console.log("登录服务器验证====",this.userInfo.token);
-                this.LoginBreak();
-                
             });
         }
         else{
@@ -2157,7 +2165,7 @@ class wxSdk{
 
 
     /**微信登录 */
-    public onLoginWXServer(breakcall:Function,path:string="api/authCode")
+    public onLoginWXServer(breakcall:Function,breakcall2:Function,path:string="api/authCode")
     {
         if(rab.Util.isMobil) {
             wx.login({
@@ -2168,11 +2176,12 @@ class wxSdk{
                         
                         rab.HTTP.post(path,{"code":res.code},this,(data)=>{
                             console.log("登录code返回：",data);
-                            if(data.data != null && data.data.gamedata != null)
+                            if(data.data != null)
                             {
                                 breakcall && breakcall(data.data);
                             }else{
-                                this.onCreateUserInfo(code,breakcall);
+                                breakcall && breakcall(null);
+                                this.onCreateUserInfo(code,breakcall2);
                             }
                         });
                     }
@@ -2216,9 +2225,10 @@ class wxSdk{
 
     public onCreateUserInfo(code:string,breakcall:Function)
     {
+
         if(rab.Util.isMobil)
         {
-         
+            wx.hideLoading();
             wx.getSetting({
                 success:(res)=>{
                     if(res.authSetting['scope.userInfo'])

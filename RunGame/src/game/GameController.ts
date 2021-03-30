@@ -320,7 +320,7 @@ export default class GameController extends rab.RabController {
     */
     public onAddLevelDate()
     {
-       if(rab.Util.isMobil)
+       if(rab.Util.isMobil && this.userInfo && this.userInfo.token)
        {
             rab.HTTP.post("api/playLog",{
                 "passLv": 0,
@@ -335,7 +335,7 @@ export default class GameController extends rab.RabController {
 
    public getRank(callback: Function)
    {
-        if(rab.Util.isMobil)
+        if(rab.Util.isMobil && this.userInfo && this.userInfo.token)
         {
             rab.HTTP.get("api/rankList",this.userInfo.token,(data)=>{
                 this.rank = data.data;
