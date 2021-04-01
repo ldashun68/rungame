@@ -62,6 +62,7 @@ export default class Game extends rab.RabView {
         this.m_currView.timeDown.visible = false;
         this.fightManager.fightReady();
         this.m_currView.lifeText.value = "3";
+        this.m_currView.icon.skin = "new/game/tou_0" + this.myManager.playSelect + ".png"
         // this.m_currView.coinText.value = "0";
     }
 

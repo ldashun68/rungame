@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Scene",
-    "selectedBox":83,
-    "selecteID":89,
+    "selectedBox":24,
+    "selecteID":25,
     "searchKey":"Scene",
     "props":{"width":750,"sceneColor":"#000000","sceneBg":"laya/views/view/RoleSelect.jpg","height":1334},
     "nodeParent":-1,
@@ -214,7 +214,7 @@
                     "x":30,
                     "type":"Image",
                     "searchKey":"Image,img_1",
-                    "props":{"var":"img_1","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "props":{"var":"img_1","skin":"new/role/touxiang_01.png","centerY":0,"centerX":0},
                     "nodeParent":24,
                     "label":"img_1",
                     "isDirectory":false,
@@ -346,16 +346,17 @@
             "props":{"var":"r3","skin":"new/role/touxiangk.png","centerX":94,"bottom":80},
             "nodeParent":2,
             "label":"r3",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":55,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,img_3",
-                    "props":{"var":"img_3","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "props":{"var":"img_3","skin":"new/role/touxiang_03.png","centerY":0,"centerX":0},
                     "nodeParent":55,
                     "label":"img_3",
                     "isDirectory":false,
@@ -366,6 +367,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
@@ -378,6 +380,7 @@
                     "compId":57,
                     "child":[
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label,roleName_3",
                             "props":{"var":"roleName_3","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
@@ -392,6 +395,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,select_3",
                     "props":{"var":"select_3","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
@@ -412,16 +416,17 @@
             "props":{"var":"r4","skin":"new/role/touxiangk.png","centerX":282,"bottom":80},
             "nodeParent":2,
             "label":"r4",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":60,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,img_4",
-                    "props":{"var":"img_4","skin":"new/role/touxiang_02.png","centerY":0,"centerX":0},
+                    "props":{"var":"img_4","skin":"new/role/touxiang_04.png","centerY":0,"centerX":0},
                     "nodeParent":60,
                     "label":"img_4",
                     "isDirectory":false,
@@ -432,6 +437,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"skin":"new/role/mingzidi.png","centerX":0,"bottom":-60},
@@ -444,6 +450,7 @@
                     "compId":62,
                     "child":[
                         {
+                            "x":45,
                             "type":"Label",
                             "searchKey":"Label,roleName_4",
                             "props":{"var":"roleName_4","text":"JACK","fontSize":30,"color":"#929b9e","centerY":0,"centerX":0,"bold":true},
@@ -458,6 +465,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,select_4",
                     "props":{"var":"select_4","skin":"new/role/touxiangk2.png","centerY":0,"centerX":0},
