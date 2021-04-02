@@ -10,5 +10,8 @@
     {"id":9,"name":"自行车","res":"ObstacleBicycle","up":0,"down":0,"pos":0},
     {"id":10,"name":"货车","res":"ObstacleTruck","up":0,"down":0,"pos":2},
     {"id":11,"name":"路障","res":"ObstacleRoadblocks","up":0,"down":0,"pos":0},
+    {"id":12,"name":"巴士","res":"ObstacleBass","up":0,"down":0,"pos":2},
+    {"id":13,"name":"轿车","res":"ObstacleCar","up":0,"down":0,"pos":2},
+    {"id":14,"name":"电动车","res":"ObstacleBicycle2","up":0,"down":0,"pos":0},
     {"id":100,"name":"硬币","res":"coin","up":0,"down":0,"pos":0}
 ]

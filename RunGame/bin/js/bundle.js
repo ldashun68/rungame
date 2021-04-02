@@ -1758,18 +1758,18 @@
             let passIndex = [];
             passIndex["year80"] = 0;
             passIndex["year90"] = 11;
-            passIndex["year00"] = 11;
-            passIndex["year10"] = 11;
+            passIndex["year00"] = 22;
+            passIndex["year10"] = 33;
             let build = [];
             build["year80"] = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008];
             build["year90"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
-            build["year00"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
-            build["year10"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
+            build["year00"] = [30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008];
+            build["year10"] = [40001, 40002, 40003, 40004, 40005, 40006, 40007, 40008];
             let obstacle = [];
             obstacle["year80"] = [9, 10, 100];
             obstacle["year90"] = [10, 11, 100];
-            obstacle["year00"] = [10, 11, 100];
-            obstacle["year10"] = [10, 11, 100];
+            obstacle["year00"] = [11, 12, 13, 100];
+            obstacle["year10"] = [12, 13, 14, 100];
             let i = index + passIndex[year];
             let pass = (this.jsonData['pass'][i]);
             pass.builds = build[year];
@@ -2806,11 +2806,15 @@
             let complete = () => {
                 rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
                 self.myManager.onLoad3dScene(() => {
-                    Laya.loader.create(["3d/prefab/Conventional/play_1.lh", "3d/prefab/Conventional/play_2.lh", "3d/prefab/Conventional/play_3.lh", "3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
-                        rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
+                    Laya.loader.create([
+                        "3d/prefab/Conventional/play_1.lh",
+                        "3d/prefab/Conventional/play_2.lh",
+                        "3d/prefab/Conventional/play_3.lh",
+                        "3d/prefab/Conventional/play_4.lh",
+                        "3d/prefab/Conventional/box.lh"
+                    ], Laya.Handler.create(this, () => {
+                        rab.UIManager.onCreateView(ViewConfig.gameView.GameWinView);
                         rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
-                        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
-                        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
                     }));
                 });
             };
@@ -2960,7 +2964,7 @@
             }
         }
         isTruck() {
-            return this.obstacleId == 10;
+            return this.obstacleId == 10 || this.obstacleId == 12 || this.obstacleId == 13;
         }
         isCoin() {
             return this.obstacleId == 100;
@@ -3005,7 +3009,7 @@
             }
             let ObstacleID = this.obstaclesID;
             this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random() * this._passProp.obstacles.length)];
-            while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
+            while (this.obstaclesID == ObstacleID && (this.isTruck() == true || this.obstaclesID == 100)) {
                 this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random() * this._passProp.obstacles.length)];
             }
             let randomX = this.randomX;
@@ -3051,6 +3055,9 @@
             obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
             obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
             obstacle.active = true;
+        }
+        isTruck() {
+            return this.obstaclesID == 10 || this.obstaclesID == 12 || this.obstaclesID == 13;
         }
         SpawnCoinAndPowerup() {
         }
@@ -3587,8 +3594,8 @@
             buildProp.onInitProp(this.manager.getBuild(buildID), this._buildPosZ);
             console.log("buildID:", buildID);
             this._buildPosZ += this.manager.getBuild(buildID).length;
-            while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length - this.winLenght - 15) {
-                this._obstaclePosZ += 15;
+            while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length - this.winLenght - 17) {
+                this._obstaclePosZ += 17;
                 this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
             }
             if (this.manager.playSelect == 1) {
@@ -3596,7 +3603,7 @@
                 Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
             }
             else {
-                Tool.instance.setPosition(new Laya.Vector3(-3.6, 0, build.transform.position.z), build);
+                Tool.instance.setPosition(new Laya.Vector3(-3.1, 0, build.transform.position.z), build);
                 Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
             }
             return build;
@@ -3853,7 +3860,6 @@
         }
         OnRefreshView() {
             this.create3DScene();
-            this.onwin();
         }
         create3DScene() {
             this.myManager.scene3D.active = false;
@@ -3875,6 +3881,17 @@
                 this.animator.play("idle");
                 this.animator.play("happydance");
             }, null, false);
+            this.boxNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/box.lh"), this.scene3D), true, new Laya.Vector3(0, 0, 2);
+            this.boxNode.transform.localPosition = new Laya.Vector3(0, 0.1, -2);
+            this.boxNode.transform.localRotationEulerX = 0;
+            this.boxNode.active = true;
+            Laya.timer.frameOnce(10, this, () => {
+                this.onwin();
+            });
+            Laya.timer.frameOnce(60, this, () => {
+                this.playNode.active = true;
+                this.boxNode.active = false;
+            });
         }
         onUpdate() {
             this.m_currView.eff.rotation += 1;

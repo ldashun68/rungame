@@ -1,21 +1,22 @@
 {
-	"version":"LAYAHIERARCHY:01",
+	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
+		"instanceID":76,
 		"props":{
 			"name":"map_80_08",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
+				-8.2,
 				0,
-				0,
-				0
+				-20.01
 			],
 			"rotation":[
 				0,
-				-0.7071068,
-				-0.7071068,
+				0.7071068,
+				0.7071068,
 				0
 			],
 			"scale":[
@@ -28,15 +29,16 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
+				"instanceID":77,
 				"props":{
-					"name":"gongchang",
+					"name":"dimian-02 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-16.95,
-						4.44,
-						0.07999802
+						-8.200017,
+						20.01002,
+						-0.2000179
 					],
 					"rotation":[
 						0,
@@ -49,56 +51,31 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/gongchang-gongchang.lm",
+					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/gongchang.lmat"
+							"path":"Assets/new/ground/Material _0.lmat"
 						}
 					]
 				},
 				"components":[],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"props":{
-							"name":"GameObject",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
+				"child":[]
 			},
 			{
 				"type":"MeshSprite3D",
+				"instanceID":78,
 				"props":{
-					"name":"pingfang (1)",
+					"name":"dimian-02 (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-13.28,
-						22.19,
-						0.05999994
+						-8.200017,
+						2.390002,
+						-0.2000046
 					],
 					"rotation":[
 						0,
@@ -111,56 +88,105 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/pingfang-pingfang.lm",
+					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/pingfang.lmat"
+							"path":"Assets/new/ground/Material _0.lmat"
 						}
 					]
 				},
 				"components":[],
-				"child":[
-					{
-						"type":"Sprite3D",
-						"props":{
-							"name":"GameObject",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								0,
-								0
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1,
-								1
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
+				"child":[]
 			},
 			{
 				"type":"MeshSprite3D",
+				"instanceID":79,
 				"props":{
-					"name":"sanyang",
+					"name":"pingfang (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-1.605884,
-						11.5337,
-						-0.1104546
+						-13.58,
+						21.48,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						-1,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/80/pingfang-pingfang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":80,
+				"props":{
+					"name":"gongchang (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-16.73,
+						3.790001,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						-1,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/80/gongchang-gongchang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/80/gongchang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":81,
+				"props":{
+					"name":"sanyang (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-1.46,
+						11.11,
+						-0.74
 					],
 					"rotation":[
 						0,
@@ -175,83 +201,16 @@
 					],
 					"meshPath":"Assets/new/landmark/sanyang-sanyang.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/Materials/sanyang.lmat"
+							"path":"Assets/new/landmark/sanyang.lmat"
 						}
 					]
 				},
 				"components":[],
 				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"props":{
-					"name":"road90 (9)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-8.100054,
-						22.54006,
-						0
-					],
-					"rotation":[
-						0,
-						0,
-						1,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
-					"enableRender":true,
-					"materials":[
-						{
-							"path":"Assets/new/ground/Materials/dimian - 02.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"road90 (1)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								20.34,
-								-0.02
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1.3658,
-								1
-							],
-							"meshPath":"Assets/new/ground/dimian-Object01.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/new/ground/Materials/dimian - 02.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
 			}
 		]
 	}

@@ -117,7 +117,7 @@ export default class ObstacleItem extends rab.GameObject {
 
     /**是否为货车 */
     public isTruck (): boolean {
-        return this.obstacleId == 10;
+        return this.obstacleId == 10 || this.obstacleId == 12 || this.obstacleId == 13;
     }
 
     /**是否为金币 */

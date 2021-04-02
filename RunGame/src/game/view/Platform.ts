@@ -90,7 +90,13 @@ export default class Platform extends rab.RabView {
         let complete = () => {
             rab.UIManager.onCreateView(ViewConfig.gameView.NotClick);
             self.myManager.onLoad3dScene(() => {
-                Laya.loader.create(["3d/prefab/Conventional/play_1.lh","3d/prefab/Conventional/play_2.lh","3d/prefab/Conventional/play_3.lh","3d/prefab/Conventional/play_4.lh"], Laya.Handler.create(this, () => {
+                Laya.loader.create([
+                    "3d/prefab/Conventional/play_1.lh",
+                    "3d/prefab/Conventional/play_2.lh",
+                    "3d/prefab/Conventional/play_3.lh",
+                    "3d/prefab/Conventional/play_4.lh",
+                    "3d/prefab/Conventional/box.lh"
+                ], Laya.Handler.create(this, () => {
                     rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
                     rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
                     rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);

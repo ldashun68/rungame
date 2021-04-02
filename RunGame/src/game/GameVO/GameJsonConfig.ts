@@ -44,20 +44,20 @@ export default class GameJsonConfig {
         let passIndex: Array<number> = [];
         passIndex["year80"] = 0;
         passIndex["year90"] = 11;
-        passIndex["year00"] = 11;
-        passIndex["year10"] = 11;
+        passIndex["year00"] = 22;
+        passIndex["year10"] = 33;
 
         let build: Array<Array<number>> = [];
         build["year80"] = [10001,10002,10003,10004,10005,10006,10007,10008];
         build["year90"] = [20001,20002,20003,20004,20005,20006,20007,20008];
-        build["year00"] = [20001,20002,20003,20004,20005,20006,20007,20008];
-        build["year10"] = [20001,20002,20003,20004,20005,20006,20007,20008];
+        build["year00"] = [30001,30002,30003,30004,30005,30006,30007,30008];
+        build["year10"] = [40001,40002,40003,40004,40005,40006,40007,40008];
 
         let obstacle: Array<Array<number>> = [];
         obstacle["year80"] = [9,10,100];
         obstacle["year90"] = [10,11,100];
-        obstacle["year00"] = [10,11,100];
-        obstacle["year10"] = [10,11,100];
+        obstacle["year00"] = [11,12,13,100];
+        obstacle["year10"] = [12,13,14,100];
         
         let i = index + passIndex[year];
         let pass: passProp = <passProp>(this.jsonData['pass'][i]);

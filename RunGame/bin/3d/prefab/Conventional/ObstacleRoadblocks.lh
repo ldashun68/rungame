@@ -1,7 +1,8 @@
 {
-	"version":"LAYAHIERARCHY:01",
+	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
+		"instanceID":2,
 		"props":{
 			"name":"ObstacleRoadblocks",
 			"active":true,
@@ -10,7 +11,7 @@
 			"position":[
 				-2.05,
 				0,
-				0
+				9.71
 			],
 			"rotation":[
 				0,
@@ -51,14 +52,15 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
+				"instanceID":3,
 				"props":{
-					"name":"ObstacleRoadblocks",
+					"name":"luzhang",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						0,
-						-0.013,
+						-2.3842E-07,
+						-2.3842E-07,
 						0
 					],
 					"rotation":[
@@ -68,15 +70,17 @@
 						-0.7071068
 					],
 					"scale":[
-						0.75,
+						0.8527338,
 						1,
 						1
 					],
-					"meshPath":"Assets/test/Animation/luzhang-Box04.lm",
+					"meshPath":"Assets/new/block/90/luzhang-Box04.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/test/Animation/luzhang.lmat"
+							"path":"Assets/new/block/90/Material _269.lmat"
 						}
 					]
 				},

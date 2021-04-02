@@ -343,8 +343,8 @@ export default class FightManager extends rab.GameObject {
         console.log("buildID:", buildID);
 
         this._buildPosZ += this.manager.getBuild(buildID).length;
-        while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length-this.winLenght-15) {
-            this._obstaclePosZ += 15;
+        while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length-this.winLenght-17) {
+            this._obstaclePosZ += 17;
             this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
         }
 
@@ -353,7 +353,7 @@ export default class FightManager extends rab.GameObject {
             Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
         }
         else {
-            Tool.instance.setPosition(new Laya.Vector3(-3.6, 0, build.transform.position.z), build);
+            Tool.instance.setPosition(new Laya.Vector3(-3.1, 0, build.transform.position.z), build);
             Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
         }
 

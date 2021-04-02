@@ -1,7 +1,8 @@
 {
-	"version":"LAYAHIERARCHY:01",
+	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"MeshSprite3D",
+		"instanceID":354,
 		"props":{
 			"name":"coin",
 			"active":true,
@@ -10,7 +11,7 @@
 			"position":[
 				0,
 				0,
-				1.25
+				0
 			],
 			"rotation":[
 				0.7071068,
@@ -23,11 +24,13 @@
 				1,
 				1
 			],
-			"meshPath":"Assets/new/jinbi-default.lm",
+			"meshPath":"Assets/new/items/jinbi-default.lm",
 			"enableRender":true,
+			"receiveShadows":true,
+			"castShadow":true,
 			"materials":[
 				{
-					"path":"Assets/test/Materials/VCOL 1.lmat"
+					"path":"Assets/new/items/Material _32.lmat"
 				}
 			]
 		},
@@ -43,12 +46,12 @@
 						"center":[
 							0,
 							0,
-							0.4122216
+							0.4
 						],
 						"size":[
-							0.8075221,
-							0.75,
-							0.8073658
+							0.8073659,
+							0.2,
+							0.8073659
 						]
 					}
 				],

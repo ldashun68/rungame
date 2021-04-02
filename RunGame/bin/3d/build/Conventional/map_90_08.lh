@@ -1,22 +1,23 @@
 {
-	"version":"LAYAHIERARCHY:01",
+	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
+		"instanceID":127,
 		"props":{
 			"name":"map_90_08",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
+				3.129757,
 				0,
-				0,
-				10.78
+				-9.068523
 			],
 			"rotation":[
 				0,
-				-1,
 				0,
-				0
+				0,
+				-1
 			],
 			"scale":[
 				1,
@@ -28,14 +29,52 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
+				"instanceID":128,
 				"props":{
-					"name":"loufang",
+					"name":"dimian (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						2.16,
-						-0.1,
+						-3.129757,
+						0,
+						-8.49
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/dimian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":129,
+				"props":{
+					"name":"dimian (3)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-3.129757,
+						0,
 						9.068523
 					],
 					"rotation":[
@@ -49,11 +88,13 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/loufang-loufang.lm",
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/loufang.lmat"
+							"path":"Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -62,15 +103,127 @@
 			},
 			{
 				"type":"MeshSprite3D",
+				"instanceID":130,
 				"props":{
-					"name":"gongchang",
+					"name":"loufang (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.25,
-						-0.1,
-						-6.51
+						-8.49,
+						0,
+						0.9
+					],
+					"rotation":[
+						0,
+						-0.7071068,
+						-0.7071068,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":131,
+				"props":{
+					"name":"loufang (4)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-8.49,
+						0,
+						12.09
+					],
+					"rotation":[
+						0,
+						-0.7071068,
+						-0.7071068,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":132,
+				"props":{
+					"name":"loufang (5)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-8.49,
+						0,
+						-10
+					],
+					"rotation":[
+						0,
+						-0.7071068,
+						-0.7071068,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":133,
+				"props":{
+					"name":"gongchang (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						5.42,
+						0,
+						-6.53
 					],
 					"rotation":[
 						0.7071068,
@@ -83,11 +236,13 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/gongchang-gongchang.lm",
+					"meshPath":"Assets/new/build/80/gongchang-gongchang.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/gongchang.lmat"
+							"path":"Assets/new/build/80/gongchang.lmat"
 						}
 					]
 				},
@@ -96,174 +251,40 @@
 			},
 			{
 				"type":"MeshSprite3D",
+				"instanceID":134,
 				"props":{
 					"name":"loufang (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-9.35,
-						-0.1,
-						10.2
+						2.13,
+						0,
+						8.92
 					],
 					"rotation":[
+						0.7071068,
 						0,
-						0.7071068,
-						0.7071068,
-						0
+						0,
+						-0.7071068
 					],
 					"scale":[
 						1,
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/loufang-loufang.lm",
+					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
 					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/loufang.lmat"
+							"path":"Assets/new/build/90/loufang.lmat"
 						}
 					]
 				},
 				"components":[],
 				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"props":{
-					"name":"loufang (2)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-9.35,
-						-0.1,
-						-0.42
-					],
-					"rotation":[
-						0,
-						0.7071068,
-						0.7071068,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/loufang-loufang.lm",
-					"enableRender":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/loufang.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"props":{
-					"name":"loufang (3)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-9.35,
-						-0.1,
-						-11.28
-					],
-					"rotation":[
-						0,
-						0.7071068,
-						0.7071068,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/loufang-loufang.lm",
-					"enableRender":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/loufang.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"props":{
-					"name":"road90 (6)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-3.6,
-						0,
-						-11.76
-					],
-					"rotation":[
-						0,
-						0.7071068,
-						0.7071068,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
-					"enableRender":true,
-					"materials":[
-						{
-							"path":"Assets/new/ground/Materials/dimian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[
-					{
-						"type":"MeshSprite3D",
-						"props":{
-							"name":"road90 (1)",
-							"active":true,
-							"isStatic":false,
-							"layer":0,
-							"position":[
-								0,
-								20.34,
-								-0.02
-							],
-							"rotation":[
-								0,
-								0,
-								0,
-								-1
-							],
-							"scale":[
-								1,
-								1.3658,
-								1
-							],
-							"meshPath":"Assets/new/ground/dimian-Object01.lm",
-							"enableRender":true,
-							"materials":[
-								{
-									"path":"Assets/new/ground/Materials/dimian 1.lmat"
-								}
-							]
-						},
-						"components":[],
-						"child":[]
-					}
-				]
 			}
 		]
 	}

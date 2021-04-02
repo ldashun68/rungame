@@ -44,7 +44,7 @@ export default class ObstacleManager extends rab.GameObject {
         }
         let ObstacleID = this.obstaclesID;
         this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random()*this._passProp.obstacles.length)];
-        while (this.obstaclesID == ObstacleID && (this.obstaclesID == 10 || this.obstaclesID == 100)) {
+        while (this.obstaclesID == ObstacleID && (this.isTruck() == true || this.obstaclesID == 100)) {
             this.obstaclesID = this._passProp.obstacles[Math.floor(Math.random()*this._passProp.obstacles.length)];
         }
 
@@ -95,6 +95,11 @@ export default class ObstacleManager extends rab.GameObject {
         obstacle.transform.localPosition = new Laya.Vector3(0, 0, this._initPos);
         obstacleProp.onInitProp(this.manager.jsonConfig.getObstacleData(this.obstaclesID), this.randomX);
         obstacle.active = true;
+    }
+
+    /**是否为货车 */
+    public isTruck (): boolean {
+        return this.obstaclesID == 10 || this.obstaclesID == 12 || this.obstaclesID == 13;
     }
 
     public SpawnCoinAndPowerup()

@@ -4,7 +4,6 @@ import ViewConfig from "../../rab/viewConfig";
 import { ui } from "../../ui/layaMaxUI";
 import GameController from "../GameController";
 import GameNotity from "../GameNotity";
-import Language from "../GameVO/Language";
 
 /**
  * 胜利界面
@@ -15,6 +14,7 @@ export default class GameWin extends rab.RabView {
 
     private scene3D: Laya.Scene3D;
     private playNode: Laya.Sprite3D;
+    private boxNode: Laya.Sprite3D;
     private animator: Laya.Animator;
     protected myManager:GameController;
 
@@ -50,7 +50,6 @@ export default class GameWin extends rab.RabView {
 
     protected OnRefreshView() {
         this.create3DScene();
-        this.onwin();
     }
 
     private create3DScene() {
@@ -80,6 +79,18 @@ export default class GameWin extends rab.RabView {
             this.animator.play("idle")
             this.animator.play("happydance");
         }, null, false);
+
+        this.boxNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/box.lh"), this.scene3D),true,new Laya.Vector3(0,0,2);
+        this.boxNode.transform.localPosition = new Laya.Vector3(0,0.1,-2);
+        this.boxNode.transform.localRotationEulerX = 0;
+        this.boxNode.active = true;
+
+        Laya.timer.frameOnce(10, this, () => {
+            this.onwin();
+        });
+        Laya.timer.frameOnce(60, this, () => {
+            this.boxNode.active = false;
+        });
     }
 
     onUpdate() {
