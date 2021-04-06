@@ -17,7 +17,7 @@
     "compressImageNoteList": [
         ""
     ],
-    "compressJs": false,
+    "compressJs": true,
     "compressJsFilter": [
         "$basePath/**/*.js",
         "!$basePath/libs/min/**/*.js"
@@ -63,13 +63,13 @@
         ""
     ],
     "clearReleaseDir": true,
-    "compile": false,
+    "compile": true,
     "forceCompile": false,
     "onlyIndexJS": true,
-    "useMinJsLibs": false,
+    "useMinJsLibs": true,
     "es6toes5": false,
     "projectType": "ts",
-    "pubTime": 1617363082352,
+    "pubTime": 1617693460887,
     "uesEnginePlugin": false,
     "wxOptimize": {
         "useOptimizeOpen": false,

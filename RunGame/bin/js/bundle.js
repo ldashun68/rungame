@@ -2813,8 +2813,10 @@
                         "3d/prefab/Conventional/play_4.lh",
                         "3d/prefab/Conventional/box.lh"
                     ], Laya.Handler.create(this, () => {
-                        rab.UIManager.onCreateView(ViewConfig.gameView.GameWinView);
+                        rab.UIManager.onCreateView(ViewConfig.gameView.RoleSelect);
                         rab.UIManager.onHideView(ViewConfig.gameView.NotClick);
+                        rab.UIManager.onHideView(ViewConfig.gameView.PlatformView);
+                        rab.UIManager.onHideView(ViewConfig.gameView.PendantView);
                     }));
                 });
             };
@@ -3889,7 +3891,6 @@
                 this.onwin();
             });
             Laya.timer.frameOnce(60, this, () => {
-                this.playNode.active = true;
                 this.boxNode.active = false;
             });
         }
@@ -4668,6 +4669,7 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
+            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
