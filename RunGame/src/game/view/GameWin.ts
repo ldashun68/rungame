@@ -13,10 +13,17 @@ export default class GameWin extends rab.RabView {
     protected m_currView: ui.view.GameWinUI;
 
     private scene3D: Laya.Scene3D;
+    private camera: Laya.Camera;
     private playNode: Laya.Sprite3D;
     private boxNode: Laya.Sprite3D;
     private animator: Laya.Animator;
     protected myManager:GameController;
+
+    private ray:Laya.Ray = new Laya.Ray(new Laya.Vector3(0,0,0),new Laya.Vector3(0,0,0));
+    private point: Laya.Vector2 = new Laya.Vector2();
+    private _outHitResult:Laya.HitResult = new Laya.HitResult();
+    private posX:number;
+    private posY:number;
 
     protected LoadView() {
         this.create<ui.view.GameWinUI>(ui.view.GameWinUI);
@@ -45,6 +52,8 @@ export default class GameWin extends rab.RabView {
             }
         });
 
+        this.m_currView.on(Laya.Event.MOUSE_UP, this, this.onMouseUp);
+
         this.OnRefreshView();
     }
 
@@ -57,9 +66,9 @@ export default class GameWin extends rab.RabView {
         //添加3D场景
         this.scene3D = this.m_currView.cloudNode.addChild(new Laya.Scene3D()) as Laya.Scene3D;
         //添加照相机
-        var camera: Laya.Camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
-        camera.transform.translate(new Laya.Vector3(0, 1, 0));
-        camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
+        this.camera = (this.scene3D.addChild(new Laya.Camera(0, 0.1, 100))) as Laya.Camera;
+        this.camera.transform.translate(new Laya.Vector3(0, 1, 0));
+        this.camera.transform.rotate(new Laya.Vector3(0, 0, 0), true, false);
         //camera.clearFlag = 3;
         //添加方向光
         var directionLight: Laya.DirectionLight = this.scene3D.addChild(new Laya.DirectionLight()) as Laya.DirectionLight;
@@ -81,16 +90,29 @@ export default class GameWin extends rab.RabView {
         }, null, false);
 
         this.boxNode = Laya.Sprite3D.instantiate(Laya.loader.getRes("3d/prefab/Conventional/box.lh"), this.scene3D),true,new Laya.Vector3(0,0,2);
-        this.boxNode.transform.localPosition = new Laya.Vector3(0,0.1,-2);
+        this.boxNode.transform.localPosition = new Laya.Vector3(0,0.3,-2);
         this.boxNode.transform.localRotationEulerX = 0;
         this.boxNode.active = true;
+        (this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed = 0;
+        this.boxAnimation();
+    }
 
-        Laya.timer.frameOnce(10, this, () => {
-            this.onwin();
-        });
-        Laya.timer.frameOnce(60, this, () => {
-            this.boxNode.active = false;
-        });
+    public onMouseUp():void
+    {
+        if (this.boxNode.active == false) {
+            return;
+        }
+
+        this.posX = this.point.x= Laya.MouseManager.instance.mouseX;
+        this.posY = this.point.y = Laya.MouseManager.instance.mouseY;
+        this.camera.viewportPointToRay(this.point, this.ray);
+        this.scene3D.physicsSimulation.rayCast(this.ray, this._outHitResult);
+        if (this._outHitResult.succeeded) {
+            if (this._outHitResult.collider.owner.name == "box") {
+                this._outHitResult.collider.owner.active = false;
+                this.onwin();
+            }
+        }
     }
 
     onUpdate() {
@@ -101,12 +123,32 @@ export default class GameWin extends rab.RabView {
         
     }
 
+    private boxAnimation (): void {
+        let r1: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 15), this.boxNode);
+        let r2: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, -15), this.boxNode);
+        let r3: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 15), this.boxNode);
+        let r4: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(), this.boxNode);
+        let time: number = 50;
+
+        Tool.instance.sprite3DRotation(this.boxNode, r1, time, null, () => {
+            Tool.instance.sprite3DRotation(this.boxNode, r2, time*2, null, () => {
+                Tool.instance.sprite3DRotation(this.boxNode, r3, time*2, null, () => {
+                    Tool.instance.sprite3DRotation(this.boxNode, r4, time, null, () => {
+                        if (this.boxNode.active == true) {
+                            Laya.timer.once(1000, this, this.boxAnimation);
+                        }
+                    });
+                });
+            });
+        });
+    }
+
     onwin() {
         let index: number = this.myManager.openPhotowall();
         this.m_currView.award.visible = true;
 
         if (index <= 11) {
-            Laya.timer.once(300, this, () => {
+            Laya.timer.frameOnce(10, this, () => {
                 this.m_currView.cover.visible = true;
                 this.m_currView.cover.alpha = 0.5;
                 this.m_currView.bigPhoto.visible = true;
@@ -124,8 +166,10 @@ export default class GameWin extends rab.RabView {
         this.m_currView.coinText.value = ""+this.myManager.fightGetCoin;
         this.m_currView.next.visible = true;
         this.m_currView.homeBtn.visible = true;
+        this.m_currView.share.visible = true;
         alpha(this.m_currView.next, 200);
         alpha(this.m_currView.homeBtn, 200);
+        alpha(this.m_currView.share, 200);
         this.myManager.addCoin(this.myManager.fightGetCoin);
 
         rab.MusicManager.playMusic("");

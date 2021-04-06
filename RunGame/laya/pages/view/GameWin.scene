@@ -2,11 +2,11 @@
     "x":0,
     "type":"Scene",
     "selectedBox":2,
-    "selecteID":56,
+    "selecteID":78,
     "searchKey":"Scene,GameWin,GameWin",
     "props":{"y":0,"x":0,"width":750,"var":"GameWin","sceneColor":"#ffffff","sceneBg":"laya/views/view/GameWin.jpg","name":"GameWin","height":1334},
     "nodeParent":-1,
-    "maxID":78,
+    "maxID":79,
     "label":"GameWin",
     "isOpen":true,
     "isDirectory":true,
@@ -37,14 +37,13 @@
             "props":{"y":-1,"x":0,"top":-1,"skin":"new/com/beijing.png","left":0},
             "nodeParent":2,
             "label":"Image",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":70,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1,"x":495,"skin":"new/com/beijing.png"},
@@ -59,7 +58,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":388,"x":0,"skin":"new/com/beijing.png"},
@@ -73,7 +71,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":388,"x":495,"skin":"new/com/beijing.png"},
@@ -88,7 +85,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":769,"x":0,"skin":"new/com/beijing.png"},
@@ -103,7 +99,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":769,"x":495,"skin":"new/com/beijing.png"},
@@ -118,7 +113,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1152,"x":0,"skin":"new/com/beijing.png"},
@@ -133,7 +127,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":1152,"x":495,"skin":"new/com/beijing.png"},
@@ -186,14 +179,13 @@
             "props":{"zOrder":1,"var":"winNode","top":0,"right":0,"name":"winNode","left":0,"bottom":0,"anchorX":0.5},
             "nodeParent":2,
             "label":"winNode",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":24,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image",
                     "props":{"y":190,"x":375,"skin":"new/com/t_tzcg.png","anchorY":0.5,"anchorX":0.5},
@@ -207,7 +199,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,award,award",
                     "props":{"y":325,"x":375,"width":750,"visible":false,"var":"award","name":"award","height":100,"anchorX":0.5},
@@ -247,7 +238,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,next,next",
                     "props":{"x":375,"visible":false,"var":"next","skin":"new/com/bd_xyg.png","name":"next","bottom":50,"anchorY":0.5,"anchorX":0.5},
@@ -263,7 +253,6 @@
                     "$HIDDEN":false
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,homeBtn,homeBtn",
                     "props":{"x":140,"width":100,"visible":false,"var":"homeBtn","skin":"new/com/b_zhuye.png","name":"homeBtn","height":107,"bottom":60,"anchorY":0.5,"anchorX":0.5},
@@ -278,10 +267,9 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "searchKey":"Image,share",
-                    "props":{"x":605,"width":100,"visible":true,"var":"share","skin":"new/com/b_fenxiang.png","height":107,"bottom":60,"anchorY":0.5,"anchorX":0.5},
+                    "props":{"x":605,"width":100,"visible":false,"var":"share","skin":"new/com/b_fenxiang.png","height":107,"bottom":60,"anchorY":0.5,"anchorX":0.5},
                     "nodeParent":24,
                     "label":"share",
                     "isOpen":true,
@@ -299,7 +287,7 @@
             "x":15,
             "type":"Image",
             "searchKey":"Image,cover,cover",
-            "props":{"zOrder":2,"visible":false,"var":"cover","top":0,"skin":"new/com/rect3.png","right":0,"name":"cover","left":0,"bottom":0,"alpha":0.75},
+            "props":{"zOrder":2,"visible":false,"var":"cover","top":1,"skin":"new/com/rect3.png","right":0,"name":"cover","left":0,"bottom":0,"alpha":0.75},
             "nodeParent":2,
             "label":"cover",
             "isDirectory":false,
@@ -317,6 +305,7 @@
             "props":{"zOrder":3,"visible":false,"var":"bigPhoto","skin":"new/com/Photo/pic_01_b.png","name":"bigPhoto","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":2,
             "label":"bigPhoto",
+            "isOpen":true,
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,

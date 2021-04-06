@@ -52,7 +52,6 @@ export default class RoleSelect extends rab.RabView {
         this.m_currView.roleName_2.text = "ROSE";
         this.m_currView.roleName_3.text = "大叔";
         this.m_currView.roleName_4.text = "小红";
-        // this.myManager.scene3D.active = false;
         this.create3DScene();
     }
 
@@ -79,10 +78,7 @@ export default class RoleSelect extends rab.RabView {
 
     protected onShowLanguage()
     {
-        // this.m_currView.breakTxt.text = Language.instance.getTxt("break");
-        // this.m_currView.titleTxt.text = Language.instance.getTxt("role_1");
-        // this.m_currView.roleTxt.text = Language.instance.getTxt("role_2");
-        // this.m_currView.startTxt.text = Language.instance.getTxt("startGame");
+        
     }
 
     onHide()
@@ -106,8 +102,6 @@ export default class RoleSelect extends rab.RabView {
                 let self = this;
                 let complete = () => {
                     let arr = self.myManager.getPassBuild();
-                    // arr.push("3d/build/Conventional/road80.lh");
-                    // arr.push("3d/build/Conventional/road90.lh");
                     self.myManager.onLoad3dScene(() => {
                             Laya.loader.create(arr, Laya.Handler.create(self, () => {
                             self.SendMessage(GameNotity.Init_Loading);
@@ -183,6 +177,7 @@ export default class RoleSelect extends rab.RabView {
     {
         this.onShowRole(1);
     }
+
     /**
      * 选择角色2
      */
@@ -190,6 +185,7 @@ export default class RoleSelect extends rab.RabView {
     {
         this.onShowRole(2);
     }
+
     /**
      * 选择角色3
      */
@@ -197,6 +193,7 @@ export default class RoleSelect extends rab.RabView {
     {
         this.onShowRole(3);
     }
+    
     /**
      * 选择角色4
      */
