@@ -18,6 +18,7 @@ declare namespace wx{
         export function createInterstitialAd(data:any);
         /** */
         export function onShareAppMessage(data:any);
+        export function shareAppMessage(data:any);
         /**获取小游戏启动时的参数 */
         export function getLaunchOptionsSync():any;
         /**隐藏loging图标 */

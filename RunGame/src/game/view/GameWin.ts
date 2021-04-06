@@ -39,6 +39,9 @@ export default class GameWin extends rab.RabView {
         this.m_currView.homeBtn.on(Laya.Event.CLICK, this, this.onHome);
         Tool.instance.addButtonAnimation(this.m_currView.homeBtn);
 
+        this.m_currView.share.on(Laya.Event.CLICK, this, this.onShare);
+        Tool.instance.addButtonAnimation(this.m_currView.share);
+
         this.m_currView.cover.on(Laya.Event.CLICK, this, () => {
             if (this.m_currView.bigPhoto.scaleX == 1 && this.m_currView.bigPhoto.alpha == 1) {
                 Laya.Tween.clearAll(this.m_currView.bigPhoto);
@@ -95,11 +98,13 @@ export default class GameWin extends rab.RabView {
         this.boxNode.active = true;
         (this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed = 0;
         this.boxAnimation();
+
+        Laya.timer.once(5000, this, this.openBox);
     }
 
     public onMouseUp():void
     {
-        if (this.boxNode.active == false) {
+        if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
             return;
         }
 
@@ -109,8 +114,7 @@ export default class GameWin extends rab.RabView {
         this.scene3D.physicsSimulation.rayCast(this.ray, this._outHitResult);
         if (this._outHitResult.succeeded) {
             if (this._outHitResult.collider.owner.name == "box") {
-                this._outHitResult.collider.owner.active = false;
-                this.onwin();
+                this.openBox();
             }
         }
     }
@@ -123,7 +127,26 @@ export default class GameWin extends rab.RabView {
         
     }
 
+    private openBox (): void {
+        Laya.timer.clear(this, this.openBox);
+
+        Tool.instance.sprite3DStopTween(this.boxNode, Tool.instance.tweenType.rotation);
+        (this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed = 1;
+        this.boxNode.transform.rotationEuler = new Laya.Vector3();
+        Laya.timer.frameOnce(10, this, () => {
+            this.boxNode.transform.rotationEuler = new Laya.Vector3();
+            this.onwin();
+        });
+        Laya.timer.frameOnce(60, this, () => {
+            this.boxNode.active = false;
+        });
+    }
+
     private boxAnimation (): void {
+        if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
+            return;
+        }
+
         let r1: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 15), this.boxNode);
         let r2: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, -15), this.boxNode);
         let r3: Laya.Vector3 = Tool.instance.getAddRotationEuler(new Laya.Vector3(0, 0, 15), this.boxNode);
@@ -131,12 +154,22 @@ export default class GameWin extends rab.RabView {
         let time: number = 50;
 
         Tool.instance.sprite3DRotation(this.boxNode, r1, time, null, () => {
+            if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
+                return;
+            }
             Tool.instance.sprite3DRotation(this.boxNode, r2, time*2, null, () => {
+                if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
+                    return;
+                }
                 Tool.instance.sprite3DRotation(this.boxNode, r3, time*2, null, () => {
+                    if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
+                        return;
+                    }
                     Tool.instance.sprite3DRotation(this.boxNode, r4, time, null, () => {
-                        if (this.boxNode.active == true) {
-                            Laya.timer.once(1000, this, this.boxAnimation);
+                        if ((this.boxNode.getComponent(Laya.Animator) as Laya.Animator).speed == 1) {
+                            return;
                         }
+                        Laya.timer.once(1000, this, this.boxAnimation);
                     });
                 });
             });
@@ -190,6 +223,12 @@ export default class GameWin extends rab.RabView {
     private onHome (): void {
         this.onHide();
         rab.UIManager.onCreateView(ViewConfig.gameView.PlatformView);
+    }
+
+    private onShare (): void {
+        rab.SDKChannel.createShare("win", () => {
+            
+        });
     }
 
     /**10倍领取按钮事件 */
