@@ -38,7 +38,7 @@
 					"position":[
 						-8.200017,
 						20.01002,
-						-0.2000179
+						0
 					],
 					"rotation":[
 						0,
@@ -75,7 +75,7 @@
 					"position":[
 						-8.200017,
 						2.390002,
-						-0.2000046
+						0
 					],
 					"rotation":[
 						0,
@@ -131,7 +131,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/80/pingfang.lmat"
 						}
 					]
 				},
@@ -186,7 +186,7 @@
 					"position":[
 						-1.46,
 						11.11,
-						-0.74
+						0
 					],
 					"rotation":[
 						0,

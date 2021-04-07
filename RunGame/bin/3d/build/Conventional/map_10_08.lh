@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":46,
+		"instanceID":230,
 		"props":{
 			"name":"map_10_08",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":47,
+				"instanceID":231,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":48,
+				"instanceID":232,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":49,
+				"instanceID":233,
 				"props":{
 					"name":"shangsha",
 					"active":true,
@@ -140,7 +140,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":50,
+				"instanceID":234,
 				"props":{
 					"name":"bangonglou (1)",
 					"active":true,
@@ -177,7 +177,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":51,
+				"instanceID":235,
 				"props":{
 					"name":"shangsha (1)",
 					"active":true,
@@ -214,7 +214,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":52,
+				"instanceID":236,
 				"props":{
 					"name":"bangonglou (2)",
 					"active":true,

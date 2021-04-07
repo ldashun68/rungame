@@ -567,7 +567,7 @@ class GameChannel {
                 wx.shareAppMessage({
                     title: '我在招商缤FUN跑酷成功超越障碍，快来看看吧！',
                     imageUrl: ''
-                })
+                });
             }else
             {   
                 console.log("未接入平台");

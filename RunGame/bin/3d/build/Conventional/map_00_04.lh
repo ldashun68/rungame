@@ -2,7 +2,7 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":21,
+		"instanceID":154,
 		"props":{
 			"name":"map_00_04",
 			"active":true,
@@ -29,7 +29,7 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":22,
+				"instanceID":155,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -66,7 +66,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":23,
+				"instanceID":156,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -103,7 +103,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":24,
+				"instanceID":157,
 				"props":{
 					"name":"xiaoqu01 (1)",
 					"active":true,
@@ -131,7 +131,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -140,7 +140,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":25,
+				"instanceID":158,
 				"props":{
 					"name":"xiaoqu01 (2)",
 					"active":true,
@@ -168,7 +168,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -177,7 +177,7 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":26,
+				"instanceID":159,
 				"props":{
 					"name":"tianhougong",
 					"active":true,

@@ -2,10 +2,10 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"loufang",
+		"name":"pingfang",
 		"renderStates":[
 			{
-				"cull":0,
+				"cull":2,
 				"blend":0,
 				"srcBlend":1,
 				"dstBlend":0,
@@ -21,7 +21,7 @@
 		"textures":[
 			{
 				"name":"albedoTexture",
-				"path":"loufang.jpg",
+				"path":"pingfang.jpg",
 				"constructParams":[
 					512,
 					512,

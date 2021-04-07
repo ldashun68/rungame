@@ -131,7 +131,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -168,7 +168,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -205,7 +205,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -242,7 +242,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},

@@ -38,7 +38,7 @@
 					"position":[
 						-8.200013,
 						20.01001,
-						-0.2000141
+						0
 					],
 					"rotation":[
 						0,
@@ -75,7 +75,7 @@
 					"position":[
 						-8.200013,
 						2.390002,
-						-0.2000041
+						0
 					],
 					"rotation":[
 						0,
@@ -131,7 +131,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/80/pingfang.lmat"
 						}
 					]
 				},
@@ -168,7 +168,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/80/pingfang.lmat"
 						}
 					]
 				},
@@ -242,7 +242,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/80/pingfang.lmat"
 						}
 					]
 				},
@@ -279,7 +279,7 @@
 					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/new/build/80/pingfang.lmat"
 						}
 					]
 				},

@@ -530,10 +530,10 @@
         createShare(_pos, succeed, fail, imageUrl, title, query) {
             if (this.myManager.gameConfig.config.allow_share) {
                 if (typeof wx != 'undefined') {
-                    if (!rab.wxSdk.getSystemInfo()) {
-                    }
-                    else {
-                    }
+                    wx.shareAppMessage({
+                        title: '我在招商缤FUN跑酷成功超越障碍，快来看看吧！',
+                        imageUrl: ''
+                    });
                 }
                 else {
                     console.log("未接入平台");
@@ -1584,7 +1584,7 @@
                     this.createView(GameFailUI.uiView);
                 }
             }
-            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": -1, "x": 0, "top": -1, "skin": "new/com/beijing.png", "left": 0 }, "compId": 83, "child": [{ "type": "Image", "props": { "y": 1, "x": 495, "skin": "new/com/beijing.png" }, "compId": 84 }, { "type": "Image", "props": { "y": 388, "x": 0, "skin": "new/com/beijing.png" }, "compId": 85 }, { "type": "Image", "props": { "y": 388, "x": 495, "skin": "new/com/beijing.png" }, "compId": 86 }, { "type": "Image", "props": { "y": 769, "x": 0, "skin": "new/com/beijing.png" }, "compId": 87 }, { "type": "Image", "props": { "y": 769, "x": 495, "skin": "new/com/beijing.png" }, "compId": 88 }, { "type": "Image", "props": { "y": 1152, "x": 0, "skin": "new/com/beijing.png" }, "compId": 89 }, { "type": "Image", "props": { "y": 1152, "x": 495, "skin": "new/com/beijing.png" }, "compId": 90 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "height": 1334 }, "compId": 73 }, { "type": "Image", "props": { "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "x": 605, "var": "share", "skin": "new/com/b_fenxiang.png", "bottom": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "x": 140, "var": "home", "skin": "new/com/b_zhuye.png", "bottom": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 54, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "y": 312, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -118 }, "compId": 59 }, { "type": "FontClip", "props": { "var": "coinText", "value": "0", "skin": "ui/failNum.png", "sheet": "0123456789", "name": "coinText", "centerY": 1, "centerX": 44 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
+            GameFailUI.uiView = { "type": "Scene", "props": { "width": 750, "name": "GameFail", "height": 1334 }, "compId": 2, "child": [{ "type": "Script", "props": { "top": 0, "right": 0, "left": 0, "bottom": 0, "runtime": "laya.ui.Widget" }, "compId": 3 }, { "type": "Image", "props": { "y": -1, "x": 0, "top": -1, "skin": "new/com/beijing.png", "left": 0 }, "compId": 83, "child": [{ "type": "Image", "props": { "y": 1, "x": 495, "skin": "new/com/beijing.png" }, "compId": 84 }, { "type": "Image", "props": { "y": 388, "x": 0, "skin": "new/com/beijing.png" }, "compId": 85 }, { "type": "Image", "props": { "y": 388, "x": 495, "skin": "new/com/beijing.png" }, "compId": 86 }, { "type": "Image", "props": { "y": 769, "x": 0, "skin": "new/com/beijing.png" }, "compId": 87 }, { "type": "Image", "props": { "y": 769, "x": 495, "skin": "new/com/beijing.png" }, "compId": 88 }, { "type": "Image", "props": { "y": 1152, "x": 0, "skin": "new/com/beijing.png" }, "compId": 89 }, { "type": "Image", "props": { "y": 1152, "x": 495, "skin": "new/com/beijing.png" }, "compId": 90 }] }, { "type": "Sprite", "props": { "y": 0, "x": 0, "width": 750, "var": "cloudNode", "height": 1334 }, "compId": 73 }, { "type": "Image", "props": { "x": 375, "var": "resrart", "skin": "new/com/bd_cxtz.png", "bottom": 50, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 53 }, { "type": "Image", "props": { "x": 605, "visible": false, "var": "share", "skin": "new/com/b_fenxiang.png", "bottom": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 51 }, { "type": "Image", "props": { "x": 140, "var": "home", "skin": "new/com/b_zhuye.png", "bottom": 60, "anchorY": 0.5, "anchorX": 0.5 }, "compId": 55 }, { "type": "Image", "props": { "top": 54, "skin": "new/com/t_tzsb.png", "centerX": 0 }, "compId": 58 }, { "type": "VBox", "props": { "y": 312, "right": 0, "left": 0, "height": 100 }, "compId": 62, "child": [{ "type": "Image", "props": { "skin": "new/game/jinbi.png", "centerY": 0, "centerX": -118 }, "compId": 59 }, { "type": "FontClip", "props": { "var": "coinText", "value": "0", "skin": "ui/failNum.png", "sheet": "0123456789", "name": "coinText", "centerY": 1, "centerX": 44 }, "compId": 61 }] }], "loadList": ["new/com/beijing.png", "new/com/bd_cxtz.png", "new/com/b_fenxiang.png", "new/com/b_zhuye.png", "new/com/t_tzsb.png", "new/game/jinbi.png", "ui/failNum.png"], "loadList3D": [] };
             view.GameFailUI = GameFailUI;
             REG("ui.view.GameFailUI", GameFailUI);
             class GameSetUI extends Scene {
@@ -4739,7 +4739,6 @@
                 Laya["PhysicsDebugDraw"].enable();
             if (GameConfig.stat)
                 Laya.Stat.show();
-            Laya.URL.basePath = "https://coolrun.liandaxinxi.com/res/runGame/";
             Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);
         }
         onVersionLoaded() {
