@@ -2,16 +2,16 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":186,
+		"instanceID":3,
 		"props":{
 			"name":"map_10_01",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				3.129757,
 				0,
-				-9.068523
+				0,
+				0
 			],
 			"rotation":[
 				0,
@@ -29,16 +29,16 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":187,
+				"instanceID":4,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-3.129757,
 						0,
-						-8.49
+						0,
+						-13.2
 					],
 					"rotation":[
 						0.7071068,
@@ -48,7 +48,7 @@
 					],
 					"scale":[
 						1,
-						1,
+						1.5,
 						1
 					],
 					"meshPath":"Assets/new/ground/dimian-Object01.lm",
@@ -66,16 +66,16 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":188,
+				"instanceID":5,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-3.129757,
 						0,
-						9.068523
+						0,
+						13.2
 					],
 					"rotation":[
 						0.7071068,
@@ -85,7 +85,7 @@
 					],
 					"scale":[
 						1,
-						1,
+						1.5,
 						1
 					],
 					"meshPath":"Assets/new/ground/dimian-Object01.lm",
@@ -103,14 +103,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":189,
+				"instanceID":6,
 				"props":{
 					"name":"bangonglou",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.71,
+						6.93,
 						0,
 						9.26
 					],
@@ -140,14 +140,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":190,
+				"instanceID":7,
 				"props":{
 					"name":"bangonglou (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.71,
+						6.93,
 						0,
 						-8.55
 					],
@@ -177,14 +177,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":191,
+				"instanceID":8,
 				"props":{
 					"name":"youlunmatou",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-23.86,
+						-20.64,
 						0,
 						-1.12
 					],

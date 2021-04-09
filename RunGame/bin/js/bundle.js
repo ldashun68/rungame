@@ -3407,7 +3407,7 @@
                 this.builds[i].recover();
             }
             this.builds = [];
-            this._buildPosZ = 0;
+            this._buildPosZ = -5;
             this._obstaclePosZ = 10;
             this.max_lifeCount = 3;
             this.obstacleManager.onClearAll();
@@ -3489,7 +3489,7 @@
                 this.onGamewin();
             }
             if (this.playerManager.worldDistance < this.passData.length - 15) {
-                if (this.playerManager.worldDistance > this.builds[0].PosZ) {
+                if (this.playerManager.worldDistance > this.builds[0].PosZ + 5) {
                     this.builds.shift().recover();
                 }
             }
@@ -3588,26 +3588,18 @@
                 buildProp = build.addComponent(BuildItem);
             }
             else {
-                build.transform.localPositionZ = this._buildPosZ;
                 buildProp = build.getComponent(BuildItem);
             }
             this.scene3D.addChild(build);
             this.builds.push(buildProp);
             buildProp.onInitProp(this.manager.getBuild(buildID), this._buildPosZ);
-            console.log("buildID:", buildID);
+            buildProp.transform.position = new Laya.Vector3(0, 0, this._buildPosZ + this.manager.getBuild(buildID).length / 2);
             this._buildPosZ += this.manager.getBuild(buildID).length;
             while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length - this.winLenght - 17) {
                 this._obstaclePosZ += 17;
                 this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
             }
-            if (this.manager.playSelect == 1) {
-                Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
-                Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
-            }
-            else {
-                Tool.instance.setPosition(new Laya.Vector3(-3.1, 0, build.transform.position.z), build);
-                Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
-            }
+            console.log("buildID:", buildID);
             return build;
         }
         updatePassProgressNode() {

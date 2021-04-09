@@ -95,7 +95,7 @@ export default class FightManager extends rab.GameObject {
         }
 
         this.builds = [];
-        this._buildPosZ = 0;
+        this._buildPosZ = -5;
         this._obstaclePosZ = 10;
         this.max_lifeCount = 3;
         this.obstacleManager.onClearAll();
@@ -103,26 +103,6 @@ export default class FightManager extends rab.GameObject {
             this.oncreateNextBuild();
         }
 
-        // if (this.scene3D.getChildByName("road") != null) {
-        //     this.scene3D.getChildByName("road").destroy();
-        // }
-        
-        // let year: number = 0;
-        // if (this.manager.playSelect == 1) {
-        //     year = 80;
-        // }
-        // else {
-        //     year = 90;
-        // }
-        // Laya.loader.create("3d/build/Conventional/road"+year+".lh", Laya.Handler.create(this, () => {
-        //     let road: Laya.MeshSprite3D = this.instantiate(Laya.loader.getRes("3d/build/Conventional/road"+year+".lh")) as Laya.MeshSprite3D;
-        //     road.name = "road";
-        //     this._road = road;
-        //     this.scene3D.addChild(road);
-        //     road.transform.position = new Laya.Vector3(0, 0, 100);
-        //     road.transform.rotationEuler = new Laya.Vector3(-90);
-        //     this.manager.setScene();
-        // }));
         this.manager.setScene();
     }
 
@@ -221,7 +201,7 @@ export default class FightManager extends rab.GameObject {
         }
         //TODO:超出的回收了
         if(this.playerManager.worldDistance < this.passData.length-15) {
-            if(this.playerManager.worldDistance > this.builds[0].PosZ) {
+            if(this.playerManager.worldDistance > this.builds[0].PosZ+5) {
                 this.builds.shift().recover();
             }
         }
@@ -334,29 +314,19 @@ export default class FightManager extends rab.GameObject {
             buildProp = build.addComponent(BuildItem);
         }
         else {
-            build.transform.localPositionZ = this._buildPosZ;
             buildProp = build.getComponent(BuildItem);
         }
         this.scene3D.addChild(build);
         this.builds.push(buildProp);
-        buildProp.onInitProp(this.manager.getBuild(buildID),this._buildPosZ);
-        console.log("buildID:", buildID);
+        buildProp.onInitProp(this.manager.getBuild(buildID), this._buildPosZ);
+        buildProp.transform.position = new Laya.Vector3(0, 0, this._buildPosZ+this.manager.getBuild(buildID).length/2);
 
         this._buildPosZ += this.manager.getBuild(buildID).length;
         while (this._obstaclePosZ < this._buildPosZ && this._obstaclePosZ < this.passData.length-this.winLenght-17) {
             this._obstaclePosZ += 17;
             this.obstacleManager.onCreateobstacle(this.passData, this._obstaclePosZ);
         }
-
-        if (this.manager.playSelect == 1) {
-            Tool.instance.setPosition(new Laya.Vector3(8.1, 0, build.transform.position.z), build);
-            Tool.instance.setRotationEuler(new Laya.Vector3(-90, 0, 0), build);
-        }
-        else {
-            Tool.instance.setPosition(new Laya.Vector3(-3.1, 0, build.transform.position.z), build);
-            Tool.instance.setRotationEuler(new Laya.Vector3(0, -180, 0), build);
-        }
-
+        console.log("buildID:", buildID);
         return build;
     }
 

@@ -2,22 +2,22 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":38,
+		"instanceID":39,
 		"props":{
 			"name":"map_80_04",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				-8.2,
 				0,
-				-20.01
+				0,
+				0
 			],
 			"rotation":[
+				0.7071068,
 				0,
-				0.7071068,
-				0.7071068,
-				0
+				0,
+				-0.7071068
 			],
 			"scale":[
 				1,
@@ -29,52 +29,15 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":39,
+				"instanceID":40,
 				"props":{
 					"name":"dimian-02 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-8.200009,
-						20.01001,
-						0
-					],
-					"rotation":[
 						0,
-						0,
-						-1,
-						0
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/ground/Material _0.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":40,
-				"props":{
-					"name":"dimian-02 (3)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-8.200009,
-						2.390002,
+						-8.8,
 						0
 					],
 					"rotation":[
@@ -105,13 +68,50 @@
 				"type":"MeshSprite3D",
 				"instanceID":41,
 				"props":{
+					"name":"dimian-02 (3)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						8.8,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						-1,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/Material _0.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":42,
+				"props":{
 					"name":"nongtian (9)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-13.99,
-						22.14,
+						-5.87,
+						11.6,
 						0.27
 					],
 					"rotation":[
@@ -140,52 +140,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":42,
+				"instanceID":43,
 				"props":{
 					"name":"nongtian (16)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-2.37,
-						-1.06,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":43,
-				"props":{
-					"name":"nongtian (17)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-2.37,
-						10.22,
+						5.75,
+						-11.6,
 						0.27
 					],
 					"rotation":[
@@ -216,13 +179,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":44,
 				"props":{
-					"name":"nongtian (18)",
+					"name":"nongtian (17)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-2.37,
-						22.15,
+						5.75,
+						-0.32,
 						0.27
 					],
 					"rotation":[
@@ -253,13 +216,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":45,
 				"props":{
-					"name":"nongtian (19)",
+					"name":"nongtian (18)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.1,
-						-1.06,
+						5.75,
+						11.61,
 						0.27
 					],
 					"rotation":[
@@ -290,13 +253,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":46,
 				"props":{
-					"name":"nongtian (20)",
+					"name":"nongtian (19)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.1,
-						10.22,
+						11.22,
+						-11.6,
 						0.27
 					],
 					"rotation":[
@@ -327,13 +290,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":47,
 				"props":{
-					"name":"nongtian (21)",
+					"name":"nongtian (20)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.1,
-						22.15,
+						11.22,
+						-0.32,
 						0.27
 					],
 					"rotation":[
@@ -364,20 +327,20 @@
 				"type":"MeshSprite3D",
 				"instanceID":48,
 				"props":{
-					"name":"nongtian (10)",
+					"name":"nongtian (21)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-13.99,
-						10.77,
+						11.22,
+						11.61,
 						0.27
 					],
 					"rotation":[
 						0,
 						0,
-						-1,
-						0
+						0,
+						-1
 					],
 					"scale":[
 						1,
@@ -401,13 +364,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":49,
 				"props":{
-					"name":"nongtian (11)",
+					"name":"nongtian (10)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-13.99,
-						-0.43,
+						-5.87,
+						0.23,
 						0.27
 					],
 					"rotation":[
@@ -438,13 +401,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":50,
 				"props":{
-					"name":"nongtian (12)",
+					"name":"nongtian (11)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-19.33,
-						22.14,
+						-5.87,
+						-10.97,
 						0.27
 					],
 					"rotation":[
@@ -475,13 +438,13 @@
 				"type":"MeshSprite3D",
 				"instanceID":51,
 				"props":{
-					"name":"nongtian (13)",
+					"name":"nongtian (12)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-19.33,
-						10.77,
+						-11.21,
+						11.6,
 						0.27
 					],
 					"rotation":[
@@ -512,13 +475,50 @@
 				"type":"MeshSprite3D",
 				"instanceID":52,
 				"props":{
+					"name":"nongtian (13)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-11.21,
+						0.23,
+						0.27
+					],
+					"rotation":[
+						0,
+						0,
+						-1,
+						0
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":53,
+				"props":{
 					"name":"nongtian (14)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-19.33,
-						-0.43,
+						-11.21,
+						-10.97,
 						0.27
 					],
 					"rotation":[

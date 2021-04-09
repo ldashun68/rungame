@@ -2,16 +2,16 @@
 	"version":"LAYAHIERARCHY:02",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":172,
+		"instanceID":173,
 		"props":{
 			"name":"map_00_07",
 			"active":true,
 			"isStatic":false,
 			"layer":0,
 			"position":[
-				3.129757,
 				0,
-				-9.068523
+				0,
+				0
 			],
 			"rotation":[
 				0,
@@ -29,53 +29,16 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":173,
+				"instanceID":174,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-3.129757,
-						0,
-						-8.49
-					],
-					"rotation":[
-						0.7071068,
 						0,
 						0,
-						-0.7071068
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/ground/dimian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":174,
-				"props":{
-					"name":"dimian (3)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						-3.129757,
-						0,
-						9.068523
+						-8.8
 					],
 					"rotation":[
 						0.7071068,
@@ -105,12 +68,49 @@
 				"type":"MeshSprite3D",
 				"instanceID":175,
 				"props":{
+					"name":"dimian (3)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						8.8
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"enableRender":true,
+					"receiveShadows":true,
+					"castShadow":true,
+					"materials":[
+						{
+							"path":"Assets/new/ground/dimian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"instanceID":176,
+				"props":{
 					"name":"xiaoqu02",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-10.25,
+						-7.12,
 						0,
 						-6.73
 					],
@@ -140,14 +140,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":176,
+				"instanceID":177,
 				"props":{
 					"name":"xiaoqu02 (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-10.25,
+						-7.12,
 						0,
 						9.41
 					],
@@ -177,14 +177,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":177,
+				"instanceID":178,
 				"props":{
 					"name":"xiaoqu02 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.98,
+						7.11,
 						0,
 						8.43
 					],
@@ -214,14 +214,14 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":178,
+				"instanceID":179,
 				"props":{
 					"name":"xiaoqu02 (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						3.98,
+						7.11,
 						0,
 						-8.06
 					],

@@ -70,7 +70,6 @@ export default class GameJsonConfig {
     public getBuildData(id:number):buildProp
     {
         return this._builds[id];
-        // return data;
     }
 
     /**获得障碍物数据 */
