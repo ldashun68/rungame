@@ -47,6 +47,7 @@ export default class Game extends rab.RabView {
         // this.scene3D = Laya.loader.getRes("3d/game/Conventional/game.ls");
         // Laya.stage.addChild(this.scene3D);
         this.camera = this.myManager.scene3D.getChildByName("Main Camera") as Laya.Camera;
+        this.camera.clearFlag = Laya.CameraClearFlags.Sky;
 
         this.fightManager = this.myManager.scene3D.addComponent(FightManager);
         this.fightManager.view = this.m_currView;
@@ -62,7 +63,8 @@ export default class Game extends rab.RabView {
         this.m_currView.timeDown.visible = false;
         this.fightManager.fightReady();
         this.m_currView.lifeText.value = "3";
-        this.m_currView.icon.skin = "new/game/tou_0" + this.myManager.playSelect + ".png"
+        this.m_currView.icon.skin = "new/game/tou_0" + this.myManager.playSelect + ".png";
+        Laya.loader.load("new/com/Photo/pic_0" + this.myManager.openPhotowall() + "_b.png");
         // this.m_currView.coinText.value = "0";
     }
 

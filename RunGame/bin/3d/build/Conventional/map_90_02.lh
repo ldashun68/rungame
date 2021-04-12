@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":89,
 		"props":{
 			"name":"map_90_02",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":90,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -38,7 +36,7 @@
 					"position":[
 						0,
 						0,
-						-13.2
+						-26.4
 					],
 					"rotation":[
 						0.7071068,
@@ -48,16 +46,14 @@
 					],
 					"scale":[
 						1,
-						1.5,
+						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":91,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -75,7 +70,7 @@
 					"position":[
 						0,
 						0,
-						13.2
+						-8.8
 					],
 					"rotation":[
 						0.7071068,
@@ -85,16 +80,14 @@
 					],
 					"scale":[
 						1,
-						1.5,
+						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -103,16 +96,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":92,
 				"props":{
-					"name":"loufang (1)",
+					"name":"dimian (4)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.65,
 						0,
-						8.27
+						0,
+						8.8
 					],
 					"rotation":[
 						0.7071068,
@@ -125,13 +117,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -140,16 +130,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":93,
 				"props":{
-					"name":"loufang (2)",
+					"name":"dimian (5)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.65,
 						0,
-						-7.88
+						0,
+						26.4
 					],
 					"rotation":[
 						0.7071068,
@@ -162,13 +151,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -177,16 +164,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":94,
 				"props":{
 					"name":"sanyang (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-6.51,
+						-6.23,
 						0,
-						0
+						-15.75148
 					],
 					"rotation":[
 						-0.5,
@@ -199,13 +185,215 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/landmark/sanyang-sanyang.lm",
+					"meshPath":"Assets/Assets/new/landmark/sanyang-sanyang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/sanyang.lmat"
+							"path":"Assets/Assets/new/landmark/sanyang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"shijianguangchang_deng",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-7.05,
+						0,
+						14.21
+					],
+					"rotation":[
+						0.5,
+						-0.5,
+						-0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/shijianguangchang_deng-shijianguangchang_deng.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/shijianguangchang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"shijianguangchang_deng (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-7.05,
+						0,
+						29.43
+					],
+					"rotation":[
+						0.5,
+						-0.5,
+						-0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/shijianguangchang_deng-shijianguangchang_deng.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/shijianguangchang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"shijianguangchang_deng (3)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						6.400001,
+						0,
+						26.75
+					],
+					"rotation":[
+						0.5,
+						0.5,
+						0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/shijianguangchang_deng-shijianguangchang_deng.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/shijianguangchang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"loufang (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						5.860001,
+						0,
+						-10.33
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/90/loufang-loufang.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"loufang (2)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						5.860001,
+						0,
+						-26.48
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/90/loufang-loufang.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/90/loufang.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"shijianguangchang_deng (2)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						6.4,
+						0,
+						11.53
+					],
+					"rotation":[
+						0.5,
+						0.5,
+						0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/shijianguangchang_deng-shijianguangchang_deng.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/shijianguangchang.lmat"
 						}
 					]
 				},

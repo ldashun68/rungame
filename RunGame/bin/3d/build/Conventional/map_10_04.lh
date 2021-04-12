@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":21,
 		"props":{
 			"name":"map_10_04",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":22,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -38,7 +36,7 @@
 					"position":[
 						0,
 						0,
-						-13.2
+						-26.4
 					],
 					"rotation":[
 						0.7071068,
@@ -48,16 +46,14 @@
 					],
 					"scale":[
 						1,
-						1.5,
+						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":23,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -75,7 +70,7 @@
 					"position":[
 						0,
 						0,
-						13.2
+						-8.8
 					],
 					"rotation":[
 						0.7071068,
@@ -85,16 +80,14 @@
 					],
 					"scale":[
 						1,
-						1.5,
+						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -103,16 +96,83 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":24,
+				"props":{
+					"name":"dimian (4)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						8.8
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/ground/dimian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"dimian (5)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						26.4
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/ground/dimian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
 				"props":{
 					"name":"shangsha",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-9.89,
+						-10.6,
 						0,
-						9.29
+						1.279999
 					],
 					"rotation":[
 						0.5,
@@ -125,13 +185,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/10/shangsha-shangsha.lm",
+					"meshPath":"Assets/Assets/new/build/10/shangsha-shangsha.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/10/shangsha.lmat"
+							"path":"Assets/Assets/new/build/10/shangsha.lmat"
 						}
 					]
 				},
@@ -140,16 +198,83 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":25,
+				"props":{
+					"name":"shangsha (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-10.6,
+						0,
+						-25.5
+					],
+					"rotation":[
+						0.5,
+						-0.5,
+						-0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/10/shangsha-shangsha.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/10/shangsha.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"shangsha (2)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						-10.6,
+						0,
+						25.08
+					],
+					"rotation":[
+						0.5,
+						-0.5,
+						-0.5,
+						-0.5
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/10/shangsha-shangsha.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/10/shangsha.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
 				"props":{
 					"name":"yishuzhongxin",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						14.8,
+						15.1,
 						0,
-						0
+						-15.1
 					],
 					"rotation":[
 						0.7071068,
@@ -162,13 +287,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/landmark/yishuzhongxin-yishuzhongxin.lm",
+					"meshPath":"Assets/Assets/new/landmark/yishuzhongxin-yishuzhongxin.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/landmark/yishuzhongxin.lmat"
+							"path":"Assets/Assets/new/landmark/yishuzhongxin.lmat"
 						}
 					]
 				},
@@ -177,35 +300,134 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":26,
 				"props":{
-					"name":"shangsha (1)",
+					"name":"lunchuan_lanqi",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-9.89,
+						10.96,
 						0,
-						-7.98
+						10.4
 					],
 					"rotation":[
-						0.5,
-						-0.5,
-						-0.5,
-						-0.5
+						0.7071068,
+						0,
+						0,
+						-0.7071068
 					],
 					"scale":[
 						1,
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/10/shangsha-shangsha.lm",
+					"meshPath":"Assets/Assets/new/landmark/lunchuan_lanqi-lunchuan_lanqi.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/10/shangsha.lmat"
+							"path":"Assets/Assets/new/landmark/lunchuan.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"lunchuan_baiqi (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						10.96,
+						0,
+						17.7
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/lunchuan_baiqi-lunchuan_baiqi.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/lunchuan.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"lunchuan_lanqi (1)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						10.96,
+						0,
+						25.52
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/lunchuan_lanqi-lunchuan_lanqi.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/lunchuan.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"lunchuan_baiqi (2)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						10.96,
+						0,
+						33
+					],
+					"rotation":[
+						0.7071068,
+						0,
+						0,
+						-0.7071068
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/landmark/lunchuan_baiqi-lunchuan_baiqi.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/landmark/lunchuan.lmat"
 						}
 					]
 				},

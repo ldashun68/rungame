@@ -2,7 +2,7 @@
 	"version":"LAYAMATERIAL:02",
 	"props":{
 		"type":"Laya.UnlitMaterial",
-		"name":"Sky",
+		"name":"shangsha",
 		"renderStates":[
 			{
 				"cull":2,
@@ -13,12 +13,29 @@
 				"depthTest":515
 			}
 		],
-		"enableVertexColor":true,
+		"enableVertexColor":false,
 		"alphaTest":false,
 		"alphaTestValue":0.5,
-		"renderQueue":2000,
+		"renderQueue":3000,
 		"albedoIntensity":1,
-		"textures":[],
+		"textures":[
+			{
+				"name":"albedoTexture",
+				"path":"shangsha.jpg",
+				"constructParams":[
+					512,
+					512,
+					0,
+					true
+				],
+				"propertyParams":{
+					"filterMode":1,
+					"wrapModeU":0,
+					"wrapModeV":0,
+					"anisoLevel":1
+				}
+			}
+		],
 		"vectors":[
 			{
 				"name":"tilingOffset",

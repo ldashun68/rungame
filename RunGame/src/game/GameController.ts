@@ -222,7 +222,12 @@ export default class GameController extends rab.RabController {
     }
 
     public openPhotowall(): number {
-        return this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] += 1;
+        if (this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] < 11) {
+            return this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] += 1;
+        }
+        else {
+            return 11;
+        }
     }
 
     /**定时增加体力 */
@@ -279,10 +284,9 @@ export default class GameController extends rab.RabController {
     public CurrPassData():passProp
     {
         if(this.gameInfo.photo[this.m_selectYear[this.playSelect-1]] >= this.jsonConfig.getPassCount()) {
-            this.gameInfo.currentPass = 11;
-            //this.gameInfo.pass = 0;
+            this.gameInfo.currentPass = 10;
         }
-       let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect-1], this.gameInfo.currentPass)
+       let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect-1], this.gameInfo.currentPass);
        return data;
     }
 

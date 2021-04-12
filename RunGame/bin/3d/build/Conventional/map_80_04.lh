@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":39,
 		"props":{
 			"name":"map_80_04",
 			"active":true,
@@ -14,10 +13,10 @@
 				0
 			],
 			"rotation":[
+				0,
 				0.7071068,
-				0,
-				0,
-				-0.7071068
+				0.7071068,
+				0
 			],
 			"scale":[
 				1,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":40,
 				"props":{
 					"name":"dimian-02 (2)",
 					"active":true,
@@ -51,13 +49,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/Material _0.lmat"
+							"path":"Assets/Assets/new/ground/Material _0.lmat"
 						}
 					]
 				},
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":41,
 				"props":{
 					"name":"dimian-02 (3)",
 					"active":true,
@@ -88,13 +83,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-02-dimia - 02.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-02-dimia - 02.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/Material _0.lmat"
+							"path":"Assets/Assets/new/ground/Material _0.lmat"
 						}
 					]
 				},
@@ -103,16 +96,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":42,
 				"props":{
 					"name":"nongtian (9)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-5.87,
-						11.6,
-						0.27
+						-6.42,
+						10.89,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -125,13 +117,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},
@@ -140,238 +130,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":43,
-				"props":{
-					"name":"nongtian (16)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						5.75,
-						-11.6,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":44,
-				"props":{
-					"name":"nongtian (17)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						5.75,
-						-0.32,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":45,
-				"props":{
-					"name":"nongtian (18)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						5.75,
-						11.61,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":46,
-				"props":{
-					"name":"nongtian (19)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						11.22,
-						-11.6,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":47,
-				"props":{
-					"name":"nongtian (20)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						11.22,
-						-0.32,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":48,
-				"props":{
-					"name":"nongtian (21)",
-					"active":true,
-					"isStatic":false,
-					"layer":0,
-					"position":[
-						11.22,
-						11.61,
-						0.27
-					],
-					"rotation":[
-						0,
-						0,
-						0,
-						-1
-					],
-					"scale":[
-						1,
-						1,
-						1
-					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
-					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
-					"materials":[
-						{
-							"path":"Assets/new/build/80/nongtian.lmat"
-						}
-					]
-				},
-				"components":[],
-				"child":[]
-			},
-			{
-				"type":"MeshSprite3D",
-				"instanceID":49,
 				"props":{
 					"name":"nongtian (10)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-5.87,
-						0.23,
-						0.27
+						-6.42,
+						-0.48,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -384,13 +151,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},
@@ -399,16 +164,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":50,
 				"props":{
 					"name":"nongtian (11)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-5.87,
-						-10.97,
-						0.27
+						-6.42,
+						-11.68,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -421,13 +185,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},
@@ -436,16 +198,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":51,
 				"props":{
 					"name":"nongtian (12)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-11.21,
-						11.6,
-						0.27
+						-11.76,
+						10.89,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -458,13 +219,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},
@@ -473,16 +232,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":52,
 				"props":{
 					"name":"nongtian (13)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-11.21,
-						0.23,
-						0.27
+						-11.76,
+						-0.48,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -495,13 +253,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},
@@ -510,16 +266,15 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":53,
 				"props":{
 					"name":"nongtian (14)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-11.21,
-						-10.97,
-						0.27
+						-11.76,
+						-11.68,
+						0.2
 					],
 					"rotation":[
 						0,
@@ -532,13 +287,215 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/nongtian-nongtian.lm",
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/nongtian.lmat"
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (16)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						6.4,
+						-11.91,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (17)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						6.4,
+						-0.63,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (18)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						6.4,
+						11.3,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (19)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						11.9,
+						-11.91,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (20)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						11.9,
+						-0.63,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
+						}
+					]
+				},
+				"components":[],
+				"child":[]
+			},
+			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"nongtian (21)",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						11.9,
+						11.3,
+						0.2
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						1,
+						1,
+						1
+					],
+					"meshPath":"Assets/Assets/new/build/80/nongtian-nongtian.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/build/80/nongtian.lmat"
 						}
 					]
 				},

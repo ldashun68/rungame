@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":83,
 		"props":{
 			"name":"map_90_01",
 			"active":true,
@@ -15,9 +14,9 @@
 			],
 			"rotation":[
 				0,
+				-1,
 				0,
-				0,
-				-1
+				0
 			],
 			"scale":[
 				1,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":84,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -51,13 +49,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":85,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -88,13 +83,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -103,14 +96,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":86,
 				"props":{
 					"name":"xiaoqu01 (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.96,
+						6.04,
 						0,
 						-9.3
 					],
@@ -125,13 +117,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
+					"meshPath":"Assets/Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/xiaoqu01.lmat"
+							"path":"Assets/Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -140,14 +130,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":87,
 				"props":{
 					"name":"loufang (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.39,
+						5.47,
 						0,
 						8.92
 					],
@@ -162,13 +151,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/loufang-loufang.lm",
+					"meshPath":"Assets/Assets/new/build/90/loufang-loufang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/loufang.lmat"
+							"path":"Assets/Assets/new/build/90/loufang.lmat"
 						}
 					]
 				},
@@ -177,14 +164,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":88,
 				"props":{
 					"name":"gongchang (1)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-8.12,
+						-8.54,
 						0,
 						-1.16
 					],
@@ -199,13 +185,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/80/gongchang-gongchang.lm",
+					"meshPath":"Assets/Assets/new/build/80/gongchang-gongchang.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/80/gongchang.lmat"
+							"path":"Assets/Assets/new/build/80/gongchang.lmat"
 						}
 					]
 				},

@@ -1761,10 +1761,10 @@
             passIndex["year00"] = 22;
             passIndex["year10"] = 33;
             let build = [];
-            build["year80"] = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008];
-            build["year90"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008];
-            build["year00"] = [30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008];
-            build["year10"] = [40001, 40002, 40003, 40004, 40005, 40006, 40007, 40008];
+            build["year80"] = [10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10009, 10010];
+            build["year90"] = [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008, 20009, 20010];
+            build["year00"] = [30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008, 30009, 30010];
+            build["year10"] = [40001, 40002, 40003, 40004, 40005, 40006, 40007, 40008, 40009, 40010];
             let obstacle = [];
             obstacle["year80"] = [9, 10, 100];
             obstacle["year90"] = [10, 11, 100];
@@ -1990,7 +1990,12 @@
             return true;
         }
         openPhotowall() {
-            return this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] += 1;
+            if (this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] < 11) {
+                return this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] += 1;
+            }
+            else {
+                return 11;
+            }
         }
         loopAddTicket() {
             this.addTicket(this.loopAddTicketValue);
@@ -2024,7 +2029,7 @@
         }
         CurrPassData() {
             if (this.gameInfo.photo[this.m_selectYear[this.playSelect - 1]] >= this.jsonConfig.getPassCount()) {
-                this.gameInfo.currentPass = 11;
+                this.gameInfo.currentPass = 10;
             }
             let data = this.jsonConfig.getPassData(this.m_selectYear[this.playSelect - 1], this.gameInfo.currentPass);
             return data;
@@ -3170,6 +3175,7 @@
             this.isMoveing = false;
             this._playState = PlayState.none;
             this.scene3D = this.owner;
+            this.skyBox = this.scene3D.getChildByName("SkyBox");
             this._playerPivot = this.scene3D.getChildByName("PlayerPivot");
             this._characterSlot = this._playerPivot.getChildByName("CharacterSlot");
             this.camera = this.scene3D.getChildByName("Main Camera");
@@ -3191,6 +3197,8 @@
             this.retrogression = 0;
             this.currentAnimation = "";
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
+            this.skyBox.transform.setWorldLossyScale(new Laya.Vector3(200, 200, 200));
+            Tool.instance.setPosition(new Laya.Vector3(0, 0, 100), this.skyBox);
             this._playerPivot.addChild(this.camera);
             this.camera.transform.position = this.camerapos;
             this.playNode = Laya.loader.getRes("3d/prefab/Conventional/play_" + this.manager.playSelect + ".lh");
@@ -3249,6 +3257,8 @@
             this.isMoveing = true;
         }
         reStart() {
+            this.skyBox.transform.setWorldLossyScale(new Laya.Vector3(200, 200, 200));
+            Tool.instance.setPosition(new Laya.Vector3(0, 0, 100), this.skyBox);
             this._playerPivot.transform.position = new Laya.Vector3(0, 0, 0);
             this._playerPivot.addChild(this.camera);
             this.camera.transform.position = this.camerapos;
@@ -3270,14 +3280,17 @@
                 else {
                     pos.z += scaledSpeed;
                     this.worldDistance += scaledSpeed;
+                    Tool.instance.addPosition(new Laya.Vector3(0, 0, scaledSpeed), this.skyBox);
                 }
             }
             else {
                 pos.z -= scaledSpeed;
                 this.worldDistance -= scaledSpeed;
+                Tool.instance.addPosition(new Laya.Vector3(0, 0, -scaledSpeed), this.skyBox);
                 this.retrogression *= 0.9;
             }
             this._playerPivot.transform.position = pos;
+            Tool.instance.addRotationEuler(new Laya.Vector3(0, 1 / 60, 0), this.skyBox);
             if (this._playState == PlayState.jump) {
                 let correctJumpLength = this.jumpLength * (1.0 + this.speedRatio);
                 let ratio = (this.worldDistance - this.m_JumpStart) / correctJumpLength;
@@ -3310,41 +3323,56 @@
         }
         get speedRatio() { return (this.m_Speed - this.minSpeed) / (this.maxSpeed - this.minSpeed); }
         onMouseMove(data) {
-            if (!this.isMoveing)
+            if (!this.isMoveing) {
                 return;
-            if (this._playState != PlayState.run)
+            }
+            if (this._playState != PlayState.run) {
+                this.nextAction = data;
                 return;
+            }
+            let speed = 1;
+            if (this.manager.playSelect > 2) {
+                speed = 0.8;
+            }
             if (data[0] == 0) {
                 if (this.localx < 1.25) {
                     this.setPlayState(PlayState.right);
                     this.localx += 1.25;
-                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400, null, Laya.Handler.create(this, () => {
-                        this.playAnimation("run", 0);
+                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400 * speed, null, Laya.Handler.create(this, () => {
+                        this.playAnimation("run", 0.2, speed);
                         this.setPlayState(PlayState.run);
+                        if (this.nextAction != null) {
+                            this.onMouseMove(this.nextAction);
+                            this.nextAction = null;
+                        }
                     }));
-                    this.playAnimation("left", 0);
+                    this.playAnimation("left", 0, speed);
                 }
             }
             else if (data[0] == 1) {
                 if (this.localx > -1.25) {
                     this.setPlayState(PlayState.left);
                     this.localx -= 1.25;
-                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400, null, Laya.Handler.create(this, () => {
-                        this.playAnimation("run", 0);
+                    Laya.Tween.to(this._characterSlot.transform, { localPositionX: this.localx }, 400 * speed, null, Laya.Handler.create(this, () => {
+                        this.playAnimation("run", 0.2, speed);
                         this.setPlayState(PlayState.run);
+                        if (this.nextAction != null) {
+                            this.onMouseMove(this.nextAction);
+                            this.nextAction = null;
+                        }
                     }));
-                    this.playAnimation("right", 0);
+                    this.playAnimation("right", 0, speed);
                 }
             }
             else if (data[0] == 2) {
                 this.setPlayState(PlayState.jump);
                 this.m_JumpStart = this.worldDistance;
-                this.playAnimation("jump", 0);
+                this.playAnimation("jump", 0, speed);
             }
             else if (data[0] == 3) {
                 this.setPlayState(PlayState.slide);
                 this.m_SlideStart = this.worldDistance;
-                this.playAnimation("slide", 0);
+                this.playAnimation("slide", 0, speed);
             }
         }
         static MoveTowards(current, target, maxDistanceDelta) {
@@ -3358,12 +3386,13 @@
             let num5 = Math.sqrt(num4);
             return new Laya.Vector3(current.x + num / num5 * maxDistanceDelta, current.y + num2 / num5 * maxDistanceDelta, current.z + num3 / num5 * maxDistanceDelta);
         }
-        playAnimation(name, transitionDuration) {
+        playAnimation(name, transitionDuration, speed = 1) {
             if (this.animator == null || this.currentAnimation == name || this.currentAnimation == "happydance" || this.currentAnimation == "death") {
                 return;
             }
             this.currentAnimation = name;
             this.animator.crossFade(name, transitionDuration);
+            this.animator.speed = speed;
         }
         setPlayState(state) {
             if (this._playState == PlayState.death || this._playState == PlayState.stop) {
@@ -3391,10 +3420,6 @@
         init() {
             this.max_lifeCount = 3;
             this.scene3D = this.owner;
-            this.scene3D.enableFog = true;
-            this.scene3D.fogColor = new Laya.Vector3(0.25, 0.55, 0.9);
-            this.scene3D.fogStart = 30;
-            this.scene3D.fogRange = 50;
             this.playerManager = this.scene3D.addComponent(PlayerManager);
             this.playerManager.view = this.view;
             this.playerManager.init();
@@ -3633,6 +3658,7 @@
             this.m_currView.pauseBtn.on(Laya.Event.CLICK, this, this.onPause);
             Tool.instance.addButtonAnimation(this.m_currView.pauseBtn);
             this.camera = this.myManager.scene3D.getChildByName("Main Camera");
+            this.camera.clearFlag = Laya.CameraClearFlags.Sky;
             this.fightManager = this.myManager.scene3D.addComponent(FightManager);
             this.fightManager.view = this.m_currView;
             this.fightManager.init();
@@ -3647,6 +3673,7 @@
             this.fightManager.fightReady();
             this.m_currView.lifeText.value = "3";
             this.m_currView.icon.skin = "new/game/tou_0" + this.myManager.playSelect + ".png";
+            Laya.loader.load("new/com/Photo/pic_0" + this.myManager.openPhotowall() + "_b.png");
         }
         onPause() {
             if (this.m_currView.timeDown.visible == false) {
@@ -3964,7 +3991,7 @@
                     this.m_currView.cover.alpha = 0.5;
                     this.m_currView.bigPhoto.visible = true;
                     this.m_currView.bigPhoto.alpha = 1;
-                    this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png";
+                    this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + index + "_b.png";
                     Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
                 });
             }

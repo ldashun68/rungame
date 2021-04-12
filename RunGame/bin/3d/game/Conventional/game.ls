@@ -1,48 +1,14 @@
 {
-	"version":"LAYASCENE3D:02",
+	"version":"LAYASCENE3D:01",
 	"data":{
 		"type":"Scene3D",
 		"props":{
-			"name":"game",
+			"name":"build",
 			"ambientColor":[
 				0.212,
 				0.227,
 				0.259
 			],
-			"reflectionDecodingFormat":1,
-			"reflection":"Assets/Scenes/gameGIReflection.ltcb.ls",
-			"reflectionIntensity":1,
-			"ambientMode":1,
-			"ambientSphericalHarmonics":[
-				0.1678833,
-				-0.01659194,
-				-0.01137974,
-				0.006569619,
-				0.004985125,
-				-0.008635007,
-				0.009734867,
-				-0.01030071,
-				0.02333598,
-				0.2107355,
-				0.02701619,
-				-0.0188861,
-				0.01090379,
-				0.008417023,
-				-0.01457893,
-				0.01416333,
-				-0.01572338,
-				0.0335119,
-				0.2899401,
-				0.1099655,
-				-0.03480943,
-				0.02009373,
-				0.01630446,
-				-0.02824401,
-				0.01814265,
-				-0.02374623,
-				0.04080021
-			],
-			"ambientSphericalHarmonicsIntensity":1,
 			"lightmaps":[],
 			"enableFog":false,
 			"fogStart":0,
@@ -56,7 +22,6 @@
 		"child":[
 			{
 				"type":"Camera",
-				"instanceID":0,
 				"props":{
 					"name":"Main Camera",
 					"active":true,
@@ -80,9 +45,7 @@
 					],
 					"clearFlag":1,
 					"orthographic":false,
-					"orthographicVerticalSize":10,
 					"fieldOfView":60,
-					"enableHDR":false,
 					"nearPlane":0.3,
 					"farPlane":1000,
 					"viewport":[
@@ -92,9 +55,9 @@
 						1
 					],
 					"clearColor":[
-						0.254902,
-						0.5411765,
-						0.8980393,
+						1,
+						1,
+						1,
 						0.01960784
 					]
 				},
@@ -103,7 +66,6 @@
 			},
 			{
 				"type":"DirectionLight",
-				"instanceID":1,
 				"props":{
 					"name":"Directional Light",
 					"active":true,
@@ -137,8 +99,60 @@
 				"child":[]
 			},
 			{
+				"type":"MeshSprite3D",
+				"props":{
+					"name":"SkyBox",
+					"active":true,
+					"isStatic":false,
+					"layer":0,
+					"position":[
+						0,
+						0,
+						0
+					],
+					"rotation":[
+						0,
+						0,
+						0,
+						-1
+					],
+					"scale":[
+						100,
+						100,
+						100
+					],
+					"meshPath":"Library/unity default resources-Sphere.lm",
+					"enableRender":true,
+					"materials":[
+						{
+							"path":"Assets/Assets/new/skybox/New Material.lmat"
+						}
+					]
+				},
+				"components":[
+					{
+						"type":"PhysicsCollider",
+						"restitution":0,
+						"friction":0.5,
+						"rollingFriction":0,
+						"shapes":[
+							{
+								"type":"SphereColliderShape",
+								"center":[
+									0,
+									0,
+									0
+								],
+								"radius":0.5
+							}
+						],
+						"isTrigger":false
+					}
+				],
+				"child":[]
+			},
+			{
 				"type":"Sprite3D",
-				"instanceID":2,
 				"props":{
 					"name":"PlayerPivot",
 					"active":true,
@@ -165,7 +179,6 @@
 				"child":[
 					{
 						"type":"Sprite3D",
-						"instanceID":3,
 						"props":{
 							"name":"CharacterSlot",
 							"active":true,
@@ -219,23 +232,287 @@
 										]
 									}
 								],
-								"isTrigger":false,
-								"linearFactor":[
-									0,
-									0,
-									0
-								],
-								"angularFactor":[
-									0,
-									0,
-									0
-								]
+								"isTrigger":false
 							}
 						],
 						"child":[
 							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"Missing Prefab",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[
+									{
+										"type":"Sprite3D",
+										"props":{
+											"name":"Missing Prefab (Dummy)",
+											"active":true,
+											"isStatic":false,
+											"layer":0,
+											"position":[
+												0,
+												0,
+												0
+											],
+											"rotation":[
+												0,
+												0,
+												0,
+												-1
+											],
+											"scale":[
+												1,
+												1,
+												1
+											]
+										},
+										"components":[],
+										"child":[]
+									}
+								]
+							},
+							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"Missing Prefab",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[
+									{
+										"type":"Sprite3D",
+										"props":{
+											"name":"Missing Prefab (Dummy)",
+											"active":true,
+											"isStatic":false,
+											"layer":0,
+											"position":[
+												0,
+												0,
+												0
+											],
+											"rotation":[
+												0,
+												0,
+												0,
+												-1
+											],
+											"scale":[
+												1,
+												1,
+												1
+											]
+										},
+										"components":[],
+										"child":[]
+									}
+								]
+							},
+							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"Missing Prefab",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[
+									{
+										"type":"Sprite3D",
+										"props":{
+											"name":"Missing Prefab (Dummy)",
+											"active":true,
+											"isStatic":false,
+											"layer":0,
+											"position":[
+												0,
+												0,
+												0
+											],
+											"rotation":[
+												0,
+												0,
+												0,
+												-1
+											],
+											"scale":[
+												1,
+												1,
+												1
+											]
+										},
+										"components":[],
+										"child":[]
+									}
+								]
+							},
+							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"Missing Prefab",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[
+									{
+										"type":"Sprite3D",
+										"props":{
+											"name":"Missing Prefab (Dummy)",
+											"active":true,
+											"isStatic":false,
+											"layer":0,
+											"position":[
+												0,
+												0,
+												0
+											],
+											"rotation":[
+												0,
+												0,
+												0,
+												-1
+											],
+											"scale":[
+												1,
+												1,
+												1
+											]
+										},
+										"components":[],
+										"child":[]
+									}
+								]
+							},
+							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"play (Missing Prefab)",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[
+									{
+										"type":"Sprite3D",
+										"props":{
+											"name":"Missing Prefab (Dummy)",
+											"active":true,
+											"isStatic":false,
+											"layer":0,
+											"position":[
+												0,
+												0,
+												0
+											],
+											"rotation":[
+												0,
+												0,
+												0,
+												-1
+											],
+											"scale":[
+												1,
+												1,
+												1
+											]
+										},
+										"components":[],
+										"child":[]
+									}
+								]
+							},
+							{
 								"type":"MeshSprite3D",
-								"instanceID":4,
 								"props":{
 									"name":"BlobShadow",
 									"active":true,
@@ -258,14 +535,8 @@
 										0.4
 									],
 									"meshPath":"Library/unity default resources-Quad.lm",
-									"enableRender":true,
-									"receiveShadows":true,
-									"castShadow":true,
-									"materials":[
-										{
-											"path":"Assets/test/Materials/BlobShadow.lmat"
-										}
-									]
+									"enableRender":false,
+									"materials":[]
 								},
 								"components":[],
 								"child":[]
@@ -273,41 +544,59 @@
 						]
 					},
 					{
-						"type":"MeshSprite3D",
-						"instanceID":5,
+						"type":"Sprite3D",
 						"props":{
-							"name":"Sky",
+							"name":"Missing Prefab",
 							"active":true,
 							"isStatic":false,
 							"layer":0,
 							"position":[
-								0.005,
-								21.605,
-								-3
+								0,
+								0,
+								0
 							],
 							"rotation":[
 								0,
 								0,
-								1,
-								0
+								0,
+								-1
 							],
 							"scale":[
-								2.893665,
-								1.396455,
-								2.893664
-							],
-							"meshPath":"Assets/test/Models/Daytime/Sky-Sky.lm",
-							"enableRender":true,
-							"receiveShadows":true,
-							"castShadow":true,
-							"materials":[
-								{
-									"path":"Assets/test/Materials/Sky.lmat"
-								}
+								1,
+								1,
+								1
 							]
 						},
 						"components":[],
-						"child":[]
+						"child":[
+							{
+								"type":"Sprite3D",
+								"props":{
+									"name":"Missing Prefab (Dummy)",
+									"active":true,
+									"isStatic":false,
+									"layer":0,
+									"position":[
+										0,
+										0,
+										0
+									],
+									"rotation":[
+										0,
+										0,
+										0,
+										-1
+									],
+									"scale":[
+										1,
+										1,
+										1
+									]
+								},
+								"components":[],
+								"child":[]
+							}
+						]
 					}
 				]
 			}

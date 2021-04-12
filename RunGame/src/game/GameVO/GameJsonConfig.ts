@@ -34,8 +34,7 @@ export default class GameJsonConfig {
 
     public getPassCount():number
     {
-        return 11;//(this.jsonData['pass'].length);
-        // return data;
+        return 11;
     }
 
     /**获得关卡数据 */
@@ -48,10 +47,10 @@ export default class GameJsonConfig {
         passIndex["year10"] = 33;
 
         let build: Array<Array<number>> = [];
-        build["year80"] = [10001,10002,10003,10004,10005,10006,10007,10008];
-        build["year90"] = [20001,20002,20003,20004,20005,20006,20007,20008];
-        build["year00"] = [30001,30002,30003,30004,30005,30006,30007,30008];
-        build["year10"] = [40001,40002,40003,40004,40005,40006,40007,40008];
+        build["year80"] = [10001,10002,10003,10004,10005,10006,10007,10008,10009,10010];
+        build["year90"] = [20001,20002,20003,20004,20005,20006,20007,20008,20009,20010];
+        build["year00"] = [30001,30002,30003,30004,30005,30006,30007,30008,30009,30010];
+        build["year10"] = [40001,40002,40003,40004,40005,40006,40007,40008,40009,40010];
 
         let obstacle: Array<Array<number>> = [];
         obstacle["year80"] = [9,10,100];

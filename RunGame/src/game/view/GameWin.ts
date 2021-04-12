@@ -186,7 +186,7 @@ export default class GameWin extends rab.RabView {
                 this.m_currView.cover.alpha = 0.5;
                 this.m_currView.bigPhoto.visible = true;
                 this.m_currView.bigPhoto.alpha = 1;
-                this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + (index) + "_b.png"
+                this.m_currView.bigPhoto.skin = "new/com/Photo/pic_0" + index + "_b.png";
                 Tool.instance.winowAniamtion(this.m_currView.bigPhoto, 0.5);
             });
         }

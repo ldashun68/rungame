@@ -1,8 +1,7 @@
 {
-	"version":"LAYAHIERARCHY:02",
+	"version":"LAYAHIERARCHY:01",
 	"data":{
 		"type":"Sprite3D",
-		"instanceID":114,
 		"props":{
 			"name":"map_90_06",
 			"active":true,
@@ -29,7 +28,6 @@
 		"child":[
 			{
 				"type":"MeshSprite3D",
-				"instanceID":115,
 				"props":{
 					"name":"dimian (2)",
 					"active":true,
@@ -51,13 +49,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -66,7 +62,6 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":116,
 				"props":{
 					"name":"dimian (3)",
 					"active":true,
@@ -88,13 +83,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/ground/dimian-Object01.lm",
+					"meshPath":"Assets/Assets/new/ground/dimian-Object01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/ground/dimian.lmat"
+							"path":"Assets/Assets/new/ground/dimian.lmat"
 						}
 					]
 				},
@@ -103,14 +96,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":117,
 				"props":{
 					"name":"xiaoqu01 (2)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.87,
+						6.08,
 						0,
 						-9.299999
 					],
@@ -125,13 +117,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
+					"meshPath":"Assets/Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/xiaoqu01.lmat"
+							"path":"Assets/Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -140,14 +130,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":118,
 				"props":{
 					"name":"xiaoqu01 (3)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-5.96,
+						-6.15,
 						0,
 						8.22
 					],
@@ -162,13 +151,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
+					"meshPath":"Assets/Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/xiaoqu01.lmat"
+							"path":"Assets/Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -177,14 +164,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":119,
 				"props":{
 					"name":"xiaoqu01 (4)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						5.87,
+						6.08,
 						0,
 						6.96
 					],
@@ -199,13 +185,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
+					"meshPath":"Assets/Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/xiaoqu01.lmat"
+							"path":"Assets/Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
@@ -214,14 +198,13 @@
 			},
 			{
 				"type":"MeshSprite3D",
-				"instanceID":120,
 				"props":{
 					"name":"xiaoqu01 (5)",
 					"active":true,
 					"isStatic":false,
 					"layer":0,
 					"position":[
-						-5.96,
+						-6.15,
 						0,
 						-9.35
 					],
@@ -236,13 +219,11 @@
 						1,
 						1
 					],
-					"meshPath":"Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
+					"meshPath":"Assets/Assets/new/build/90/xiaoqu01-xiaoqu01.lm",
 					"enableRender":true,
-					"receiveShadows":true,
-					"castShadow":true,
 					"materials":[
 						{
-							"path":"Assets/new/build/90/xiaoqu01.lmat"
+							"path":"Assets/Assets/new/build/90/xiaoqu01.lmat"
 						}
 					]
 				},
